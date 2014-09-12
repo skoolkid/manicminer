@@ -1,0 +1,93 @@
+#!/bin/bash -e
+
+declare -A SK_VERSIONS
+SK_VERSIONS=(
+  [20140308]=3.7
+  [20131102]=3.6
+  [20130513]=3.3.2
+  [20121101]=3.2
+  [20120501]=3.0.2
+  [20120320]=3.0
+  [20120222]=2.5
+  [20100212]=1.0.7
+)
+
+MMZ80=$MANICMINER_HOME/build/manic_miner.z80
+
+if [ $# -lt 2 ]; then
+  echo "Usage: $(basename $0) VERSION SKOOLKIT_VERSION"
+  echo ""
+  echo "  Attempts to build a specific version of the Manic Miner disassembly using a"
+  echo "  specific version of SkoolKit."
+  echo ""
+  echo "  VERSION must be one of:"
+  echo ""
+  for v in ${!SK_VERSIONS[@]}; do
+    echo "    $v"
+  done | sort -r | column -c 80
+  echo ""
+  echo "  Environment variables:"
+  echo "    SKOOLKIT_ARCHIVE - directory containing SkoolKit release tarballs"
+  exit 1
+fi
+
+if [ -z "$SKOOLKIT_ARCHIVE" ]; then
+    echo 'SKOOLKIT_ARCHIVE is not set; aborting'
+    exit 1
+fi
+if [ ! -d "$SKOOLKIT_ARCHIVE" ]; then
+    echo "SKOOLKIT_ARCHIVE=$SKOOLKIT_ARCHIVE: directory not found"
+    exit 1
+fi
+
+D_VERSION=$1
+SK_VERSION=$2
+
+SK_VERSION_INT=$(echo $SK_VERSION | tr -d . )0
+SK_VERSION_INT=${SK_VERSION_INT:0:3}
+
+SK_DIR=skoolkit-$SK_VERSION
+odir=mm-$D_VERSION-$SK_VERSION
+rm -rf $SK_DIR $odir
+
+D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
+if [[ -z "$D_SK_VERSION" ]]; then
+  echo "Disassembly version not recognised: $D_VERSION"
+  exit 1
+fi
+
+odir=mm-$D_VERSION-$SK_VERSION
+rm -rf $odir
+mkdir $odir
+cd $odir
+
+SK_DIR=skoolkit-$SK_VERSION
+tar xf $SKOOLKIT_ARCHIVE/$SK_DIR.tar.*
+SK_BUILD_DIR=${SK_DIR}-build
+mv $SK_DIR $SK_BUILD_DIR
+
+D_SK_VERSION_INT=$(echo $D_SK_VERSION | tr -d . )0
+D_SK_VERSION_INT=${D_SK_VERSION_INT:0:3}
+D_SK_DIR=skoolkit-$D_SK_VERSION
+tar xf $SKOOLKIT_ARCHIVE/$D_SK_DIR.tar.*
+D_DIR=$D_SK_DIR-src
+mv $D_SK_DIR $D_DIR
+
+cd $SK_BUILD_DIR
+rm -f *.ctl *.skool *.ref
+find ../$D_DIR -name manic_miner.ctl -exec cp -a {} . \;
+find ../$D_DIR -name manic_miner.ref -exec cp -a {} . \;
+find ../$D_DIR -name manicminer.py -exec cp -a {} skoolkit \;
+
+./sna2skool.py -c manic_miner.ctl $MMZ80 > manic_miner.skool
+
+if [ $SK_VERSION_INT -ge 220 ]; then
+  # SkoolKit 2.2+
+  if [ $SK_VERSION_INT -ge 302 ]; then
+    HTML_OPTS=-t
+  fi
+  ./skool2html.py $HTML_OPTS -d .. manic_miner.skool
+else
+  # SkoolKit 1.0 - 2.1.2
+  ./skool2html.py -f manic_miner.skool ..
+fi
