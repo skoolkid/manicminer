@@ -22,7 +22,7 @@ The HTML disassembly in this archive was built from the source files in the
 
 SkoolKit can be obtained from the following locations:
 
-  - http://pyskool.ca/?page_id=177
+  - http://skoolkit.ca/
   - https://launchpad.net/skoolkit
 
 The HTML disassembly can be built from the source files by following these
@@ -50,7 +50,7 @@ files in the 'src' subdirectory using version $SK_VERSION of SkoolKit.
 
 SkoolKit can be obtained from the following locations:
 
-  - http://pyskool.ca/?page_id=177
+  - http://skoolkit.ca/
   - https://launchpad.net/skoolkit
 
 The ASM disassembly can be built by following these steps:
