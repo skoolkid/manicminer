@@ -30,14 +30,12 @@ steps:
 
 1. Download and unpack SkoolKit $SK_VERSION.
 
-2. Copy 'manicminer.py' from the 'skoolkit' subdirectory in this archive to
-   the directory where SkoolKit was unpacked.
+2. Copy every file from the 'src' subdirectory in this archive to the directory
+   where SkoolKit was unpacked.
 
-3. Copy the 'src' subdirectory into the directory where SkoolKit was unpacked.
+3. Change to the directory where SkoolKit was unpacked and run this command:
 
-4. Change to the directory where SkoolKit was unpacked and run this command:
-
-  $ ./skool2html.py -W manicminer.ManicMinerHtmlWriter src/manic_miner.ref
+  $ ./skool2html.py manic_miner.ref
 EOF
 }
 
@@ -78,6 +76,22 @@ the game will start automatically.
 EOF
 }
 
+copying() {
+  cat <<EOF
+The SkoolKit extension module (manicminer.py) is licensed under the GNU General
+Public License, version 3. To view a copy of this licence, visit
+
+  http://www.gnu.org/licenses/
+
+The text of the disassembly itself (annotations, the contents of the Trivia,
+Bugs and Pokes pages etc.) is licensed under the Creative Commons
+Attribution-ShareAlike 3.0 Unported License. To view a copy of this licence,
+visit
+
+  http://creativecommons.org/licenses/by-sa/3.0/
+EOF
+}
+
 while [ -n "$1" ]; do
   case "$1" in
     -*) usage ;;
@@ -102,17 +116,16 @@ if [ ! -f skool2html.py ]; then
 fi
 SK_VERSION=$(./skool2html.py -V 2>&1 | cut -f2 -d' ')
 
-cp -p $MANICMINER_HOME/skoolkit/manicminer.py .
-rm -rf src
-mkdir src
-cp -p $MANICMINER_HOME/{manic_miner.ref,COPYING} src
-
-VERSION=$(grep ^Release= src/manic_miner.ref | grep -o '20.\{6\}')
-
+VERSION=$(grep ^Release= $MANICMINER_HOME/manic_miner.ref | grep -o '20.\{6\}')
 if [ -z "$VERSION" ]; then
-  echo "Error: could not find version number in src/manic_miner.ref"
+  echo "Error: could not find version number in manic_miner.ref"
   exit 1
 fi
+
+rm -rf src
+mkdir src
+cp -p $MANICMINER_HOME/skoolkit/manicminer.py src
+cp -p $MANICMINER_HOME/manic_miner.ref src
 
 DISTDIR=dist
 PKGNAME=mm-disassembly-$VERSION
@@ -138,15 +151,16 @@ echo -n "Writing skool file..."
 echo "done"
 
 echo -n "Writing disassembly..."
-./skool2html.py -W manicminer.ManicMinerHtmlWriter -q -d ${ABSDIR} src/manic_miner.ref
+cd src
+../skool2html.py -q -S ../resources -d ../${ABSDIR} manic_miner.ref
+cd ..
 echo "done"
 mv ${ABSDIR}/{manic_miner,html}
 
 echo -n "Copying source files and SkoolKit module..."
+rm -f src/*.pyc
 cp -a src ${ABSDIR}
-SKMODDIR=${ABSDIR}/skoolkit
-mkdir $SKMODDIR
-cp -p COPYING manicminer.py $SKMODDIR
+copying > ${ABSDIR}/src/COPYING
 readme > ${ABSDIR}/readme.txt
 asm_readme > ${ABSDIR}/asm.txt
 echo "done"

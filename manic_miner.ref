@@ -4,6 +4,9 @@
 ; Copyright 2012, 2014 Richard Dymond (rjdymond@gmail.com)
 ;
 
+[Config]
+HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
+
 [Game]
 Game=Manic Miner
 TitlePrefix=The incomplete
