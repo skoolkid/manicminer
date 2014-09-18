@@ -25,15 +25,44 @@ class ManicMinerHtmlWriter(HtmlWriter):
         self.font = {}
         for b, h in self.get_dictionary('Font').items():
             self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
+        self.cavern_names = self._get_cavern_names()
 
     def cavern(self, cwd, address, scale=2, fname=None):
         if fname is None:
-            cavern_name = ''.join([chr(b) for b in self.snapshot[address + 512:address + 544]])
-            fname = cavern_name.strip().lower().replace(' ', '_')
+            fname = self.cavern_names[address].lower().replace(' ', '_')
         img_path = self.image_path(fname, 'ScreenshotImagePath')
         if self.need_image(img_path):
             self.write_image(img_path, self._get_cavern_udgs(address), scale=scale)
         return self.img_element(cwd, img_path)
+
+    def caverns(self, cwd):
+        lines = [
+            '#TABLE(default,centre,centre,,centre)',
+            '{ =h No. | =h Address | =h Name | =h Teleport }'
+        ]
+        for cavern_num in range(20):
+            address = 45056 + 1024 * cavern_num
+            cavern_name = self.cavern_names[address]
+            teleport_code = self._get_teleport_code(cavern_num)
+            lines.append('{{ {} | #R{} | {} | {} }}'.format(cavern_num, address, cavern_name, teleport_code))
+        lines.append('TABLE#')
+        return ''.join(lines)
+
+    def _get_cavern_names(self):
+        caverns = {}
+        for a in range(45056, 65536, 1024):
+            caverns[a] = ''.join([chr(b) for b in self.snapshot[a + 512:a + 544]]).strip()
+        return caverns
+
+    def _get_teleport_code(self, cavern_num):
+        code = ''
+        key = 1
+        while cavern_num:
+            if cavern_num & 1:
+                code += str(key)
+            cavern_num //= 2
+            key += 1
+        return code + '6'
 
     def _get_cavern_udgs(self, addr):
         # Collect block graphics

@@ -58,6 +58,21 @@ Release=The incomplete Manic Miner RAM disassembly 20140308
 120=0000442810284400
 121=00004444443C0438
 
+[Index:DataTables:Data tables and buffers]
+GameStatusBuffer
+Caverns
+
+[Paths]
+Caverns=tables/caverns.html
+
+[PageContent:Caverns]
+#CALL:caverns()
+
+[Changelog:YYYYMMDD]
+-
+
+Added the #LINK:Caverns(Caverns page)
+
 [Changelog:20140308]
 Included in SkoolKit 3.7.
 
