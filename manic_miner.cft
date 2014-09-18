@@ -103,33 +103,42 @@ b 33902 Title screen tune data
 B 33902,286,16
 b 34188 In-game tune data
 B 34188,64,16
-c 34252 Start
-c 35388
-c 35445
-c 35515
-c 35770
-c 35805
-c 36101
-c 36111
-c 36211
-c 36266
-c 36344
-c 36469
-c 36593
-c 36707
-c 36805
-c 37098
-c 37125
-c 37173
-c 37403
-c 37434
-c 37471
-c 37503
+c 34252 Display the title screen and play the theme tune
+E 34252 This routine continues into the one at #R34436.
+c 34436 Start the game (or demo mode)
+E 34436 This routine continues into the main loop at #R34574.
+c 34574 Main loop (1)
+c 35140 Display the game over sequence
+c 35388 Decrease the air remaining in the current cavern
+c 35445 Draw the current cavern to the screen buffer at 28672
+c 35515 Move Willy (1)
+c 35770 Animate the crumbling floor in the current cavern
+c 35805 Move Willy (2)
+c 36101 Kill Willy
+c 36111 Move the horizontal guardians in the current cavern
+c 36211 Move and draw the light beam in Solar Power Generator
+c 36266 Draw the horizontal guardians in the current cavern
+c 36344 Move and draw Eugene in Eugene's Lair
+c 36469 Move and draw the Skylabs in Skylab Landing Bay
+c 36593 Move and draw the vertical guardians in the current cavern
+c 36707 Draw the items in the current cavern and collect any that Willy is touching
+c 36805 Draw the portal in the current cavern
+E 36805 This routine continues into the one at #R36852.
+c 36852 Draw a sprite
+D 36852 Used by the routines at #R34252, #R34574, #R35140, #R36266, #R36344, #R36469, #R36593, #R36805, #R36904 and #R37173.
+c 36904 Main loop (2)
+c 37098 Add to the score
+c 37125 Move the conveyor in the current cavern
+c 37173 Move and draw the Kong Beast in the current cavern
+c 37403 Check the switch in a Kong Beast cavern
+c 37434 Check and set the attribute bytes for Willy's sprite in the buffer at 23552
+c 37471 Check and set the attribute byte for a cell occupied by Willy's sprite
+c 37503 Draw Willy to the screen buffer at 24576
 c 37562 Print a message
-c 37579
-c 37596
-c 37675
-c 37687
+c 37579 Print a single character
+c 37596 Play the theme tune
+c 37675 Calculate the attribute file address for a piano key
+c 37687 Check whether ENTER or the fire button is being pressed
 t 37708 Source code remnants
 D 37708 The source code here corresponds to the code at #R34900.
 T 37708,6,B1:3:B1:1 DEC E
