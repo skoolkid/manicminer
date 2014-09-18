@@ -148,7 +148,7 @@ c 37579 Print a single character
 c 37596 Play the theme tune
 c 37675 Calculate the attribute file address for a piano key
 c 37687 Check whether ENTER or the fire button is being pressed
-t 37708 Source code remnants
+u 37708 Source code remnants
 D 37708 The source code here corresponds to the code at #R34900.
 T 37708,6,B1:3:B1:1 DEC E
 M 37714,16 3960 JR NZ,NOFLP6
