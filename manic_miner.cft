@@ -85,18 +85,27 @@ B 33280,256,16
 w 33536 Screen buffer address lookup table
 W 33536,256,16
 c 33792 The game has just loaded
-b 33799 Current cavern number
+g 33799 Current cavern number
 b 33800 Movement lookup table
 t 33816 'AIR'
-b 33819 Score and high score
+u 33819
 T 33819,4
-T 33823,6 High score
+g 33823 High score
+T 33823,6
+u 33829
 T 33829,4
-T 33833,6 Score
+g 33833 Score
+T 33833,6
 t 33839 'High Score 000000#SPACE(3)Score 000000'
 t 33871 'GameOver'
 T 33871,4
-g 33879 Game status buffer
+g 33879 Lives remaining
+g 33880 Screen flash counter
+g 33881 Kempston joystick indicator
+g 33882 Game mode indicator
+g 33883 In-game music note index
+g 33884 Music flags
+g 33885 6031769 key counter
 b 33886 6031769
 B 33886,16,2
 b 33902 Title screen tune data
