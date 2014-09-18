@@ -86,7 +86,7 @@ w 33536 Screen buffer address lookup table
 W 33536,256,16
 c 33792 The game has just loaded
 g 33799 Current cavern number
-b 33800 Movement lookup table
+b 33800 Left-right movement table
 t 33816 'AIR'
 u 33819
 T 33819,4
