@@ -11,7 +11,7 @@
 ; @start:32768
 ; @set-handle-unsupported-macros:32768=1
 ; @org:32768=32768
-b 32768 Cavern buffer
+g 32768 Cavern buffer
 D 32768 Source code remnants. These DB directives define part of the title screen tune data at #R33902.
 T 32768,19
 M 32787,37 790 DB "50,48,68,50,171,192,50,136,137"
