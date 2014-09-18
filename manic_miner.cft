@@ -97,8 +97,8 @@ T 33829,4
 g 33833 Score
 T 33833,6
 t 33839 'High Score 000000#SPACE(3)Score 000000'
-t 33871 'GameOver'
-T 33871,4
+t 33871 'Game'
+t 33875 'Over'
 g 33879 Lives remaining
 g 33880 Screen flash counter
 g 33881 Kempston joystick indicator
