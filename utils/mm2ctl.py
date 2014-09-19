@@ -15,6 +15,14 @@ except ImportError:
     sys.path.insert(0, SKOOLKIT_HOME)
     from skoolkit.snapshot import get_snapshot
 
+def get_screen_buffer_address_table():
+    lines = []
+    y = 0
+    for addr in range(33536, 33792, 2):
+        lines.append('W {} y={}'.format(addr, y))
+        y += 1
+    return '\n'.join(lines)
+
 def _write_guardians(lines, snapshot, start, g_type):
     term = start + 28
     for addr in range(start, start + 28, 7):
@@ -49,6 +57,7 @@ def get_caverns(snapshot):
         cavern = snapshot[a:a + 1024]
         cavern_name = ''.join([chr(b) for b in cavern[512:544]]).strip()
         lines.append('b {} {}'.format(a, cavern_name))
+        lines.append('D {} Used by the routine at #R34436.'.format(a))
         lines.append('D {0} #UDGTABLE {{ #CALL:cavern({0}) }} TABLE#'.format(a))
         lines.append('D {} The first 512 bytes are the attributes that define the layout of the cavern.'.format(a))
         lines.append('B {},512,16 Attributes'.format(a))
@@ -178,7 +187,10 @@ def get_ctl(snapshot):
         for line in f:
             if not line.startswith('#'):
                 template += line
-    return template.format(caverns=get_caverns(snapshot))
+    return template.format(
+        sba_table=get_screen_buffer_address_table(),
+        caverns=get_caverns(snapshot)
+    )
 
 def show_usage():
     sys.stderr.write("""Usage: {} manic_miner.[sna|z80|szx]
