@@ -46,6 +46,7 @@ Copying ../resources/manic_miner.css to {odir}/manic_miner/manic_miner.css
   Writing manic_miner/tables/caverns.html
   Writing manic_miner/reference/changelog.html
   Writing manic_miner/reference/facts.html
+  Writing manic_miner/reference/pokes.html
   Writing manic_miner/index.html"""
 
 def _find_ids_and_hrefs(elements, doc_anchors, doc_hrefs):

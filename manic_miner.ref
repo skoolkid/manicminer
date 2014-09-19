@@ -130,11 +130,17 @@ Before the game starts for the first time, the cavern buffer at 32768 contains s
 { 33259 | DEFM 9,"DB",9,"50,128,129,50,102" }
 TABLE#
 
+[Poke:infiniteLives:Infinite lives]
+To give Willy infinite lives:
+
+POKE #R35136,0
+
 [Changelog:YYYYMMDD]
 -
 
 Added the #LINK:Caverns(Caverns page)
 Added a trivia entry: #FACT#sourceCodeRemnants()
+Added a POKE: #POKE#infiniteLives()
 
 [Changelog:20140308]
 Included in SkoolKit 3.7.
