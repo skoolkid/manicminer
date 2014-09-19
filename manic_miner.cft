@@ -11,74 +11,67 @@
 ; @start:32768
 ; @set-handle-unsupported-macros:32768=1
 ; @org:32768=32768
-g 32768 Cavern buffer
-D 32768 Source code remnants. These DB directives define part of the title screen tune data at #R33902.
-T 32768,19
-M 32787,37 790 DB "50,48,68,50,171,192,50,136,137"
-W 32787
-B 32789
-T 32790,34,B1:2:B1:30
-M 32824,37 800 DB "50,136,137,50,114,115,50,76,77"
-W 32824
-B 32826
-T 32827,34,B1:2:B1:30
-M 32861,35 810 DB "50,7?????????????92,50,38,48"
-W 32861
-B 32863
-T 32864,8,B1:2:B1:4
-B 32872,13,13
-T 32885
-M 32896,35 820 DB "50,38,4??50,171,192,50,48,68"
-W 32896
-B 32898
-T 32899,11,B1:2:B1:7
-T 32912,19
-M 32931,37 830 DB "50,48,????0,171,19??50,136,137"
-W 32931
-B 32933
-T 32934,10,B1:2:B1:6
-B 32944
-T 32948
-B 32956
-T 32958,10
-M 32968,37 840 DB "50,136,137,???114,115,50,76,77"
-W 32968
-B 32970
-T 32971,15,B1:2:B1:11
-B 32986
-T 32989
-M 33005,35 850 ?B "50,76,77,50,171,203,50,38,51"
-W 33005
-B 33007
-T 33008,32,B2:1:B1:28
-M 33040,35 860 DB "50,38,51,50,171,203,50,51,64"
-W 33040
-B 33042
-T 33043,32,B1:2:B1,28
-M 33075,37 870 DB "50,51,64,50,171,203,50,128,129"
-W 33075
-B 33077
-T 33078,34,B1:2:B1:30
-M 33112,37 880 DB "50,128,129,50,102,103,50,86,87"
-W 33112
-B 33114
-T 33115,34,B1:2:B1:30
-M 33149,35 890 DB "50,64,65,50,128,171,50,32,43"
-W 33149
-B 33151
-T 33152,32,B1:2:B1:28
-M 33184,35 900 DB "50,32,43,50,128,171,50,43,51"
-W 33184
-B 33186
-T 33187,32,B1:2:B1:28
-M 33219,37 910 DB "50,43,51,50,128,171,50,128,129"
-W 33219
-B 33221
-T 33222,34,B1:2:B1:30
-M 33256,24 920 DB "50,128,129,50,102............."
-W 33256
-B 33258
-T 33259,21,B1:2:B1:17
+g 32768 Cavern name
+S 32768,32
+g 32800 Cavern tiles
+S 32800,9 Background tile
+S 32809,9 Floor tile 1
+S 32818,9 Crumbling floor tile
+S 32827,9 Wall tile
+S 32836,9 Conveyor tile
+S 32845,9 Nasty tile 1
+S 32854,9 Nasty tile 2
+S 32863,9 Floor tile 2
+g 32872 Willy's pixel y-coordinate (x2)
+g 32873 Willy's animation frame
+g 32874 Willy's direction and movement flags
+g 32875 Airborne status indicator
+g 32876 Address of Willy's location in the attribute buffer at 23552
+W 32876
+g 32878 Jumping animation counter
+g 32879 Conveyor definition
+B 32879 Direction (0=left, 1=right)
+W 32880 Address of the conveyor's location in the screen buffer at 28672
+B 32882 Length
+g 32883 Border colour
+g 32884 Attribute of the last item drawn
+D 32884 Holds the attribute byte of the last item drawn, or 0 if all the items have been collected.
+g 32885 Items
+S 32885,5 Item 1
+S 32890,5 Item 2
+S 32895,5 Item 3
+S 32900,5 Item 4
+S 32905,5 Item 5
+B 32910 Terminator (set to 255)
+g 32911 Portal
+B 32911 Attribute byte
+S 32912,32 Graphic data
+W 32944 Address of the portal's location in the attribute buffer at 23552
+W 32946 Address of the portal's location in the screen buffer at 24576
+g 32948 Item graphic
+S 32948,8
+g 32956 Remaining air supply
+g 32958 Horizontal guardians
+S 32958,7 Horizontal guardian 1
+S 32965,7 Horizontal guardian 2
+S 32972,7 Horizontal guardian 3
+S 32979,7 Horizontal guardian 4
+B 32986 Terminator (set to 255)
+g 32987 Eugene's direction
+D 32987 Used by the routines at #R36344 and #R37173.
+g 32988 Eugene's height
+D 32988 Used by the routines at #R34252, #R35140, #R36344 and #R37173.
+g 32989 Vertical guardians
+S 32989,7 Vertical guardian 1
+S 32996,7 Vertical guardian 2
+S 33003,7 Vertical guardian 3
+S 33010,7 Vertical guardian 4
+B 33017 Terminator (set to 255)
+u 33018 Unused
+D 33018 These 6 bytes are overwritten by the routine at #R34436, but not used.
+S 33018,6
+g 33024 Guardian graphic data
+S 33024,256
 b 33280 Willy sprite graphic data
 D 33280 Used by the routines at #R34252, #R34574 and #R37503.
 D 33280 #UDGTABLE {{ #UDGARRAY2,7,,2;33280-33297-1-16(willy0*) | #UDGARRAY2,7,,2;33312-33329-1-16(willy1*) | #UDGARRAY2,7,,2;33344-33361-1-16(willy2*) | #UDGARRAY2,7,,2;33376-33393-1-16(willy3*) | #UDGARRAY*willy0;willy1;willy2;willy3(willy_r.gif) }} {{ #UDGARRAY2,7,,2;33408-33425-1-16(willy4*) | #UDGARRAY2,7,,2;33440-33457-1-16(willy5*) | #UDGARRAY2,7,,2;33472-33489-1-16(willy6*) | #UDGARRAY2,7,,2;33504-33521-1-16(willy7*) | #UDGARRAY*willy7;willy6;willy5;willy4(willy_l.gif) }} TABLE#
@@ -89,7 +82,7 @@ D 33536 Used by the routines at #R35140, #R36344, #R36469, #R36593, #R37173 and 
 c 33792 The game has just loaded
 g 33799 Current cavern number
 b 33800 Left-right movement table
-D 33800 Used by the routine at #R35805. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at 32874 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor).
+D 33800 Used by the routine at #R35805. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at #R32874 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor).
 D 33800 One of the first four entries is used when Willy is not moving.
   33800 V=0 (facing right, no movement) + no movement: V'=0 (no change)
   33801 V=1 (facing left, no movement) + no movement: V'=1 (no change)
@@ -105,7 +98,7 @@ D 33808 One of the next four entries is used when Willy is moving right.
   33809 V=1 (facing left, no movement) + move right: V'=0 (facing right, no movement) (i.e. turn around)
   33810 V=2 (facing right, moving) + move right: V'=2 (no change)
   33811 V=3 (facing left, moving) + move right: V'=0 (facing right, no movement) (i.e. turn around)
-D 33812 One of the final four entries is used when Willy is being pulled both left and right; each entry leaves the flags at 32874 unchanged (so Willy carries on moving in the direction he's already moving, or remains stationary).
+D 33812 One of the final four entries is used when Willy is being pulled both left and right; each entry leaves the flags at #R32874 unchanged (so Willy carries on moving in the direction he's already moving, or remains stationary).
   33812 V=V'=0 (facing right, no movement)
   33813 V=V'=1 (facing left, no movement)
   33814 V=V'=2 (facing right, moving)
