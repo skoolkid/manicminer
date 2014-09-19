@@ -11,6 +11,7 @@ HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
 Game=Manic Miner
 TitlePrefix=The incomplete
 Logo=#SCR2,0,1,19,2,43008,40448{10,,292}(/images/logo)
+StyleSheet=skoolkit.css;manic_miner.css
 Copyright=&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).
 Release=The incomplete Manic Miner RAM disassembly 20140308
 
@@ -68,10 +69,71 @@ Caverns=tables/caverns.html
 [PageContent:Caverns]
 #CALL:caverns()
 
+[Fact:sourceCodeRemnants:Source code remnants]
+Before the game starts for the first time, the cavern buffer at 32768 contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
+
+#TABLE(asm,address-1,instruction,comment-11)
+{ 32768 | DEFM "50,171,192,50,48,68" | }
+{ 32787 | DEFW 790 | =r3 790 DB "50,48,68,50,171,192,50,136,137" }
+{ 32789 | DEFB 34 }
+{ 32790 | DEFM 9,"DB",9,"50,48,68,50,171,192,50,136,137" }
+{ 32824 | DEFW 800 | =r3 800 DB "50,136,137,50,114,115,50,76,77" }
+{ 32826 | DEFB 34 }
+{ 32827 | DEFM 9,"DB",9,"50,136,137,50,114,115,50,76,77" }
+{ 32861 | DEFW 810 | =r5 810 DB "50,7?????????????92,50,38,48" }
+{ 32863 | DEFB 32 }
+{ 32864 | DEFM 9,"DB",9,"50,7" }
+{ 32872 | DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0 }
+{ 32885 | DEFM "92,50,38,48" }
+{ 32896 | DEFW 820 | =r5 820 DB "50,38,4??50,171,192,50,48,68" }
+{ 32898 | DEFB 32 }
+{ 32899 | DEFM 9,"DB",9,"50,38,4" }
+{ 32910 | DEFB 255,0 }
+{ 32912 | DEFM "50,171,192,50,48,68" }
+{ 32931 | DEFW 830 | =r7 830 DB "50,48,????0,171,19??50,136,137" }
+{ 32933 | DEFB 34 }
+{ 32934 | DEFM 9,"DB",9,"50,48," }
+{ 32944 | DEFB 0,0,0,0 }
+{ 32948 | DEFM "0,171,19" }
+{ 32956 | DEFB 0,0 }
+{ 32958 | DEFM "50,136,137" }
+{ 32968 | DEFW 840 | =r5 840 DB "50,136,137,???114,115,50,76,77" }
+{ 32970 | DEFB 34 }
+{ 32971 | DEFM 9,"DB",9,"50,136,137," }
+{ 32986 | DEFB 255,0,0 }
+{ 32989 | DEFM "114,115,50,76,77" }
+{ 33005 | DEFW 850 | =r3 850 ?B "50,76,77,50,171,203,50,38,51" }
+{ 33007 | DEFB 32 }
+{ 33008 | DEFM 9,255,"B",9,"50,76,77,50,171,203,50,38,51" }
+{ 33040 | DEFW 860 | =r4 860 DB "50,38,51,50,171,203,50,51,64" }
+{ 33042 | DEFB 32 }
+{ 33043 | DEFM 9,"DB",9 }
+{ 33047 | DEFM "50,38,51,50,171,203,50,51,64" }
+{ 33075 | DEFW 870 | =r3 870 DB "50,51,64,50,171,203,50,128,129" }
+{ 33077 | DEFB 34 }
+{ 33078 | DEFM 9,"DB",9,"50,51,64,50,171,203,50,128,129" }
+{ 33112 | DEFW 880 | =r3 880 DB "50,128,129,50,102,103,50,86,87" }
+{ 33114 | DEFB 34 }
+{ 33115 | DEFM 9,"DB",9,"50,128,129,50,102,103,50,86,87" }
+{ 33149 | DEFW 890 | =r3 890 DB "50,64,65,50,128,171,50,32,43" }
+{ 33151 | DEFB 32 }
+{ 33152 | DEFM 9,"DB",9,"50,64,65,50,128,171,50,32,43" }
+{ 33184 | DEFW 900 | =r3 900 DB "50,32,43,50,128,171,50,43,51" }
+{ 33186 | DEFB 32 }
+{ 33187 | DEFM 9,"DB",9,"50,32,43,50,128,171,50,43,51" }
+{ 33219 | DEFW 910 | =r3 910 DB "50,43,51,50,128,171,50,128,129" }
+{ 33221 | DEFB 34 }
+{ 33222 | DEFM 9,"DB",9,"50,43,51,50,128,171,50,128,129" }
+{ 33256 | DEFW 920 | =r3 920 DB "50,128,129,50,102............." }
+{ 33258 | DEFB 34 }
+{ 33259 | DEFM 9,"DB",9,"50,128,129,50,102" }
+TABLE#
+
 [Changelog:YYYYMMDD]
 -
 
 Added the #LINK:Caverns(Caverns page)
+Added a trivia entry: #FACT#sourceCodeRemnants()
 
 [Changelog:20140308]
 Included in SkoolKit 3.7.

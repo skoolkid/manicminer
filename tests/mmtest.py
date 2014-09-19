@@ -35,13 +35,17 @@ Using ref file: {reffile}
 Parsing {skoolfile}
 Creating directory {odir}/manic_miner
 Copying {SKOOLKIT_HOME}/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css
+Copying ../resources/manic_miner.css to {odir}/manic_miner/manic_miner.css
   Writing disassembly files in manic_miner/asm
   Writing manic_miner/maps/all.html
   Writing manic_miner/maps/routines.html
   Writing manic_miner/maps/data.html
   Writing manic_miner/maps/messages.html
+  Writing manic_miner/maps/unused.html
   Writing manic_miner/buffers/gbuffer.html
+  Writing manic_miner/tables/caverns.html
   Writing manic_miner/reference/changelog.html
+  Writing manic_miner/reference/facts.html
   Writing manic_miner/index.html"""
 
 def _find_ids_and_hrefs(elements, doc_anchors, doc_hrefs):
