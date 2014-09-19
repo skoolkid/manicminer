@@ -14,6 +14,7 @@ Logo=#SCR2,0,1,19,2,43008,40448{10,,292}(/images/logo)
 StyleSheet=skoolkit.css;manic_miner.css
 Copyright=&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).
 Release=The incomplete Manic Miner RAM disassembly 20140308
+LinkInternalOperands=1
 
 [Font]
 32=0000000000000000
