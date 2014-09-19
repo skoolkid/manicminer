@@ -88,6 +88,7 @@ c 33792 The game has just loaded
 g 33799 Current cavern number
 b 33800 Left-right movement table
 t 33816 'AIR'
+D 33816 Used by the routine at #R34436.
 u 33819
 T 33819,4
 g 33823 High score
@@ -97,8 +98,11 @@ T 33829,4
 g 33833 Score
 T 33833,6
 t 33839 'High Score 000000#SPACE(3)Score 000000'
+D 33839 Used by the routine at #R34436.
 t 33871 'Game'
+D 33871 Used by the routine at #R35140.
 t 33875 'Over'
+D 33875 Used by the routine at #R35140.
 g 33879 Lives remaining
 g 33880 Screen flash counter
 g 33881 Kempston joystick indicator
@@ -924,6 +928,7 @@ W 40187
 B 40189
 T 40190,2,B1:1
 t 40192 '...MANIC MINER . . #CHR(169) BUG-BYTE ltd. 1983...'
+D 40192 Used by the routine at #R34252.
 T 40240,48,B1:47
 T 40288
 T 40336
