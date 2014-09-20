@@ -12,56 +12,74 @@
 ; @set-handle-unsupported-macros:32768=1
 ; @org:32768=32768
 g 32768 Cavern name
+D 32768 The cavern name is copied here and then used by the routine at #R34436.
 S 32768,32
 g 32800 Cavern tiles
-S 32800,9 Background tile
-S 32809,9 Floor tile 1
-S 32818,9 Crumbling floor tile
-S 32827,9 Wall tile
-S 32836,9 Conveyor tile
-S 32845,9 Nasty tile 1
-S 32854,9 Nasty tile 2
+D 32800 The cavern tiles are copied here by the routine at #R34436 and then used to draw the room by the routine at #R35445.
+S 32800,9 Background tile (also used by the routines at #R35515, #R35770, #R36211, #R36344, #R37173 and #R37471)
+S 32809,9 Floor tile 1 (also used by the routine at #R36211)
+S 32818,9 Crumbling floor tile (also used by the routine at #R35515)
+S 32827,9 Wall tile (also used by the routines at #R35515, #R35805 and #R36211)
+S 32836,9 Conveyor tile (also used by the routine at #R35805)
+S 32845,9 Nasty tile 1 (also used by the routines at #R35515 and #R37471)
+S 32854,9 Nasty tile 2 (also used by the routines at #R35515 and #R37471)
 S 32863,9 Floor tile 2
 g 32872 Willy's pixel y-coordinate (x2)
+D 32872 Initialised by the routine at #R34436, and used by the routines at #R35515, #R35805, #R37434 and #R37503. Holds the LSB of the address of the entry in the screen buffer address lookup table at #R33536 that corresponds to Willy's pixel y-coordinate; in practice, this is twice Willy's actual pixel y-coordinate.
 g 32873 Willy's animation frame
+D 32873 Initialised by the routine at #R34436, and used by the routines at #R35805 and #R37503.
 g 32874 Willy's direction and movement flags
+D 32874 Initialised by the routine at #R34436.
+D 32874 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R35805, #R37503 }} {{ 1 | Willy's movement flag (set=moving) | #R35515, #R35805 }} {{ 2-7 | Unused (always reset) | }} TABLE#
 g 32875 Airborne status indicator
+D 32875 Initialised by the routine at #R34436, and used by the routines at #R34574, #R35515, #R35805 and #R36101.
 g 32876 Address of Willy's location in the attribute buffer at 23552
+D 32876 Initialised by the routine at #R34436, and used by the routines at #R35515, #R35805, #R36805, #R37403, #R37434 and #R37503.
 W 32876
 g 32878 Jumping animation counter
+D 32878 Initialised by the routine at #R34436, and used by the routines at #R35515 and #R35805.
 g 32879 Conveyor definition
-B 32879 Direction (0=left, 1=right)
-W 32880 Address of the conveyor's location in the screen buffer at 28672
-B 32882 Length
+D 32879 The conveyor definition is copied here by the routine at #R34436.
+B 32879 Direction (0=left, 1=right; used by the routines at #R35805 and #R37125)
+W 32880 Address of the conveyor's location in the screen buffer at 28672 (used by the routine at #R37125)
+B 32882 Length (used by the routine at #R37125)
 g 32883 Border colour
+D 32883 Initialised and used by the routine at #R34436, and also used by the routines at #R34574, #R35515 and #R37173.
 g 32884 Attribute of the last item drawn
-D 32884 Holds the attribute byte of the last item drawn, or 0 if all the items have been collected.
-g 32885 Items
+D 32884 Initialised by the routine at #R34436, and used by the routines at #R36344 and #R36707. Holds the attribute byte of the last item drawn, or 0 if all the items have been collected.
+g 32885 Item definitions
+D 32885 The item definitions are copied here by the routine at #R34436, and then used by the routine at #R36707. An item definition contains the following information:
+D 32885 #TABLE(default,centre) {{ =h Byte(s) | =h Contents }} {{ 0 | Current attribute }} {{ 1,2 | Address of the item's location in the attribute buffer at 23552 }} {{ 3 | MSB of the address of the item's location in the screen buffer at 24576 }} {{ 4 | Unused (always 255) }} TABLE#
 S 32885,5 Item 1
 S 32890,5 Item 2
 S 32895,5 Item 3
 S 32900,5 Item 4
 S 32905,5 Item 5
 B 32910 Terminator (set to 255)
-g 32911 Portal
-B 32911 Attribute byte
-S 32912,32 Graphic data
-W 32944 Address of the portal's location in the attribute buffer at 23552
-W 32946 Address of the portal's location in the screen buffer at 24576
+g 32911 Portal definition
+D 32911 The portal definition is copied here by the routine at #R34436.
+B 32911 Attribute byte (used by the routines at #R36707 and #R36805)
+S 32912,32 Graphic data (used by the routine at #R36805)
+W 32944 Address of the portal's location in the attribute buffer at 23552 (used by the routine at #R36805)
+W 32946 Address of the portal's location in the screen buffer at 24576 (used by the routine at #R36805)
 g 32948 Item graphic
+D 32948 The item graphic is copied here by the routine at #R34436, and then used by the routine at #R36707.
 S 32948,8
 g 32956 Remaining air supply
+D 32956 Initialised and used by the routine at #R34436, and also used by the routines at #R35388 and #R36904.
 g 32958 Horizontal guardians
+D 32958 The horizontal guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36111 and #R36266.
 S 32958,7 Horizontal guardian 1
 S 32965,7 Horizontal guardian 2
 S 32972,7 Horizontal guardian 3
 S 32979,7 Horizontal guardian 4
 B 32986 Terminator (set to 255)
 g 32987 Eugene's direction
-D 32987 Used by the routines at #R36344 and #R37173.
+D 32987 Initialised by the routine at #R34436, and used by the routines at #R36344 and #R37173.
 g 32988 Eugene's height
-D 32988 Used by the routines at #R34252, #R35140, #R36344 and #R37173.
+D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252, #R35140, #R36344 and #R37173.
 g 32989 Vertical guardians
+D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593.
 S 32989,7 Vertical guardian 1
 S 32996,7 Vertical guardian 2
 S 33003,7 Vertical guardian 3
@@ -71,6 +89,7 @@ u 33018 Unused
 D 33018 These 6 bytes are overwritten by the routine at #R34436, but not used.
 S 33018,6
 g 33024 Guardian graphic data
+D 33024 The guardian graphic data is copied here by the routine at #R34436, and then used by the routines at #R36266, #R36469, #R36593 and #R37173.
 S 33024,256
 b 33280 Willy sprite graphic data
 D 33280 Used by the routines at #R34252, #R34574 and #R37503.
@@ -81,6 +100,7 @@ D 33536 Used by the routines at #R35140, #R36344, #R36469, #R36593, #R37173 and 
 {sba_table}
 c 33792 The game has just loaded
 g 33799 Current cavern number
+D 33799 Initialised by the routine at #R34252, and used by the routines at #R34436, #R34574, #R35445, #R36266 and #R36904.
 b 33800 Left-right movement table
 D 33800 Used by the routine at #R35805. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at #R32874 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor).
 D 33800 One of the first four entries is used when Willy is not moving.
@@ -108,10 +128,12 @@ D 33816 Used by the routine at #R34436.
 u 33819
 T 33819,4
 g 33823 High score
+D 33823 Used by the routines at #R34574 and #R35140.
 T 33823,6
 u 33829
 T 33829,4
 g 33833 Score
+D 33833 Used by the routines at #R34574, #R35140, #R36904 and #R37098.
 T 33833,6
 t 33839 'High Score 000000#SPACE(3)Score 000000'
 D 33839 Used by the routine at #R34436.
@@ -120,12 +142,20 @@ D 33871 Used by the routine at #R35140.
 t 33875 'Over'
 D 33875 Used by the routine at #R35140.
 g 33879 Lives remaining
+D 33879 Initialised to 2 by the routine at #R34252, and used by the routines at #R34574 and #R37098.
 g 33880 Screen flash counter
+D 33880 Initialised by the routine at #R34252, and used by the routines at #R34574 and #R37098.
 g 33881 Kempston joystick indicator
+D 33881 Initialised by the routine at #R34252, and used by the routines at #R34574, #R35805 and #R37687. Holds 1 if a joystick is present, 0 otherwise.
 g 33882 Game mode indicator
+D 33882 Initialised by the routine at #R34252, and used by the routines at #R34436, #R34574 and #R36904.
 g 33883 In-game music note index
+D 33883 Initialised by the routine at #R34252, and used by the routine at #R34574.
 g 33884 Music flags
+D 33884 The keypress flag in bit 0 is initialised by the routine at #R34252; bits 0 and 1 are checked and updated by the routine at #R34574.
+D 33884 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning }} {{ 0 | Keypress flag (set=H-ENTER being pressed, reset=no key pressed) }} {{ 1 | In-game music flag (set=music off, reset=music on) }} {{ 2-7 | Unused }} TABLE#
 g 33885 6031769 key counter
+D 33885 Used by the routines at #R34574 and #R36904.
 b 33886 6031769
 D 33886 Used by the routine at #R34574.
 B 33886,b2 (no keys pressed)
