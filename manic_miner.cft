@@ -142,7 +142,7 @@ D 33871 Used by the routine at #R35140.
 t 33875 'Over'
 D 33875 Used by the routine at #R35140.
 g 33879 Lives remaining
-D 33879 Initialised to 2 by the routine at #R34252, and used by the routines at #R34574 and #R37098.
+D 33879 Initialised to 2 by the routine at #R34252, and used and updated by the routines at #R34574 and #R37098.
 g 33880 Screen flash counter
 D 33880 Initialised by the routine at #R34252, and used by the routines at #R34574 and #R37098.
 g 33881 Kempston joystick indicator
@@ -150,7 +150,7 @@ D 33881 Initialised by the routine at #R34252, and used by the routines at #R345
 g 33882 Game mode indicator
 D 33882 Initialised by the routine at #R34252, and used by the routines at #R34436, #R34574 and #R36904.
 g 33883 In-game music note index
-D 33883 Initialised by the routine at #R34252, and used by the routine at #R34574.
+D 33883 Initialised by the routine at #R34252, and used and updated by the routine at #R34574.
 g 33884 Music flags
 D 33884 The keypress flag in bit 0 is initialised by the routine at #R34252; bits 0 and 1 are checked and updated by the routine at #R34574.
 D 33884 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning }} {{ 0 | Keypress flag (set=H-ENTER being pressed, reset=no key pressed) }} {{ 1 | In-game music flag (set=music off, reset=music on) }} {{ 2-7 | Unused }} TABLE#
@@ -176,7 +176,191 @@ c 34252 Display the title screen and play the theme tune
 E 34252 This routine continues into the one at #R34436.
 c 34436 Start the game (or demo mode)
 E 34436 This routine continues into the main loop at #R34574.
-c 34574 Main loop (1)
+c 34574 Main loop
+D 34574 The routine at #R34436 continues here.
+D 34574 The first thing to do is check whether there are any remaining lives to draw at the bottom of the screen.
+  34574 Pick up the number of lives remaining from #R33879
+  34577 Set #REGhl to the display file address at which to draw the first Willy sprite
+  34580 Are there any lives remaining?
+  34581 Jump if not
+  34583 Initialise #REGb to the number of lives remaining
+D 34584 The following loop draws the remaining lives at the bottom of the screen.
+  34584 #REGc=0; this tells the sprite-drawing routine at #R36852 to overwrite any existing graphics
+  34586 Save #REGhl and #REGbc briefly
+  34588 Pick up the in-game music note index from #R33883; this will determine the animation frame for the Willy sprites
+  34591,5 Now #REGa=0 (frame 0), 32 (frame 1), 64 (frame 2) or 96 (frame 3)
+  34596,3 Point #REGde at the corresponding Willy sprite (at #R33280+#REGa)
+  34599 Draw the Willy sprite on the screen
+  34602 Restore #REGhl and #REGbc
+  34604 Move #REGhl along to the location at which to draw the next Willy sprite
+  34606 Jump back to draw any remaining sprites
+D 34608 Now draw a boot if cheat mode has been activated.
+  34608 Pick up the 6031769 key counter from #R33885
+  34611 Has 6031769 been keyed in yet?
+  34613 Jump if not
+  34615 Point #REGde at the graphic data for the boot (at #R47840)
+  34618 #REGc=0 (overwrite mode)
+  34620 Draw the boot at the bottom of the screen next to the remaining lives
+D 34623 Next, prepare the screen and attribute buffers for drawing to the screen.
+  34623,11 Copy the contents of the attribute buffer at 24064 (the attributes for the empty cavern) into the attribute buffer at 23552
+  34634,11 Copy the contents of the screen buffer at 28672 (the tiles for the empty cavern) into the screen buffer at 24576
+  34645 Move the horizontal guardians in the current cavern
+  34648 Pick up the game mode indicator from #R33882
+  34651 Are we in demo mode?
+  34652 If not, move Willy
+  34655 Pick up the game mode indicator from #R33882
+  34658 Are we in demo mode?
+  34659 If not, check and set the attribute bytes for Willy's sprite in the buffer at 23552, and draw Willy to the screen buffer at 24576
+  34662 Draw the horizontal guardians in the current cavern
+  34665 Move the conveyor in the current cavern
+  34668 Draw the items in the current cavern and collect any that Willy is touching
+  34671 Pick up the number of the current cavern from #R33799
+  34674 Are we in #R49152(Eugene's Lair)?
+  34676 If so, move and draw Eugene
+  34679 Pick up the number of the current cavern from #R33799
+  34682 Are we in #R58368(Skylab Landing Bay)?
+  34684 If so, move and draw the Skylabs
+  34687 Pick up the number of the current cavern from #R33799
+  34690 Are we in #R53248(Wacky Amoebatrons) or beyond?
+  34692 If so, move and draw the vertical guardians
+  34695 Pick up the number of the current cavern from #R33799
+  34698 Are we in #R52224(Miner Willy meets the Kong Beast)?
+  34700 If so, move and draw the Kong Beast
+  34703 Pick up the number of the current cavern from #R33799
+  34706 Are we in #R56320(Return of the Alien Kong Beast)?
+  34708 If so, move and draw the Kong Beast
+  34711 Pick up the number of the current cavern from #R33799
+  34714 Are we in #R63488(Solar Power Generator)?
+  34716 If so, move and draw the light beam
+  34719 Draw the portal in the current cavern
+  34722,11 Copy the contents of the screen buffer at 24576 to the display file
+  34733 Pick up the screen flash counter from #R33880
+  34736 Is it zero?
+  34737 Jump if so
+  34739,4 Decrement the screen flash counter at #R33880
+  34743,5 Move bits 0-2 into bits 3-5 and clear all the other bits
+  34748,12 Set every attribute byte in the buffer at 23552 to this value
+  34760,11 Copy the contents of the attribute buffer at 23552 to the attribute file
+  34771,12 Print the score (see #R33833) at (19,26)
+  34783,12 Print the high score (see #R33823) at (19,11)
+  34795 Decrease the air remaining in the current cavern
+  34798 Jump if there's no air left
+D 34801 Now check whether SHIFT and SPACE are being pressed.
+  34801,5 Read keys SHIFT-Z-X-C-V
+  34806 Save the result in #REGe
+  34807,4 Read keys B-N-M-SS-SPACE
+  34811 Combine the results
+  34812 Are SHIFT and SPACE being pressed?
+  34814 If so, quit the game
+D 34817 Now read the keys A, S, D, F and G (which pause the game).
+  34817,4 Read keys A-S-D-F-G
+  34821,4 Are any of these keys being pressed?
+  34825 Jump if not
+  34827,4 Read every half-row of keys except A-S-D-F-G
+  34831,4 Are any of these keys being pressed?
+  34835 Jump back if not (the game is still paused)
+D 34837 Here we check whether Willy has had a fatal accident.
+  34837 Pick up the airborne status indicator from #R32875
+  34840 Has Willy landed after falling from too great a height, or collided with a nasty or a guardian?
+  34842 Jump if so
+D 34845 Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
+  34845 Prepare #REGb for reading keys H-J-K-L-ENTER
+  34847 Point #REGhl at the music flags at #R33884
+  34850 Read keys H-J-K-L-ENTER
+  34852,4 Are any of these keys being pressed?
+  34856 Jump if not
+  34858 Were any of these keys being pressed the last time we checked?
+  34860 Jump if so
+  34862,4 Set bit 0 (the keypress flag) and flip bit 1 (the in-game music flag) at #R33884
+  34868 Reset bit 0 (the keypress flag) at #R33884
+  34870 Has the in-game music been switched off?
+  34872 Jump if so
+D 34874 The next section of code plays a note of the in-game music.
+  34874,7 Increment the in-game music note index at #R33883
+  34881,10 Point HL at the appropriate entry in the tune data table at #R34188
+  34891 Pick up the border colour for the current cavern from #R32883
+  34894 Initialise the pitch delay counter in #REGe
+  34895 Initialise the duration delay counters in #REGb (0) and #REGc (3)
+  34898,13 Produce a note of the in-game music
+D 34911 If we're in demo mode, check the keyboard and joystick and return to the title screen if there's any input.
+  34911 Pick up the game mode indicator from #R33882
+  34914 Are we in demo mode?
+  34915 Jump if not
+  34917 We're in demo mode; is it time to show the next cavern?
+  34918 Jump if so
+  34921 Update the game mode indicator at #R33882
+  34924,5 Read every row of keys on the keyboard
+  34929,4 Are any keys being pressed?
+  34933 If so, return to the title screen
+  34936 Pick up the Kempston joystick indicator from #R33881
+  34939 Is there a joystick connected?
+  34940 Jump if not
+  34942 Collect input from the joystick
+  34944 Is the joystick being moved or the fire button being pressed?
+  34945 If so, return to the title screen
+D 34948 Here we check the teleport keys.
+  34948,5 Read keys 6-7-8-9-0
+  34953 Is '6' (the activator key) being pressed?
+  34955 Jump if not
+  34958 Pick up the 6031769 key counter from #R33885
+  34961 Has 6031769 been keyed in yet?
+  34963 Jump if not
+  34966,4 Read keys 1-2-3-4-5
+  34970,3 Keep only bits 0-4 and flip them
+  34973 Is the result 20 or greater?
+  34975 Jump if so (this is not a cavern number)
+  34978 Store the cavern number at #R33799
+  34981 Teleport into the cavern
+D 34984 Now check the 6031769 keys.
+  34984 Pick up the 6031769 key counter from #R33885.
+  34987 Has 6031769 been keyed in yet?
+  34989 If so, jump back to the start of the main loop
+  34992,10 Point IX at the corresponding entry in the 6031769 table at #R33888
+  35002,5 Read keys 1-2-3-4-5
+  35007 Keep only bits 0-5
+  35009 Does this match the first byte of the entry in the 6031769 table?
+  35012 Jump if so
+  35014 Are any of the keys 1-2-3-4-5 being pressed?
+  35016 If not, jump back to the start of the main loop
+  35019 Does the keyboard reading match the first byte of the previous entry in the 6031769 table?
+  35022 If so, jump back to the start of the main loop
+  35025,4 Reset the 6031769 key counter at #R33885 to 0 (an incorrect key is being pressed)
+  35029 Jump back to the start of the main loop
+  35032,4 Read keys 6-7-8-9-0
+  35036 Keep only bits 0-5
+  35038 Does this match the second byte of the entry in the 6031769 table?
+  35041 If so, jump to increment the 6031769 key counter
+  35043 Are any of the keys 6-7-8-9-0 being pressed?
+  35045 If not, jump back to the start of the main loop
+  35048 Does the keyboard reading match the second byte of the previous entry in the 6031769 table?
+  35051 If so, jump back to the start of the main loop
+  35054,4 Reset the 6031769 key counter at #R33885 to 0 (an incorrect key is being pressed)
+  35058 Jump back to the start of the main loop
+  35061,7 Increment the 6031769 key counter at #R33885 (the next key in the sequence is being pressed)
+  35068 Jump back to the start of the main loop
+D 35071 The air in the cavern has run out, or Willy has had a fatal accident, or it's demo mode and it's time to show the next cavern.
+  35071 Pick up the game mode indicator from #R33882
+  35074 Is it demo mode?
+  35075 If so, move to the next cavern
+  35078 #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
+D 35080 The following loop fills the top two thirds of the attribute file with a single value (71 TO 64 STEP -1) and makes a sound effect.
+  35080,12 Fill the top two thirds of the attribute file with the value in #REGa
+  35092 Save the attribute byte (64-71) in #REGe for later retrieval
+  35093,9 #REGd=7+8*(7-(#REGe AND 7)); this value determines the pitch of the short note that will be played
+  35102,7 #REGc=8+32*(#REGe AND 7); this value determines the duration of the short note that will be played
+  35109 Set bit 4 of #REGa (for no apparent reason)
+  35111 Set #REGa=0 (this will make the border black)
+  35112,10 Produce a short note whose pitch is determined by #REGd and whose duration is determined by #REGc
+  35122 Restore the attribute byte (originally 71) to #REGa
+  35123 Decrement it (effectively decrementing the INK colour)
+  35124 Have we used attribute value 64 (INK 0) yet?
+  35126 If not, jump back to update the INK colour in the top two thirds of the screen and make another sound effect
+D 35128 Finally, check whether any lives remain.
+  35128,4 Pick up the number of lives remaining from #R33879
+  35132 Are there any lives remaining?
+  35133 If not, display the game over sequence
+  35136 Decrease the number of lives remaining by one
+  35137 Jump back to reinitialise the current cavern
 c 35140 Display the game over sequence
 c 35388 Decrease the air remaining in the current cavern
 c 35445 Draw the current cavern to the screen buffer at 28672
@@ -195,7 +379,7 @@ c 36805 Draw the portal in the current cavern
 E 36805 This routine continues into the one at #R36852.
 c 36852 Draw a sprite
 D 36852 Used by the routines at #R34252, #R34574, #R35140, #R36266, #R36344, #R36469, #R36593, #R36805, #R36904 and #R37173.
-c 36904 Main loop (2)
+c 36904 Move to the next cavern
 c 37098 Add to the score
 c 37125 Move the conveyor in the current cavern
 c 37173 Move and draw the Kong Beast in the current cavern
