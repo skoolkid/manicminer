@@ -153,9 +153,9 @@ def get_caverns(snapshot):
             if cavern_num == 0:
                 desc = 'swordfish graphic that appears in The Final Barrier when the game is completed'
             elif cavern_num == 1:
-                desc = 'plinth graphic that appears on the Game Over screen'
+                desc = 'plinth graphic that appears on the Game Over screen (see #R35199)'
             elif cavern_num == 2:
-                desc = 'boot graphic that appears on the Game Over screen'
+                desc = 'boot graphic that appears on the Game Over screen (see #R35210). It also appears at the bottom of the screen next to the remaining lives when cheat mode is activated (see #R34608)'
             else:
                 desc = 'Eugene graphic'
             lines.append('D {} The next 32 bytes define the {}.'.format(a + 736, desc))

@@ -77,7 +77,7 @@ B 32986 Terminator (set to 255)
 g 32987 Eugene's direction
 D 32987 Initialised by the routine at #R34436, and used by the routines at #R36344 and #R37173.
 g 32988 Eugene's height
-D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252, #R35140, #R36344 and #R37173.
+D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252, #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 and #R37173.
 g 32989 Vertical guardians
 D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593.
 S 32989,7 Vertical guardian 1
@@ -128,7 +128,7 @@ D 33816 Used by the routine at #R34436.
 u 33819
 T 33819,4
 g 33823 High score
-D 33823 Used by the routines at #R34574 and #R35140.
+D 33823 Used by the routine at #R34574 and updated by the routine at #R35140.
 T 33823,6
 u 33829
 T 33829,4
@@ -362,6 +362,62 @@ D 35128 Finally, check whether any lives remain.
   35136 Decrease the number of lives remaining by one
   35137 Jump back to reinitialise the current cavern
 c 35140 Display the game over sequence
+D 35140 Used by the routine at #R34574. First check whether we have a new high score.
+  35140 Point #REGhl at the high score at #R33823
+  35143 Point #REGde at the current score at #R33833
+  35146 There are 6 digits to compare
+  35148 Pick up a digit of the current score
+  35149 Compare it with the corresponding digit of the high score
+  35150 Jump if it's less than the corresponding digit of the high score
+  35153 Jump if it's greater than the corresponding digit of the high score
+  35156 Point #REGhl at the next digit of the high score
+  35157 Point #REGde at the next digit of the current score
+  35158 Jump back to compare the next pair of digits
+  35160,11 Replace the high score with the current score
+D 35171 Now prepare the screen for the game over sequence.
+  35171,13 Clear the top two-thirds of the display file
+  35184,4 Initialise the game status buffer variable at #R32988; this variable will determine the distance of the boot from the top of the screen
+  35188,11 Draw Willy at (12,15)
+  35199,11 Draw the plinth (see #R46816) underneath Willy at (14,15)
+D 35210 The following loop draws the boot's descent onto the plinth that supports Willy.
+  35210 Pick up the distance variable from #R32988
+  35213,3 Point #REGbc at the corresponding entry in the screen buffer address lookup table at #R33536
+  35216,9 Point #REGhl at the corresponding location in the display file
+  35225,8 Draw the boot (see #R47840) at this location, without erasing the boot at the previous location; this leaves the portion of the boot sprite that's above the ankle in place, and makes the boot appear as if it's at the end of a long, extending trouser leg
+  35233 Pick up the distance variable from #R32988
+  35236 #REGa=255-#REGa
+  35237 Store this value (63-255) in #REGe; it determines the (rising) pitch of the sound effect that will be made
+  35238 #REGa=0 (black border)
+  35239 #REGc=64; this value determines the duration of the sound effect
+  35242,10 Produce a short note whose pitch is determined by #REGe
+  35252,9 Prepare #REGbc, #REGde and #REGhl for setting the attribute bytes in the top two-thirds of the screen
+  35261 Pick up the distance variable from #R32988
+  35264 Keep only bits 2 and 3
+  35266 Shift bits 2 and 3 into bits 3 and 4; these bits determine the PAPER colour: 0, 1, 2 or 3
+  35267 Set bits 0-2 (INK 7) and 6 (BRIGHT 1)
+  35269,3 Copy this attribute value into the top two-thirds of the screen
+  35272,8 Add 4 to the distance variable at #R32988; this will move the boot sprite down two pixel rows
+  35280 Has the boot met the plinth yet?
+  35282 Jump back if not
+D 35284 Now print the "Game Over" message, just to drive the point home.
+  35284,12 Print "Game" (see #R33871) at (6,10)
+  35296,12 Print "Over" (see #R33875) at (6,18)
+  35308,5 Prepare the delay counters for the following loop; the counter in #REGc will also determine the INK colours to use for the "Game Over" message
+D 35313 The following loop makes the "Game Over" message glisten for about 1.57s.
+  35313 Delay for about a millisecond
+  35315,8 Change the INK colour of the "G" in "Game" at (6,10)
+  35323,8 Change the INK colour of the "a" in "Game" at (6,11)
+  35331,8 Change the INK colour of the "m" in "Game" at (6,12)
+  35339,8 Change the INK colour of the "e" in "Game" at (6,13)
+  35347,8 Change the INK colour of the "O" in "Over" at (6,18)
+  35355,8 Change the INK colour of the "v" in "Over" at (6,19)
+  35363,8 Change the INK colour of the "e" in "Over" at (6,20)
+  35371,8 Change the INK colour of the "r" in "Over" at (6,21)
+  35379 Decrement the counter in #REGc
+  35380 Jump back unless it's zero
+  35382 Decrement the counter in #REGd (initially 6)
+  35383 Jump back unless it's zero
+  35385 Display the title screen and play the theme tune
 c 35388 Decrease the air remaining in the current cavern
 c 35445 Draw the current cavern to the screen buffer at 28672
 c 35515 Move Willy (1)
