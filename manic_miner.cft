@@ -27,14 +27,14 @@ S 32863,9 Floor tile 2
 g 32872 Willy's pixel y-coordinate (x2)
 D 32872 Initialised by the routine at #R34436, and used by the routines at #R35515, #R35805, #R37434 and #R37503. Holds the LSB of the address of the entry in the screen buffer address lookup table at #R33536 that corresponds to Willy's pixel y-coordinate; in practice, this is twice Willy's actual pixel y-coordinate.
 g 32873 Willy's animation frame
-D 32873 Initialised by the routine at #R34436, and used by the routines at #R35805 and #R37503.
+D 32873 Initialised by the routine at #R34436, used by the routine at #R37503, and updated by the routine at #R35805.
 g 32874 Willy's direction and movement flags
 D 32874 Initialised by the routine at #R34436.
 D 32874 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R35805, #R37503 }} {{ 1 | Willy's movement flag (set=moving) | #R35515, #R35805 }} {{ 2-7 | Unused (always reset) | }} TABLE#
 g 32875 Airborne status indicator
 D 32875 Initialised by the routine at #R34436, and used by the routines at #R34574, #R35515, #R35805 and #R36101.
 g 32876 Address of Willy's location in the attribute buffer at 23552
-D 32876 Initialised by the routine at #R34436, and used by the routines at #R35515, #R35805, #R36805, #R37403, #R37434 and #R37503.
+D 32876 Initialised by the routine at #R34436, used by the routines at #R35515, #R36805, #R37403, #R37434 and #R37503, and updated by the routine at #R35805.
 W 32876
 g 32878 Jumping animation counter
 D 32878 Initialised by the routine at #R34436, and used by the routines at #R35515 and #R35805.
@@ -514,7 +514,137 @@ D 35746 The top-left or top-right cell of Willy's sprite is overlapping a wall t
   35764,5 Reset bit 1 at #R32874: Willy is not moving left or right
 c 35770 Animate the crumbling floor in the current cavern
 c 35805 Move Willy (2)
+D 35805 Used by the routine at #R35515. This routine checks the keyboard and joystick, and moves Willy left or right if necessary.
+R 35805 HL Attribute buffer address of the left-hand cell below Willy's sprite
+  35805 Pick up the airborne status indicator from #R32875
+  35808 Has Willy just landed after falling from too great a height?
+  35810 If so, kill him
+  35813 Initialise #REGe to 255 (all bits set); it will be used to hold keyboard and joystick readings
+  35815,4 Reset the airborne status indicator at #R32875 (Willy has landed safely)
+  35819 Pick up the attribute byte of the conveyor tile for the current cavern from #R32836
+  35822 Does the attribute byte of the left-hand cell below Willy's sprite match that of the conveyor tile?
+  35823 Jump if so
+  35825 Point #REGhl at the right-hand cell below Willy's sprite
+  35826 Does the attribute byte of the right-hand cell below Willy's sprite match that of the conveyor tile?
+  35827 Jump if not
+  35829 Pick up the direction byte of the conveyor definition from #R32879 (0=left, 1=right)
+  35832,3 Now #REGe=253 (bit 1 reset) if the conveyor is moving left, or 254 (bit 0 reset) if it's moving right
+  35835,5 Read keys P-O-U-I-Y (right, left, right, left, right) into bits 0-4 of #REGa
+  35840,4 Set bit 5 and reset bits 6 and 7
+  35844 Reset bit 0 if the conveyor is moving right, or bit 1 if it's moving left
+  35845 Save the result in #REGe
+  35846,5 Read keys Q-W-E-R-T (left, right, left, right, left) into bits 0-4 of #REGa
+  35851,6 Keep only bits 0-4, shift them into bits 1-5, and set bit 0
+  35857,2 Merge this keyboard reading into bits 1-5 of #REGe
+  35859,4 Read keys 1-2-3-4-5 ('5' is left) into bits 0-4 of #REGa
+  35863,3 Rotate the result right and set bits 0-2 and 4-7; this ignores every key except '5' (left)
+  35866,2 Merge this reading of the '5' key into bit 3 of #REGe
+  35868,4 Read keys 0-9-8-7-6 ('8' is right) into bits 0-4 of #REGa
+  35872 Set bits 0, 1 and 3-7; this ignores every key except '8' (right)
+  35874,2 Merge this reading of the '8' key into bit 2 of #REGe
+  35876 Collect the Kempston joystick indicator from #R33881
+  35879 Is the joystick connected?
+  35880 Jump if not
+  35882,5 Collect input from the joystick
+  35887,3 Keep only bits 0 (right) and 1 (left) and flip them
+  35890,2 Merge this reading of the joystick right and left buttons into bits 0 and 1 of #REGe
+D 35892 At this point, bits 0-5 in #REGe indicate the direction in which Willy is being moved or trying to move. If bit 0, 2 or 4 is reset, Willy is being moved or trying to move right; if bit 1, 3 or 5 is reset, Willy is being moved or trying to move left.
+  35892 Initialise #REGc to 0 (no movement)
+  35894 Copy the movement bits into #REGa
+  35895 Keep only bits 1, 3 and 5 (the 'left' bits)
+  35897 Are any of these bits reset?
+  35899 Jump if not
+  35901 Set bit 2 of #REGc: Willy is moving left
+  35903 Copy the movement bits into #REGa
+  35904 Keep only bits 0, 2 and 4 (the 'right' bits)
+  35906 Are any of these bits reset?
+  35908 Jump if not
+  35910 Set bit 3 of #REGc: Willy is moving right
+  35912 Pick up Willy's direction and movement flags from #R32874
+  35915,8 Point #REGhl at the entry in the left-right movement table at #R33800 that corresponds to the direction Willy is facing, and the direction in which he is being moved or trying to move
+  35923,4 Update Willy's direction and movement flags at #R32874 with the entry from the left-right movement table
+D 35927 That is left-right movement taken care of. Now check the jump keys.
+  35927,5 Read keys SHIFT-Z-X-C-V and B-N-M-SS-SPACE
+  35932,4 Are any of these keys being pressed?
+  35936 Jump if so
+  35938,4 Read keys 0-9-8-7-6 into bits 0-4 of #REGa
+  35942 Keep only bits 0 (the '0' key) and 3 (the '7' key)
+  35944 Is '0' or '7' being pressed?
+  35946 Jump if so
+  35948 Collect the Kempston joystick indicator from #R33881
+  35951 Is the joystick connected?
+  35952 Jump if not
+  35954,5 Collect input from the joystick
+  35959 Is the fire button being pressed?
+  35961 Jump if not
+D 35963 A jump key or the fire button is being pressed. Time to make Willy jump.
+  35963,4 Initialise the jumping animation counter at #R32878
+  35967,4 Set the airborne status indicator at #R32875 to 1: Willy is jumping
+  35971 Pick up Willy's direction and movement flags from #R32874
+  35974 Is Willy moving?
+  35976 Return if not
+  35977 Pick up Willy's direction and movement flags from #R32874
+  35980 Is Willy facing right?
+  35982 Jump if so
+D 35985 Willy is moving left.
+  35985 Pick up Willy's animation frame from #R32873
+  35988 Is it 0?
+  35989 If so, jump to move Willy's sprite left across a cell boundary
+  35991,4 Decrement Willy's animation frame at #R32873
+D 35996 Willy's sprite is moving left across a cell boundary. In the comments that follow, (x,y) refers to the coordinates of the top-left cell currently occupied by Willy's sprite.
+  35996 Collect Willy's attribute buffer coordinates from #R32876
+  35999,5 Point #REGhl at the cell at (x-1,y+1)
+  36004 Pick up the attribute byte of the wall tile for the current cavern from #R32827
+  36007 Is there a wall tile in the cell pointed to by #REGhl?
+  36008 Return if so without moving Willy (his path is blocked)
+  36009 Pick up Willy's pixel y-coordinate from #R32872
+  36012 Does Willy's sprite currently occupy only two rows of cells?
+  36014 Jump if so
+  36016 Pick up the attribute byte of the wall tile for the current cavern from #R32827
+  36019 Point #REGhl at the cell at (x-1,y+2)
+  36020 Is there a wall tile in the cell pointed to by #REGhl?
+  36021 Return if so without moving Willy (his path is blocked)
+  36022 Clear the carry flag for subtraction
+  36023 Point #REGhl at the cell at (x-1,y+1)
+  36025 Pick up the attribute byte of the wall tile for the current cavern from #R32827
+  36028 Clear the carry flag for subtraction
+  36029 Point #REGhl at the cell at (x-1,y)
+  36031 Is there a wall tile in the cell pointed to by #REGhl?
+  36032 Return if so without moving Willy (his path is blocked)
+  36033 Save Willy's new attribute buffer coordinates (in #REGhl) at #R32876
+  36036,5 Change Willy's animation frame at #R32873 from 0 to 3
+D 36042 Willy is moving right.
+  36042 Pick up Willy's animation frame from #R32873
+  36045 Is it 3?
+  36047 If so, jump to move Willy's sprite right across a cell boundary
+  36049,4 Increment Willy's animation frame at #R32873
+D 36054 Willy's sprite is moving right across a cell boundary. In the comments that follow, (x,y) refers to the coordinates of the top-left cell currently occupied by Willy's sprite.
+  36054 Collect Willy's attribute buffer coordinates from #R32876
+  36057,2 Point #REGhl at the cell at (x+2,y)
+  36059 Prepare #REGde for addition
+  36062 Pick up the attribute byte of the wall tile for the current cavern from #R32827
+  36065 Point #REGhl at the cell at (x+2,y+1)
+  36066 Is there a wall tile in the cell pointed to by #REGhl?
+  36067 Return if so without moving Willy (his path is blocked)
+  36068 Pick up Willy's pixel y-coordinate from #R32872
+  36071 Does Willy's sprite currently occupy only two rows of cells?
+  36073 Jump if so
+  36075 Pick up the attribute byte of the wall tile for the current cavern from #R32827
+  36078 Point #REGhl at the cell at (x+2,y+2)
+  36079 Is there a wall tile in the cell pointed to by #REGhl?
+  36080 Return if so without moving Willy (his path is blocked)
+  36081 Clear the carry flag for subtraction
+  36082 Point #REGhl at the cell at (x+2,y+1)
+  36084 Pick up the attribute byte of the wall tile for the current cavern from #R32827
+  36087 Clear the carry flag for subtraction
+  36088 Point #REGhl at the cell at (x+2,y)
+  36090 Is there a wall tile in the cell pointed to by #REGhl?
+  36091 Return if so without moving Willy (his path is blocked)
+  36092 Point #REGhl at the cell at (x+1,y)
+  36093 Save Willy's new attribute buffer coordinates (in #REGhl) at #R32876
+  36096,4 Change Willy's animation frame at #R32873 from 3 to 0
 c 36101 Kill Willy
+D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266, #R36344, #R36593 and #R37173.
 c 36111 Move the horizontal guardians in the current cavern
 c 36211 Move and draw the light beam in Solar Power Generator
 c 36266 Draw the horizontal guardians in the current cavern
