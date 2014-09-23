@@ -77,7 +77,7 @@ B 32986 Terminator (set to 255)
 g 32987 Eugene's direction
 D 32987 Initialised by the routine at #R34436, and used by the routines at #R36344 and #R37173.
 g 32988 Eugene's height
-D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252, #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 and #R37173.
+D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252 (to hold the index into the message scrolled across the screen after the theme tune has finished playing), #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 and #R37173.
 g 32989 Vertical guardians
 D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593.
 S 32989,7 Vertical guardian 1
@@ -148,7 +148,7 @@ D 33880 Initialised by the routine at #R34252, and used by the routines at #R345
 g 33881 Kempston joystick indicator
 D 33881 Initialised by the routine at #R34252, and used by the routines at #R34574, #R35805 and #R37687. Holds 1 if a joystick is present, 0 otherwise.
 g 33882 Game mode indicator
-D 33882 Initialised by the routine at #R34252, and used by the routines at #R34436, #R34574 and #R36904.
+D 33882 Initialised by the routine at #R34252, and used by the routines at #R34436, #R34574 and #R36904. Holds 0 when a game is in progress, or a value from 1 to 64 when in demo mode.
 g 33883 In-game music note index
 D 33883 Initialised by the routine at #R34252, and used and updated by the routine at #R34574.
 g 33884 Music flags
@@ -173,6 +173,53 @@ b 34188 In-game tune data
 D 34188 Used by the routine at #R34574.
 B 34188,64,16
 c 34252 Display the title screen and play the theme tune
+D 34252 Used by the routines at #R33792, #R34574 and #R35140.
+D 34252 The first thing this routine does is initialise some game status buffer variables in preparation for the next game.
+  34252 #REGa=0
+  34253 Initialise the current cavern number at #R33799
+  34256 Initialise the Kempston joystick indicator at #R33881
+  34259 Initialise the game mode indicator at #R33882
+  34262 Initialise the in-game music note index at #R33883
+  34265 Initialise the screen flash counter at #R33880
+  34268,5 Initialise the number of lives remaining at #R33879
+  34273,5 Initialise the keypress flag in bit 0 at #R33884
+D 34278 Next, prepare the screen.
+  34278,13 Clear the entire display file
+  34291,11 Copy the graphic data at #R40960 to the top two-thirds of the display file
+  34302,11 Draw Willy at (9,29)
+  34313,11 Copy the attribute bytes from #R64512 to the top third of the attribute file
+  34324,8 Copy the attribute bytes from #R40448 to the bottom two-thirds of the attribute file
+D 34332 Now check whether there is a joystick connected.
+  34332 #REGb=0, #REGc=31 (joystick port)
+  34335 Disable interrupts (which are already disabled)
+  34336 #REGa=0
+  34337,5 Combine 256 readings of the joystick port in #REGa
+  34342 Is a joystick connected (bit 5 reset)?
+  34344 Jump if not
+  34346 Set the Kempston joystick indicator at #R33881 to 1
+D 34351 And finally, play the theme tune and check for keypresses.
+  34351 Point #REGiy at the theme tune data at #R33902
+  34355 Play the theme tune
+  34358 Start the game if ENTER or the fire button was pressed
+  34361,4 Initialise the game status buffer variable at #R32988; this will be used as an index for the message scrolled across the screen
+  34365 Pick up the message index from #R32988
+  34368,6 Point #REGix at the corresponding location in the message at #R40192
+  34374,8 Print 32 characters of the message at (19,0)
+  34382 Pick up the message index from #R32988
+  34385,5 Keep only bits 1 and 2, and move them into bits 6 and 7, so that #REGa holds 0, 64, 128 or 192; this value determines the animation frame to use for Willy
+  34390,3 Point #REGde at the graphic data for Willy's sprite (#R33280+#REGa)
+  34393,8 Draw Willy at (9,29)
+  34401,8 Pause for about 0.09s
+  34409,5 Read keys H-J-K-L-ENTER
+  34414 Keep only bit 0 of the result (ENTER)
+  34416 Is ENTER being pressed?
+  34418 If so, start the game
+  34420 Pick up the message index from #R32988
+  34423 Increment it
+  34424 Set the zero flag if we've reached the end of the message
+  34426 Store the new message index at #R32988
+  34429 Jump back unless we've finished scrolling the message across the screen
+  34431 Initialise the game mode indicator at #R33882 to 64: demo mode
 E 34252 This routine continues into the one at #R34436.
 c 34436 Start the game (or demo mode)
 E 34436 This routine continues into the main loop at #R34574.
@@ -1451,7 +1498,7 @@ T 40240,48,B1:47
 T 40288
 T 40336
 T 40382
-b 40448 Attribute data for the middle third of the title screen
+b 40448 Attribute data for the bottom two-thirds of the title screen
 D 40448 Used by the routine at #R34252. The graphic data for the middle third of the title screen is located at #R43008.
 B 40448,512,16
 b 40960 Title screen graphic data
