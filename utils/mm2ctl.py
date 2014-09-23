@@ -151,7 +151,7 @@ def get_caverns(snapshot):
         if cavern_num in (0, 1, 2, 4):
             lines.append('B {},{},16 Unused'.format(end, a + 736 - end))
             if cavern_num == 0:
-                desc = 'swordfish graphic that appears in The Final Barrier when the game is completed'
+                desc = 'swordfish graphic that appears in #R64512(The Final Barrier) when the game is completed (see #R36937)'
             elif cavern_num == 1:
                 desc = 'plinth graphic that appears on the Game Over screen (see #R35199)'
             elif cavern_num == 2:

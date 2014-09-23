@@ -100,7 +100,7 @@ D 33536 Used by the routines at #R35140, #R36344, #R36469, #R36593, #R37173 and 
 {sba_table}
 c 33792 The game has just loaded
 g 33799 Current cavern number
-D 33799 Initialised by the routine at #R34252, and used by the routines at #R34436, #R34574, #R35445, #R36266 and #R36904.
+D 33799 Initialised by the routine at #R34252, used by the routines at #R34436, #R34574, #R35445 and #R36266, and updated by the routine at #R36904.
 b 33800 Left-right movement table
 D 33800 Used by the routine at #R35805. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at #R32874 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor).
 D 33800 One of the first four entries is used when Willy is not moving.
@@ -208,7 +208,7 @@ D 34351 And finally, play the theme tune and check for keypresses.
   34385,5 Keep only bits 1 and 2, and move them into bits 6 and 7, so that #REGa holds 0, 64, 128 or 192; this value determines the animation frame to use for Willy
   34390,3 Point #REGde at the graphic data for Willy's sprite (#R33280+#REGa)
   34393,8 Draw Willy at (9,29)
-  34401,8 Pause for about 0.09s
+  34401,8 Pause for about 0.1s
   34409,5 Read keys H-J-K-L-ENTER
   34414 Keep only bit 0 of the result (ENTER)
   34416 Is ENTER being pressed?
@@ -731,6 +731,52 @@ E 36805 This routine continues into the one at #R36852.
 c 36852 Draw a sprite
 D 36852 Used by the routines at #R34252, #R34574, #R35140, #R36266, #R36344, #R36469, #R36593, #R36805, #R36904 and #R37173.
 c 36904 Move to the next cavern
+  36904 Pick up the number of the current cavern from #R33799
+  36907 Increment the cavern number
+  36908 Is the current cavern #R64512(The Final Barrier)?
+  36910 Jump if not
+  36912 Pick up the game mode indicator from #R33882
+  36915 Are we in demo mode?
+  36916 Jump if so
+  36919 Pick up the 6031769 key counter from #R33885
+  36922 Is cheat mode activated?
+  36924 Jump if so
+D 36926 Willy has made it through #R64512(The Final Barrier) without cheating.
+  36926,11 Draw Willy at (2,19) on the ground above the portal
+  36937,9 Draw the swordfish graphic (see #R45792) over the portal
+  36946 Point #REGhl at (2,19) in the attribute file
+  36949 Prepare #REGde for addition
+  36952,5 Set the attributes for the upper half of Willy's sprite at (2,19) and (2,20) to 47 (INK 7: PAPER 5)
+  36957,6 Set the attributes for the lower half of Willy's sprite at (3,19) and (3,20) to 39 (INK 7: PAPER 4)
+  36963,3 Point #REGhl at (5,19) in the attribute file
+  36966,5 Set the attributes for the fish at (5,19) and (5,20) to 69 (INK 5: PAPER 0: BRIGHT 1)
+  36971,3 Set the attribute for the handle of the sword at (6,19) to 70 (INK 6: PAPER 0: BRIGHT 1)
+  36974,3 Set the attribute for the blade of the sword at (6,20) to 71 (INK 7: PAPER 0: BRIGHT 1)
+  36977,6 Set the attributes at (7,19) and (7,20) to 0 (to hide Willy's feet just below where the portal was)
+  36983,5 Prepare #REGc and #REGd for the celebratory sound effect
+  36988 #REGa=0 (black border)
+  36989,19 Produce the celebratory sound effect: Willy has escaped from the mine
+  37008 #REGa=0 (the next cavern will be #R45056(Central Cavern))
+  37009 Update the cavern number at #R33799
+D 37012 The next section of code cycles the INK and PAPER colours of the current cavern.
+  37012 Initialise #REGa to 63 (INK 7: PAPER 7)
+  37014,12 Set the attributes for the top two-thirds of the screen to the value in #REGa
+  37026,8 Pause for about 0.004s
+  37034 Decrement the attribute value in #REGa
+  37035 Jump back until we've gone through all attribute values from 63 down to 1
+  37037 Pick up the game mode indicator from #R33882
+  37040 Are we in demo mode?
+  37041 If so, demo the next cavern
+D 37044 The following loop increases the score and decreases the air supply until it runs out.
+  37044 Decrease the air remaining in the current cavern
+  37047 Move to the next cavern if the air supply is now gone
+  37050,6 Add 10 to the score
+  37056,12 Print the new score at (19,26)
+  37068 #REGc=4; this value determines the duration of the sound effect
+  37070 Pick up the remaining air supply (S) from #R32956
+  37073,6 #REGd=2*(63-S); this value determines the pitch of the sound effect (which decreases with the amount of air remaining)
+  37079,17 Produce a short note
+  37096 Jump back to decrease the air supply again
 c 37098 Add to the score
 c 37125 Move the conveyor in the current cavern
 c 37173 Move and draw the Kong Beast in the current cavern
