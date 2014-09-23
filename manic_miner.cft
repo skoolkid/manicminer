@@ -130,10 +130,9 @@ T 33819,4
 g 33823 High score
 D 33823 Used by the routine at #R34574 and updated by the routine at #R35140.
 T 33823,6
-u 33829
-T 33829,4
-g 33833 Score
-D 33833 Used by the routines at #R34574, #R35140, #R36904 and #R37098.
+g 33829 Score
+D 33829 Used by the routines at #R34574, #R35140, #R36904 and #R37098.
+T 33829,4 Overflow digits (these may be updated, but are never printed)
 T 33833,6
 t 33839 'High Score 000000#SPACE(3)Score 000000'
 D 33839 Used by the routine at #R34436.
@@ -222,6 +221,34 @@ D 34351 And finally, play the theme tune and check for keypresses.
   34431 Initialise the game mode indicator at #R33882 to 64: demo mode
 E 34252 This routine continues into the one at #R34436.
 c 34436 Start the game (or demo mode)
+  34436,13 Initialise the score at #R33829
+D 34449 This entry point is used by the routines at #R34574 (when teleporting into a cavern or reinitialising the current cavern after Willy has lost a life) and #R36904.
+  34449 Pick up the number of the current cavern from #R33799
+  34452,9 Point #REGhl at the first byte of the cavern definition
+  34461,8 Copy the cavern's attribute bytes into the buffer at 24064
+  34469,8 Copy the rest of the cavern definition into the game status buffer at #LINK:GameStatusBuffer#32768(32768-33279)
+  34477 Draw the current cavern to the screen buffer at 28672
+  34480,13 Clear the bottom third of the display file
+  34493,12 Print the cavern name (see #R32768) at (16,0)
+  34505,12 Print 'AIR' (see #R33816) at (17,0)
+  34517 Initialise #REGa to 82; this is the MSB of the display file address at which to start drawing the bar that represents the air supply
+  34519,6 Prepare #REGhl and #REGde for drawing a row of pixels in the air bar
+  34525 Save the display file address MSB in #REGb briefly
+  34526 Pick up the value of the initial air supply from #R32956
+  34529,3 Now #REGc determines the length of the air bar (in cell widths)
+  34532 Restore the display file address MSB to #REGa
+  34533 Now #REGbc determines the length of the air bar (in cell widths)
+  34535,4 Draw a single row of pixels across #REGc cells
+  34539 Increment the display file address MSB in #REGa (moving down to the next row of pixels)
+  34540 Have we drawn all four rows of pixels in the air bar yet?
+  34542 If not, jump back to draw the next one
+  34544,12 Print 'High Score 000000#SPACE(3)Score 000000' (see #R33839) at (19,0)
+  34556 Pick up the border colour for the current cavern from #R32883
+  34559,4 Set the border colour
+  34563 Pick up the game mode indicator from #R33882
+  34566 Are we in demo mode?
+  34567 If not, enter the main loop now
+  34569,5 Reset the game mode indicator at #R33882 to 64 (we're in demo mode)
 E 34436 This routine continues into the main loop at #R34574.
 c 34574 Main loop
 D 34574 The routine at #R34436 continues here.
