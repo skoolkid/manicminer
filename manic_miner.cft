@@ -421,6 +421,97 @@ D 35313 The following loop makes the "Game Over" message glisten for about 1.57s
 c 35388 Decrease the air remaining in the current cavern
 c 35445 Draw the current cavern to the screen buffer at 28672
 c 35515 Move Willy (1)
+D 35515 Used by the routine at #R34574. This routine deals with Willy if he's jumping or falling.
+  35515 Pick up the airborne status indicator from #R32875
+  35518 Is Willy jumping?
+  35520 Jump if not
+D 35522 Willy is currently jumping.
+  35522 Pick up the jumping animation counter (0-17) from #R32878
+  35525,4 Now -8<=#REGa<=8 (and #REGa is even)
+  35529,5 Adjust Willy's pixel y-coordinate at #R32872 depending on where Willy is in the jump
+  35534 Adjust Willy's attribute buffer location at #R32876 depending on his pixel y-coordinate
+  35537 Pick up the attribute byte of the wall tile for the current cavern from #R32827
+  35540 Is the top-left cell of Willy's sprite overlapping a wall tile?
+  35541 Jump if so
+  35544 Point #REGhl at the top-right cell occupied by Willy's sprite
+  35545 Is the top-right cell of Willy's sprite overlapping a wall tile?
+  35546 Jump if so
+  35549,7 Increment the jumping animation counter at #R32878
+  35556 #REGa=J-8, where J (1-18) is the new value of the jumping animation counter
+  35558 Jump if J>=8
+  35561 #REGa=8-J (1<=J<=7, 1<=#REGa<=7)
+  35563 #REGa=1+ABS(J-8)
+  35564,4 #REGd=8*(1+ABS(J-8)); this value determines the pitch of the jumping sound effect (rising as Willy rises, falling as Willy falls)
+  35568 #REGc=32; this value determines the duration of the jumping sound effect
+  35570 Pick up the border colour for the current cavern from #R32883
+  35573,10 Make a jumping sound effect
+  35583 Pick up the jumping animation counter (1-18) from #R32878
+  35586 Has Willy reached the end of the jump?
+  35588 Jump if so
+  35591 Is the jumping animation counter now 16?
+  35593 Jump if so
+  35595 Is the jumping animation counter now 13?
+  35597 Jump if not
+D 35600 If we get here, then Willy is standing on the floor, or he's falling, or his jumping animation counter is 13 or 16.
+  35600 Pick up Willy's pixel y-coordinate from #R32872
+  35603 Does Willy's sprite occupy six cells at the moment?
+  35605 Jump if so
+  35607 Pick up Willy's attribute buffer coordinates from #R32876
+  35610,4 Point #REGhl at the left-hand cell below Willy's sprite
+  35614 Pick up the attribute byte of the crumbling floor tile for the current cavern from #R32818
+  35617 Does the left-hand cell below Willy's sprite contain a crumbling floor tile?
+  35618 If so, make it crumble
+  35621 Pick up the attribute byte of the first nasty tile for the current cavern from #R32845
+  35624 Does the left-hand cell below Willy's sprite contain a nasty tile?
+  35625 Jump if so
+  35627 Pick up the attribute byte of the second nasty tile for the current cavern from #R32854
+  35630 Does the left-hand cell below Willy's sprite contain a nasty tile?
+  35631 Jump if so
+  35633 Point #REGhl at the right-hand cell below Willy's sprite
+  35634 Pick up the attribute byte of the crumbling floor tile for the current cavern from #R32818
+  35637 Does the right-hand cell below Willy's sprite contain a crumbling floor tile?
+  35638 If so, make it crumble
+  35641 Pick up the attribute byte of the first nasty tile for the current cavern from #R32845
+  35644 Does the right-hand cell below Willy's sprite contain a nasty tile?
+  35645 Jump if so
+  35647 Pick up the attribute byte of the second nasty tile for the current cavern from #R32854
+  35650 Does the right-hand cell below Willy's sprite contain a nasty tile?
+  35651 Jump if so
+  35653 Pick up the attribute byte of the background tile for the current cavern from #R32800
+  35656 Set the zero flag if the right-hand cell below Willy's sprite is empty
+  35657 Point #REGhl at the left-hand cell below Willy's sprite
+  35658 Jump if the right-hand cell below Willy's sprite is not empty
+  35661 Is the left-hand cell below Willy's sprite empty?
+  35662 Jump if not
+  35665 Pick up the airborne status indicator from #R32875
+  35668 Is Willy jumping?
+  35670 Jump if so
+D 35673 If we get here, then Willy is either in the process of falling or just about to start falling.
+  35673,5 Reset bit 1 at #R32874: Willy is not moving left or right
+  35678 Is Willy already falling?
+  35679 Jump if not
+  35682,4 Increment the airborne status indicator at #R32875
+  35686,5 #REGd=8*#REGa; this value determines the pitch of the falling sound effect
+  35691 #REGc=32; this value determines the duration of the falling sound effect
+  35693 Pick up the border colour for the current cavern from #R32883
+  35696,10 Make a falling sound effect
+  35706,8 Add 8 to Willy's pixel y-coordinate at #R32872; this moves Willy downwards by 4 pixels
+  35714,3 #REGl=16*Y, where Y is Willy's screen y-coordinate (0-14)
+  35717 Clear #REGa and the carry flag
+  35718 Now #REGl=32*(Y-8*INT(Y/8)), and the carry flag is set if Willy is in the lower half of the cavern (Y>=8)
+  35720,3 #REGh=92 or 93 (MSB of the address of Willy's location in the attribute buffer)
+  35723,5 Pick up Willy's screen x-coordinate (0-30) from bits 0-5 at #R32876
+  35728,2 Now #REGl holds the LSB of Willy's attribute buffer address
+  35730,3 Store Willy's updated attribute buffer location at #R32876
+D 35734 Willy has just finished a jump.
+  35734,5 Set the airborne status indicator at #R32875 to 6: Willy will continue to fall unless he's landed on a wall or floor block
+D 35740 Willy has just started falling.
+  35740,5 Set the airborne status indicator at #R32875 to 2
+D 35746 The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
+  35746,10 Adjust Willy's pixel y-coordinate at #R32872 so that the top row of cells of his sprite is just below the wall tile
+  35756 Adjust Willy's attribute buffer location at #R32876 to account for this new pixel y-coordinate
+  35759,5 Set the airborne status indicator at #R32875 to 2: Willy has started falling
+  35764,5 Reset bit 1 at #R32874: Willy is not moving left or right
 c 35770 Animate the crumbling floor in the current cavern
 c 35805 Move Willy (2)
 c 36101 Kill Willy
