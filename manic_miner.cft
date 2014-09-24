@@ -719,7 +719,7 @@ D 36054 Willy's sprite is moving right across a cell boundary. In the comments t
   36093 Save Willy's new attribute buffer coordinates (in #REGhl) at #R32876
   36096,4 Change Willy's animation frame at #R32873 from 3 to 0
 c 36101 Kill Willy
-D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266, #R36344 (when Willy collides with Eugene), #R36593 and #R37173 (when Willy collides with the Kong Beast).
+D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266, #R36344 (when Willy collides with Eugene), #R36593 (when Willy collides with a vertical guardian) and #R37173 (when Willy collides with the Kong Beast).
 D 36103 This entry point is used by the routine at #R36469 (when Willy collides with a falling Skylab).
 c 36111 Move the horizontal guardians in the current cavern
 c 36211 Move and draw the light beam in Solar Power Generator
@@ -756,7 +756,7 @@ D 36388 Now that Eugene's movement has been dealt with, it's time to draw him.
   36438 Jump if there are items remaining to be collected
   36440 Pick up the value of the remaining air supply from #R32957
   36443,4 Move bits 2-4 into bits 0-2 and clear the other bits; this value will be Eugene's INK colour
-D 36447 This entry point is used by the routines at #R36469 (to set the attributes for a Skylab), #R36593 and #R37173 (to set the attributes for the Kong Beast).
+D 36447 This entry point is used by the routines at #R36469 (to set the attributes for a Skylab), #R36593 (to set the attributes for a vertical guardian) and #R37173 (to set the attributes for the Kong Beast).
   36447 Save the INK colour in the attribute buffer temporarily
   36448 Pick up the attribute byte of the background tile for the current cavern from #R32800
   36451 Combine its PAPER colour with the chosen INK colour
@@ -769,6 +769,7 @@ D 36447 This entry point is used by the routines at #R36469 (to set the attribut
   36466,2 Set the attribute byte for the bottom-right cell of the sprite in the attribute buffer at 23552
 c 36469 Move and draw the Skylabs in Skylab Landing Bay
   36469 Point #REGiy at the first byte of the first vertical guardian definition at #R32989
+D 36473 The Skylab-moving loop begins here.
   36473 Pick up the first byte of the guardian definition
   36476 Have we dealt with all the Skylabs yet?
   36478 If so, re-enter the main loop
@@ -777,19 +778,20 @@ c 36469 Move and draw the Skylabs in Skylab Landing Bay
   36487 Jump if so
   36489,6 Increment the Skylab's y-coordinate (moving it downwards)
 D 36497 The Skylab has reached its crash site. Start or continue its disintegration.
-  36497 Increment the crash animation counter
-  36500 Pick up the crash animation counter
+  36497 Increment the animation frame
+  36500 Pick up the animation frame
   36503 Has the Skylab completely disintegrated yet?
   36505 Jump if not
   36507,6 Reset the Skylab's pixel y-coordinate
   36513,10 Add 8 to the Skylab's x-coordinate (wrapping around at the right side of the screen)
-  36523 Reinitialise the crash animation counter
+  36523 Reset the animation frame to 0
 D 36527 Now that the Skylab's movement has been dealt with, time to draw it.
   36527 Pick up the Skylab's pixel y-coordinate in #REGe
   36530,4 Point #REGde at the entry in the screen buffer address lookup table at 33536 that corresponds to the Skylab's pixel y-coordinate
   36534,8 Point #REGhl at the address of the Skylab's location in the screen buffer at 24576
-  36542 Pick up the crash animation counter (0-7)
-  36545,6 Point #REGde at the graphic data for the corresponding Skylab sprite
+  36542 Pick up the animation frame (0-7)
+  36545,3 Multiply it by 32
+  36548,3 Point #REGde at the graphic data for the corresponding Skylab sprite (at #R33024+#REGa)
   36551,5 Draw the Skylab to the screen buffer at 24576
   36556 Kill Willy if the Skylab collided with him
   36559,21 Point #REGhl at the address of the Skylab's location in the attribute buffer at 23552
@@ -798,6 +800,36 @@ D 36527 Now that the Skylab's movement has been dealt with, time to draw it.
   36586,5 Point #REGiy at the first byte of the next vertical guardian definition
   36591 Jump back to deal with the next Skylab
 c 36593 Move and draw the vertical guardians in the current cavern
+  36593 Point #REGiy at the first byte of the first vertical guardian definition at #R32989
+D 36597 The guardian-moving loop begins here.
+  36597 Pick up the first byte of the guardian definition
+  36600 Have we dealt with all the guardians yet?
+  36602 Return if so
+  36603 Increment the guardian's animation frame
+  36606 Reset the animation frame to 0 if it overflowed to 4
+  36610 Pick up the guardian's pixel y-coordinate
+  36613 Add the current y-coordinate increment
+  36616 Has the guardian reached the highest point of its path (minimum y-coordinate)?
+  36619 If so, jump to change its direction of movement
+  36621 Has the guardian reached the lowest point of its path (maximum y-coordinate)?
+  36624 If so, jump to change its direction of movement
+  36626,3 Update the guardian's pixel y-coordinate
+  36631,8 Negate the y-coordinate increment; this changes the guardian's direction of movement
+D 36639 Now that the guardian's movement has been dealt with, time to draw it.
+  36639 Pick up the guardian's pixel y-coordinate
+  36642,6 Point #REGde at the entry in the screen buffer address lookup table at #R33536 that corresponds to the guardian's pixel y-coordinate
+  36648,8 Point #REGhl at the address of the guardian's location in the screen buffer at 24576
+  36656 Pick up the guardian's animation frame (0-3)
+  36659 Multiply it by 32
+  36662,3 Point #REGde at the graphic data for the appropriate guardian sprite (at #R33024+#REGa)
+  36665,5 Draw the guardian to the screen buffer at 24576
+  36670 Kill Willy if the guardian collided with him
+  36673 Pick up the guardian's pixel y-coordinate
+  36676,18 Point #REGhl at the address of the guardian's location in the attribute buffer at 23552
+  36694 Pick up the guardian's attribute byte
+  36697 Set the attribute bytes for the guardian
+  36700,5 Point #REGiy at the first byte of the next vertical guardian definition
+  36705 Jump back to deal with the next vertical guardian
 c 36707 Draw the items in the current cavern and collect any that Willy is touching
 c 36805 Draw the portal in the current cavern
 E 36805 This routine continues into the one at #R36852.
