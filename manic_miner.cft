@@ -874,6 +874,43 @@ D 36700 The current guardian definition has been dealt with. Time for the next o
   36700,5 Point #REGiy at the first byte of the next vertical guardian definition
   36705 Jump back to deal with the next vertical guardian
 c 36707 Draw the items in the current cavern and collect any that Willy is touching
+  36707,4 Initialise the attribute of the last item drawn at #R32884 to 0 (in case there are no items left to draw)
+  36711 Point #REGiy at the first byte of the first item definition at #R32885
+D 36715 The item-drawing loop begins here.
+  36715 Pick up the first byte of the item definition
+  36718 Have we dealt with all the items yet?
+  36720 Jump if so
+  36722 Has this item already been collected?
+  36723 If so, skip it and consider the next one
+  36725,6 Point #REGde at the address of the item's location in the attribute buffer at 23552
+  36731 Pick up the current attribute byte at the item's location
+  36732,4 Is the INK white (which happens if Willy is touching the item)?
+  36736 Jump if not
+D 36738 Willy is touching this item, so add it to his collection.
+  36738,6 Add 100 to the score
+  36744 Set the item's attribute byte to 0 so that it will be skipped the next time
+  36748 Jump forward to consider the next item
+D 36750 This item has not been collected yet.
+  36750 Pick up the item's current attribute byte
+  36753,4 Keep the BRIGHT and PAPER bits, and set the INK to 3 (magenta)
+  36757 Store this value in #REGb
+  36758 Pick up the item's current attribute byte again
+  36761,3 Keep only bits 0 and 1 and add the value in #REGb; this maintains the BRIGHT and PAPER bits, and cycles the INK colour through 3, 4, 5 and 6
+  36764 Store the new attribute byte
+  36767 Update the attribute byte at the item's location in the buffer at 23552
+  36768 Store the new attribute byte at #R32884 as well
+  36771 Point #REGde at the address of the item's location in the screen buffer at 24576
+  36774 Point #REGhl at the item graphic for the current cavern (at #R32948)
+  36777 There are eight pixel rows to copy
+  36779 Draw the item to the screen buffer at 24576
+D 36782 The current item definition has been dealt with. Time for the next one.
+  36782,10 Point IY at the first byte of the next item definition
+  36792 Jump back to deal with the next item
+D 36794 All the items have been dealt with. Check whether there were any left.
+  36794 Pick up the attribute of the last item drawn at #R32884
+  36797 Were any items drawn?
+  36798 Return if so (some remain to be collected)
+  36799,5 Ensure that the portal is flashing by setting bit 7 of its attribute byte at #R32911
 c 36805 Draw the portal in the current cavern
 E 36805 This routine continues into the one at #R36852.
 c 36852 Draw a sprite
