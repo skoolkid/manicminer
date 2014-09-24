@@ -66,7 +66,8 @@ g 32948 Item graphic
 D 32948 The item graphic is copied here by the routine at #R34436, and then used by the routine at #R36707.
 S 32948,8
 g 32956 Remaining air supply
-D 32956 Initialised and used by the routine at #R34436, and also used by the routines at #R35388 and #R36904.
+D 32956 Initialised and used by the routine at #R34436, and also used by the routines at #R35388, #R36111, #R36344, #R36904 and #R37173.
+B 32956,2,1
 g 32958 Horizontal guardians
 D 32958 The horizontal guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36111 and #R36266.
 S 32958,7 Horizontal guardian 1
@@ -76,8 +77,8 @@ S 32979,7 Horizontal guardian 4
 B 32986 Terminator (set to 255)
 g 32987 Eugene's direction
 D 32987 Initialised by the routine at #R34436, and used by the routines at #R36344 and #R37173.
-g 32988 Eugene's height
-D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252 (to hold the index into the message scrolled across the screen after the theme tune has finished playing), #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 and #R37173.
+g 32988 Eugene's pixel y-coordinate
+D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252 (to hold the index into the message scrolled across the screen after the theme tune has finished playing), #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 (to hold Eugene's pixel y-coordinate) and #R37173.
 g 32989 Vertical guardians
 D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593.
 S 32989,7 Vertical guardian 1
@@ -718,11 +719,52 @@ D 36054 Willy's sprite is moving right across a cell boundary. In the comments t
   36093 Save Willy's new attribute buffer coordinates (in #REGhl) at #R32876
   36096,4 Change Willy's animation frame at #R32873 from 3 to 0
 c 36101 Kill Willy
-D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266, #R36344, #R36593 and #R37173.
+D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266, #R36344 (when Willy collides with Eugene), #R36593 and #R37173.
 c 36111 Move the horizontal guardians in the current cavern
 c 36211 Move and draw the light beam in Solar Power Generator
 c 36266 Draw the horizontal guardians in the current cavern
 c 36344 Move and draw Eugene in Eugene's Lair
+D 36344 Used by the routine at #R34574. First we move Eugene up or down, or change his direction.
+  36344 Pick up the attribute of the last item drawn from #R32884
+  36347 Have all the items been collected?
+  36348 Jump if so
+  36350 Pick up Eugene's direction from #R32987
+  36353 Is Eugene moving downwards?
+  36354 Jump if so
+  36356 Pick up Eugene's pixel y-coordinate from #R32988
+  36359 Decrement it (moving Eugene up)
+  36360 Jump if Eugene has reached the top of the cavern
+  36362,3 Update Eugene's pixel y-coordinate at #R32988
+  36367 Pick up Eugene's pixel y-coordinate from #R32988
+  36370 Increment it (moving Eugene down)
+  36371 Has Eugene reached the portal yet?
+  36373 Jump if so
+  36375,3 Update Eugene's pixel y-coordinate at #R32988
+  36380,8 Toggle Eugene's direction at #R32987
+D 36388 Now that Eugene's movement has been dealt with, it's time to draw him.
+  36388 Pick up Eugene's pixel y-coordinate from #R32988
+  36391,6 Point #REGde at the entry in the screen buffer address lookup table at #R33536 that corresponds to Eugene's y-coordinate
+  36397,7 Point #REGhl at the address of Eugene's location in the screen buffer at 24576
+  36404,8 Draw Eugene to the screen buffer at 24576
+  36412 Kill Willy if Eugene collided with him
+  36415 Pick up Eugene's pixel y-coordinate from #R32988
+  36418,14 Point #REGhl at the address of Eugene's location in the attribute buffer at 23552
+  36432 Pick up the attribute of the last item drawn from #R32884
+  36435 Set the zero flag if all the items have been collected
+  36436 Assume we will draw Eugene with white INK
+  36438 Jump if there are items remaining to be collected
+  36440 Pick up the value of the remaining air supply from #R32957
+  36443,4 Move bits 2-4 into bits 0-2 and clear the other bits; this value will be Eugene's INK colour
+  36447 Save the INK colour in the attribute buffer temporarily
+  36448 Pick up the attribute byte of the background tile for the current cavern from #R32800
+  36451 Combine its PAPER colour with the chosen INK colour
+  36454 Set the attribute byte for the top-left cell of the sprite in the attribute buffer at 23552
+  36455 Prepare #REGde for addition
+  36458,2 Set the attribute byte for the top-right cell of the sprite in the attribute buffer at 23552
+  36460,2 Set the attribute byte for the middle-left cell of the sprite in the attribute buffer at 23552
+  36462,2 Set the attribute byte for the middle-right cell of the sprite in the attribute buffer at 23552
+  36464,2 Set the attribute byte for the bottom-left cell of the sprite in the attribute buffer at 23552
+  36466,2 Set the attribute byte for the bottom-right cell of the sprite in the attribute buffer at 23552
 c 36469 Move and draw the Skylabs in Skylab Landing Bay
 c 36593 Move and draw the vertical guardians in the current cavern
 c 36707 Draw the items in the current cavern and collect any that Willy is touching
