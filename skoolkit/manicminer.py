@@ -95,7 +95,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
             x, y = self._get_coords(a + 1)
             udg_array[y][x] = Udg(attr, item_udg_data)
 
-        has_vertical_guardians = self.snapshot[addr + 733] < 255
+        cavern_no = (addr - 45056) // 1024
 
         # Horizontal guardians
         for a in range(addr + 702, addr + 730, 7):
@@ -103,19 +103,24 @@ class ManicMinerHtmlWriter(HtmlWriter):
             if attr in (0, 255):
                 break
             sprite_index = self.snapshot[a + 4]
-            if has_vertical_guardians:
+            if cavern_no >= 7 and cavern_no not in (9, 15):
                 sprite_index |= 4
             sprite = self._get_graphic(addr + 768 + 32 * sprite_index, attr)
             x, y = self._get_coords(a + 1)
             self._place_graphic(udg_array, sprite, x, y)
 
-        if addr == 49152:
+        if cavern_no == 4:
             # Eugene
             attr = (bg_attr & 248) + 7
             sprite = self._get_graphic(addr + 736, attr)
             self._place_graphic(udg_array, sprite, 15, 0)
-        elif has_vertical_guardians:
-            # Vertical guardians (except Eugene's Lair)
+        elif cavern_no in (7, 11):
+            # Kong Beast
+            attr = 68
+            sprite = self._get_graphic(addr + 768, attr)
+            self._place_graphic(udg_array, sprite, 15, 0)
+        else:
+            # Regular vertical guardians
             for a in range(addr + 733, addr + 761, 7):
                 attr = self.snapshot[a]
                 if attr == 255:
