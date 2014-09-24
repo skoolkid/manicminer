@@ -722,6 +722,47 @@ c 36101 Kill Willy
 D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266, #R36344 (when Willy collides with Eugene), #R36593 (when Willy collides with a vertical guardian) and #R37173 (when Willy collides with the Kong Beast).
 D 36103 This entry point is used by the routine at #R36469 (when Willy collides with a falling Skylab).
 c 36111 Move the horizontal guardians in the current cavern
+  36111 Point #REGiy at the first byte of the first horizontal guardian definition at #R32989
+  36115 Prepare #REGde for addition (there are 7 bytes in a guardian definition)
+D 36118 The guardian-moving loop begins here.
+  36118 Pick up the first byte of the guardian definition
+  36121 Have we dealt with all the guardians yet?
+  36123 Return if so
+  36124 Is this guardian definition blank?
+  36125 If so, skip it and consider the next one
+  36127 Pick up the value of the remaining air supply from #R32957
+  36130,5 Move bit 2 to bit 7 and clear all the other bits
+  36135 Should the guardian be moved on this pass?
+  36138 If not, skip it and consider the next one
+D 36140 The guardian will be moved on this pass.
+  36140 Pick up the current animation frame (0-7)
+  36143 Is it 3 (the terminal frame for a guardian moving right)?
+  36145 Jump if so to move the guardian right across a cell boundary or turn it round
+  36147 Is the current animation frame 4 (the terminal frame for a guardian moving left)?
+  36149 Jump if so to move the guardian left across a cell boundary or turn it round
+  36151 Jump if the animation frame is 5, 6 or 7
+  36153 Increment the animation frame (this guardian is moving right)
+  36156 Jump forward to consider the next guardian
+  36158 Decrement the animation frame (this guardian is moving left)
+  36161 Jump forward to consider the next guardian
+  36163 Pick up the LSB of the address of the guardian's location in the attribute buffer at 23552
+  36166 Has the guardian reached the rightmost point in its path?
+  36169 Jump if not
+  36171 Set the animation frame to 7 (turning the guardian round to face left)
+  36175 Jump forward to consider the next guardian
+  36177 Set the animation frame to 0 (the initial frame for a guardian moving right)
+  36181 Increment the guardian's x-coordinate (moving it right across a cell boundary)
+  36184 Jump forward to consider the next guardian
+  36186 Pick up the LSB of the address of the guardian's location in the attribute buffer at 23552
+  36189 Has the guardian reached the leftmost point in its path?
+  36192 Jump if not
+  36194 Set the animation frame to 0 (turning the guardian round to face right)
+  36198 Jump forward to consider the next guardian
+  36200 Set the animation frame to 7 (the initial frame for a guardian moving left)
+  36204 Decrement the guardian's x-coordinate (moving it left across a cell boundary)
+D 36207 The current guardian definition has been dealt with. Time for the next one.
+  36207 Point #REGiy at the first byte of the next horizontal guardian definition
+  36209 Jump back to deal with the next horizontal guardian
 c 36211 Move and draw the light beam in Solar Power Generator
 c 36266 Draw the horizontal guardians in the current cavern
 c 36344 Move and draw Eugene in Eugene's Lair
@@ -797,6 +838,7 @@ D 36527 Now that the Skylab's movement has been dealt with, time to draw it.
   36559,21 Point #REGhl at the address of the Skylab's location in the attribute buffer at 23552
   36580 Pick up the Skylab's attribute byte
   36583 Set the attribute bytes for the Skylab
+D 36586 The current guardian definition has been dealt with. Time for the next one.
   36586,5 Point #REGiy at the first byte of the next vertical guardian definition
   36591 Jump back to deal with the next Skylab
 c 36593 Move and draw the vertical guardians in the current cavern
@@ -828,6 +870,7 @@ D 36639 Now that the guardian's movement has been dealt with, time to draw it.
   36676,18 Point #REGhl at the address of the guardian's location in the attribute buffer at 23552
   36694 Pick up the guardian's attribute byte
   36697 Set the attribute bytes for the guardian
+D 36700 The current guardian definition has been dealt with. Time for the next one.
   36700,5 Point #REGiy at the first byte of the next vertical guardian definition
   36705 Jump back to deal with the next vertical guardian
 c 36707 Draw the items in the current cavern and collect any that Willy is touching
