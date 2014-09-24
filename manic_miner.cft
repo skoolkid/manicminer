@@ -76,9 +76,9 @@ S 32972,7 Horizontal guardian 3
 S 32979,7 Horizontal guardian 4
 B 32986 Terminator (set to 255)
 g 32987 Eugene's direction
-D 32987 Initialised by the routine at #R34436, and used by the routines at #R36344 and #R37173.
+D 32987 Initialised by the routine at #R34436, and used by the routines at #R36344 (to hold Eugene's direction: 0=down, 1=up) and #R37173 (to hold the Kong Beast's status: 0=on the ledge, 1=falling, 2=dead).
 g 32988 Eugene's pixel y-coordinate
-D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252 (to hold the index into the message scrolled across the screen after the theme tune has finished playing), #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 (to hold Eugene's pixel y-coordinate) and #R37173.
+D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252 (to hold the index into the message scrolled across the screen after the theme tune has finished playing), #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 (to hold Eugene's pixel y-coordinate) and #R37173 (to hold the Kong Beast's pixel y-coordinate).
 g 32989 Vertical guardians
 D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593.
 S 32989,7 Vertical guardian 1
@@ -719,7 +719,7 @@ D 36054 Willy's sprite is moving right across a cell boundary. In the comments t
   36093 Save Willy's new attribute buffer coordinates (in #REGhl) at #R32876
   36096,4 Change Willy's animation frame at #R32873 from 3 to 0
 c 36101 Kill Willy
-D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266, #R36344 (when Willy collides with Eugene), #R36593 and #R37173.
+D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266, #R36344 (when Willy collides with Eugene), #R36593 and #R37173 (when Willy collides with the Kong Beast).
 c 36111 Move the horizontal guardians in the current cavern
 c 36211 Move and draw the light beam in Solar Power Generator
 c 36266 Draw the horizontal guardians in the current cavern
@@ -822,7 +822,72 @@ D 37044 The following loop increases the score and decreases the air supply unti
 c 37098 Add to the score
 c 37125 Move the conveyor in the current cavern
 c 37173 Move and draw the Kong Beast in the current cavern
-c 37403 Check the switch in a Kong Beast cavern
+  37173,6 Flip the left-hand switch at (0,6) if Willy is touching it
+  37179 Pick up the Kong Beast's status from #R32987
+  37182 Is the Kong Beast already dead?
+  37184 Return if so
+  37185 Pick up the sixth pixel row of the left-hand switch from the screen buffer at 28672
+  37188 Has the switch been flipped?
+  37190 Jump if not
+D 37193 The left-hand switch has been flipped. Deal with opening up the wall if that is still in progress.
+  37193 Pick up the attribute byte of the tile at (11,17) in the buffer at 24064
+  37196 Has the wall there been removed yet?
+  37197 Jump if so
+  37199 Point #REGhl at the bottom row of pixels of the wall tile at (11,17) in the screen buffer at 28672
+  37202 Pick up a pixel row
+  37203 Is it blank yet?
+  37204 Jump if not
+  37206 Point #REGhl at the next pixel row up
+  37207,3 Have we checked all 8 pixel rows yet?
+  37210 If not, jump back to check the next one
+  37212 Pick up the attribute byte of the background tile for the current cavern from #R32800
+  37215,6 Change the attributes at (11,17) and (12,17) in the buffer at 24064 to match the background tile (the wall there is now gone)
+  37221,5 Update the seventh byte of the guardian definition at #R32965 so that the guardian moves through the opening in the wall
+  37228 Clear a pixel row of the wall tile at (11,17) in the screen buffer at 28672
+  37230,6 Point #REGhl at the opposite pixel row of the wall tile one cell down at (12,7)
+  37236 Clear that pixel row as well
+D 37238 Now check the right-hand switch.
+  37238,6 Flip the right-hand switch at (0,18) if Willy is touching it
+  37244 Jump if Willy is not touching the switch
+  37246,4 Initialise the Kong Beast's pixel y-coordinate at #R32988 to 0
+  37250,4 Update the Kong Beast's status at #R32987 to 1: he is falling
+  37254 Pick up the attribute byte of the background tile for the current cavern from #R32800
+  37257,6 Change the attributes of the floor beneath the Kong Beast in the buffer at 24064 to match that of the background tile
+  37263 Point #REGhl at (2,15) in the screen buffer at 28672
+  37266,11 Clear the cells at (2,15) and (2,16), removing the floor beneath the Kong Beast
+  37277 Pick up the Kong Beast's status from #R32987
+  37280 Is the Kong Beast still on the ledge?
+  37281 Jump if so
+D 37283 The Kong Beast is falling.
+  37283 Pick up the Kong Beast's pixel y-coordinate from #R32988
+  37286 Has he fallen into the portal yet?
+  37288 Jump if so
+  37290,5 Add 4 to the Kong Beast's pixel y-coordinate at #R32988 (moving him downwards)
+  37295 Copy the pixel y-coordinate to #REGc; this value determines the pitch of the sound effect
+  37296 #REGd=16; this value determines the duration of the sound effect
+  37298 Pick the border colour for the current cavern from #R32883
+  37301,10 Make a falling sound effect
+  37311 Copy the Kong Beast's pixel y-coordinate back into #REGa
+  37312,4 Point #REGde at the entry in the screen buffer address lookup table at #R33536 that corresponds to the Kong Beast's pixel y-coordinate
+  37316,7 Point #REGhl at the address of the Kong Beast's location in the screen buffer at 24576
+  37323,10 Use the value of the remaining air supply at #R32957 to point #REGde at the graphic data for the appropriate Kong Beast sprite
+  37333,5 Draw the Kong Beast to the screen buffer at 24576
+  37338,6 Add 100 to the score
+  37344 Pick up the Kong Beast's pixel y-coordinate from #R32988
+  37347,11 Point #REGhl at the address of the Kong Beast's location in the attribute buffer at 23552
+  37358 The Kong Beast is drawn with yellow INK
+  37360 Set the attribute bytes for the Kong Beast
+D 37363 The Kong Beast has fallen into the portal.
+  37363,5 Set the Kong Beast's status at #R32987 to 2: he is dead
+D 37369 The Kong Beast is still on the ledge.
+  37369 Pick up the value of the remaining air supply from #R32957
+  37372,5 Use this value to point #REGde at the graphic data for the appropriate Kong Beast sprite
+  37377,8 Draw the Kong Beast at (0,15) in the screen buffer at 24576
+  37385 Kill Willy if he collided with the Kong Beast
+  37388 #REGa=68 (INK 4: PAPER 0: BRIGHT 1)
+  37390,12 Set the attribute bytes for the Kong Beast in the buffer at 23552
+c 37403 Flip a switch in a Kong Beast cavern if Willy is touching it
+R 37403 HL Address of the switch's location in the attribute buffer at 23552
 c 37434 Check and set the attribute bytes for Willy's sprite in the buffer at 23552
 c 37471 Check and set the attribute byte for a cell occupied by Willy's sprite
 c 37503 Draw Willy to the screen buffer at 24576
