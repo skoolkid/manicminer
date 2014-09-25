@@ -140,6 +140,12 @@ class ManicMinerHtmlWriter(HtmlWriter):
         x, y = self._get_coords(addr + 620)
         self._place_graphic(udg_array, willy, x, y)
 
+        # Light beam in Solar Power Generator
+        if cavern_no == 18:
+            beam_udg = Udg(119, (0,) * 8)
+            for y in range(15):
+                udg_array[y][23] = beam_udg
+
         # Portal
         attr = self.snapshot[addr + 655]
         portal_udgs = self._get_graphic(addr + 656, attr)
