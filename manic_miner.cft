@@ -808,6 +808,29 @@ D 36207 The current guardian definition has been dealt with. Time for the next o
   36207 Point #REGiy at the first byte of the next horizontal guardian definition
   36209 Jump back to deal with the next horizontal guardian
 c 36211 Move and draw the light beam in Solar Power Generator
+  36211 Point #REGhl at the cell at (0,23) in the attribute buffer at 23552 (the source of the light beam)
+  36214 Prepare #REGde for addition (the beam travels vertically downwards to start with)
+D 36217 The beam-drawing loop begins here.
+  36217 Pick up the attribute byte of the floor tile for the cavern from #R32809
+  36220 Does #REGhl point at a floor tile?
+  36221 Return if so (the light beam stops here)
+  36222 Pick up the attribute byte of the wall tile for the cavern from #R32827
+  36225 Does #REGhl point at a wall tile?
+  36226 Return if so (the light beam stops here)
+  36227 #REGa=39 (INK 7: PAPER 4)
+  36229 Does #REGhl point at a tile with this attribute value?
+  36230 Jump if not (the light beam is not touching Willy)
+  36232 Switch to the shadow registers briefly (to preserve #REGde and #REGhl)
+  36233,12 Decrease the air supply by four units
+  36245 Switch back to the normal registers (restoring #REGde and #REGhl)
+  36246 Jump forward to draw the light beam over Willy
+  36248 Pick up the attribute byte of the background tile for the cavern from #R32800
+  36251 Does #REGhl point at a background tile?
+  36252 Jump if so (the light beam will not be reflected at this point)
+  36254,7 Toggle the value in #REGde between 32 and -1 (and therefore the direction of the light beam between vertically downwards and horizontally to the left): the light beam has hit a guardian
+  36261 Draw a portion of the light beam with attribute value 119 (INK 7: PAPER 6: BRIGHT 1)
+  36263 Point #REGhl at the cell where the next portion of the light beam will be drawn
+  36264 Jump back to draw the next portion of the light beam
 c 36266 Draw the horizontal guardians in the current cavern
   36266 Point #REGiy at the first byte of the first horizontal guardian definition at #R32958
 D 36270 The guardian-drawing loop begins here.
