@@ -1087,6 +1087,27 @@ R 37403 HL Address of the switch's location in the attribute buffer at 23552
 c 37434 Check and set the attribute bytes for Willy's sprite in the buffer at 23552
 c 37471 Check and set the attribute byte for a cell occupied by Willy's sprite
 c 37503 Draw Willy to the screen buffer at 24576
+  37503 Pick up Willy's pixel y-coordinate from #R32872
+  37506,5 Point #REGix at the entry in the screen buffer address lookup table at #R33536 that corresponds to Willy's y-coordinate
+  37511 Pick up Willy's direction and movement flags from #R32874
+  37514 Now #REGe=0 if Willy is facing right, or 128 if he's facing left
+  37518 Pick up Willy's animation frame from #R32873
+  37521,9 Point #REGde at the sprite graphic data for Willy's current animation frame (#R33280+32*#REGa)
+  37530 There are 16 rows of pixels to copy
+  37532,5 Pick up Willy's screen x-coordinate (0-31) from #R32876
+  37537 Copy it to #REGc
+  37538,8 Set #REGhl to the address in the screen buffer at 24576 that corresponds to where we are going to draw the next pixel row of the sprite graphic
+  37546 Pick up a sprite graphic byte
+  37547 Merge it with the background
+  37548 Save the resultant byte to the screen buffer
+  37549 Move #REGhl along to the next cell to the right
+  37550 Point #REGde at the next sprite graphic byte
+  37551 Pick it up in #REGa
+  37552 Merge it with the background
+  37553 Save the resultant byte to the screen buffer
+  37554,4 Point #REGix at the next entry in the screen buffer address lookup table at #R33536
+  37558 Point #REGde at the next sprite graphic byte
+  37559,2 Jump back until all 16 rows of pixels have been drawn
 c 37562 Print a message
 c 37579 Print a single character
 c 37596 Play the theme tune
