@@ -167,8 +167,9 @@ B 33896,b2 7
 B 33898,b2 6
 B 33900,b2 9
 b 33902 Title screen tune data
-D 33902 Used by the routine at #R37596.
-B 33902,286,16
+D 33902 Used by the routine at #R37596. The tune data is organised into 95 groups of three bytes each, one group for each note in the tune. The first byte in each group determines the duration of the note, and the second and third bytes determine the frequency (and also the piano keys that light up).
+B 33902,285,3
+B 34187 End marker
 b 34188 In-game tune data
 D 34188 Used by the routine at #R34574.
 B 34188,64,16
@@ -1067,8 +1068,35 @@ c 37503 Draw Willy to the screen buffer at 24576
 c 37562 Print a message
 c 37579 Print a single character
 c 37596 Play the theme tune
+D 37596 Used by the routine at #R34252. Returns with the zero flag reset if ENTER or the fire button is pressed while the tune is being played.
 R 37596 IY #R33902 (tune data)
+  37596 Pick up the next byte of tune data from the table at #R33902
+  37599 Has the tune finished?
+  37601 Return (with the zero flag set) if so
+  37602 Copy the first byte of data for this note (which determines the duration) to #REGc
+  37603 Initialise #REGb, which will be used as a delay counter in the note-producing loop
+  37605 Set #REGa=0 (for no apparent reasaon)
+  37606 Pick up the second byte of data for this note
+  37609 Copy it to #REGa
+  37610 Calculate the attribute file address for the corresponding piano key
+  37613 Set the attribute byte for the piano key to 80 (INK 0: PAPER 2: BRIGHT 1)
+  37615 Pick up the third byte of data for this note
+  37618 Copy it to #REGa
+  37619 Calculate the attribute file address for the corresponding piano key
+  37622 Set the attribute byte for the piano key to 40 (INK 0: PAPER 5: BRIGHT 0)
+  37624,23 Produce a sound based on the frequency parameters in the second and third bytes of data for this note (copied into #REGd and #REGe)
+  37647 Check whether ENTER or the fire button is being pressed
+  37650 Return (with the zero flag reset) if it is
+  37651 Pick up the second byte of data for this note
+  37654 Calculate the attribute file address for the corresponding piano key
+  37657 Set the attribute byte for the piano key back to 56 (INK 0: PAPER 7: BRIGHT 0)
+  37659 Pick up the third byte of data for this note
+  37662 Calculate the attribute file address for the corresponding piano key
+  37665 Set the attribute byte for the piano key back to 56 (INK 0: PAPER 7: BRIGHT 0)
+  37667,6 Move #REGiy along to the data for the next note in the tune
+  37673 Jump back to play the next note
 c 37675 Calculate the attribute file address for a piano key
+R 37675 A Frequency parameter
 c 37687 Check whether ENTER or the fire button is being pressed
 u 37708 Source code remnants
 D 37708 The source code here corresponds to the code at #R34900.
