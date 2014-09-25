@@ -719,10 +719,10 @@ D 36054 Willy's sprite is moving right across a cell boundary. In the comments t
   36093 Save Willy's new attribute buffer coordinates (in #REGhl) at #R32876
   36096,4 Change Willy's animation frame at #R32873 from 3 to 0
 c 36101 Kill Willy
-D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266, #R36344 (when Willy collides with Eugene), #R36593 (when Willy collides with a vertical guardian) and #R37173 (when Willy collides with the Kong Beast).
+D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266 (when Willy collides with a horizontal guardian), #R36344 (when Willy collides with Eugene), #R36593 (when Willy collides with a vertical guardian) and #R37173 (when Willy collides with the Kong Beast).
 D 36103 This entry point is used by the routine at #R36469 (when Willy collides with a falling Skylab).
 c 36111 Move the horizontal guardians in the current cavern
-  36111 Point #REGiy at the first byte of the first horizontal guardian definition at #R32989
+  36111 Point #REGiy at the first byte of the first horizontal guardian definition at #R32958
   36115 Prepare #REGde for addition (there are 7 bytes in a guardian definition)
 D 36118 The guardian-moving loop begins here.
   36118 Pick up the first byte of the guardian definition
@@ -765,6 +765,36 @@ D 36207 The current guardian definition has been dealt with. Time for the next o
   36209 Jump back to deal with the next horizontal guardian
 c 36211 Move and draw the light beam in Solar Power Generator
 c 36266 Draw the horizontal guardians in the current cavern
+  36266 Point #REGiy at the first byte of the first horizontal guardian definition at #R32958
+D 36270 The guardian-drawing loop begins here.
+  36270 Pick up the first byte of the guardian definition
+  36273 Have we dealt with all the guardians yet?
+  36275 Return if so
+  36276 Is this guardian definition blank?
+  36277 If so, skip it and consider the next one
+  36279 Prepare #REGde for addition
+  36282,6 Point #REGhl at the address of the guardian's location in the attribute buffer at 23552
+  36288 Reset bit 7 (the FLASH bit) of the attribute byte
+  36290,7 Set the attribute bytes for the guardian in the buffer at 23552
+  36297 Prepare #REGc for the call to the drawing routine at #R36852 later on
+  36299 Pick up the animation frame (0-7)
+  36302,3 Multiply it by 32
+  36305 Copy the result to #REGe
+  36306 Pick up the number of the current cavern from #R33799
+  36309 Are we in one of the first seven caverns?
+  36311 Jump if so
+  36313 Are we in #R54272(The Endorian Forest)?
+  36315 Jump if so
+  36317 Are we in #R60416(The Sixteenth Cavern)?
+  36319 Jump if so
+  36321 Add 128 to #REGe (the horizontal guardians in this cavern use frames 4-7 only)
+  36323 Point #REGde at the graphic data for the appropriate guardian sprite (at #R33024+#REGe)
+  36325,6 Point #REGhl at the address of the guardian's location in the screen buffer at 24576
+  36331 Draw the guardian to the screen buffer at 24576
+  36334 Kill Willy if the guardian collided with him
+D 36337 The current guardian definition has been dealt with. Time for the next one.
+  36337,5 Point #REGiy at the first byte of the next horizontal guardian definition
+  36342 Jump back to deal with the next horizontal guardian
 c 36344 Move and draw Eugene in Eugene's Lair
 D 36344 Used by the routine at #R34574. First we move Eugene up or down, or change his direction.
   36344 Pick up the attribute of the last item drawn from #R32884
