@@ -1011,7 +1011,37 @@ D 36794 All the items have been dealt with. Check whether there were any left.
 c 36805 Draw the portal in the current cavern
 E 36805 This routine continues into the one at #R36852.
 c 36852 Draw a sprite
-D 36852 Used by the routines at #R34252, #R34574, #R35140, #R36266, #R36344, #R36469, #R36593, #R36805, #R36904 and #R37173.
+D 36852 Used by the routines at #R34252 (to draw Willy on the title screen), #R34574 (to draw the remaining lives), #R35140 (to draw Willy, the boot and the plinth during the game over sequence), #R36266 (to draw horizontal guardians), #R36344 (to draw Eugene in #R49152(Eugene's Lair)), #R36469 (to draw the Skylabs in #R58368(Skylab Landing Bay)), #R36593 (to draw vertical guardians), #R36805 (to draw the portal in the current cavern), #R36904 (to draw Willy above ground and the swordfish graphic over the portal in #R64512(The Final Barrier)) and #R37173 (to draw the Kong Beast in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast)). If #REGc=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
+R 36852 C Drawing mode: 0 (overwrite) or 1 (blend)
+R 36852 DE Address of sprite graphic data
+R 36852 HL Address to draw at
+  36852 There are 16 rows of pixels to draw
+  36854 Set the zero flag if we're in overwrite mode
+  36856 Pick up a sprite graphic byte
+  36857 Jump if we're in overwrite mode
+  36859,2 Return with the zero flag reset if any of the set bits in the sprite graphic byte collide with a set bit in the background (e.g. in Willy's sprite)
+  36861 Pick up the sprite graphic byte again
+  36862 Blend it with the background byte
+  36863 Copy the graphic byte to its destination cell
+  36864 Move #REGhl along to the next cell on the right
+  36865 Point #REGde at the next sprite graphic byte
+  36866 Set the zero flag if we're in overwrite mode
+  36868 Pick up a sprite graphic byte
+  36869 Jump if we're in overwrite mode
+  36871,2 Return with the zero flag reset if any of the set bits in the sprite graphic byte collide with a set bit in the background (e.g. in Willy's sprite)
+  36873 Pick up the sprite graphic byte again
+  36874 Blend it with the background byte
+  36875 Copy the graphic byte to its destination cell
+  36876,2 Move #REGhl to the next pixel row down in the cell on the left
+  36878 Point #REGde at the next sprite graphic byte
+  36879,3 Have we drawn the bottom pixel row in this pair of cells yet?
+  36882 Jump if not
+  36884,8 Otherwise move #REGhl to the top pixel row in the cell below
+  36892 Was the last pair of cells at y-coordinate 7 or 15?
+  36894 Jump if not
+  36896,4 Otherwise adjust #REGhl to account for the movement from the top or middle third of the screen to the next one down
+  36900 Jump back until all 16 rows of pixels have been drawn
+  36902,1 Set the zero flag (to indicate no collision)
 c 36904 Move to the next cavern
   36904 Pick up the number of the current cavern from #R33799
   36907 Increment the cavern number
