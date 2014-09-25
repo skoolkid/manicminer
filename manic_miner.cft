@@ -66,8 +66,9 @@ g 32948 Item graphic
 D 32948 The item graphic is copied here by the routine at #R34436, and then used by the routine at #R36707.
 S 32948,8
 g 32956 Remaining air supply
-D 32956 Initialised and used by the routine at #R34436, and also used by the routines at #R35388, #R36111, #R36344, #R36904 and #R37173.
-B 32956,2,1
+D 32956 Initialised (always to 63 in practice) and used by the routine at #R34436, updated by the routine at #R35388, and also used by the routine at #R36904. Its value ranges from 36 to 63 and is actually the LSB of the display file address for the cell at the right end of the air bar. The amount of air to draw in this cell is determined by the value of the game clock at #R32957.
+g 32957 Game clock
+D 32957 Initialised by the routine at #R34436, updated on every pass through the main loop by the routine at #R35388, and used for timing purposes by the routines at #R36111, #R36344 and #R37173. Its value (which is always a multiple of 4) is also used by the routine at #R35388 to compute the amount of air to draw in the cell at the right end of the air bar.
 g 32958 Horizontal guardians
 D 32958 The horizontal guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36111 and #R36266.
 S 32958,7 Horizontal guardian 1
@@ -495,6 +496,26 @@ D 35313 The following loop makes the "Game Over" message glisten for about 1.57s
   35383 Jump back unless it's zero
   35385 Display the title screen and play the theme tune
 c 35388 Decrease the air remaining in the current cavern
+D 35388 Used by the routines at #R34574, #R36211 and #R36904. Returns with the zero flag set if there is no air remaining.
+  35388,8 Update the game clock at #R32957
+  35396 Was it just decreased from zero?
+  35398 Jump if not
+  35400 Pick up the value of the remaining air supply from #R32956
+  35403 Has the air supply run out?
+  35405 Return (with the zero flag set) if so
+  35406,4 Decrement the air supply at #R32956
+  35410 Pick up the value of the game clock at #R32957
+  35413,5 #REGa=INT(#REGa/32); this value specifies how many pixels to draw from left to right in the cell at the right end of the air bar
+  35418 Initialise #REGe to 0 (all bits reset)
+  35420 Do we need to draw any pixels in the cell at the right end of the air bar?
+  35421 Jump if not
+  35423 Copy the number of pixels to draw (1-7) to #REGb
+  35424,6 Set this many bits in #REGe (from bit 7 towards bit 0)
+  35430 Pick up the value of the remaining air supply from #R32956
+  35433,3 Set #REGhl to the display file address at which to draw the top row of pixels in the cell at the right end of the air bar
+  35436 There are four rows of pixels to draw
+  35438,6 Draw the four rows of pixels at the right end of the air bar
+  35442,2 Reset the zero flag: there is still some air remaining
 c 35445 Draw the current cavern to the screen buffer at 28672
   35445 Point #REGix at the first byte of the attribute buffer at 24064
   35449,5 Set the operand of the 'LD D,n' instruction at #R35483 (below) to 112
@@ -753,10 +774,10 @@ D 36118 The guardian-moving loop begins here.
   36123 Return if so
   36124 Is this guardian definition blank?
   36125 If so, skip it and consider the next one
-  36127 Pick up the value of the remaining air supply from #R32957
-  36130,5 Move bit 2 to bit 7 and clear all the other bits
-  36135 Should the guardian be moved on this pass?
-  36138 If not, skip it and consider the next one
+  36127 Pick up the value of the game clock at #R32957
+  36130,5 Move bit 2 (which is toggled on each pass through the main loop) to bit 7 and clear all the other bits
+  36135 Combine this bit with bit 7 of the first byte of the guardian definition, which specifies the guardian's animation speed: 0=normal, 1=slow
+  36138 Jump to consider the next guardian if this one is not due to be moved on this pass
 D 36140 The guardian will be moved on this pass.
   36140 Pick up the current animation frame (0-7)
   36143 Is it 3 (the terminal frame for a guardian moving right)?
@@ -797,7 +818,7 @@ D 36270 The guardian-drawing loop begins here.
   36277 If so, skip it and consider the next one
   36279 Prepare #REGde for addition
   36282,6 Point #REGhl at the address of the guardian's location in the attribute buffer at 23552
-  36288 Reset bit 7 (the FLASH bit) of the attribute byte
+  36288 Reset bit 7 (which specifies the animation speed) of the attribute byte, ensuring no FLASH
   36290,7 Set the attribute bytes for the guardian in the buffer at 23552
   36297 Prepare #REGc for the call to the drawing routine at #R36852 later on
   36299 Pick up the animation frame (0-7)
@@ -848,8 +869,8 @@ D 36388 Now that Eugene's movement has been dealt with, it's time to draw him.
   36435 Set the zero flag if all the items have been collected
   36436 Assume we will draw Eugene with white INK
   36438 Jump if there are items remaining to be collected
-  36440 Pick up the value of the remaining air supply from #R32957
-  36443,4 Move bits 2-4 into bits 0-2 and clear the other bits; this value will be Eugene's INK colour
+  36440 Pick up the value of the game clock at #R32957
+  36443,4 Move bits 2-4 into bits 0-2 and clear the other bits; this value (which decreases by one on each pass through the main loop) will be Eugene's INK colour
 D 36447 This entry point is used by the routines at #R36469 (to set the attributes for a Skylab), #R36593 (to set the attributes for a vertical guardian) and #R37173 (to set the attributes for the Kong Beast).
   36447 Save the INK colour in the attribute buffer temporarily
   36448 Pick up the attribute byte of the background tile for the current cavern from #R32800
@@ -1066,7 +1087,7 @@ D 37283 The Kong Beast is falling.
   37311 Copy the Kong Beast's pixel y-coordinate back into #REGa
   37312,4 Point #REGde at the entry in the screen buffer address lookup table at #R33536 that corresponds to the Kong Beast's pixel y-coordinate
   37316,7 Point #REGhl at the address of the Kong Beast's location in the screen buffer at 24576
-  37323,10 Use the value of the remaining air supply at #R32957 to point #REGde at the graphic data for the appropriate Kong Beast sprite
+  37323,10 Use bit 5 of the value of the game clock at #R32957 (which is toggled once every eight passes through the main loop) to point #REGde at the graphic data for the appropriate Kong Beast sprite
   37333,5 Draw the Kong Beast to the screen buffer at 24576
   37338,6 Add 100 to the score
   37344 Pick up the Kong Beast's pixel y-coordinate from #R32988
@@ -1076,8 +1097,8 @@ D 37283 The Kong Beast is falling.
 D 37363 The Kong Beast has fallen into the portal.
   37363,5 Set the Kong Beast's status at #R32987 to 2: he is dead
 D 37369 The Kong Beast is still on the ledge.
-  37369 Pick up the value of the remaining air supply from #R32957
-  37372,5 Use this value to point #REGde at the graphic data for the appropriate Kong Beast sprite
+  37369 Pick up the value of the game clock at #R32957
+  37372,5 Use bit 5 of this value (which is toggled once every eight passes through the main loop) to point #REGde at the graphic data for the appropriate Kong Beast sprite
   37377,8 Draw the Kong Beast at (0,15) in the screen buffer at 24576
   37385 Kill Willy if he collided with the Kong Beast
   37388 #REGa=68 (INK 4: PAPER 0: BRIGHT 1)
