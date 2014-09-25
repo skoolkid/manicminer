@@ -496,6 +496,28 @@ D 35313 The following loop makes the "Game Over" message glisten for about 1.57s
   35385 Display the title screen and play the theme tune
 c 35388 Decrease the air remaining in the current cavern
 c 35445 Draw the current cavern to the screen buffer at 28672
+  35445 Point #REGix at the first byte of the attribute buffer at 24064
+  35449,5 Set the operand of the 'LD D,n' instruction at #R35483 (below) to 112
+  35454 Draw the tiles for the top half of the cavern to the screen buffer at 28672
+  35457 Point #REGix at the 256th byte of the attribute buffer at 24064 in preparation for drawing the bottom half of the cavern; this instruction is redundant, since #REGix already holds 24320
+  35461,5 Set the operand of the 'LD D,n' instruction at #R35483 (below) to 120
+  35466 #REGc will count 256 tiles
+D 35468 The following loop draws 256 tiles (for either the top half or the bottom half of the cavern) to the screen buffer at 28672.
+  35468 #REGe holds the LSB of the screen buffer address
+  35469 Pick up an attribute byte from the buffer at 24064; this identifies the type of tile to draw
+  35472,8 Move #REGhl through the attribute bytes and graphic data of the background, floor, crumbling floor, wall, conveyor and nasty tiles starting at #R32800 until we find a byte that matches the attribute byte of the tile to be drawn
+  35480 Restore the value of the tile counter in #REGc
+  35481 There are eight bytes in the tile
+  35483 This instruction is set to either 'LD D,112' or 'LD D,120' above; now #REGde holds the appropriate address in the screen buffer at 28672
+  35485,6 Copy the tile graphic data to the screen buffer at 28672
+  35491 Move #REGix along to the next byte in the attribute buffer
+  35493 Have we drawn 256 tiles yet?
+  35494 If not, jump back to draw the next one
+D 35497 The empty cavern has been drawn to the screen buffer at 28672. If we're in #R64512(The Final Barrier), however, there is further work to do.
+  35497 Pick up the number of the current cavern from #R33799
+  35500 Is it #R64512(The Final Barrier)?
+  35502 Return if not
+  35503,11 Copy the graphic data from #R40960 to the top half of the screen buffer at 28672
 c 35515 Move Willy (1)
 D 35515 Used by the routine at #R34574. This routine deals with Willy if he's jumping or falling.
   35515 Pick up the airborne status indicator from #R32875
