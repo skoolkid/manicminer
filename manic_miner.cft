@@ -781,8 +781,13 @@ D 36054 Willy's sprite is moving right across a cell boundary. In the comments t
   36093 Save Willy's new attribute buffer coordinates (in #REGhl) at #R32876
   36096,4 Change Willy's animation frame at #R32873 from 3 to 0
 c 36101 Kill Willy
+D 36101 Used by the routine at #R37471 when Willy hits a nasty.
+  36101 Drop the return address from the stack
 D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266 (when Willy collides with a horizontal guardian), #R36344 (when Willy collides with Eugene), #R36593 (when Willy collides with a vertical guardian) and #R37173 (when Willy collides with the Kong Beast).
-D 36103 This entry point is used by the routine at #R36469 (when Willy collides with a falling Skylab).
+  36102 Drop the return address from the stack
+D 36103 This entry point is used by the routine at #R36469 when a Skylab falls on Willy.
+  36103,5 Set the airborne status indicator at #R32875 to 255 (meaning Willy has had a fatal accident)
+  36108 Jump back into the main loop
 c 36111 Move the horizontal guardians in the current cavern
   36111 Point #REGiy at the first byte of the first horizontal guardian definition at #R32958
   36115 Prepare #REGde for addition (there are 7 bytes in a guardian definition)
