@@ -631,7 +631,24 @@ D 35746 The top-left or top-right cell of Willy's sprite is overlapping a wall t
   35756 Adjust Willy's attribute buffer location at #R32876 to account for this new pixel y-coordinate
   35759,5 Set the airborne status indicator at #R32875 to 2: Willy has started falling
   35764,5 Reset bit 1 at #R32874: Willy is not moving left or right
-c 35770 Animate the crumbling floor in the current cavern
+c 35770 Animate a crumbling floor tile in the current cavern
+R 35770 HL Address of the crumbling floor tile's location in the attribute buffer at 23552
+  35770,7 Point #REGbc at the bottom row of pixels of the crumbling floor tile in the screen buffer at 28672
+  35777,2 Collect the pixels from the row above in #REGa
+  35779,2 Copy these pixels into the row below it
+  35781 Point #REGbc at the next row of pixels up
+  35782,3 Have we dealt with the bottom seven pixel rows of the crumbling floor tile yet?
+  35785 If not, jump back to deal with the next one up
+  35787,2 Clear the top row of pixels in the crumbling floor tile
+  35789,4 Point #REGbc at the bottom row of pixels in the crumbling floor tile
+  35793 Pick up the bottom row of pixels in #REGa
+  35794 Is the bottom row clear?
+  35795 Return if not
+  35796 Pick up the attribute byte of the background tile for the current cavern from #R32800
+D 35796 The bottom row of pixels in the crumbling floor tile is clear. Time to put a background tile in its place.
+  35799,2 Set #REGhl to the address of the crumbling floor tile's location in the attribute buffer at 24064
+  35801 Set the attribute at this location to that of the background tile
+  35802,2 Set #REGhl back to the address of the crumbling floor tile's location in the attribute buffer at 23552
 c 35805 Move Willy (2)
 D 35805 Used by the routine at #R35515. This routine checks the keyboard and joystick, and moves Willy left or right if necessary.
 R 35805 HL Attribute buffer address of the left-hand cell below Willy's sprite
