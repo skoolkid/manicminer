@@ -1199,6 +1199,23 @@ D 37369 The Kong Beast is still on the ledge.
 c 37403 Flip a switch in a Kong Beast cavern if Willy is touching it
 R 37403 HL Address of the switch's location in the attribute buffer at 23552
 c 37434 Check and set the attribute bytes for Willy's sprite in the buffer at 23552
+  37434 Pick up the address of Willy's location in the attribute buffer at 23552 from #R32876
+  37437 Prepare #REGde for addition
+  37440 Set #REGc=15 for the top two rows of cells (to make the routine at #R37471 force white INK)
+  37442 Check and set the attribute byte for the top-left cell
+  37445 Move #REGhl to the next cell to the right
+  37446 Check and set the attribute byte for the top-right cell
+  37449 Move #REGhl down a row and back one cell to the left
+  37450 Check and set the attribute byte for the mid-left cell
+  37453 Move #REGhl to the next cell to the right
+  37454 Check and set the attribute byte for the mid-right cell
+  37457 Pick up Willy's pixel y-coordinate from #R32872
+  37460 Copy it to #REGc
+  37461 Move #REGhl down a row and back one cell to the left
+  37462 Check and set the attribute byte for the bottom-left cell
+  37465 Move #REGhl to the next cell to the right
+  37466 Check and set the attribute byte for the bottom-right cell
+  37469 Draw Willy to the screen buffer at 24576
 c 37471 Check and set the attribute byte for a cell occupied by Willy's sprite
 c 37503 Draw Willy to the screen buffer at 24576
   37503 Pick up Willy's pixel y-coordinate from #R32872
