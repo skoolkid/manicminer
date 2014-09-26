@@ -1347,7 +1347,11 @@ R 37596 IY #R33902 (tune data)
   37667,6 Move #REGiy along to the data for the next note in the tune
   37673 Jump back to play the next note
 c 37675 Calculate the attribute file address for a piano key
-R 37675 A Frequency parameter
+D 37675 Used by the routine at #R37596. Returns with the attribute file address in #REGhl.
+R 37675 A Frequency parameter from the tune data table at #R33902
+  37675,8 Compute the piano key index (K) based on the frequency parameter (F), and store it in bits 0-4 of #REGa: K=31-INT((F-8)/8)
+  37681 #REGa=224+K; this is the LSB
+  37683,3 Set #REGhl to the attribute file address for the piano key
 c 37687 Check whether ENTER or the fire button is being pressed
 D 37687 Used by the routine at #R37596. Returns with the zero flag reset if ENTER or the fire button on the joystick is being pressed.
   37687 Pick up the Kempston joystick indicator from #R33881
