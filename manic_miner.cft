@@ -1302,6 +1302,15 @@ c 37503 Draw Willy to the screen buffer at 24576
   37558 Point #REGde at the next sprite graphic byte
   37559,2 Jump back until all 16 rows of pixels have been drawn
 c 37562 Print a message
+R 37562 IX Address of the message
+R 37562 C Length of the message
+R 37562 DE Display file address
+  37562 Collect a character from the message
+  37565 Print it
+  37568 Point #REGix at the next character in the message
+  37570,5 Point #REGde at the next character cell (subtracting 8 from #REGd compensates for the operations performed by the routine at #R37579)
+  37575 Have we printed the entire message yet?
+  37576,2 If not, jump back to print the next character
 c 37579 Print a single character
 c 37596 Play the theme tune
 D 37596 Used by the routine at #R34252. Returns with the zero flag reset if ENTER or the fire button is pressed while the tune is being played.
