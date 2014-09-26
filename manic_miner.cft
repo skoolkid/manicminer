@@ -1334,6 +1334,16 @@ R 37596 IY #R33902 (tune data)
 c 37675 Calculate the attribute file address for a piano key
 R 37675 A Frequency parameter
 c 37687 Check whether ENTER or the fire button is being pressed
+D 37687 Used by the routine at #R37596. Returns with the zero flag reset if ENTER or the fire button on the joystick is being pressed.
+  37687 Pick up the Kempston joystick indicator from #R33881
+  37690 Is the joystick connected?
+  37691 Jump if not
+  37693 Collect input from the joystick
+  37695 Is the fire button being pressed?
+  37697 Return (with the zero flag reset) if so
+  37698,5 Read keys H-J-K-L-ENTER
+  37703 Keep only bit 0 of the result (ENTER)
+  37705,2 Reset the zero flag if ENTER is being pressed
 u 37708 Source code remnants
 D 37708 The source code here corresponds to the code at #R34900.
 T 37708,6,B1:3:B1:1 DEC E
