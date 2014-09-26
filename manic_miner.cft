@@ -1234,6 +1234,22 @@ c 37434 Check and set the attribute bytes for Willy's sprite in the buffer at 23
   37466 Check and set the attribute byte for the bottom-right cell
   37469 Draw Willy to the screen buffer at 24576
 c 37471 Check and set the attribute byte for a cell occupied by Willy's sprite
+R 37471 C 15 or Willy's pixel y-coordinate
+R 37471 HL Address of the cell in the attribute buffer at 23552
+  37471 Pick up the attribute byte of the background tile for the current cavern from #R32800
+  37474 Does this cell contain a background tile?
+  37475 Jump if not
+  37477,3 Set the zero flag if we are going to retain the INK colour in this cell; this happens only if the cell is in the bottom row and Willy's sprite is confined to the top two rows
+  37480 Jump if we are going to retain the current INK colour in this cell
+  37482 Pick up the attribute byte of the background tile for the current cavern from #R32800
+  37485 Set bits 0-2, making the INK white
+  37487 Set the attribute byte for this cell in the buffer at 23552
+  37488 Pick up the attribute byte of the first nasty tile for the current cavern from #R32845
+  37491 Has Willy hit a nasty of the first kind?
+  37492 Kill Willy if so
+  37495 Pick up the attribute byte of the second nasty tile for the current cavern from #R32854
+  37498 Has Willy hit a nasty of the second kind?
+  37499,3 Kill Willy if so
 c 37503 Draw Willy to the screen buffer at 24576
   37503 Pick up Willy's pixel y-coordinate from #R32872
   37506,5 Point #REGix at the entry in the screen buffer address lookup table at #R33536 that corresponds to Willy's y-coordinate
