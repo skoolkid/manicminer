@@ -309,7 +309,7 @@ D 34623 Next, prepare the screen and attribute buffers for drawing to the screen
   34711 Pick up the number of the current cavern from #R33799
   34714 Are we in #R63488(Solar Power Generator)?
   34716 If so, move and draw the light beam
-  34719 Draw the portal in the current cavern
+  34719 Draw the portal, or move to the next cavern if Willy has entered it
   34722,11 Copy the contents of the screen buffer at 24576 to the display file
   34733 Pick up the screen flash counter from #R33880
   34736 Is it zero?
@@ -1008,7 +1008,26 @@ D 36794 All the items have been dealt with. Check whether there were any left.
   36797 Were any items drawn?
   36798 Return if so (some remain to be collected)
   36799,5 Ensure that the portal is flashing by setting bit 7 of its attribute byte at #R32911
-c 36805 Draw the portal in the current cavern
+c 36805 Draw the portal, or move to the next cavern if Willy has entered it
+D 36805 Used by the routine at #R34574. First check whether Willy has entered the portal.
+  36805 Pick up the address of the portal's location in the attribute buffer at 23552 from #R32944
+  36808 Pick up the LSB of the address of Willy's location in the attribute buffer at 23552 from #R32876
+  36811 Does it match that of the portal?
+  36812 Jump if not
+  36814 Pick up the MSB of the address of Willy's location in the attribute buffer at 23552 from #R32876(32877)
+  36817 Does it match that of the portal?
+  36818 Jump if not
+  36820 Pick up the portal's attribute byte from #R32911
+  36823 Is the portal flashing?
+  36825 Jump if not
+  36827 Drop the return address from the stack
+  36828 Move Willy to the next cavern
+D 36831 Willy has not entered the portal, or it's not flashing, so just draw it.
+  36831 Pick up the portal's attribute byte from #R32911
+  36834,10 Set the attribute bytes for the portal in the buffer at 23552
+  36844 Point #REGde at the graphic data for the portal at #R32912
+  36847 Pick up the address of the portal's location in the screen buffer at 24576
+  36850 #REGc=0: overwrite mode
 E 36805 This routine continues into the one at #R36852.
 c 36852 Draw a sprite
 D 36852 Used by the routines at #R34252 (to draw Willy on the title screen), #R34574 (to draw the remaining lives), #R35140 (to draw Willy, the boot and the plinth during the game over sequence), #R36266 (to draw horizontal guardians), #R36344 (to draw Eugene in #R49152(Eugene's Lair)), #R36469 (to draw the Skylabs in #R58368(Skylab Landing Bay)), #R36593 (to draw vertical guardians), #R36805 (to draw the portal in the current cavern), #R36904 (to draw Willy above ground and the swordfish graphic over the portal in #R64512(The Final Barrier)) and #R37173 (to draw the Kong Beast in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast)). If #REGc=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
