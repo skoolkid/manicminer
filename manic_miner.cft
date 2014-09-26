@@ -1312,6 +1312,12 @@ R 37562 DE Display file address
   37575 Have we printed the entire message yet?
   37576,2 If not, jump back to print the next character
 c 37579 Print a single character
+R 37579 A ASCII code of the character
+R 37579 DE Display file address
+  37579,8 Point #REGhl at the bitmap for the character (in the ROM)
+  37587 There are eight pixel rows in a character bitmap
+D 37589 This entry point is used by the routine at #R36707 to draw an item in the current cavern.
+  37589,6 Copy the character bitmap (or item graphic) to the screen (or screen buffer)
 c 37596 Play the theme tune
 D 37596 Used by the routine at #R34252. Returns with the zero flag reset if ENTER or the fire button is pressed while the tune is being played.
 R 37596 IY #R33902 (tune data)
