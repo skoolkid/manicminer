@@ -102,6 +102,9 @@ w 33536 Screen buffer address lookup table
 D 33536 Used by the routines at #R35140, #R36344, #R36469, #R36593, #R37173 and #R37503. The value of the Nth entry (0<=N<=127) in this lookup table is the screen buffer address for the point with pixel coordinates (x,y)=(0,N), with the origin (0,0) at the top-left corner.
 {sba_table}
 c 33792 The game has just loaded
+  33792 Disable interrupts
+  33793 Place the stack somewhere safe (near the end of the source code remnants at #R37708)
+  33796 Display the title screen and play the theme tune
 g 33799 Current cavern number
 D 33799 Initialised by the routine at #R34252, used by the routines at #R34436, #R34574, #R35445 and #R36266, and updated by the routine at #R36904.
 b 33800 Left-right movement table
