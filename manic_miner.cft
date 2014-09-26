@@ -1091,6 +1091,27 @@ D 37044 The following loop increases the score and decreases the air supply unti
   37096 Jump back to decrease the air supply again
 c 37098 Add to the score
 c 37125 Move the conveyor in the current cavern
+  37125 Pick up the address of the conveyor's location in the screen buffer at 28672 from #R32880
+  37128,2 Copy this address to #REGde
+  37130 Pick up the length of the conveyor from #R32882
+  37133 #REGb will count the conveyor tiles
+  37134 Pick up the direction of the conveyor from #R32879
+  37137 Is the conveyor moving right?
+  37138 Jump if so
+D 37140 The conveyor is moving left.
+  37140 Copy the first pixel row of the conveyor tile to #REGa
+  37141,4 Rotate it left twice
+  37145,2 Point #REGhl at the third pixel row of the conveyor tile
+  37147 Copy this pixel row to #REGc
+  37148,4 Rotate it right twice
+  37152,6 Update the first and third pixel rows of every conveyor tile in the screen buffer at 28672
+D 37159 The conveyor is moving right.
+  37159 Copy the first pixel row of the conveyor tile to #REGa
+  37160 Rotate it right twice
+  37164 Point #REGhl at the third pixel row of the conveyor tile
+  37166 Copy this pixel row to #REGc
+  37167,4 Rotate it left twice
+  37171 Jump back to update the first and third pixel rows of every conveyor tile
 c 37173 Move and draw the Kong Beast in the current cavern
   37173,6 Flip the left-hand switch at (0,6) if Willy is touching it
   37179 Pick up the Kong Beast's status from #R32987
