@@ -1119,7 +1119,7 @@ D 37012 The next section of code cycles the INK and PAPER colours of the current
 D 37044 The following loop increases the score and decreases the air supply until it runs out.
   37044 Decrease the air remaining in the current cavern
   37047 Move to the next cavern if the air supply is now gone
-  37050,6 Add 10 to the score
+  37050,6 Add 1 to the score
   37056,12 Print the new score at (19,26)
   37068 #REGc=4; this value determines the duration of the sound effect
   37070 Pick up the remaining air supply (S) from #R32956
@@ -1127,6 +1127,19 @@ D 37044 The following loop increases the score and decreases the air supply unti
   37079,17 Produce a short note
   37096 Jump back to decrease the air supply again
 c 37098 Add to the score
+D 37098 The entry point to this routine is at #R37118.
+  37098 Roll the digit over from '9' to '0'
+  37100 Point #REGhl at the next digit to the left
+  37101,3 Is this the 10000s digit?
+  37104 Jump if not
+D 37106 Willy has scored another 10000 points. Give him an extra life.
+  37106,5 Set the screen flash counter at #R33880 to 8
+  37111,7 Increment the number of lives remaining at #R33879
+D 37118 The entry point to this routine is here and is used by the routines at #R36707, #R36904 and #R37173 with #REGhl pointing at the digit of the score (see #R33833) to be incremented.
+  37118 Pick up a digit of the score
+  37119 Is it '9'?
+  37121 Jump if so
+  37123,1 Increment the digit
 c 37125 Move the conveyor in the current cavern
   37125 Pick up the address of the conveyor's location in the screen buffer at 28672 from #R32880
   37128,2 Copy this address to #REGde
