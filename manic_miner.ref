@@ -9,11 +9,10 @@ HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
 
 [Game]
 Game=Manic Miner
-TitlePrefix=The incomplete
 Logo=#SCR2,0,1,19,2,43008,40448{10,,292}(/images/logo)
 StyleSheet=skoolkit.css;manic_miner.css
 Copyright=&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).
-Release=The incomplete Manic Miner RAM disassembly 20140308
+Release=The complete Manic Miner RAM disassembly YYYYMMDD
 LinkInternalOperands=1
 
 [Font]
@@ -136,8 +135,10 @@ To give Willy infinite lives:
 POKE #R35136,0
 
 [Changelog:YYYYMMDD]
--
+The disassembly is now 'complete'.
 
+Annotated all the #LINK:RoutinesMap(routines)
+Added a description to each #LINK:GameStatusBuffer(game status buffer entry), #LINK:MessagesMap(message entry) and #LINK:DataMap(data block)
 Added the #LINK:Caverns(Caverns page)
 Added a trivia entry: #FACT#sourceCodeRemnants()
 Added a POKE: #POKE#infiniteLives()
