@@ -16,7 +16,7 @@ D 32768 The cavern name is copied here and then used by the routine at #R34436.
 S 32768,32
 g 32800 Cavern tiles
 D 32800 The cavern tiles are copied here by the routine at #R34436 and then used to draw the room by the routine at #R35445.
-D 32800 The extra tile at #R32863 behaves like a floor tile, and is used as such in #R54272(The Endorian Forest), #R57344(Ore Refinery) and #R58368(Skylab Landing Bay). It is also used in #R47104(The Menagerie), #R55296(Attack of the Mutant Telephones) and #R59392(The Bank) as spider silk, and in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast) as a switch.
+D 32800 The extra tile at #R32863 behaves like a floor tile, and is used as such in #R54272(The Endorian Forest), #R55296(Attack of the Mutant Telephones), #R57344(Ore Refinery), #R58368(Skylab Landing Bay) and #R59392(The Bank). It is also used in #R47104(The Menagerie) as spider silk, and in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast) as a switch.
 S 32800,9 Background tile (also used by the routines at #R35515, #R35770, #R36211, #R36344, #R37173 and #R37471)
 S 32809,9 Floor tile (also used by the routine at #R36211)
 S 32818,9 Crumbling floor tile (also used by the routine at #R35515)
