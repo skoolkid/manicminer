@@ -90,8 +90,14 @@ class ManicMinerHtmlWriter(HtmlWriter):
         item_udg_data = self.snapshot[addr + 692:addr + 700]
         for a in range(addr + 629, addr + 653, 5):
             attr = self.snapshot[a]
-            if attr in (0, 255):
+            if attr == 255:
                 break
+            if attr == 0:
+                continue
+            ink, paper = attr & 7, (attr // 8) & 7
+            if ink == paper:
+                ink = max(3, (ink + 1) & 7)
+                attr = (attr & 248) + ink
             x, y = self._get_coords(a + 1)
             udg_array[y][x] = Udg(attr, item_udg_data)
 
