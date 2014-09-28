@@ -85,7 +85,9 @@ D 32987 Initialised by the routine at #R34436, and used by the routines at #R363
 g 32988 Eugene's pixel y-coordinate
 D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252 (to hold the index into the message scrolled across the screen after the theme tune has finished playing), #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 (to hold Eugene's pixel y-coordinate) and #R37173 (to hold the Kong Beast's pixel y-coordinate).
 g 32989 Vertical guardians
-D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593.
+D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593. There are four slots, each one seven bytes long, used to hold the state of the vertical guardians in the current cavern.
+D 32989 For each vertical guardian, the seven bytes are used as follows:
+D 32989 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ 0 | Attribute (BRIGHT, PAPER and INK) }} {{ 1 | Animation frame }} {{ 2 | Pixel y-coordinate }} {{ 3 | x-coordinate }} {{ 4 | Pixel y-coordinate increment }} {{ 5 | Minimum pixel y-coordinate }} {{ 6 | Maximum pixel y-coordinate }} TABLE#
 S 32989,7 Vertical guardian 1
 S 32996,7 Vertical guardian 2
 S 33003,7 Vertical guardian 3
