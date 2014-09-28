@@ -1,3 +1,6 @@
 table.asm {
   background-color: #221100;
 }
+table.gallery td {
+  border-color: #ffffff;
+}
