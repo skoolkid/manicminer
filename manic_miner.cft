@@ -33,7 +33,8 @@ g 32874 Willy's direction and movement flags
 D 32874 Initialised by the routine at #R34436.
 D 32874 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R35805, #R37503 }} {{ 1 | Willy's movement flag (set=moving) | #R35515, #R35805 }} {{ 2-7 | Unused (always reset) | }} TABLE#
 g 32875 Airborne status indicator
-D 32875 Initialised by the routine at #R34436, and used by the routines at #R34574, #R35515, #R35805 and #R36101.
+D 32875 Initialised by the routine at #R34436, and used by the routines at #R34574, #R35515, #R35805 and #R36101. Possible values are:
+D 32875 #TABLE(default,centre,:w) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R35967) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12-15 | Willy is falling, and has fallen too far to land safely (see #R35805#35805) }} {{ 255 | Willy has collided with a nasty or a guardian (see #R36101) }} TABLE#
 g 32876 Address of Willy's location in the attribute buffer at 23552
 D 32876 Initialised by the routine at #R34436, used by the routines at #R35515, #R36805, #R37403, #R37434 and #R37503, and updated by the routine at #R35805.
 W 32876
