@@ -4,9 +4,6 @@
 ;
 ; SkoolKit control file for Manic Miner (Bug Byte version).
 ;
-; Cavern descriptions based on reference material from Andrew Broad
-; <http://webspace.webring.com/people/ja/andrewbroad/>.
-;
 
 ; @start:32768
 ; @set-handle-unsupported-macros:32768=1
