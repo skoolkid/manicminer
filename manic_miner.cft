@@ -72,7 +72,9 @@ D 32956 Initialised (always to 63 in practice) and used by the routine at #R3443
 g 32957 Game clock
 D 32957 Initialised by the routine at #R34436, updated on every pass through the main loop by the routine at #R35388, and used for timing purposes by the routines at #R36111, #R36344 and #R37173. Its value (which is always a multiple of 4) is also used by the routine at #R35388 to compute the amount of air to draw in the cell at the right end of the air bar.
 g 32958 Horizontal guardians
-D 32958 The horizontal guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36111 and #R36266.
+D 32958 The horizontal guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36111 and #R36266. There are four slots, each one seven bytes long, used to hold the state of the horizontal guardians in the current cavern.
+D 32958 For each horizontal guardian, the seven bytes are used as follows:
+D 32958 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r2 0 | Bit 7: animation speed (0=normal, 1=slow) }} {{ Bits 0-6: attribute (BRIGHT, PAPER and INK) }} {{ 1,2 | Address of the guardian's location in the attribute buffer at 23552 }} {{ 3 | MSB of the address of the guardian's location in the screen buffer at 24576 }} {{ 4 | Animation frame }} {{ 5 | LSB of the address of the leftmost point of the guardian's path in the attribute buffer }} {{ 6 | LSB of the address of the rightmost point of the guardian's path in the attribute buffer }} TABLE#
 S 32958,7 Horizontal guardian 1
 S 32965,7 Horizontal guardian 2
 S 32972,7 Horizontal guardian 3
