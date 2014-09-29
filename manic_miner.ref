@@ -95,6 +95,9 @@ An immobile object drawn in a single cell as part of a room along with the backg
 { #R54272(The Endorian Forest) | #UDG54871,4(nasty2_9) }
 TABLE#
 
+[Fact:takingABreak:Taking a BREAK]
+The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see #R34801).
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the cavern buffer at 32768 contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -183,7 +186,9 @@ The disassembly is now 'complete'.
 Annotated all the #LINK:RoutinesMap(routines)
 Added a description to each #LINK:GameStatusBuffer(game status buffer entry), #LINK:MessagesMap(message entry) and #LINK:DataMap(data block)
 Added the #LINK:Caverns(Caverns page)
-Added a trivia entry: #FACT#sourceCodeRemnants()
+Added trivia entries:
+  #FACT#takingABreak()
+  #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
   #POKE#gentleGuardians()
