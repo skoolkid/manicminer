@@ -98,6 +98,13 @@ TABLE#
 [Fact:takingABreak:Taking a BREAK]
 The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see #R34801).
 
+[Fact:6031769:6031769]
+If you type the digits 6031769 at any point during the game, a cheat mode is activated that enables Willy to teleport to any cavern; a boot appears next to Willy's remaining lives to show that the cheat mode has been activated.
+
+For example, to teleport to #R51200(The Vat), hold down keys '2' and '3', and then press '6' to activate the teleporter. For a list of all the caverns and their teleport codes, see the #LINK:Caverns(Caverns page).
+
+The number 6031769 comes from Matthew Smith's driving licence, "with an error in it and twisted round a bit" (as he put it in an interview for issue 48 of <i>Retro Gamer</i> magazine).
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the cavern buffer at 32768 contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -188,6 +195,7 @@ Added a description to each #LINK:GameStatusBuffer(game status buffer entry), #L
 Added the #LINK:Caverns(Caverns page)
 Added trivia entries:
   #FACT#takingABreak()
+  #FACT#6031769()
   #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
