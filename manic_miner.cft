@@ -5,6 +5,18 @@
 ; SkoolKit control file for Manic Miner (Bug Byte version).
 ;
 
+b 23552 Attribute buffer (cavern + Willy + guardians + items)
+D 23552 The routine at #R34574 initialises this buffer with the contents of the attribute buffer at #R24064 (empty cavern), writes the attributes for Willy, the guardians and the items into it, and then copies the result to the attribute file.
+S 23552,512
+b 24064 Attribute buffer (empty cavern)
+D 24064 Initialised upon entry to a cavern by the routine at #R34436, and updated by the routines at #R35770 and #R37173.
+S 24064,512
+b 24576 Screen buffer (cavern + Willy + guardians + items)
+D 24576 The routine at #R34574 initialises this buffer with the contents of the screen buffer at #R28672 (empty cavern), draws Willy, the guardians and the items over this background, and then copies the result to the display file.
+S 24576,4096
+b 28672 Screen buffer (empty cavern)
+D 28672 Initialised upon entry to a cavern by the routine at #R35445, and updated by the routines at #R35770, #R37125 and #R37173.
+S 28672,4096
 ; @start:32768
 ; @set-handle-unsupported-macros:32768=1
 ; @org:32768=32768
@@ -12,7 +24,7 @@ g 32768 Cavern name
 D 32768 The cavern name is copied here and then used by the routine at #R34436.
 S 32768,32
 g 32800 Cavern tiles
-D 32800 The cavern tiles are copied here by the routine at #R34436 and then used to draw the room by the routine at #R35445.
+D 32800 The cavern tiles are copied here by the routine at #R34436 and then used to draw the cavern by the routine at #R35445.
 D 32800 The extra tile at #R32863 behaves like a floor tile, and is used as such in #R54272(The Endorian Forest), #R55296(Attack of the Mutant Telephones), #R57344(Ore Refinery), #R58368(Skylab Landing Bay) and #R59392(The Bank). It is also used in #R47104(The Menagerie) as spider silk, and in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast) as a switch.
 S 32800,9 Background tile (also used by the routines at #R35515, #R35770, #R36211, #R36344, #R37173 and #R37471)
 S 32809,9 Floor tile (also used by the routine at #R36211)
@@ -40,7 +52,7 @@ D 32878 Initialised by the routine at #R34436, and used by the routines at #R355
 g 32879 Conveyor definition
 D 32879 The conveyor definition is copied here by the routine at #R34436.
 B 32879 Direction (0=left, 1=right; used by the routines at #R35805 and #R37125)
-W 32880 Address of the conveyor's location in the screen buffer at 28672 (used by the routine at #R37125)
+W 32880 Address of the conveyor's location in the screen buffer at #R28672 (used by the routine at #R37125)
 B 32882 Length (used by the routine at #R37125)
 g 32883 Border colour
 D 32883 Initialised and used by the routine at #R34436, and also used by the routines at #R34574, #R35515 and #R37173.
@@ -48,7 +60,7 @@ g 32884 Attribute of the last item drawn
 D 32884 Initialised by the routine at #R34436, and used by the routines at #R36344 and #R36707. Holds the attribute byte of the last item drawn, or 0 if all the items have been collected.
 g 32885 Item definitions
 D 32885 The item definitions are copied here by the routine at #R34436, and then used by the routine at #R36707. An item definition contains the following information:
-D 32885 #TABLE(default,centre) {{ =h Byte(s) | =h Contents }} {{ 0 | Current attribute }} {{ 1,2 | Address of the item's location in the attribute buffer at 23552 }} {{ 3 | MSB of the address of the item's location in the screen buffer at 24576 }} {{ 4 | Unused (always 255) }} TABLE#
+D 32885 #TABLE(default,centre) {{ =h Byte(s) | =h Contents }} {{ 0 | Current attribute }} {{ 1,2 | Address of the item's location in the attribute buffer at #R23552 }} {{ 3 | MSB of the address of the item's location in the screen buffer at #R24576 }} {{ 4 | Unused (always 255) }} TABLE#
 S 32885,5 Item 1
 S 32890,5 Item 2
 S 32895,5 Item 3
@@ -59,8 +71,8 @@ g 32911 Portal definition
 D 32911 The portal definition is copied here by the routine at #R34436.
 B 32911 Attribute byte (used by the routines at #R36707 and #R36805)
 S 32912,32 Graphic data (used by the routine at #R36805)
-W 32944 Address of the portal's location in the attribute buffer at 23552 (used by the routine at #R36805)
-W 32946 Address of the portal's location in the screen buffer at 24576 (used by the routine at #R36805)
+W 32944 Address of the portal's location in the attribute buffer at #R23552 (used by the routine at #R36805)
+W 32946 Address of the portal's location in the screen buffer at #R24576 (used by the routine at #R36805)
 g 32948 Item graphic
 D 32948 The item graphic is copied here by the routine at #R34436, and then used by the routine at #R36707.
 S 32948,8
@@ -71,7 +83,7 @@ D 32957 Initialised by the routine at #R34436, updated on every pass through the
 g 32958 Horizontal guardians
 D 32958 The horizontal guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36111 and #R36266. There are four slots, each one seven bytes long, used to hold the state of the horizontal guardians in the current cavern.
 D 32958 For each horizontal guardian, the seven bytes are used as follows:
-D 32958 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r2 0 | Bit 7: animation speed (0=normal, 1=slow) }} {{ Bits 0-6: attribute (BRIGHT, PAPER and INK) }} {{ 1,2 | Address of the guardian's location in the attribute buffer at 23552 }} {{ 3 | MSB of the address of the guardian's location in the screen buffer at 24576 }} {{ 4 | Animation frame }} {{ 5 | LSB of the address of the leftmost point of the guardian's path in the attribute buffer }} {{ 6 | LSB of the address of the rightmost point of the guardian's path in the attribute buffer }} TABLE#
+D 32958 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r2 0 | Bit 7: animation speed (0=normal, 1=slow) }} {{ Bits 0-6: attribute (BRIGHT, PAPER and INK) }} {{ 1,2 | Address of the guardian's location in the attribute buffer at #R23552 }} {{ 3 | MSB of the address of the guardian's location in the screen buffer at #R24576 }} {{ 4 | Animation frame }} {{ 5 | LSB of the address of the leftmost point of the guardian's path in the attribute buffer }} {{ 6 | LSB of the address of the rightmost point of the guardian's path in the attribute buffer }} TABLE#
 S 32958,7 Horizontal guardian 1
 S 32965,7 Horizontal guardian 2
 S 32972,7 Horizontal guardian 3
@@ -234,9 +246,9 @@ c 34436 Start the game (or demo mode)
 D 34449 This entry point is used by the routines at #R34574 (when teleporting into a cavern or reinitialising the current cavern after Willy has lost a life) and #R36904.
   34449 Pick up the number of the current cavern from #R33799
   34452,9 Point #REGhl at the first byte of the cavern definition
-  34461,8 Copy the cavern's attribute bytes into the buffer at 24064
+  34461,8 Copy the cavern's attribute bytes into the buffer at #R24064
   34469,8 Copy the rest of the cavern definition into the game status buffer at #LINK:GameStatusBuffer#32768(32768-33279)
-  34477 Draw the current cavern to the screen buffer at 28672
+  34477 Draw the current cavern to the screen buffer at #R28672
   34480,13 Clear the bottom third of the display file
   34493,12 Print the cavern name (see #R32768) at (16,0)
   34505,12 Print 'AIR' (see #R33816) at (17,0)
@@ -285,15 +297,15 @@ D 34608 Now draw a boot if cheat mode has been activated.
   34618 #REGc=0 (overwrite mode)
   34620 Draw the boot at the bottom of the screen next to the remaining lives
 D 34623 Next, prepare the screen and attribute buffers for drawing to the screen.
-  34623,11 Copy the contents of the attribute buffer at 24064 (the attributes for the empty cavern) into the attribute buffer at 23552
-  34634,11 Copy the contents of the screen buffer at 28672 (the tiles for the empty cavern) into the screen buffer at 24576
+  34623,11 Copy the contents of the attribute buffer at #R24064 (the attributes for the empty cavern) into the attribute buffer at #R23552
+  34634,11 Copy the contents of the screen buffer at #R28672 (the tiles for the empty cavern) into the screen buffer at #R24576
   34645 Move the horizontal guardians in the current cavern
   34648 Pick up the game mode indicator from #R33882
   34651 Are we in demo mode?
   34652 If not, move Willy
   34655 Pick up the game mode indicator from #R33882
   34658 Are we in demo mode?
-  34659 If not, check and set the attribute bytes for Willy's sprite in the buffer at 23552, and draw Willy to the screen buffer at 24576
+  34659 If not, check and set the attribute bytes for Willy's sprite in the buffer at #R23552, and draw Willy to the screen buffer at #R24576
   34662 Draw the horizontal guardians in the current cavern
   34665 Move the conveyor in the current cavern
   34668 Draw the items in the current cavern and collect any that Willy is touching
@@ -316,14 +328,14 @@ D 34623 Next, prepare the screen and attribute buffers for drawing to the screen
   34714 Are we in #R63488(Solar Power Generator)?
   34716 If so, move and draw the light beam
   34719 Draw the portal, or move to the next cavern if Willy has entered it
-  34722,11 Copy the contents of the screen buffer at 24576 to the display file
+  34722,11 Copy the contents of the screen buffer at #R24576 to the display file
   34733 Pick up the screen flash counter from #R33880
   34736 Is it zero?
   34737 Jump if so
   34739,4 Decrement the screen flash counter at #R33880
   34743,5 Move bits 0-2 into bits 3-5 and clear all the other bits
-  34748,12 Set every attribute byte in the buffer at 23552 to this value
-  34760,11 Copy the contents of the attribute buffer at 23552 to the attribute file
+  34748,12 Set every attribute byte in the buffer at #R23552 to this value
+  34760,11 Copy the contents of the attribute buffer at #R23552 to the attribute file
   34771,12 Print the score (see #R33833) at (19,26)
   34783,12 Print the high score (see #R33823) at (19,11)
   34795 Decrease the air remaining in the current cavern
@@ -523,28 +535,28 @@ D 35388 Used by the routines at #R34574, #R36211 and #R36904. Returns with the z
   35438,6 Draw the four rows of pixels at the right end of the air bar
   35442,2 Reset the zero flag: there is still some air remaining
 c 35445 Draw the current cavern to the screen buffer at 28672
-  35445 Point #REGix at the first byte of the attribute buffer at 24064
+  35445 Point #REGix at the first byte of the attribute buffer at #R24064
   35449,5 Set the operand of the 'LD D,n' instruction at #R35483 (below) to 112
-  35454 Draw the tiles for the top half of the cavern to the screen buffer at 28672
-  35457 Point #REGix at the 256th byte of the attribute buffer at 24064 in preparation for drawing the bottom half of the cavern; this instruction is redundant, since #REGix already holds 24320
+  35454 Draw the tiles for the top half of the cavern to the screen buffer at #R28672
+  35457 Point #REGix at the 256th byte of the attribute buffer at #R24064 in preparation for drawing the bottom half of the cavern; this instruction is redundant, since #REGix already holds 24320
   35461,5 Set the operand of the 'LD D,n' instruction at #R35483 (below) to 120
   35466 #REGc will count 256 tiles
-D 35468 The following loop draws 256 tiles (for either the top half or the bottom half of the cavern) to the screen buffer at 28672.
+D 35468 The following loop draws 256 tiles (for either the top half or the bottom half of the cavern) to the screen buffer at #R28672.
   35468 #REGe holds the LSB of the screen buffer address
-  35469 Pick up an attribute byte from the buffer at 24064; this identifies the type of tile to draw
+  35469 Pick up an attribute byte from the buffer at #R24064; this identifies the type of tile to draw
   35472,8 Move #REGhl through the attribute bytes and graphic data of the background, floor, crumbling floor, wall, conveyor and nasty tiles starting at #R32800 until we find a byte that matches the attribute byte of the tile to be drawn
   35480 Restore the value of the tile counter in #REGc
   35481 There are eight bytes in the tile
-  35483 This instruction is set to either 'LD D,112' or 'LD D,120' above; now #REGde holds the appropriate address in the screen buffer at 28672
-  35485,6 Copy the tile graphic data to the screen buffer at 28672
+  35483 This instruction is set to either 'LD D,112' or 'LD D,120' above; now #REGde holds the appropriate address in the screen buffer at #R28672
+  35485,6 Copy the tile graphic data to the screen buffer at #R28672
   35491 Move #REGix along to the next byte in the attribute buffer
   35493 Have we drawn 256 tiles yet?
   35494 If not, jump back to draw the next one
-D 35497 The empty cavern has been drawn to the screen buffer at 28672. If we're in #R64512(The Final Barrier), however, there is further work to do.
+D 35497 The empty cavern has been drawn to the screen buffer at #R28672. If we're in #R64512(The Final Barrier), however, there is further work to do.
   35497 Pick up the number of the current cavern from #R33799
   35500 Is it #R64512(The Final Barrier)?
   35502 Return if not
-  35503,11 Copy the graphic data from #R40960 to the top half of the screen buffer at 28672
+  35503,11 Copy the graphic data from #R40960 to the top half of the screen buffer at #R28672
 c 35515 Move Willy (1)
 D 35515 Used by the routine at #R34574. This routine deals with Willy if he's jumping or falling.
   35515 Pick up the airborne status indicator from #R32875
@@ -638,8 +650,8 @@ D 35746 The top-left or top-right cell of Willy's sprite is overlapping a wall t
   35759,5 Set the airborne status indicator at #R32875 to 2: Willy has started falling
   35764,5 Reset bit 1 at #R32874: Willy is not moving left or right
 c 35770 Animate a crumbling floor tile in the current cavern
-R 35770 HL Address of the crumbling floor tile's location in the attribute buffer at 23552
-  35770,7 Point #REGbc at the bottom row of pixels of the crumbling floor tile in the screen buffer at 28672
+R 35770 HL Address of the crumbling floor tile's location in the attribute buffer at #R23552
+  35770,7 Point #REGbc at the bottom row of pixels of the crumbling floor tile in the screen buffer at #R28672
   35777,2 Collect the pixels from the row above in #REGa
   35779,2 Copy these pixels into the row below it
   35781 Point #REGbc at the next row of pixels up
@@ -652,9 +664,9 @@ R 35770 HL Address of the crumbling floor tile's location in the attribute buffe
   35795 Return if not
   35796 Pick up the attribute byte of the background tile for the current cavern from #R32800
 D 35796 The bottom row of pixels in the crumbling floor tile is clear. Time to put a background tile in its place.
-  35799,2 Set #REGhl to the address of the crumbling floor tile's location in the attribute buffer at 24064
+  35799,2 Set #REGhl to the address of the crumbling floor tile's location in the attribute buffer at #R24064
   35801 Set the attribute at this location to that of the background tile
-  35802,2 Set #REGhl back to the address of the crumbling floor tile's location in the attribute buffer at 23552
+  35802,2 Set #REGhl back to the address of the crumbling floor tile's location in the attribute buffer at #R23552
 c 35805 Move Willy (2)
 D 35805 Used by the routine at #R35515. This routine checks the keyboard and joystick, and moves Willy left or right if necessary.
 R 35805 HL Attribute buffer address of the left-hand cell below Willy's sprite
@@ -817,7 +829,7 @@ D 36140 The guardian will be moved on this pass.
   36156 Jump forward to consider the next guardian
   36158 Decrement the animation frame (this guardian is moving left)
   36161 Jump forward to consider the next guardian
-  36163 Pick up the LSB of the address of the guardian's location in the attribute buffer at 23552
+  36163 Pick up the LSB of the address of the guardian's location in the attribute buffer at #R23552
   36166 Has the guardian reached the rightmost point in its path?
   36169 Jump if not
   36171 Set the animation frame to 7 (turning the guardian round to face left)
@@ -825,7 +837,7 @@ D 36140 The guardian will be moved on this pass.
   36177 Set the animation frame to 0 (the initial frame for a guardian moving right)
   36181 Increment the guardian's x-coordinate (moving it right across a cell boundary)
   36184 Jump forward to consider the next guardian
-  36186 Pick up the LSB of the address of the guardian's location in the attribute buffer at 23552
+  36186 Pick up the LSB of the address of the guardian's location in the attribute buffer at #R23552
   36189 Has the guardian reached the leftmost point in its path?
   36192 Jump if not
   36194 Set the animation frame to 0 (turning the guardian round to face right)
@@ -836,7 +848,7 @@ D 36207 The current guardian definition has been dealt with. Time for the next o
   36207 Point #REGiy at the first byte of the next horizontal guardian definition
   36209 Jump back to deal with the next horizontal guardian
 c 36211 Move and draw the light beam in Solar Power Generator
-  36211 Point #REGhl at the cell at (0,23) in the attribute buffer at 23552 (the source of the light beam)
+  36211 Point #REGhl at the cell at (0,23) in the attribute buffer at #R23552 (the source of the light beam)
   36214 Prepare #REGde for addition (the beam travels vertically downwards to start with)
 D 36217 The beam-drawing loop begins here.
   36217 Pick up the attribute byte of the floor tile for the cavern from #R32809
@@ -868,9 +880,9 @@ D 36270 The guardian-drawing loop begins here.
   36276 Is this guardian definition blank?
   36277 If so, skip it and consider the next one
   36279 Prepare #REGde for addition
-  36282,6 Point #REGhl at the address of the guardian's location in the attribute buffer at 23552
+  36282,6 Point #REGhl at the address of the guardian's location in the attribute buffer at #R23552
   36288 Reset bit 7 (which specifies the animation speed) of the attribute byte, ensuring no FLASH
-  36290,7 Set the attribute bytes for the guardian in the buffer at 23552
+  36290,7 Set the attribute bytes for the guardian in the buffer at #R23552
   36297 Prepare #REGc for the call to the drawing routine at #R36852 later on
   36299 Pick up the animation frame (0-7)
   36302,3 Multiply it by 32
@@ -884,8 +896,8 @@ D 36270 The guardian-drawing loop begins here.
   36319 Jump if so
   36321 Add 128 to #REGe (the horizontal guardians in this cavern use frames 4-7 only)
   36323 Point #REGde at the graphic data for the appropriate guardian sprite (at #R33024+#REGe)
-  36325,6 Point #REGhl at the address of the guardian's location in the screen buffer at 24576
-  36331 Draw the guardian to the screen buffer at 24576
+  36325,6 Point #REGhl at the address of the guardian's location in the screen buffer at #R24576
+  36331 Draw the guardian to the screen buffer at #R24576
   36334 Kill Willy if the guardian collided with him
 D 36337 The current guardian definition has been dealt with. Time for the next one.
   36337,5 Point #REGiy at the first byte of the next horizontal guardian definition
@@ -911,11 +923,11 @@ D 36344 Used by the routine at #R34574. First we move Eugene up or down, or chan
 D 36388 Now that Eugene's movement has been dealt with, it's time to draw him.
   36388 Pick up Eugene's pixel y-coordinate from #R32988
   36391,6 Point #REGde at the entry in the screen buffer address lookup table at #R33536 that corresponds to Eugene's y-coordinate
-  36397,7 Point #REGhl at the address of Eugene's location in the screen buffer at 24576
-  36404,8 Draw Eugene to the screen buffer at 24576
+  36397,7 Point #REGhl at the address of Eugene's location in the screen buffer at #R24576
+  36404,8 Draw Eugene to the screen buffer at #R24576
   36412 Kill Willy if Eugene collided with him
   36415 Pick up Eugene's pixel y-coordinate from #R32988
-  36418,14 Point #REGhl at the address of Eugene's location in the attribute buffer at 23552
+  36418,14 Point #REGhl at the address of Eugene's location in the attribute buffer at #R23552
   36432 Pick up the attribute of the last item drawn from #R32884
   36435 Set the zero flag if all the items have been collected
   36436 Assume we will draw Eugene with white INK
@@ -926,13 +938,13 @@ D 36447 This entry point is used by the routines at #R36469 (to set the attribut
   36447 Save the INK colour in the attribute buffer temporarily
   36448 Pick up the attribute byte of the background tile for the current cavern from #R32800
   36451 Combine its PAPER colour with the chosen INK colour
-  36454 Set the attribute byte for the top-left cell of the sprite in the attribute buffer at 23552
+  36454 Set the attribute byte for the top-left cell of the sprite in the attribute buffer at #R23552
   36455 Prepare #REGde for addition
-  36458,2 Set the attribute byte for the top-right cell of the sprite in the attribute buffer at 23552
-  36460,2 Set the attribute byte for the middle-left cell of the sprite in the attribute buffer at 23552
-  36462,2 Set the attribute byte for the middle-right cell of the sprite in the attribute buffer at 23552
-  36464,2 Set the attribute byte for the bottom-left cell of the sprite in the attribute buffer at 23552
-  36466,2 Set the attribute byte for the bottom-right cell of the sprite in the attribute buffer at 23552
+  36458,2 Set the attribute byte for the top-right cell of the sprite in the attribute buffer at #R23552
+  36460,2 Set the attribute byte for the middle-left cell of the sprite in the attribute buffer at #R23552
+  36462,2 Set the attribute byte for the middle-right cell of the sprite in the attribute buffer at #R23552
+  36464,2 Set the attribute byte for the bottom-left cell of the sprite in the attribute buffer at #R23552
+  36466,2 Set the attribute byte for the bottom-right cell of the sprite in the attribute buffer at #R23552
 c 36469 Move and draw the Skylabs in Skylab Landing Bay
   36469 Point #REGiy at the first byte of the first vertical guardian definition at #R32989
 D 36473 The Skylab-moving loop begins here.
@@ -954,13 +966,13 @@ D 36497 The Skylab has reached its crash site. Start or continue its disintegrat
 D 36527 Now that the Skylab's movement has been dealt with, time to draw it.
   36527 Pick up the Skylab's pixel y-coordinate in #REGe
   36530,4 Point #REGde at the entry in the screen buffer address lookup table at 33536 that corresponds to the Skylab's pixel y-coordinate
-  36534,8 Point #REGhl at the address of the Skylab's location in the screen buffer at 24576
+  36534,8 Point #REGhl at the address of the Skylab's location in the screen buffer at #R24576
   36542 Pick up the animation frame (0-7)
   36545,3 Multiply it by 32
   36548,3 Point #REGde at the graphic data for the corresponding Skylab sprite (at #R33024+#REGa)
-  36551,5 Draw the Skylab to the screen buffer at 24576
+  36551,5 Draw the Skylab to the screen buffer at #R24576
   36556 Kill Willy if the Skylab collided with him
-  36559,21 Point #REGhl at the address of the Skylab's location in the attribute buffer at 23552
+  36559,21 Point #REGhl at the address of the Skylab's location in the attribute buffer at #R23552
   36580 Pick up the Skylab's attribute byte
   36583 Set the attribute bytes for the Skylab
 D 36586 The current guardian definition has been dealt with. Time for the next one.
@@ -985,14 +997,14 @@ D 36597 The guardian-moving loop begins here.
 D 36639 Now that the guardian's movement has been dealt with, time to draw it.
   36639 Pick up the guardian's pixel y-coordinate
   36642,6 Point #REGde at the entry in the screen buffer address lookup table at #R33536 that corresponds to the guardian's pixel y-coordinate
-  36648,8 Point #REGhl at the address of the guardian's location in the screen buffer at 24576
+  36648,8 Point #REGhl at the address of the guardian's location in the screen buffer at #R24576
   36656 Pick up the guardian's animation frame (0-3)
   36659 Multiply it by 32
   36662,3 Point #REGde at the graphic data for the appropriate guardian sprite (at #R33024+#REGa)
-  36665,5 Draw the guardian to the screen buffer at 24576
+  36665,5 Draw the guardian to the screen buffer at #R24576
   36670 Kill Willy if the guardian collided with him
   36673 Pick up the guardian's pixel y-coordinate
-  36676,18 Point #REGhl at the address of the guardian's location in the attribute buffer at 23552
+  36676,18 Point #REGhl at the address of the guardian's location in the attribute buffer at #R23552
   36694 Pick up the guardian's attribute byte
   36697 Set the attribute bytes for the guardian
 D 36700 The current guardian definition has been dealt with. Time for the next one.
@@ -1007,7 +1019,7 @@ D 36715 The item-drawing loop begins here.
   36720 Jump if so
   36722 Has this item already been collected?
   36723 If so, skip it and consider the next one
-  36725,6 Point #REGde at the address of the item's location in the attribute buffer at 23552
+  36725,6 Point #REGde at the address of the item's location in the attribute buffer at #R23552
   36731 Pick up the current attribute byte at the item's location
   36732,4 Is the INK white (which happens if Willy is touching the item)?
   36736 Jump if not
@@ -1022,12 +1034,12 @@ D 36750 This item has not been collected yet.
   36758 Pick up the item's current attribute byte again
   36761,3 Keep only bits 0 and 1 and add the value in #REGb; this maintains the BRIGHT and PAPER bits, and cycles the INK colour through 3, 4, 5 and 6
   36764 Store the new attribute byte
-  36767 Update the attribute byte at the item's location in the buffer at 23552
+  36767 Update the attribute byte at the item's location in the buffer at #R23552
   36768 Store the new attribute byte at #R32884 as well
-  36771 Point #REGde at the address of the item's location in the screen buffer at 24576
+  36771 Point #REGde at the address of the item's location in the screen buffer at #R24576
   36774 Point #REGhl at the item graphic for the current cavern (at #R32948)
   36777 There are eight pixel rows to copy
-  36779 Draw the item to the screen buffer at 24576
+  36779 Draw the item to the screen buffer at #R24576
 D 36782 The current item definition has been dealt with. Time for the next one.
   36782,10 Point IY at the first byte of the next item definition
   36792 Jump back to deal with the next item
@@ -1038,11 +1050,11 @@ D 36794 All the items have been dealt with. Check whether there were any left.
   36799,5 Ensure that the portal is flashing by setting bit 7 of its attribute byte at #R32911
 c 36805 Draw the portal, or move to the next cavern if Willy has entered it
 D 36805 Used by the routine at #R34574. First check whether Willy has entered the portal.
-  36805 Pick up the address of the portal's location in the attribute buffer at 23552 from #R32944
-  36808 Pick up the LSB of the address of Willy's location in the attribute buffer at 23552 from #R32876
+  36805 Pick up the address of the portal's location in the attribute buffer at #R23552 from #R32944
+  36808 Pick up the LSB of the address of Willy's location in the attribute buffer at #R23552 from #R32876
   36811 Does it match that of the portal?
   36812 Jump if not
-  36814 Pick up the MSB of the address of Willy's location in the attribute buffer at 23552 from #R32876(32877)
+  36814 Pick up the MSB of the address of Willy's location in the attribute buffer at #R23552 from #R32876(32877)
   36817 Does it match that of the portal?
   36818 Jump if not
   36820 Pick up the portal's attribute byte from #R32911
@@ -1052,9 +1064,9 @@ D 36805 Used by the routine at #R34574. First check whether Willy has entered th
   36828 Move Willy to the next cavern
 D 36831 Willy has not entered the portal, or it's not flashing, so just draw it.
   36831 Pick up the portal's attribute byte from #R32911
-  36834,10 Set the attribute bytes for the portal in the buffer at 23552
+  36834,10 Set the attribute bytes for the portal in the buffer at #R23552
   36844 Point #REGde at the graphic data for the portal at #R32912
-  36847 Pick up the address of the portal's location in the screen buffer at 24576
+  36847 Pick up the address of the portal's location in the screen buffer at #R24576
   36850 #REGc=0: overwrite mode
 E 36805 This routine continues into the one at #R36852.
 c 36852 Draw a sprite
@@ -1151,7 +1163,7 @@ D 37118 The entry point to this routine is here and is used by the routines at #
   37121 Jump if so
   37123,1 Increment the digit
 c 37125 Move the conveyor in the current cavern
-  37125 Pick up the address of the conveyor's location in the screen buffer at 28672 from #R32880
+  37125 Pick up the address of the conveyor's location in the screen buffer at #R28672 from #R32880
   37128,2 Copy this address to #REGde
   37130 Pick up the length of the conveyor from #R32882
   37133 #REGb will count the conveyor tiles
@@ -1164,7 +1176,7 @@ D 37140 The conveyor is moving left.
   37145,2 Point #REGhl at the third pixel row of the conveyor tile
   37147 Copy this pixel row to #REGc
   37148,4 Rotate it right twice
-  37152,6 Update the first and third pixel rows of every conveyor tile in the screen buffer at 28672
+  37152,6 Update the first and third pixel rows of every conveyor tile in the screen buffer at #R28672
 D 37159 The conveyor is moving right.
   37159 Copy the first pixel row of the conveyor tile to #REGa
   37160 Rotate it right twice
@@ -1177,14 +1189,14 @@ c 37173 Move and draw the Kong Beast in the current cavern
   37179 Pick up the Kong Beast's status from #R32987
   37182 Is the Kong Beast already dead?
   37184 Return if so
-  37185 Pick up the sixth pixel row of the left-hand switch from the screen buffer at 28672
+  37185 Pick up the sixth pixel row of the left-hand switch from the screen buffer at #R28672
   37188 Has the switch been flipped?
   37190 Jump if not
 D 37193 The left-hand switch has been flipped. Deal with opening up the wall if that is still in progress.
-  37193 Pick up the attribute byte of the tile at (11,17) in the buffer at 24064
+  37193 Pick up the attribute byte of the tile at (11,17) in the buffer at #R24064
   37196 Has the wall there been removed yet?
   37197 Jump if so
-  37199 Point #REGhl at the bottom row of pixels of the wall tile at (11,17) in the screen buffer at 28672
+  37199 Point #REGhl at the bottom row of pixels of the wall tile at (11,17) in the screen buffer at #R28672
   37202 Pick up a pixel row
   37203 Is it blank yet?
   37204 Jump if not
@@ -1192,9 +1204,9 @@ D 37193 The left-hand switch has been flipped. Deal with opening up the wall if 
   37207,3 Have we checked all 8 pixel rows yet?
   37210 If not, jump back to check the next one
   37212 Pick up the attribute byte of the background tile for the current cavern from #R32800
-  37215,6 Change the attributes at (11,17) and (12,17) in the buffer at 24064 to match the background tile (the wall there is now gone)
+  37215,6 Change the attributes at (11,17) and (12,17) in the buffer at #R24064 to match the background tile (the wall there is now gone)
   37221,5 Update the seventh byte of the guardian definition at #R32965 so that the guardian moves through the opening in the wall
-  37228 Clear a pixel row of the wall tile at (11,17) in the screen buffer at 28672
+  37228 Clear a pixel row of the wall tile at (11,17) in the screen buffer at #R28672
   37230,6 Point #REGhl at the opposite pixel row of the wall tile one cell down at (12,7)
   37236 Clear that pixel row as well
 D 37238 Now check the right-hand switch.
@@ -1203,8 +1215,8 @@ D 37238 Now check the right-hand switch.
   37246,4 Initialise the Kong Beast's pixel y-coordinate at #R32988 to 0
   37250,4 Update the Kong Beast's status at #R32987 to 1: he is falling
   37254 Pick up the attribute byte of the background tile for the current cavern from #R32800
-  37257,6 Change the attributes of the floor beneath the Kong Beast in the buffer at 24064 to match that of the background tile
-  37263 Point #REGhl at (2,15) in the screen buffer at 28672
+  37257,6 Change the attributes of the floor beneath the Kong Beast in the buffer at #R24064 to match that of the background tile
+  37263 Point #REGhl at (2,15) in the screen buffer at #R28672
   37266,11 Clear the cells at (2,15) and (2,16), removing the floor beneath the Kong Beast
   37277 Pick up the Kong Beast's status from #R32987
   37280 Is the Kong Beast still on the ledge?
@@ -1220,12 +1232,12 @@ D 37283 The Kong Beast is falling.
   37301,10 Make a falling sound effect
   37311 Copy the Kong Beast's pixel y-coordinate back into #REGa
   37312,4 Point #REGde at the entry in the screen buffer address lookup table at #R33536 that corresponds to the Kong Beast's pixel y-coordinate
-  37316,7 Point #REGhl at the address of the Kong Beast's location in the screen buffer at 24576
+  37316,7 Point #REGhl at the address of the Kong Beast's location in the screen buffer at #R24576
   37323,10 Use bit 5 of the value of the game clock at #R32957 (which is toggled once every eight passes through the main loop) to point #REGde at the graphic data for the appropriate Kong Beast sprite
-  37333,5 Draw the Kong Beast to the screen buffer at 24576
+  37333,5 Draw the Kong Beast to the screen buffer at #R24576
   37338,6 Add 100 to the score
   37344 Pick up the Kong Beast's pixel y-coordinate from #R32988
-  37347,11 Point #REGhl at the address of the Kong Beast's location in the attribute buffer at 23552
+  37347,11 Point #REGhl at the address of the Kong Beast's location in the attribute buffer at #R23552
   37358 The Kong Beast is drawn with yellow INK
   37360 Set the attribute bytes for the Kong Beast
 D 37363 The Kong Beast has fallen into the portal.
@@ -1233,29 +1245,29 @@ D 37363 The Kong Beast has fallen into the portal.
 D 37369 The Kong Beast is still on the ledge.
   37369 Pick up the value of the game clock at #R32957
   37372,5 Use bit 5 of this value (which is toggled once every eight passes through the main loop) to point #REGde at the graphic data for the appropriate Kong Beast sprite
-  37377,8 Draw the Kong Beast at (0,15) in the screen buffer at 24576
+  37377,8 Draw the Kong Beast at (0,15) in the screen buffer at #R24576
   37385 Kill Willy if he collided with the Kong Beast
   37388 #REGa=68 (INK 4: PAPER 0: BRIGHT 1)
-  37390,12 Set the attribute bytes for the Kong Beast in the buffer at 23552
+  37390,12 Set the attribute bytes for the Kong Beast in the buffer at #R23552
 c 37403 Flip a switch in a Kong Beast cavern if Willy is touching it
 D 37403 Used by the routine at #R37173. Returns with the zero flag set if Willy flips the switch.
-R 37403 HL Address of the switch's location in the attribute buffer at 23552
-  37403 Pick up the LSB of the address of Willy's location in the attribute buffer at 23552 from #R32876
+R 37403 HL Address of the switch's location in the attribute buffer at #R23552
+  37403 Pick up the LSB of the address of Willy's location in the attribute buffer at #R23552 from #R32876
   37406,4 Is it equal to or one less than the LSB of the address of the switch's location?
   37410 Return (with the zero flag reset) if not
-  37411 Pick up the MSB of the address of Willy's location in the attribute buffer at 23552 from #R32876(32877)
+  37411 Pick up the MSB of the address of Willy's location in the attribute buffer at #R23552 from #R32876(32877)
   37414 Does it match the MSB of the address of the switch's location?
   37415 Return (with the zero flag reset) if not
   37416 Pick up the sixth byte of the graphic data for the switch tile from #R32863(32869)
-  37419 Point #REGhl at the sixth row of pixels of the switch tile in the screen buffer at 28672
+  37419 Point #REGhl at the sixth row of pixels of the switch tile in the screen buffer at #R28672
   37421 Has the switch already been flipped?
   37422 Return (with the zero flag reset) if so
 D 37423 Willy is flipping the switch.
-  37423,8 Update the sixth, seventh and eighth rows of pixels of the switch tile in the screen buffer at 28672 to make it appear flipped
+  37423,8 Update the sixth, seventh and eighth rows of pixels of the switch tile in the screen buffer at #R28672 to make it appear flipped
   37431 Set the zero flag: Willy has flipped the switch
   37432,1 This instruction is redundant
 c 37434 Check and set the attribute bytes for Willy's sprite in the buffer at 23552
-  37434 Pick up the address of Willy's location in the attribute buffer at 23552 from #R32876
+  37434 Pick up the address of Willy's location in the attribute buffer at #R23552 from #R32876
   37437 Prepare #REGde for addition
   37440 Set #REGc=15 for the top two rows of cells (to make the routine at #R37471 force white INK)
   37442 Check and set the attribute byte for the top-left cell
@@ -1271,10 +1283,10 @@ c 37434 Check and set the attribute bytes for Willy's sprite in the buffer at 23
   37462 Check and set the attribute byte for the bottom-left cell
   37465 Move #REGhl to the next cell to the right
   37466 Check and set the attribute byte for the bottom-right cell
-  37469 Draw Willy to the screen buffer at 24576
+  37469 Draw Willy to the screen buffer at #R24576
 c 37471 Check and set the attribute byte for a cell occupied by Willy's sprite
 R 37471 C 15 or Willy's pixel y-coordinate
-R 37471 HL Address of the cell in the attribute buffer at 23552
+R 37471 HL Address of the cell in the attribute buffer at #R23552
   37471 Pick up the attribute byte of the background tile for the current cavern from #R32800
   37474 Does this cell contain a background tile?
   37475 Jump if not
@@ -1282,7 +1294,7 @@ R 37471 HL Address of the cell in the attribute buffer at 23552
   37480 Jump if we are going to retain the current INK colour in this cell
   37482 Pick up the attribute byte of the background tile for the current cavern from #R32800
   37485 Set bits 0-2, making the INK white
-  37487 Set the attribute byte for this cell in the buffer at 23552
+  37487 Set the attribute byte for this cell in the buffer at #R23552
   37488 Pick up the attribute byte of the first nasty tile for the current cavern from #R32845
   37491 Has Willy hit a nasty of the first kind?
   37492 Kill Willy if so
@@ -1299,7 +1311,7 @@ c 37503 Draw Willy to the screen buffer at 24576
   37530 There are 16 rows of pixels to copy
   37532,5 Pick up Willy's screen x-coordinate (0-31) from #R32876
   37537 Copy it to #REGc
-  37538,8 Set #REGhl to the address in the screen buffer at 24576 that corresponds to where we are going to draw the next pixel row of the sprite graphic
+  37538,8 Set #REGhl to the address in the screen buffer at #R24576 that corresponds to where we are going to draw the next pixel row of the sprite graphic
   37546 Pick up a sprite graphic byte
   37547 Merge it with the background
   37548 Save the resultant byte to the screen buffer
