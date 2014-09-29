@@ -162,14 +162,18 @@ def get_caverns(snapshot):
             lines.append('B {},{},16 Unused'.format(end, a + 736 - end))
             if cavern_num == 0:
                 desc = 'swordfish graphic that appears in #R64512(The Final Barrier) when the game is completed (see #R36937)'
+                udgarray_macro = '#UDGARRAY2,69,4,2;45792;45793;45808,70;45809,71(swordfish)'
             elif cavern_num == 1:
                 desc = 'plinth graphic that appears on the Game Over screen (see #R35199)'
+                udgarray_macro = '#UDGARRAY2,71,4,2;46816-46833-1-16(plinth)'
             elif cavern_num == 2:
                 desc = 'boot graphic that appears on the Game Over screen (see #R35210). It also appears at the bottom of the screen next to the remaining lives when cheat mode is activated (see #R34608)'
+                udgarray_macro = '#UDGARRAY2,71,4,2;47840-47857-1-16(boot)'
             else:
                 desc = 'Eugene graphic'
+                udgarray_macro = '#UDGARRAY2,23,4,2;49888-49905-1-16(eugene)'
             lines.append('D {} The next 32 bytes define the {}.'.format(a + 736, desc))
-            lines.append('D {} #UDGTABLE {{ #UDGARRAY2,56,4,2;{}-{}-1-16(special{}) }} TABLE#'.format(a + 736, a + 736, a + 753, cavern_num))
+            lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a + 736, udgarray_macro))
             lines.append('B {},32,16'.format(a + 736))
         else:
             lines.append('B {},{},16 Unused'.format(end, a + 733 - end))
