@@ -48,6 +48,23 @@ class ManicMinerHtmlWriter(HtmlWriter):
         lines.append('TABLE#')
         return ''.join(lines)
 
+    def wall_bug_img(self, cwd, index):
+        fname = 'through_the_wall{}'.format(index)
+        img_path = self.image_path(fname, 'ScreenshotImagePath')
+        if self.need_image(img_path):
+            cavern = self._get_cavern_udgs(49152)
+            x, y, sprite_index, y_delta = (
+                (23, 11, 1, 5),
+                (23, 12, 0, 0),
+                (22, 12, 3, 4),
+                (22, 13, 2, 0),
+            )[index - 1]
+            willy = self._get_graphic(33408 + 32 * sprite_index, 23)
+            self._place_graphic(cavern, willy, x, y, y_delta, 16)
+            udg_array = [row[20:28] for row in cavern[11:16]]
+            self.write_image(img_path, udg_array, scale=2)
+        return self.img_element(cwd, img_path)
+
     def _get_cavern_names(self):
         caverns = {}
         for a in range(45056, 65536, 1024):
@@ -176,10 +193,13 @@ class ManicMinerHtmlWriter(HtmlWriter):
         y = 8 * (p2 & 1) + (p1 & 224) // 32
         return x, y
 
-    def _place_graphic(self, udg_array, graphic, x, y, y_delta=0):
+    def _place_graphic(self, udg_array, graphic, x, y, y_delta=0, bg_attr=0):
         if y_delta == 0:
-            udg_array[y][x:x + 2] = graphic[0]
-            udg_array[y + 1][x:x + 2] = graphic[1]
+            if bg_attr == 0:
+                udg_array[y][x:x + 2] = graphic[0]
+                udg_array[y + 1][x:x + 2] = graphic[1]
+            else:
+                self._blend_graphic(udg_array, x, y, graphic, bg_attr)
             return
 
         udg1, udg2 = graphic[0]
@@ -192,6 +212,21 @@ class ManicMinerHtmlWriter(HtmlWriter):
         new_udg5 = Udg(attr, udg3.data[-y_delta:] + [0] * (8 - y_delta))
         new_udg6 = Udg(attr, udg4.data[-y_delta:] + [0] * (8 - y_delta))
 
-        udg_array[y][x:x + 2] = [new_udg1, new_udg2]
-        udg_array[y + 1][x:x + 2] = [new_udg3, new_udg4]
-        udg_array[y + 2][x:x + 2] = [new_udg5, new_udg6]
+        if bg_attr == 0:
+            udg_array[y][x:x + 2] = [new_udg1, new_udg2]
+            udg_array[y + 1][x:x + 2] = [new_udg3, new_udg4]
+            udg_array[y + 2][x:x + 2] = [new_udg5, new_udg6]
+        else:
+            new_graphic = [[new_udg1, new_udg2], [new_udg3, new_udg4], [new_udg5, new_udg6]]
+            self._blend_graphic(udg_array, x, y, new_graphic, bg_attr)
+
+    def _blend_graphic(self, udg_array, x, y, graphic, bg_attr):
+        for i, row in enumerate(graphic):
+            for j, udg in enumerate(row):
+                old_udg = udg_array[y + i][x + j]
+                if old_udg.attr == bg_attr:
+                    new_attr = (bg_attr & 248) + (udg.attr & 7)
+                else:
+                    new_attr = old_udg.attr
+                new_data = [old_udg.data[k] | udg.data[k] for k in range(8)]
+                udg_array[y + i][x + j] = Udg(new_attr, new_data)
