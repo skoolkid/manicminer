@@ -181,8 +181,17 @@ def get_caverns(snapshot):
         gg_table = '#UDGTABLE { '
         macros = []
         for addr in range(gg_addr, gg_addr + 256, 32):
-            img_fname = '{}_guardian{}'.format(cavern_name.lower().replace(' ', '_'), (addr & 224) // 32)
-            macros.append('#UDGARRAY2,56,4,2;{}-{}-1-16({})'.format(addr, addr + 17, img_fname))
+            sprite_index = (addr & 224) // 32
+            img_fname = '{}_guardian{}'.format(cavern_name.lower().replace(' ', '_'), sprite_index)
+            if cavern_num in (7, 11) and sprite_index < 4:
+                attr = 68 # Kong Beast
+            elif cavern_num == 13:
+                attr = snapshot[a + 733] # Skylab
+            elif cavern_num in (8, 10, 12, 14, 16, 17, 18, 19) and sprite_index < 4:
+                attr = snapshot[a + 733] # Vertical guardian
+            else:
+                attr = snapshot[a + 702] # Horizontal guardian
+            macros.append('#UDGARRAY2,{},4,2;{}-{}-1-16({})'.format(attr, addr, addr + 17, img_fname))
         gg_table += ' | '.join(macros) + ' } TABLE#'
         lines.append('D {} The next 256 bytes are guardian graphic data.'.format(gg_addr))
         lines.append('D {} {}'.format(gg_addr, gg_table))
