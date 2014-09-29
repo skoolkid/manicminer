@@ -123,15 +123,23 @@ def get_caverns(snapshot):
         lines.append('B {} Unused'.format(a + 628))
 
         # Items
-        lines.append('D {} The next 25 bytes specify the colour and location of the items in the cavern.'.format(a + 629))
+        lines.append('D {} The next 25 bytes are copied to #R32885 and specify the colour and location of the items in the cavern.'.format(a + 629))
         terminated = False
         for i, addr in enumerate(range(a + 629, a + 654, 5)):
-            attr = snapshot[addr]
-            if attr == 255:
-                terminated = True
-            suffix = ' (unused)' if terminated or attr == 0 else ''
-            lines.append('B {},5 Item {}{}'.format(addr, i + 1, suffix))
-        lines.append('B {}'.format(a + 654))
+            terminated = terminated or snapshot[addr] == 255
+            suffix = ''
+            ab_addr = snapshot[addr + 1] + 256 * snapshot[addr + 2]
+            if 23552 <= ab_addr < 24064:
+                x = ab_addr % 32
+                y = (ab_addr - 23552) // 32
+                suffix += ' at ({},{})'.format(y, x)
+            if terminated:
+                suffix += ' (unused)'
+            lines.append('M {},5 Item {}{}'.format(addr, i + 1, suffix))
+            lines.append('B {},1'.format(addr))
+            lines.append('W {},2'.format(addr + 1))
+            lines.append('B {},2,1'.format(addr + 3))
+        lines.append('B {} Terminator'.format(a + 654))
 
         # Portal
         attr = snapshot[a + 655]
