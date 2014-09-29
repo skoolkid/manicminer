@@ -49,6 +49,16 @@ def _write_guardians(lines, snapshot, start, g_type):
         return term + 1
     return term
 
+def _get_teleport_code(cavern_num):
+    code = ''
+    key = 1
+    while cavern_num:
+        if cavern_num & 1:
+            code += str(key)
+        cavern_num //= 2
+        key += 1
+    return code + '6'
+
 def get_caverns(snapshot):
     lines = []
 
@@ -56,7 +66,7 @@ def get_caverns(snapshot):
         cavern_num = a // 1024 - 44
         cavern = snapshot[a:a + 1024]
         cavern_name = ''.join([chr(b) for b in cavern[512:544]]).strip()
-        lines.append('b {} {}'.format(a, cavern_name))
+        lines.append('b {} {} (teleport: {})'.format(a, cavern_name, _get_teleport_code(cavern_num)))
         lines.append('D {} Used by the routine at #R34436.'.format(a))
         lines.append('D {0} #UDGTABLE {{ #CALL:cavern({0}) }} TABLE#'.format(a))
         lines.append('D {} The first 512 bytes are the attributes that define the layout of the cavern.'.format(a))
