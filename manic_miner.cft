@@ -57,7 +57,7 @@ B 32882 Length (used by the routine at #R37125)
 g 32883 Border colour
 D 32883 Initialised and used by the routine at #R34436, and also used by the routines at #R34574, #R35515 and #R37173.
 g 32884 Attribute of the last item drawn
-D 32884 Initialised by the routine at #R34436, and used by the routines at #R36344 and #R36707. Holds the attribute byte of the last item drawn, or 0 if all the items have been collected.
+D 32884 Used by the routines at #R36344 and #R36707. Holds the attribute byte of the last item drawn, or 0 if all the items have been collected.
 g 32885 Item definitions
 D 32885 The item definitions are copied here by the routine at #R34436, and then used by the routine at #R36707. An item definition contains the following information:
 D 32885 #TABLE(default,centre) {{ =h Byte(s) | =h Contents }} {{ 0 | Current attribute }} {{ 1,2 | Address of the item's location in the attribute buffer at #R23552 }} {{ 3 | MSB of the address of the item's location in the screen buffer at #R24576 }} {{ 4 | Unused (always 255) }} TABLE#
@@ -103,7 +103,7 @@ S 33003,7 Vertical guardian 3
 S 33010,7 Vertical guardian 4
 B 33017 Terminator (set to 255)
 u 33018 Unused
-D 33018 These 6 bytes are overwritten by the routine at #R34436, but not used.
+D 33018 These bytes are overwritten by the routine at #R34436 upon entering a cavern, but are used only in #R49152(Eugene's Lair) by the routine at #R36344 (when they contain part of the graphic data for Eugene).
 S 33018,6
 g 33024 Guardian graphic data
 D 33024 The guardian graphic data is copied here by the routine at #R34436, and then used by the routines at #R36266, #R36469, #R36593 and #R37173.
