@@ -106,7 +106,7 @@ For example, to teleport to #R51200(The Vat), hold down keys '2' and '3', and th
 The number 6031769 comes from Matthew Smith's driving licence, "with an error in it and twisted round a bit" (as he put it in an interview for issue 48 of <i>Retro Gamer</i> magazine).
 
 [Fact:sourceCodeRemnants:Source code remnants]
-Before the game starts for the first time, the cavern buffer at 32768 contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
+Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
 #TABLE(asm,address-1,instruction,comment-11)
 { 32768 | DEFM "50,171,192,50,48,68" | }
