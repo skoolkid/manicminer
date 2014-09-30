@@ -89,6 +89,7 @@ def get_caverns(snapshot):
         cavern = snapshot[a:a + 1024]
         cavern_name = ''.join([chr(b) for b in cavern[512:544]]).strip()
         lines.append('b {} {} (teleport: {})'.format(a, cavern_name, _get_teleport_code(cavern_num)))
+        lines.append('; @label:{}=CAVERN{}'.format(a, cavern_num))
         lines.append('D {} Used by the routine at #R34436.'.format(a))
         lines.append('D {0} #UDGTABLE {{ #CALL:cavern({0}) }} TABLE#'.format(a))
         lines.append('D {} The first 512 bytes are the attributes that define the layout of the cavern.'.format(a))
@@ -238,18 +239,22 @@ def get_caverns(snapshot):
                 lines.append('D {} The next two bytes are unused.'.format(a + 734))
                 lines.append('B {},2 Unused'.format(a + 734))
             if cavern_num == 0:
+                lines.append('; @label:45792=SWORDFISH')
                 desc = 'swordfish graphic that appears in #R64512(The Final Barrier) when the game is completed (see #R36937)'
                 udgarray_macro = '#UDGARRAY2,69,4,2;45792;45793;45808,70;45809,71(swordfish)'
                 comment = 'Swordfish graphic data'
             elif cavern_num == 1:
+                lines.append('; @label:46816=PLINTH')
                 desc = 'plinth graphic that appears on the Game Over screen (see #R35199)'
                 udgarray_macro = '#UDGARRAY2,71,4,2;46816-46833-1-16(plinth)'
                 comment = 'Plinth graphic data'
             elif cavern_num == 2:
+                lines.append('; @label:47840=BOOT')
                 desc = 'boot graphic that appears on the Game Over screen (see #R35210). It also appears at the bottom of the screen next to the remaining lives when cheat mode is activated (see #R34608)'
                 udgarray_macro = '#UDGARRAY2,71,4,2;47840-47857-1-16(boot)'
                 comment = 'Boot graphic data'
             else:
+                lines.append('; @label:49888=EUGENEG')
                 desc = 'Eugene graphic'
                 udgarray_macro = '#UDGARRAY2,23,4,2;49888-49905-1-16(eugene)'
                 comment = 'Eugene graphic data'

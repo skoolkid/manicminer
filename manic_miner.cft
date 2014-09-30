@@ -21,46 +21,67 @@ S 28672,4096
 ; @set-handle-unsupported-macros:32768=1
 ; @org:32768=32768
 g 32768 Cavern name
+; @label:32768=CAVERNNAME
 D 32768 The cavern name is copied here and then used by the routine at #R34436.
 S 32768,32
 g 32800 Cavern tiles
 D 32800 The cavern tiles are copied here by the routine at #R34436 and then used to draw the cavern by the routine at #R35445.
 D 32800 The extra tile at #R32863 behaves like a floor tile, and is used as such in #R54272(The Endorian Forest), #R55296(Attack of the Mutant Telephones), #R57344(Ore Refinery), #R58368(Skylab Landing Bay) and #R59392(The Bank). It is also used in #R47104(The Menagerie) as spider silk, and in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast) as a switch.
+; @label:32800=BACKGROUND
 S 32800,9 Background tile (also used by the routines at #R35515, #R35770, #R36211, #R36344, #R37173 and #R37471)
+; @label:32809=FLOOR
 S 32809,9 Floor tile (also used by the routine at #R36211)
+; @label:32818=CRUMBLING
 S 32818,9 Crumbling floor tile (also used by the routine at #R35515)
+; @label:32827=WALL
 S 32827,9 Wall tile (also used by the routines at #R35515, #R35805 and #R36211)
+; @label:32836=CONVEYOR
 S 32836,9 Conveyor tile (also used by the routine at #R35805)
+; @label:32845=NASTY1
 S 32845,9 Nasty tile 1 (also used by the routines at #R35515 and #R37471)
+; @label:32854=NASTY2
 S 32854,9 Nasty tile 2 (also used by the routines at #R35515 and #R37471)
+; @label:32863=EXTRA
 S 32863,9 Extra tile (also used by the routine at #R37403)
 g 32872 Willy's pixel y-coordinate (x2)
+; @label:32872=PIXEL_Y
 D 32872 Initialised by the routine at #R34436, and used by the routines at #R35515, #R35805, #R37434 and #R37503. Holds the LSB of the address of the entry in the screen buffer address lookup table at #R33536 that corresponds to Willy's pixel y-coordinate; in practice, this is twice Willy's actual pixel y-coordinate.
 g 32873 Willy's animation frame
+; @label:32873=FRAME
 D 32873 Initialised by the routine at #R34436, used by the routine at #R37503, and updated by the routine at #R35805.
 g 32874 Willy's direction and movement flags
+; @label:32874=DMFLAGS
 D 32874 Initialised by the routine at #R34436.
 D 32874 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R35805, #R37503 }} {{ 1 | Willy's movement flag (set=moving) | #R35515, #R35805 }} {{ 2-7 | Unused (always reset) | }} TABLE#
 g 32875 Airborne status indicator
+; @label:32875=AIRBORNE
 D 32875 Initialised by the routine at #R34436, and used by the routines at #R34574, #R35515, #R35805 and #R36101. Possible values are:
 D 32875 #TABLE(default,centre,:w) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R35967) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12-15 | Willy is falling, and has fallen too far to land safely (see #R35805#35805) }} {{ 255 | Willy has collided with a nasty or a guardian (see #R36101) }} TABLE#
 g 32876 Address of Willy's location in the attribute buffer at 23552
+; @label:32876=LOCATION
 D 32876 Initialised by the routine at #R34436, used by the routines at #R35515, #R36805, #R37403, #R37434 and #R37503, and updated by the routine at #R35805.
 W 32876
 g 32878 Jumping animation counter
+; @label:32878=JUMPING
 D 32878 Initialised by the routine at #R34436, and used by the routines at #R35515 and #R35805.
 g 32879 Conveyor definition
 D 32879 The conveyor definition is copied here by the routine at #R34436.
+; @label:32879=CONVDIR
 B 32879 Direction (0=left, 1=right; used by the routines at #R35805 and #R37125)
+; @label:32880=CONVLOC
 W 32880 Address of the conveyor's location in the screen buffer at #R28672 (used by the routine at #R37125)
+; @label:32882=CONVLEN
 B 32882 Length (used by the routine at #R37125)
 g 32883 Border colour
+; @label:32883=BORDER
 D 32883 Initialised and used by the routine at #R34436, and also used by the routines at #R34574, #R35515 and #R37173.
 g 32884 Attribute of the last item drawn
+; @label:32884=ITEMATTR
 D 32884 Used by the routines at #R36344 and #R36707. Holds the attribute byte of the last item drawn, or 0 if all the items have been collected.
 g 32885 Item definitions
+; @label:32885=ITEMS
 D 32885 The item definitions are copied here by the routine at #R34436, and then used by the routine at #R36707. An item definition contains the following information:
-D 32885 #TABLE(default,centre) {{ =h Byte(s) | =h Contents }} {{ 0 | Current attribute }} {{ 1,2 | Address of the item's location in the attribute buffer at #R23552 }} {{ 3 | MSB of the address of the item's location in the screen buffer at #R24576 }} {{ 4 | Unused (always 255) }} TABLE#
+D 32885 #TABLE(default,centre,:w) {{ =h Byte(s) | =h Contents }} {{ 0 | Current attribute }} {{ 1,2 | Address of the item's location in the attribute buffer at #R23552 }} {{ 3 | MSB of the address of the item's location in the screen buffer at #R24576 }} {{ 4 | Unused (always 255) }} TABLE#
 S 32885,5 Item 1
 S 32890,5 Item 2
 S 32895,5 Item 3
@@ -68,32 +89,44 @@ S 32900,5 Item 4
 S 32905,5 Item 5
 B 32910 Terminator (set to 255)
 g 32911 Portal definition
+; @label:32911=PORTAL
 D 32911 The portal definition is copied here by the routine at #R34436.
 B 32911 Attribute byte (used by the routines at #R36707 and #R36805)
+; @label:32912=PORTALG
 S 32912,32 Graphic data (used by the routine at #R36805)
+; @label:32944=PORTALLOC1
 W 32944 Address of the portal's location in the attribute buffer at #R23552 (used by the routine at #R36805)
+; @label:32946=PORTALLOC2
 W 32946 Address of the portal's location in the screen buffer at #R24576 (used by the routine at #R36805)
 g 32948 Item graphic
+; @label:32948=ITEM
 D 32948 The item graphic is copied here by the routine at #R34436, and then used by the routine at #R36707.
 S 32948,8
 g 32956 Remaining air supply
+; @label:32956=AIR
 D 32956 Initialised (always to 63 in practice) and used by the routine at #R34436, updated by the routine at #R35388, and also used by the routine at #R36904. Its value ranges from 36 to 63 and is actually the LSB of the display file address for the cell at the right end of the air bar. The amount of air to draw in this cell is determined by the value of the game clock at #R32957.
 g 32957 Game clock
+; @label:32957=CLOCK
 D 32957 Initialised by the routine at #R34436, updated on every pass through the main loop by the routine at #R35388, and used for timing purposes by the routines at #R36111, #R36344 and #R37173. Its value (which is always a multiple of 4) is also used by the routine at #R35388 to compute the amount of air to draw in the cell at the right end of the air bar.
 g 32958 Horizontal guardians
+; @label:32958=HGUARDS
 D 32958 The horizontal guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36111 and #R36266. There are four slots, each one seven bytes long, used to hold the state of the horizontal guardians in the current cavern.
 D 32958 For each horizontal guardian, the seven bytes are used as follows:
 D 32958 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r2 0 | Bit 7: animation speed (0=normal, 1=slow) }} {{ Bits 0-6: attribute (BRIGHT, PAPER and INK) }} {{ 1,2 | Address of the guardian's location in the attribute buffer at #R23552 }} {{ 3 | MSB of the address of the guardian's location in the screen buffer at #R24576 }} {{ 4 | Animation frame }} {{ 5 | LSB of the address of the leftmost point of the guardian's path in the attribute buffer }} {{ 6 | LSB of the address of the rightmost point of the guardian's path in the attribute buffer }} TABLE#
 S 32958,7 Horizontal guardian 1
+; @label:32965=HGUARD2
 S 32965,7 Horizontal guardian 2
 S 32972,7 Horizontal guardian 3
 S 32979,7 Horizontal guardian 4
 B 32986 Terminator (set to 255)
 g 32987 Eugene's direction
+; @label:32987=EUGDIR
 D 32987 Initialised by the routine at #R34436, and used by the routines at #R36344 (to hold Eugene's direction: 0=down, 1=up) and #R37173 (to hold the Kong Beast's status: 0=on the ledge, 1=falling, 2=dead).
 g 32988 Eugene's pixel y-coordinate
+; @label:32988=EUGHGT
 D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252 (to hold the index into the message scrolled across the screen after the theme tune has finished playing), #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 (to hold Eugene's pixel y-coordinate) and #R37173 (to hold the Kong Beast's pixel y-coordinate).
 g 32989 Vertical guardians
+; @label:32989=VGUARDS
 D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593. There are four slots, each one seven bytes long, used to hold the state of the vertical guardians in the current cavern.
 D 32989 For each vertical guardian, the seven bytes are used as follows:
 D 32989 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ 0 | Attribute (BRIGHT, PAPER and INK) }} {{ 1 | Animation frame }} {{ 2 | Pixel y-coordinate }} {{ 3 | x-coordinate }} {{ 4 | Pixel y-coordinate increment }} {{ 5 | Minimum pixel y-coordinate }} {{ 6 | Maximum pixel y-coordinate }} TABLE#
@@ -106,22 +139,28 @@ u 33018 Unused
 D 33018 These bytes are overwritten by the routine at #R34436 upon entering a cavern, but are used only in #R49152(Eugene's Lair) by the routine at #R36344 (when they contain part of the graphic data for Eugene).
 S 33018,6
 g 33024 Guardian graphic data
+; @label:33024=GGDATA
 D 33024 The guardian graphic data is copied here by the routine at #R34436, and then used by the routines at #R36266, #R36469, #R36593 and #R37173.
 S 33024,256
 b 33280 Willy sprite graphic data
+; @label:33280=MANDAT
 D 33280 Used by the routines at #R34252, #R34574 and #R37503.
 D 33280 #UDGTABLE {{ #UDGARRAY2,7,,2;33280-33297-1-16(willy0*) | #UDGARRAY2,7,,2;33312-33329-1-16(willy1*) | #UDGARRAY2,7,,2;33344-33361-1-16(willy2*) | #UDGARRAY2,7,,2;33376-33393-1-16(willy3*) | #UDGARRAY*willy0;willy1;willy2;willy3(willy_r.gif) }} {{ #UDGARRAY2,7,,2;33408-33425-1-16(willy4*) | #UDGARRAY2,7,,2;33440-33457-1-16(willy5*) | #UDGARRAY2,7,,2;33472-33489-1-16(willy6*) | #UDGARRAY2,7,,2;33504-33521-1-16(willy7*) | #UDGARRAY*willy7;willy6;willy5;willy4(willy_l.gif) }} TABLE#
 B 33280,256,16
 w 33536 Screen buffer address lookup table
+; @label:33536=SBUFADDRS
 D 33536 Used by the routines at #R35140, #R36344, #R36469, #R36593, #R37173 and #R37503. The value of the Nth entry (0<=N<=127) in this lookup table is the screen buffer address for the point with pixel coordinates (x,y)=(0,N), with the origin (0,0) at the top-left corner.
 {sba_table}
 c 33792 The game has just loaded
+; @label:33792=BEGIN
   33792 Disable interrupts
   33793 Place the stack somewhere safe (near the end of the source code remnants at #R37708)
   33796 Display the title screen and play the theme tune
 g 33799 Current cavern number
+; @label:33799=SHEET
 D 33799 Initialised by the routine at #R34252, used by the routines at #R34436, #R34574, #R35445 and #R36266, and updated by the routine at #R36904.
 b 33800 Left-right movement table
+; @label:33800=LRMOVEMENT
 D 33800 Used by the routine at #R35805. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at #R32874 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor).
 D 33800 One of the first four entries is used when Willy is not moving.
   33800 V=0 (facing right, no movement) + no movement: V'=0 (no change)
@@ -144,40 +183,55 @@ D 33812 One of the final four entries is used when Willy is being pulled both le
   33814 V=V'=2 (facing right, moving)
   33815 V=V'=3 (facing left, moving)
 t 33816 'AIR'
+; @label:33816=MESSAIR
 D 33816 Used by the routine at #R34436.
 u 33819
 T 33819,4
 g 33823 High score
+; @label:33823=HGHSCOR
 D 33823 Used by the routine at #R34574 and updated by the routine at #R35140.
 T 33823,6
 g 33829 Score
+; @label:33829=SCORE
 D 33829 Used by the routines at #R34574, #R35140, #R36904 and #R37098.
 T 33829,4 Overflow digits (these may be updated, but are never printed)
+; @label:33833=SCORBUF
 T 33833,6
 t 33839 'High Score 000000#SPACE(3)Score 000000'
+; @label:33839=MESSHSSC
 D 33839 Used by the routine at #R34436.
 t 33871 'Game'
+; @label:33871=MESSG
 D 33871 Used by the routine at #R35140.
 t 33875 'Over'
+; @label:33875=MESSO
 D 33875 Used by the routine at #R35140.
 g 33879 Lives remaining
+; @label:33879=NOMEN
 D 33879 Initialised to 2 by the routine at #R34252, and used and updated by the routines at #R34574 and #R37098.
 g 33880 Screen flash counter
+; @label:33880=FLASH
 D 33880 Initialised by the routine at #R34252, and used by the routines at #R34574 and #R37098.
 g 33881 Kempston joystick indicator
+; @label:33881=KEMP
 D 33881 Initialised by the routine at #R34252, and used by the routines at #R34574, #R35805 and #R37687. Holds 1 if a joystick is present, 0 otherwise.
 g 33882 Game mode indicator
+; @label:33882=DEMO
 D 33882 Initialised by the routine at #R34252, and used by the routines at #R34436, #R34574 and #R36904. Holds 0 when a game is in progress, or a value from 1 to 64 when in demo mode.
 g 33883 In-game music note index
+; @label:33883=NOTEINDEX
 D 33883 Initialised by the routine at #R34252, and used and updated by the routine at #R34574.
 g 33884 Music flags
+; @label:33884=MUSICFLAGS
 D 33884 The keypress flag in bit 0 is initialised by the routine at #R34252; bits 0 and 1 are checked and updated by the routine at #R34574.
 D 33884 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning }} {{ 0 | Keypress flag (set=H-ENTER being pressed, reset=no key pressed) }} {{ 1 | In-game music flag (set=music off, reset=music on) }} {{ 2-7 | Unused }} TABLE#
 g 33885 6031769 key counter
+; @label:33885=CHEAT
 D 33885 Used by the routines at #R34574 and #R36904.
 b 33886 6031769
 D 33886 Used by the routine at #R34574.
 B 33886,b2 (no keys pressed)
+; @label:33888=CHEATDT
 B 33888,b2 6
 B 33890,b2 0
 B 33892,b2 3
@@ -186,13 +240,16 @@ B 33896,b2 7
 B 33898,b2 6
 B 33900,b2 9
 b 33902 Title screen tune data
+; @label:33902=THEMETUNE
 D 33902 Used by the routine at #R37596. The tune data is organised into 95 groups of three bytes each, one group for each note in the tune. The first byte in each group determines the duration of the note, and the second and third bytes determine the frequency (and also the piano keys that light up).
 B 33902,285,3
 B 34187 End marker
 b 34188 In-game tune data
+; @label:34188=GAMETUNE
 D 34188 Used by the routine at #R34574.
 B 34188,64,16
 c 34252 Display the title screen and play the theme tune
+; @label:34252=START
 D 34252 Used by the routines at #R33792, #R34574 and #R35140.
 D 34252 The first thing this routine does is initialise some game status buffer variables in preparation for the next game.
   34252 #REGa=0
@@ -242,7 +299,9 @@ D 34351 And finally, play the theme tune and check for keypresses.
   34431 Initialise the game mode indicator at #R33882 to 64: demo mode
 E 34252 This routine continues into the one at #R34436.
 c 34436 Start the game (or demo mode)
+; @label:34436=STARTGAME
   34436,13 Initialise the score at #R33829
+; @label:34449=NEWSHT
 D 34449 This entry point is used by the routines at #R34574 (when teleporting into a cavern or reinitialising the current cavern after Willy has lost a life) and #R36904.
   34449 Pick up the number of the current cavern from #R33799
   34452,9 Point #REGhl at the first byte of the cavern definition
@@ -272,6 +331,7 @@ D 34449 This entry point is used by the routines at #R34574 (when teleporting in
   34569,5 Reset the game mode indicator at #R33882 to 64 (we're in demo mode)
 E 34436 This routine continues into the main loop at #R34574.
 c 34574 Main loop
+; @label:34574=LOOP
 D 34574 The routine at #R34436 continues here.
 D 34574 The first thing to do is check whether there are any remaining lives to draw at the bottom of the screen.
   34574 Pick up the number of lives remaining from #R33879
@@ -376,7 +436,10 @@ D 34874 The next section of code plays a note of the in-game music.
   34891 Pick up the border colour for the current cavern from #R32883
   34894 Initialise the pitch delay counter in #REGe
   34895 Initialise the duration delay counters in #REGb (0) and #REGc (3)
+; @label:34898=TM51
+; @label:34906=NOFLP6
   34898,13 Produce a note of the in-game music
+; @label:34911=NONOTE4
 D 34911 If we're in demo mode, check the keyboard and joystick and return to the title screen if there's any input.
   34911 Pick up the game mode indicator from #R33882
   34914 Are we in demo mode?
@@ -393,6 +456,7 @@ D 34911 If we're in demo mode, check the keyboard and joystick and return to the
   34942 Collect input from the joystick
   34944 Is the joystick being moved or the fire button being pressed?
   34945 If so, return to the title screen
+; @label:34948=NODEM1
 D 34948 Here we check the teleport keys.
   34948,5 Read keys 6-7-8-9-0
   34953 Is '6' (the activator key) being pressed?
@@ -406,6 +470,7 @@ D 34948 Here we check the teleport keys.
   34975 Jump if so (this is not a cavern number)
   34978 Store the cavern number at #R33799
   34981 Teleport into the cavern
+; @label:34984=CKCHEAT
 D 34984 Now check the 6031769 keys.
   34984 Pick up the 6031769 key counter from #R33885.
   34987 Has 6031769 been keyed in yet?
@@ -421,6 +486,7 @@ D 34984 Now check the 6031769 keys.
   35022 If so, jump back to the start of the main loop
   35025,4 Reset the 6031769 key counter at #R33885 to 0 (an incorrect key is being pressed)
   35029 Jump back to the start of the main loop
+; @label:35032=CKNXCHT
   35032,4 Read keys 6-7-8-9-0
   35036 Keep only bits 0-5
   35038 Does this match the second byte of the entry in the 6031769 table?
@@ -431,13 +497,16 @@ D 34984 Now check the 6031769 keys.
   35051 If so, jump back to the start of the main loop
   35054,4 Reset the 6031769 key counter at #R33885 to 0 (an incorrect key is being pressed)
   35058 Jump back to the start of the main loop
+; @label:35061=INCCHT
   35061,7 Increment the 6031769 key counter at #R33885 (the next key in the sequence is being pressed)
   35068 Jump back to the start of the main loop
+; @label:35071=MANDEAD
 D 35071 The air in the cavern has run out, or Willy has had a fatal accident, or it's demo mode and it's time to show the next cavern.
   35071 Pick up the game mode indicator from #R33882
   35074 Is it demo mode?
   35075 If so, move to the next cavern
   35078 #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
+; @label:35080=LPDEAD1
 D 35080 The following loop fills the top two thirds of the attribute file with a single value (71 TO 64 STEP -1) and makes a sound effect.
   35080,12 Fill the top two thirds of the attribute file with the value in #REGa
   35092 Save the attribute byte (64-71) in #REGe for later retrieval
@@ -445,6 +514,8 @@ D 35080 The following loop fills the top two thirds of the attribute file with a
   35102,7 #REGc=8+32*(#REGe AND 7); this value determines the duration of the short note that will be played
   35109 Set bit 4 of #REGa (for no apparent reason)
   35111 Set #REGa=0 (this will make the border black)
+; @label:35112=TM21
+; @label:35117=TM22
   35112,10 Produce a short note whose pitch is determined by #REGd and whose duration is determined by #REGc
   35122 Restore the attribute byte (originally 71) to #REGa
   35123 Decrement it (effectively decrementing the INK colour)
@@ -457,10 +528,12 @@ D 35128 Finally, check whether any lives remain.
   35136 Decrease the number of lives remaining by one
   35137 Jump back to reinitialise the current cavern
 c 35140 Display the game over sequence
+; @label:35140=ENDGAM
 D 35140 Used by the routine at #R34574. First check whether we have a new high score.
   35140 Point #REGhl at the high score at #R33823
   35143 Point #REGde at the current score at #R33833
   35146 There are 6 digits to compare
+; @label:35148=LPHGH
   35148 Pick up a digit of the current score
   35149 Compare it with the corresponding digit of the high score
   35150 Jump if it's less than the corresponding digit of the high score
@@ -468,12 +541,15 @@ D 35140 Used by the routine at #R34574. First check whether we have a new high s
   35156 Point #REGhl at the next digit of the high score
   35157 Point #REGde at the next digit of the current score
   35158 Jump back to compare the next pair of digits
+; @label:35160=NEWHGH
   35160,11 Replace the high score with the current score
+; @label:35171=FEET
 D 35171 Now prepare the screen for the game over sequence.
   35171,13 Clear the top two-thirds of the display file
   35184,4 Initialise the game status buffer variable at #R32988; this variable will determine the distance of the boot from the top of the screen
   35188,11 Draw Willy at (12,15)
   35199,11 Draw the plinth (see #R46816) underneath Willy at (14,15)
+; @label:35210=LOOPFT
 D 35210 The following loop draws the boot's descent onto the plinth that supports Willy.
   35210 Pick up the distance variable from #R32988
   35213,3 Point #REGbc at the corresponding entry in the screen buffer address lookup table at #R33536
@@ -484,6 +560,8 @@ D 35210 The following loop draws the boot's descent onto the plinth that support
   35237 Store this value (63-255) in #REGe; it determines the (rising) pitch of the sound effect that will be made
   35238 #REGa=0 (black border)
   35239 #REGc=64; this value determines the duration of the sound effect
+; @label:35242=TM111
+; @label:35247=TM112
   35242,10 Produce a short note whose pitch is determined by #REGe
   35252,9 Prepare #REGbc, #REGde and #REGhl for setting the attribute bytes in the top two-thirds of the screen
   35261 Pick up the distance variable from #R32988
@@ -498,6 +576,7 @@ D 35284 Now print the "Game Over" message, just to drive the point home.
   35284,12 Print "Game" (see #R33871) at (6,10)
   35296,12 Print "Over" (see #R33875) at (6,18)
   35308,5 Prepare the delay counters for the following loop; the counter in #REGc will also determine the INK colours to use for the "Game Over" message
+; @label:35313=TM91
 D 35313 The following loop makes the "Game Over" message glisten for about 1.57s.
   35313 Delay for about a millisecond
   35315,8 Change the INK colour of the "G" in "Game" at (6,10)
@@ -514,6 +593,7 @@ D 35313 The following loop makes the "Game Over" message glisten for about 1.57s
   35383 Jump back unless it's zero
   35385 Display the title screen and play the theme tune
 c 35388 Decrease the air remaining in the current cavern
+; @label:35388=DECAIR
 D 35388 Used by the routines at #R34574, #R36211 and #R36904. Returns with the zero flag set if there is no air remaining.
   35388,8 Update the game clock at #R32957
   35396 Was it just decreased from zero?
@@ -535,6 +615,7 @@ D 35388 Used by the routines at #R34574, #R36211 and #R36904. Returns with the z
   35438,6 Draw the four rows of pixels at the right end of the air bar
   35442,2 Reset the zero flag: there is still some air remaining
 c 35445 Draw the current cavern to the screen buffer at 28672
+; @label:35445=DRAWSHEET
   35445 Point #REGix at the first byte of the attribute buffer at #R24064
   35449,5 Set the operand of the 'LD D,n' instruction at #R35483 (below) to 112
   35454 Draw the tiles for the top half of the cavern to the screen buffer at #R28672
@@ -547,6 +628,7 @@ D 35468 The following loop draws 256 tiles (for either the top half or the botto
   35472,8 Move #REGhl through the attribute bytes and graphic data of the background, floor, crumbling floor, wall, conveyor and nasty tiles starting at #R32800 until we find a byte that matches the attribute byte of the tile to be drawn
   35480 Restore the value of the tile counter in #REGc
   35481 There are eight bytes in the tile
+; @label:35483=SBMSB
   35483 This instruction is set to either 'LD D,112' or 'LD D,120' above; now #REGde holds the appropriate address in the screen buffer at #R28672
   35485,6 Copy the tile graphic data to the screen buffer at #R28672
   35491 Move #REGix along to the next byte in the attribute buffer
@@ -558,6 +640,7 @@ D 35497 The empty cavern has been drawn to the screen buffer at #R28672. If we'r
   35502 Return if not
   35503,11 Copy the graphic data from #R40960 to the top half of the screen buffer at #R28672
 c 35515 Move Willy (1)
+; @label:35515=MOVEWILLY
 D 35515 Used by the routine at #R34574. This routine deals with Willy if he's jumping or falling.
   35515 Pick up the airborne status indicator from #R32875
   35518 Is Willy jumping?
@@ -650,6 +733,7 @@ D 35746 The top-left or top-right cell of Willy's sprite is overlapping a wall t
   35759,5 Set the airborne status indicator at #R32875 to 2: Willy has started falling
   35764,5 Reset bit 1 at #R32874: Willy is not moving left or right
 c 35770 Animate a crumbling floor tile in the current cavern
+; @label:35770=CRUMBLE
 R 35770 HL Address of the crumbling floor tile's location in the attribute buffer at #R23552
   35770,7 Point #REGbc at the bottom row of pixels of the crumbling floor tile in the screen buffer at #R28672
   35777,2 Collect the pixels from the row above in #REGa
@@ -668,6 +752,7 @@ D 35796 The bottom row of pixels in the crumbling floor tile is clear. Time to p
   35801 Set the attribute at this location to that of the background tile
   35802,2 Set #REGhl back to the address of the crumbling floor tile's location in the attribute buffer at #R23552
 c 35805 Move Willy (2)
+; @label:35805=MOVEWILLY2
 D 35805 Used by the routine at #R35515. This routine checks the keyboard and joystick, and moves Willy left or right if necessary.
 R 35805 HL Attribute buffer address of the left-hand cell below Willy's sprite
   35805 Pick up the airborne status indicator from #R32875
@@ -798,6 +883,7 @@ D 36054 Willy's sprite is moving right across a cell boundary. In the comments t
   36093 Save Willy's new attribute buffer coordinates (in #REGhl) at #R32876
   36096,4 Change Willy's animation frame at #R32873 from 3 to 0
 c 36101 Kill Willy
+; @label:36101=KILLWILLY
 D 36101 Used by the routine at #R37471 when Willy hits a nasty.
   36101 Drop the return address from the stack
 D 36102 This entry point is used by the routines at #R35805 (when Willy lands after falling from too great a height), #R36266 (when Willy collides with a horizontal guardian), #R36344 (when Willy collides with Eugene), #R36593 (when Willy collides with a vertical guardian) and #R37173 (when Willy collides with the Kong Beast).
@@ -806,6 +892,7 @@ D 36103 This entry point is used by the routine at #R36469 when a Skylab falls o
   36103,5 Set the airborne status indicator at #R32875 to 255 (meaning Willy has had a fatal accident)
   36108 Jump back into the main loop
 c 36111 Move the horizontal guardians in the current cavern
+; @label:36111=MOVEHG
   36111 Point #REGiy at the first byte of the first horizontal guardian definition at #R32958
   36115 Prepare #REGde for addition (there are 7 bytes in a guardian definition)
 D 36118 The guardian-moving loop begins here.
@@ -848,6 +935,7 @@ D 36207 The current guardian definition has been dealt with. Time for the next o
   36207 Point #REGiy at the first byte of the next horizontal guardian definition
   36209 Jump back to deal with the next horizontal guardian
 c 36211 Move and draw the light beam in Solar Power Generator
+; @label:36211=LIGHTBEAM
   36211 Point #REGhl at the cell at (0,23) in the attribute buffer at #R23552 (the source of the light beam)
   36214 Prepare #REGde for addition (the beam travels vertically downwards to start with)
 D 36217 The beam-drawing loop begins here.
@@ -872,6 +960,7 @@ D 36217 The beam-drawing loop begins here.
   36263 Point #REGhl at the cell where the next portion of the light beam will be drawn
   36264 Jump back to draw the next portion of the light beam
 c 36266 Draw the horizontal guardians in the current cavern
+; @label:36266=DRAWHG
   36266 Point #REGiy at the first byte of the first horizontal guardian definition at #R32958
 D 36270 The guardian-drawing loop begins here.
   36270 Pick up the first byte of the guardian definition
@@ -903,6 +992,7 @@ D 36337 The current guardian definition has been dealt with. Time for the next o
   36337,5 Point #REGiy at the first byte of the next horizontal guardian definition
   36342 Jump back to deal with the next horizontal guardian
 c 36344 Move and draw Eugene in Eugene's Lair
+; @label:36344=EUGENE
 D 36344 Used by the routine at #R34574. First we move Eugene up or down, or change his direction.
   36344 Pick up the attribute of the last item drawn from #R32884
   36347 Have all the items been collected?
@@ -946,6 +1036,7 @@ D 36447 This entry point is used by the routines at #R36469 (to set the attribut
   36464,2 Set the attribute byte for the bottom-left cell of the sprite in the attribute buffer at #R23552
   36466,2 Set the attribute byte for the bottom-right cell of the sprite in the attribute buffer at #R23552
 c 36469 Move and draw the Skylabs in Skylab Landing Bay
+; @label:36469=SKYLABS
   36469 Point #REGiy at the first byte of the first vertical guardian definition at #R32989
 D 36473 The Skylab-moving loop begins here.
   36473 Pick up the first byte of the guardian definition
@@ -965,7 +1056,7 @@ D 36497 The Skylab has reached its crash site. Start or continue its disintegrat
   36523 Reset the animation frame to 0
 D 36527 Now that the Skylab's movement has been dealt with, time to draw it.
   36527 Pick up the Skylab's pixel y-coordinate in #REGe
-  36530,4 Point #REGde at the entry in the screen buffer address lookup table at 33536 that corresponds to the Skylab's pixel y-coordinate
+  36530,4 Point #REGde at the entry in the screen buffer address lookup table at #R33536 that corresponds to the Skylab's pixel y-coordinate
   36534,8 Point #REGhl at the address of the Skylab's location in the screen buffer at #R24576
   36542 Pick up the animation frame (0-7)
   36545,3 Multiply it by 32
@@ -979,6 +1070,7 @@ D 36586 The current guardian definition has been dealt with. Time for the next o
   36586,5 Point #REGiy at the first byte of the next vertical guardian definition
   36591 Jump back to deal with the next Skylab
 c 36593 Move and draw the vertical guardians in the current cavern
+; @label:36593=VGUARDIANS
   36593 Point #REGiy at the first byte of the first vertical guardian definition at #R32989
 D 36597 The guardian-moving loop begins here.
   36597 Pick up the first byte of the guardian definition
@@ -1011,6 +1103,7 @@ D 36700 The current guardian definition has been dealt with. Time for the next o
   36700,5 Point #REGiy at the first byte of the next vertical guardian definition
   36705 Jump back to deal with the next vertical guardian
 c 36707 Draw the items in the current cavern and collect any that Willy is touching
+; @label:36707=DRAWITEMS
   36707,4 Initialise the attribute of the last item drawn at #R32884 to 0 (in case there are no items left to draw)
   36711 Point #REGiy at the first byte of the first item definition at #R32885
 D 36715 The item-drawing loop begins here.
@@ -1049,6 +1142,7 @@ D 36794 All the items have been dealt with. Check whether there were any left.
   36798 Return if so (some remain to be collected)
   36799,5 Ensure that the portal is flashing by setting bit 7 of its attribute byte at #R32911
 c 36805 Draw the portal, or move to the next cavern if Willy has entered it
+; @label:36805=CHKPORTAL
 D 36805 Used by the routine at #R34574. First check whether Willy has entered the portal.
   36805 Pick up the address of the portal's location in the attribute buffer at #R23552 from #R32944
   36808 Pick up the LSB of the address of Willy's location in the attribute buffer at #R23552 from #R32876
@@ -1070,6 +1164,7 @@ D 36831 Willy has not entered the portal, or it's not flashing, so just draw it.
   36850 #REGc=0: overwrite mode
 E 36805 This routine continues into the one at #R36852.
 c 36852 Draw a sprite
+; @label:36852=DRWFIX
 D 36852 Used by the routines at #R34252 (to draw Willy on the title screen), #R34574 (to draw the remaining lives), #R35140 (to draw Willy, the boot and the plinth during the game over sequence), #R36266 (to draw horizontal guardians), #R36344 (to draw Eugene in #R49152(Eugene's Lair)), #R36469 (to draw the Skylabs in #R58368(Skylab Landing Bay)), #R36593 (to draw vertical guardians), #R36805 (to draw the portal in the current cavern), #R36904 (to draw Willy above ground and the swordfish graphic over the portal in #R64512(The Final Barrier)) and #R37173 (to draw the Kong Beast in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast)). If #REGc=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
 R 36852 C Drawing mode: 0 (overwrite) or 1 (blend)
 R 36852 DE Address of sprite graphic data
@@ -1102,6 +1197,7 @@ R 36852 HL Address to draw at
   36900 Jump back until all 16 rows of pixels have been drawn
   36902,1 Set the zero flag (to indicate no collision)
 c 36904 Move to the next cavern
+; @label:36904=NXSHEET
   36904 Pick up the number of the current cavern from #R33799
   36907 Increment the cavern number
   36908 Is the current cavern #R64512(The Final Barrier)?
@@ -1149,6 +1245,7 @@ D 37044 The following loop increases the score and decreases the air supply unti
   37079,17 Produce a short note
   37096 Jump back to decrease the air supply again
 c 37098 Add to the score
+; @label:37098=INCSCORE
 D 37098 The entry point to this routine is at #R37118.
   37098 Roll the digit over from '9' to '0'
   37100 Point #REGhl at the next digit to the left
@@ -1163,6 +1260,7 @@ D 37118 The entry point to this routine is here and is used by the routines at #
   37121 Jump if so
   37123,1 Increment the digit
 c 37125 Move the conveyor in the current cavern
+; @label:37125=MVCONVEYOR
   37125 Pick up the address of the conveyor's location in the screen buffer at #R28672 from #R32880
   37128,2 Copy this address to #REGde
   37130 Pick up the length of the conveyor from #R32882
@@ -1185,6 +1283,7 @@ D 37159 The conveyor is moving right.
   37167,4 Rotate it left twice
   37171 Jump back to update the first and third pixel rows of every conveyor tile
 c 37173 Move and draw the Kong Beast in the current cavern
+; @label:37173=KONGBEAST
   37173,6 Flip the left-hand switch at (0,6) if Willy is touching it
   37179 Pick up the Kong Beast's status from #R32987
   37182 Is the Kong Beast already dead?
@@ -1250,6 +1349,7 @@ D 37369 The Kong Beast is still on the ledge.
   37388 #REGa=68 (INK 4: PAPER 0: BRIGHT 1)
   37390,12 Set the attribute bytes for the Kong Beast in the buffer at #R23552
 c 37403 Flip a switch in a Kong Beast cavern if Willy is touching it
+; @label:37403=CHKSWITCH
 D 37403 Used by the routine at #R37173. Returns with the zero flag set if Willy flips the switch.
 R 37403 HL Address of the switch's location in the attribute buffer at #R23552
   37403 Pick up the LSB of the address of Willy's location in the attribute buffer at #R23552 from #R32876
@@ -1267,6 +1367,7 @@ D 37423 Willy is flipping the switch.
   37431 Set the zero flag: Willy has flipped the switch
   37432,1 This instruction is redundant
 c 37434 Check and set the attribute bytes for Willy's sprite in the buffer at 23552
+; @label:37434=WILLYATTRS
   37434 Pick up the address of Willy's location in the attribute buffer at #R23552 from #R32876
   37437 Prepare #REGde for addition
   37440 Set #REGc=15 for the top two rows of cells (to make the routine at #R37471 force white INK)
@@ -1285,6 +1386,7 @@ c 37434 Check and set the attribute bytes for Willy's sprite in the buffer at 23
   37466 Check and set the attribute byte for the bottom-right cell
   37469 Draw Willy to the screen buffer at #R24576
 c 37471 Check and set the attribute byte for a cell occupied by Willy's sprite
+; @label:37471=WILLYATTR
 R 37471 C 15 or Willy's pixel y-coordinate
 R 37471 HL Address of the cell in the attribute buffer at #R23552
   37471 Pick up the attribute byte of the background tile for the current cavern from #R32800
@@ -1302,6 +1404,7 @@ R 37471 HL Address of the cell in the attribute buffer at #R23552
   37498 Has Willy hit a nasty of the second kind?
   37499,3 Kill Willy if so
 c 37503 Draw Willy to the screen buffer at 24576
+; @label:37503=DRAWWILLY
   37503 Pick up Willy's pixel y-coordinate from #R32872
   37506,5 Point #REGix at the entry in the screen buffer address lookup table at #R33536 that corresponds to Willy's y-coordinate
   37511 Pick up Willy's direction and movement flags from #R32874
@@ -1324,6 +1427,7 @@ c 37503 Draw Willy to the screen buffer at 24576
   37558 Point #REGde at the next sprite graphic byte
   37559,2 Jump back until all 16 rows of pixels have been drawn
 c 37562 Print a message
+; @label:37562=PMESS
 R 37562 IX Address of the message
 R 37562 C Length of the message
 R 37562 DE Display file address
@@ -1334,6 +1438,7 @@ R 37562 DE Display file address
   37575 Have we printed the entire message yet?
   37576,2 If not, jump back to print the next character
 c 37579 Print a single character
+; @label:37579=PRINTCHAR
 R 37579 A ASCII code of the character
 R 37579 DE Display file address
   37579,8 Point #REGhl at the bitmap for the character (in the ROM)
@@ -1341,6 +1446,7 @@ R 37579 DE Display file address
 D 37589 This entry point is used by the routine at #R36707 to draw an item in the current cavern.
   37589,6 Copy the character bitmap (or item graphic) to the screen (or screen buffer)
 c 37596 Play the theme tune
+; @label:37596=PLAYTUNE
 D 37596 Used by the routine at #R34252. Returns with the zero flag reset if ENTER or the fire button is pressed while the tune is being played.
 R 37596 IY #R33902 (tune data)
   37596 Pick up the next byte of tune data from the table at #R33902
@@ -1369,12 +1475,14 @@ R 37596 IY #R33902 (tune data)
   37667,6 Move #REGiy along to the data for the next note in the tune
   37673 Jump back to play the next note
 c 37675 Calculate the attribute file address for a piano key
+; @label:37675=PIANOKEY
 D 37675 Used by the routine at #R37596. Returns with the attribute file address in #REGhl.
 R 37675 A Frequency parameter from the tune data table at #R33902
   37675,8 Compute the piano key index (K) based on the frequency parameter (F), and store it in bits 0-4 of #REGa: K=31-INT((F-8)/8)
   37681 #REGa=224+K; this is the LSB
   37683,3 Set #REGhl to the attribute file address for the piano key
 c 37687 Check whether ENTER or the fire button is being pressed
+; @label:37687=CHECKENTER
 D 37687 Used by the routine at #R37596. Returns with the zero flag reset if ENTER or the fire button on the joystick is being pressed.
   37687 Pick up the Kempston joystick indicator from #R33881
   37690 Is the joystick connected?
@@ -1386,6 +1494,7 @@ D 37687 Used by the routine at #R37596. Returns with the zero flag reset if ENTE
   37703 Keep only bit 0 of the result (ENTER)
   37705,2 Reset the zero flag if ENTER is being pressed
 u 37708 Source code remnants
+; @label:37708=SOURCE
 D 37708 The source code here corresponds to the code at #R34900.
 T 37708,6,B1:3:B1:1 DEC E
 M 37714,16 3960 JR NZ,NOFLP6
@@ -2161,19 +2270,23 @@ W 40187
 B 40189
 T 40190,2,B1:1
 t 40192 '...MANIC MINER . . #CHR(169) BUG-BYTE ltd. 1983...'
+; @label:40192=MESSINTRO
 D 40192 Used by the routine at #R34252.
 T 40240,48,B1:47
 T 40288
 T 40336
 T 40382
 b 40448 Attribute data for the bottom two-thirds of the title screen
+; @label:40448=LOWERATTRS
 D 40448 Used by the routine at #R34252. The graphic data for the middle third of the title screen is located at #R43008.
 B 40448,512,16
 b 40960 Title screen graphic data
+; @label:40960=TITLESCR1
 B 40960,4096,16
 D 40960 Used by the routines at #R34252 and #R35445.
 D 40960 #SCR2,,,,8,40960,64512(title_screen_1)
 D 40960 The attributes for the top third of the title screen are located at #R64512 (in the cavern data for The Final Barrier).
 D 40960 #SCR2,,8,,8,40960,40192(title_screen_2)
 D 40960 The attributes for the middle third of the title screen are located at #R40448.
+; @label:43008=TITLESCR2
 {caverns}
