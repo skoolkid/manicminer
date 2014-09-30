@@ -84,10 +84,10 @@ This disassembly would have taken a lot longer to finish if it weren't for the r
 </div>
 
 [Glossary:Guardian]
-An inhabitant of a room that continuously moves left and right (horizontal guardian) or up and down (vertical guardian) in a straight line. Contact with a guardian is fatal.
+An inhabitant of a cavern that continuously moves left and right (horizontal guardian) or up and down (vertical guardian) in a straight line. Contact with a guardian is fatal.
 
 [Glossary:Nasty]
-An immobile object drawn in a single cell as part of a room along with the background, walls, floors and conveyor. Contact with a nasty is fatal. Some examples are:
+An immobile object drawn in a single cell as part of a cavern along with the background, walls, floors and conveyor. Contact with a nasty is fatal. Some examples are:
 
 #UDGTABLE(gallery)
 { #R47104(The Menagerie)       | #UDG47703,67(nasty2_2) }
