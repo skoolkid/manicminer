@@ -119,10 +119,10 @@ S 32965,7 Horizontal guardian 2
 S 32972,7 Horizontal guardian 3
 S 32979,7 Horizontal guardian 4
 B 32986 Terminator (set to 255)
-g 32987 Eugene's direction
+g 32987 Eugene's direction and the Kong Beast's status
 ; @label:32987=EUGDIR
 D 32987 Initialised by the routine at #R34436, and used by the routines at #R36344 (to hold Eugene's direction: 0=down, 1=up) and #R37173 (to hold the Kong Beast's status: 0=on the ledge, 1=falling, 2=dead).
-g 32988 Eugene's pixel y-coordinate
+g 32988 Eugene's and the Kong Beast's pixel y-coordinate
 ; @label:32988=EUGHGT
 D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252 (to hold the index into the message scrolled across the screen after the theme tune has finished playing), #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 (to hold Eugene's pixel y-coordinate) and #R37173 (to hold the Kong Beast's pixel y-coordinate).
 g 32989 Vertical guardians
