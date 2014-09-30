@@ -23,31 +23,53 @@ def get_screen_buffer_address_table():
         y += 1
     return '\n'.join(lines)
 
-def _write_guardians(lines, snapshot, start, g_type):
-    term = start + 28
-    for addr in range(start, start + 28, 7):
-        if snapshot[addr] == 255:
-            term = addr
-            break
-    num_guardians = (term - start) // 7
-    g_type_lower = g_type.lower()
-    if num_guardians:
-        lines.append('D {} The next {} bytes define the {} guardian{}.'.format(start, num_guardians * 7, g_type_lower, 's' if num_guardians > 1 else ''))
-        addr = start
-        if num_guardians > 1:
-            for i in range(num_guardians):
-                suffix = ' (unused)' if snapshot[addr] == 0 else ''
-                lines.append('B {},7 {} guardian {}{}'.format(addr, g_type, i + 1, suffix))
-                addr += 7
+def _write_horizontal_guardians(lines, snapshot, start):
+    lines.append('D {} The next 28 bytes are copied to #R32958 and define the horizontal guardians.'.format(start))
+    terminated = False
+    index = 1
+    for a in range(start, start + 28, 7):
+        terminated = terminated or snapshot[a] == 255
+        unused = terminated or snapshot[a] == 0
+        suffix = ''
+        ab_addr = snapshot[a + 1] + 256 * snapshot[a + 2]
+        if 23552 <= ab_addr < 24064:
+            speed = 'slow' if snapshot[a] & 128 else 'normal'
+            x = ab_addr % 32
+            y = (ab_addr - 23552) // 32
+            min_x = snapshot[a + 5] % 32
+            max_x = snapshot[a + 6] % 32
+            suffix += ': y={}, initial x={}, {}<=x<={}, speed={}'.format(y, x, min_x, max_x, speed)
+        if unused:
+            suffix += ' (unused)'
+        lines.append('M {},7 Horizontal guardian {}{}'.format(a, index, suffix))
+        lines.append('B {},1'.format(a))
+        lines.append('W {},2'.format(a + 1))
+        lines.append('B {},4,1'.format(a + 3))
+        index += 1
+    lines.append('B {},1 Terminator'.format(start + 28))
+
+def _write_vertical_guardians(lines, snapshot, start):
+    lines.append('D {} The next 28 bytes are copied to #R32989 and define the vertical guardians.'.format(start))
+    terminated = False
+    index = 1
+    for a in range(start, start + 28, 7):
+        terminated = terminated or snapshot[a] == 255
+        unused = terminated or snapshot[a] == 0
+        suffix = ''
+        if unused:
+            suffix += ' (unused)'
         else:
-            lines.append('B {},7 {} guardian'.format(addr, g_type))
-            addr += 7
-    else:
-        lines.append('D {} There are no {} guardians in this room.'.format(start, g_type_lower))
-    if num_guardians < 4:
-        lines.append('B {},1 Terminator'.format(term))
-        return term + 1
-    return term
+            y = snapshot[a + 2]
+            x = snapshot[a + 3]
+            y_inc = snapshot[a + 4]
+            if y_inc >= 128:
+                y_inc -= 256
+            min_y = snapshot[a + 5]
+            max_y = snapshot[a + 6]
+            y_inc_prefix = '' if start == 59101 else 'initial '
+            suffix += ': x={}, initial y={}, {}<=y<={}, {}y-increment={}'.format(x, y, min_y, max_y, y_inc_prefix, y_inc)
+        lines.append('B {},7,1 Vertical guardian {}{}'.format(a, index, suffix))
+        index += 1
 
 def _get_teleport_code(cavern_num):
     code = ''
@@ -70,7 +92,7 @@ def get_caverns(snapshot):
         lines.append('D {} Used by the routine at #R34436.'.format(a))
         lines.append('D {0} #UDGTABLE {{ #CALL:cavern({0}) }} TABLE#'.format(a))
         lines.append('D {} The first 512 bytes are the attributes that define the layout of the cavern.'.format(a))
-        lines.append('B {},512,16 Attributes'.format(a))
+        lines.append('B {},512,8 Attributes'.format(a))
 
         # Cavern name
         lines.append('D {} The next 32 bytes contain the cavern name.'.format(a + 512))
@@ -163,11 +185,32 @@ def get_caverns(snapshot):
         lines.append('B {} Air'.format(a + 700))
 
         # Horizontal guardians
-        end = _write_guardians(lines, snapshot, a + 702, 'Horizontal')
+        _write_horizontal_guardians(lines, snapshot, a + 702)
+
+        # Bytes 731 and 732
+        prefix = 'The next two bytes are copied to #R32987 and #R32988'
+        if cavern_num == 4:
+            lines.append("D {} {} and define Eugene's initial direction and pixel y-coordinate.".format(a + 731, prefix))
+            lines.append('B {},1 Initial direction (down)'.format(a + 731))
+            lines.append('B {},1 Initial pixel y-coordinate'.format(a + 732))
+        elif cavern_num in (7, 11):
+            lines.append("D {} {}; the first byte defines the Kong Beast's initial status, but the second byte is not used.".format(a + 731, prefix))
+            lines.append('B {},1 Initial status (on the ledge)'.format(a + 731))
+            lines.append('B {},1 Unused'.format(a + 732))
+        else:
+            lines.append('D {} {} but are not used.'.format(a + 731, prefix))
+            lines.append('B {},2 Unused'.format(a + 731))
 
         # Special graphics and vertical guardians
         if cavern_num in (0, 1, 2, 4):
-            lines.append('B {},{},16 Unused'.format(end, a + 736 - end))
+            if cavern_num == 4:
+                lines.append('D {} The next three bytes are unused.'.format(a + 733))
+                lines.append('B {},3 Unused'.format(a + 733))
+            else:
+                lines.append('D {} The next byte is copied to #R32989 and indicates that there are no vertical guardians in this room.'.format(a + 733))
+                lines.append('B {},1 Terminator'.format(a + 733))
+                lines.append('D {} The next two bytes are unused.'.format(a + 734))
+                lines.append('B {},2 Unused'.format(a + 734))
             if cavern_num == 0:
                 desc = 'swordfish graphic that appears in #R64512(The Final Barrier) when the game is completed (see #R36937)'
                 udgarray_macro = '#UDGARRAY2,69,4,2;45792;45793;45808,70;45809,71(swordfish)'
@@ -182,11 +225,16 @@ def get_caverns(snapshot):
                 udgarray_macro = '#UDGARRAY2,23,4,2;49888-49905-1-16(eugene)'
             lines.append('D {} The next 32 bytes define the {}.'.format(a + 736, desc))
             lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a + 736, udgarray_macro))
-            lines.append('B {},32,16'.format(a + 736))
+            lines.append('B {},32,8'.format(a + 736))
         else:
-            lines.append('B {},{},16 Unused'.format(end, a + 733 - end))
-            end = _write_guardians(lines, snapshot, a + 733, 'Vertical')
-            lines.append('B {},{},16 Unused'.format(end, a + 768 - end))
+            _write_vertical_guardians(lines, snapshot, a + 733)
+            start = a + 761
+            if snapshot[start] == 255:
+                lines.append('B {},1 Terminator'.format(start))
+                start += 1
+            unused = a + 768 - start
+            lines.append('D {} The next {} bytes are unused.'.format(start, unused))
+            lines.append('B {},{} Unused'.format(start, unused))
 
         # Guardian graphic data
         gg_addr = a + 768
@@ -207,7 +255,7 @@ def get_caverns(snapshot):
         gg_table += ' | '.join(macros) + ' } TABLE#'
         lines.append('D {} The next 256 bytes are guardian graphic data.'.format(gg_addr))
         lines.append('D {} {}'.format(gg_addr, gg_table))
-        lines.append('B {},256,16'.format(gg_addr))
+        lines.append('B {},256,8'.format(gg_addr))
 
     return '\n'.join(lines)
 
