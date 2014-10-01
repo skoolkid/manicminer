@@ -204,6 +204,11 @@ POKE #R33885,7
 
 For a list of all the caverns and their teleport codes, see the #LINK:Caverns(Caverns page).
 
+[Poke:alwaysOpen:Always open]
+To enable Willy to walk through the portal to the next cavern without collecting all the items first:
+
+POKE #R36825(36826),0
+
 [Poke:moreLives:More lives]
 To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=2):
 
@@ -235,6 +240,7 @@ Added POKEs:
   #POKE#harmlessHeights()
   #POKE#noConveyors()
   #POKE#cheatModeCheat()
+  #POKE#alwaysOpen()
   #POKE#moreLives()
   #POKE#infiniteLives()
 
