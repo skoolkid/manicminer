@@ -105,6 +105,15 @@ For example, to teleport to #R51200(The Vat), hold down keys '2' and '3', and th
 
 The number 6031769 comes from Matthew Smith's driving licence, "with an error in it and twisted round a bit" (as he put it in an interview for issue 48 of <i>Retro Gamer</i> magazine).
 
+[Fact:unusedCrumblingFloor:Unused crumbling floor]
+The crumbling floor tile in #R58368(Skylab Landing Bay) is unique to that cavern, and also not used.
+
+#UDGTABLE { #UDG58931,2(crumbling_floor_13) } TABLE#
+
+To place a couple of these tiles in the cavern in order to see them crumble:
+
+POKE 58811,10: POKE 58812,10: POKE 58930,10
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -242,6 +251,7 @@ Added the #LINK:Caverns(Caverns page)
 Added trivia entries:
   #FACT#takingABreak()
   #FACT#6031769()
+  #FACT#unusedCrumblingFloor()
   #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
