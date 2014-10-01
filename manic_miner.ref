@@ -214,6 +214,11 @@ To remove the Skylabs from #R58368(Skylab Landing Bay):
 
 POKE #R36478,195
 
+[Poke:likeableLightBeam:Likeable light beam]
+To prevent the light beam in #R63488(Solar Power Generator) from decreasing the air supply:
+
+POKE #R36230,24
+
 [Poke:moreLives:More lives]
 To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=2):
 
@@ -247,6 +252,7 @@ Added POKEs:
   #POKE#cheatModeCheat()
   #POKE#alwaysOpen()
   #POKE#noSkylabs()
+  #POKE#likeableLightBeam()
   #POKE#moreLives()
   #POKE#infiniteLives()
 
