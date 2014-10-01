@@ -136,6 +136,17 @@ The other eight caverns have their own unique item graphics:
 { #R60416(The Sixteenth Cavern)            | #UDG61108,3(item15) }
 TABLE#
 
+[Fact:itemCounts:Item counts]
+Fourteen of the twenty caverns have a full set of five items.
+
+#R52224(Miner Willy meets the Kong Beast) and #R60416(The Sixteenth Cavern) both have four items.
+
+#R59392(The Bank) and #R63488(Solar Power Generator) both have three items.
+
+There are no caverns that have exactly two items.
+
+#R53248(Wacky Amoebatrons) and #R62464(Amoebatrons' Revenge) both have only one item.
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -275,6 +286,7 @@ Added trivia entries:
   #FACT#6031769()
   #FACT#unusedCrumblingFloor()
   #FACT#itemGraphics()
+  #FACT#itemCounts()
   #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
