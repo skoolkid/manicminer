@@ -114,6 +114,28 @@ To place a couple of these tiles in the cavern in order to see them crumble:
 
 POKE 58811,10: POKE 58812,10: POKE 58930,10
 
+[Fact:itemGraphics:Item graphics]
+The commonest item graphic is the key, which appears in #R45056(Central Cavern), #R47104(The Menagerie), #R48128(Abandoned Uranium Workings), #R50176(Processing Plant), #R51200(The Vat), #R53248(Wacky Amoebatrons), #R61440(The Warehouse), #R62464(Amoebatrons' Revenge), #R63488(Solar Power Generator) and #R64512(The Final Barrier).
+
+#UDGTABLE { #UDG45748,3(item00) } TABLE#
+
+Next is the banana, which appears in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast):
+
+#UDGTABLE { #UDG52916,3(item07) } TABLE#
+
+The other eight caverns have their own unique item graphics:
+
+#UDGTABLE(gallery)
+{ #R46080(The Cold Room)                   | #UDG46772,11(item01) }
+{ #R49152(Eugene's Lair)                   | #UDG49844,19(item04) }
+{ #R54272(The Endorian Forest)             | #UDG54964,3(item09) }
+{ #R55296(Attack of the Mutant Telephones) | #UDG55988,3(item10) }
+{ #R57344(Ore Refinery)                    | #UDG58036,3(item12) }
+{ #R58368(Skylab Landing Bay)              | #UDG59060,11(item13) }
+{ #R59392(The Bank)                        | #UDG60084,3(item14) }
+{ #R60416(The Sixteenth Cavern)            | #UDG61108,3(item15) }
+TABLE#
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -252,6 +274,7 @@ Added trivia entries:
   #FACT#takingABreak()
   #FACT#6031769()
   #FACT#unusedCrumblingFloor()
+  #FACT#itemGraphics()
   #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
