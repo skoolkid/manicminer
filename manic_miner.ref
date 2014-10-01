@@ -192,6 +192,9 @@ Then it's #R63488(Solar Power Generator), which initialises the game clock to 24
 
 The other 11 caverns initialise the game clock to 128, which means the cell at the right end of the air bar in those caverns starts off with only three white pixel columns instead of seven.
 
+[Fact:theUnreachableMillion:The unreachable million]
+The score (at least, the part of it that is printed - see #R33829) rolls around to zero when it hits a million.
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -337,6 +340,7 @@ Added trivia entries:
   #FACT#guardianCounts()
   #FACT#guardiansNeedAClearPath()
   #FACT#variableAirSupply()
+  #FACT#theUnreachableMillion()
   #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
