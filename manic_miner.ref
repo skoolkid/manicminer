@@ -187,6 +187,11 @@ To enable Willy to survive contact with nasties:
 
 POKE #R37488,201
 
+[Poke:harmlessHeights:Harmless heights]
+To enable Willy to survive a fall from any height:
+
+POKE #R35808(35809),255
+
 [Poke:infiniteLives:Infinite lives]
 To give Willy infinite lives:
 
@@ -206,6 +211,7 @@ Documented a bug: #BUG#throughTheWall()
 Added POKEs:
   #POKE#gentleGuardians()
   #POKE#niceNasties()
+  #POKE#harmlessHeights()
   #POKE#infiniteLives()
 
 [Changelog:20140308]
