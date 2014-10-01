@@ -130,14 +130,13 @@ g 32989 Vertical guardians
 D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593. There are four slots, each one seven bytes long, used to hold the state of the vertical guardians in the current cavern.
 D 32989 For each vertical guardian, the seven bytes are used as follows:
 D 32989 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ 0 | Attribute (BRIGHT, PAPER and INK) }} {{ 1 | Animation frame }} {{ 2 | Pixel y-coordinate }} {{ 3 | x-coordinate }} {{ 4 | Pixel y-coordinate increment }} {{ 5 | Minimum pixel y-coordinate }} {{ 6 | Maximum pixel y-coordinate }} TABLE#
+D 32989 In most of the caverns that do not have vertical guardians, this area is overwritten by unused bytes from the cavern definition. The exception is #R49152(Eugene's Lair): the routine at #R34436 copies the graphic data for the Eugene sprite into the last 32 bytes of this area, where it is then used by the routine at #R36344.
 S 32989,7 Vertical guardian 1
 S 32996,7 Vertical guardian 2
 S 33003,7 Vertical guardian 3
 S 33010,7 Vertical guardian 4
-B 33017 Terminator (set to 255)
-u 33018 Unused
-D 33018 These bytes are overwritten by the routine at #R34436 upon entering a cavern, but are used only in #R49152(Eugene's Lair) by the routine at #R36344 (when they contain part of the graphic data for Eugene).
-S 33018,6
+B 33017 Terminator (set to 255 in caverns that have four vertical guardians)
+S 33018,6 Spare
 g 33024 Guardian graphic data
 ; @label:33024=GGDATA
 D 33024 The guardian graphic data is copied here by the routine at #R34436, and then used by the routines at #R36266, #R36469, #R36593 and #R37173.
