@@ -181,6 +181,17 @@ See this happen by placing a wall block in the path of the guardian in #R45056(C
 
 POKE 45327,22
 
+[Fact:variableAirSupply:Variable air supply]
+The initial air supply varies from cavern to cavern by small amounts, because of differences in the initial value of the game clock at #R32957 - 128, 240, 248 or 252 - which is copied from byte 701 of the cavern definition.
+
+The caverns with the greatest initial air supply are #R45056(Central Cavern), #R46080(The Cold Room), #R57344(Ore Refinery), #R59392(The Bank) and #R64512(The Final Barrier), which initialise the game clock to 252.
+
+Next are #R54272(The Endorian Forest), #R58368(Skylab Landing Bay) and #R60416(The Sixteenth Cavern), which initialise the game clock to 248.
+
+Then it's #R63488(Solar Power Generator), which initialises the game clock to 240.
+
+The other 11 caverns initialise the game clock to 128, which means the cell at the right end of the air bar in those caverns starts off with only three white pixel columns instead of seven.
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -325,6 +336,7 @@ Added trivia entries:
   #FACT#guardianColours()
   #FACT#guardianCounts()
   #FACT#guardiansNeedAClearPath()
+  #FACT#variableAirSupply()
   #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
