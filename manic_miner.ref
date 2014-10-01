@@ -164,6 +164,11 @@ The extra item in #R60416(The Sixteenth Cavern) is at (5,26) - in the path of th
 #UDGTABLE { #CALL:cavern(60416,2,the_sixteenth_cavern_extra_items) } TABLE#
 #POPS
 
+[Fact:guardianColours:Guardian colours]
+The most common guardian colour is yellow (21 instances), and the least common colour is black (only one instance, in #R49152(Eugene's Lair)).
+
+As for the other colours, there are 3 blue guardians, 10 red guardians, 12 magenta guardians, 13 green guardians, 14 cyan guardians, and 5 white guardians.
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -305,6 +310,7 @@ Added trivia entries:
   #FACT#itemGraphics()
   #FACT#itemCounts()
   #FACT#extraItems()
+  #FACT#guardianColours()
   #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
