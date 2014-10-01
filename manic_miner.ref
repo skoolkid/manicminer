@@ -192,6 +192,11 @@ To enable Willy to survive a fall from any height:
 
 POKE #R35808(35809),255
 
+[Poke:noConveyors:No conveyors]
+To enable Willy to walk freely in any direction on conveyors:
+
+POKE #R35834,0
+
 [Poke:infiniteLives:Infinite lives]
 To give Willy infinite lives:
 
@@ -212,6 +217,7 @@ Added POKEs:
   #POKE#gentleGuardians()
   #POKE#niceNasties()
   #POKE#harmlessHeights()
+  #POKE#noConveyors()
   #POKE#infiniteLives()
 
 [Changelog:20140308]
