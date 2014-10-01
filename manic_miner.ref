@@ -105,6 +105,9 @@ For example, to teleport to #R51200(The Vat), hold down keys '2' and '3', and th
 
 The number 6031769 comes from Matthew Smith's driving licence, "with an error in it and twisted round a bit" (as he put it in an interview for issue 48 of <i>Retro Gamer</i> magazine).
 
+[Fact:noSwordfishForCheats:No swordfish for cheats]
+The game ending - with Willy above ground and the portal in #R64512(The Final Barrier) changed to the #R45792(swordfish) graphic - is not shown if #LINK:Facts#6031769(cheat mode) is activated (see #R36919).
+
 [Fact:unusedCrumblingFloor:Unused crumbling floor]
 The crumbling floor tile in #R58368(Skylab Landing Bay) is unique to that cavern, and also not used.
 
@@ -332,6 +335,7 @@ Added the #LINK:Caverns(Caverns page)
 Added trivia entries:
   #FACT#takingABreak()
   #FACT#6031769()
+  #FACT#noSwordfishForCheats()
   #FACT#unusedCrumblingFloor()
   #FACT#itemGraphics()
   #FACT#itemCounts()
