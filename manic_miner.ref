@@ -169,6 +169,11 @@ The most common guardian colour is yellow (21 instances), and the least common c
 
 As for the other colours, there are 3 blue guardians, 10 red guardians, 12 magenta guardians, 13 green guardians, 14 cyan guardians, and 5 white guardians.
 
+[Fact:guardianCounts:Guardian counts]
+The cavern with the most guardians is #R62464(Amoebatrons' Revenge), which has eight (the maximum).
+
+The cavern with the least guardians is #R45056(Central Cavern), which has only one.
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -311,6 +316,7 @@ Added trivia entries:
   #FACT#itemCounts()
   #FACT#extraItems()
   #FACT#guardianColours()
+  #FACT#guardianCounts()
   #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
