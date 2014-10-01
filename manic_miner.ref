@@ -147,6 +147,23 @@ There are no caverns that have exactly two items.
 
 #R53248(Wacky Amoebatrons) and #R62464(Amoebatrons' Revenge) both have only one item.
 
+[Fact:extraItems:Extra items]
+#R59392(The Bank) has five items defined, but only three of them are used; #R60416(The Sixteenth Cavern) also has five items defined, but only four of them are used.
+
+The two extra items in #R59392(The Bank) are at (6,19) and (13,30), shown here in bright white:
+
+#PUSHS
+#POKES60036,71;60041,71
+#UDGTABLE { #CALL:cavern(59392,2,the_bank_extra_items) } TABLE#
+#POPS
+
+The extra item in #R60416(The Sixteenth Cavern) is at (5,26) - in the path of the cyan guardian - shown here in bright white:
+
+#PUSHS
+#POKES61065,71;61140,188
+#UDGTABLE { #CALL:cavern(60416,2,the_sixteenth_cavern_extra_items) } TABLE#
+#POPS
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
@@ -287,6 +304,7 @@ Added trivia entries:
   #FACT#unusedCrumblingFloor()
   #FACT#itemGraphics()
   #FACT#itemCounts()
+  #FACT#extraItems()
   #FACT#sourceCodeRemnants()
 Documented a bug: #BUG#throughTheWall()
 Added POKEs:
