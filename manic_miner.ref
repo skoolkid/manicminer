@@ -209,6 +209,11 @@ To enable Willy to walk through the portal to the next cavern without collecting
 
 POKE #R36825(36826),0
 
+[Poke:noSkylabs:No Skylabs]
+To remove the Skylabs from #R58368(Skylab Landing Bay):
+
+POKE #R36478,195
+
 [Poke:moreLives:More lives]
 To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=2):
 
@@ -241,6 +246,7 @@ Added POKEs:
   #POKE#noConveyors()
   #POKE#cheatModeCheat()
   #POKE#alwaysOpen()
+  #POKE#noSkylabs()
   #POKE#moreLives()
   #POKE#infiniteLives()
 
