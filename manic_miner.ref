@@ -197,6 +197,13 @@ To enable Willy to walk freely in any direction on conveyors:
 
 POKE #R35834,0
 
+[Poke:cheatModeCheat:Cheat mode cheat]
+To activate the #FACT#6031769(6031769 cheat mode) immediately (without having to type 6031769):
+
+POKE #R33885,7
+
+For a list of all the caverns and their teleport codes, see the #LINK:Caverns(Caverns page).
+
 [Poke:infiniteLives:Infinite lives]
 To give Willy infinite lives:
 
@@ -218,6 +225,7 @@ Added POKEs:
   #POKE#niceNasties()
   #POKE#harmlessHeights()
   #POKE#noConveyors()
+  #POKE#cheatModeCheat()
   #POKE#infiniteLives()
 
 [Changelog:20140308]
