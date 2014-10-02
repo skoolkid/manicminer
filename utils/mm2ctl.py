@@ -32,6 +32,7 @@ def _write_horizontal_guardians(lines, snapshot, start):
         unused = terminated or snapshot[a] == 0
         suffix = ''
         ab_addr = snapshot[a + 1] + 256 * snapshot[a + 2]
+        show_details = False
         if 23552 <= ab_addr < 24064:
             speed = 'slow' if snapshot[a] & 128 else 'normal'
             x = ab_addr % 32
@@ -39,12 +40,16 @@ def _write_horizontal_guardians(lines, snapshot, start):
             min_x = snapshot[a + 5] % 32
             max_x = snapshot[a + 6] % 32
             suffix += ': y={}, initial x={}, {}<=x<={}, speed={}'.format(y, x, min_x, max_x, speed)
+            show_details = True
         if unused:
             suffix += ' (unused)'
-        lines.append('M {},7 Horizontal guardian {}{}'.format(a, index, suffix))
-        lines.append('B {},1'.format(a))
-        lines.append('W {},2'.format(a + 1))
-        lines.append('B {},4,1'.format(a + 3))
+        if show_details:
+            lines.append('M {},7 Horizontal guardian {}{}'.format(a, index, suffix))
+            lines.append('B {},1'.format(a))
+            lines.append('W {},2'.format(a + 1))
+            lines.append('B {},4,1'.format(a + 3))
+        else:
+            lines.append('B {},7 Horizontal guardian {}{}'.format(a, index, suffix))
         index += 1
     lines.append('B {},1 Terminator'.format(start + 28))
 
@@ -68,7 +73,8 @@ def _write_vertical_guardians(lines, snapshot, start):
             max_y = snapshot[a + 6]
             y_inc_prefix = '' if start == 59101 else 'initial '
             suffix += ': x={}, initial y={}, {}<=y<={}, {}y-increment={}'.format(x, y, min_y, max_y, y_inc_prefix, y_inc)
-        lines.append('B {},7,1 Vertical guardian {}{}'.format(a, index, suffix))
+        lengths = '7' if unused else '7,1'
+        lines.append('B {},{} Vertical guardian {}{}'.format(a, lengths, index, suffix))
         index += 1
 
 def _get_teleport_code(cavern_num):
@@ -120,7 +126,7 @@ def get_caverns(snapshot):
             if b in attrs:
                 tile_usage[attrs.index(b)] = ''
         udg_table = '#UDGTABLE { ' + ' | '.join(udgs) + ' } TABLE#'
-        lines.append('D {} The next 72 bytes are copied to #R32800 and contain the attributes and graphic data for the tiles used to build the room.'.format(a + 544))
+        lines.append('D {} The next 72 bytes are copied to #R32800 and contain the attributes and graphic data for the tiles used to build the cavern.'.format(a + 544))
         lines.append('D {} {}'.format(a + 544, udg_table))
         lines.append('B {},9,9 Background{}'.format(a + 544, tile_usage[0]))
         lines.append('B {},9,9 Floor{}'.format(a + 553, tile_usage[1]))
@@ -164,22 +170,28 @@ def get_caverns(snapshot):
         lines.append('B {} Unused'.format(a + 628))
 
         # Items
-        lines.append('D {} The next 25 bytes are copied to #R32885 and specify the colour and location of the items in the cavern.'.format(a + 629))
+        lines.append('D {} The next 25 bytes are copied to #R32885 and specify the location and initial colour of the items in the cavern.'.format(a + 629))
         terminated = False
         for i, addr in enumerate(range(a + 629, a + 654, 5)):
             terminated = terminated or snapshot[addr] == 255
+            unused = terminated or snapshot[addr] == 0
             suffix = ''
             ab_addr = snapshot[addr + 1] + 256 * snapshot[addr + 2]
+            show_details = False
             if 23552 <= ab_addr < 24064:
                 x = ab_addr % 32
                 y = (ab_addr - 23552) // 32
                 suffix += ' at ({},{})'.format(y, x)
-            if terminated:
+                show_details = True
+            if unused:
                 suffix += ' (unused)'
-            lines.append('M {},5 Item {}{}'.format(addr, i + 1, suffix))
-            lines.append('B {},1'.format(addr))
-            lines.append('W {},2'.format(addr + 1))
-            lines.append('B {},2,1'.format(addr + 3))
+            if show_details:
+                lines.append('M {},5 Item {}{}'.format(addr, i + 1, suffix))
+                lines.append('B {},1'.format(addr))
+                lines.append('W {},2'.format(addr + 1))
+                lines.append('B {},2,1'.format(addr + 3))
+            else:
+                lines.append('B {},5 Item {}{}'.format(addr, i + 1, suffix))
         lines.append('B {} Terminator'.format(a + 654))
 
         # Portal
@@ -234,7 +246,7 @@ def get_caverns(snapshot):
                 lines.append('D {} The next three bytes are unused.'.format(a + 733))
                 lines.append('B {},3 Unused'.format(a + 733))
             else:
-                lines.append('D {} The next byte is copied to #R32989 and indicates that there are no vertical guardians in this room.'.format(a + 733))
+                lines.append('D {} The next byte is copied to #R32989 and indicates that there are no vertical guardians in this cavern.'.format(a + 733))
                 lines.append('B {},1 Terminator'.format(a + 733))
                 lines.append('D {} The next two bytes are unused.'.format(a + 734))
                 lines.append('B {},2 Unused'.format(a + 734))
@@ -250,7 +262,7 @@ def get_caverns(snapshot):
                 comment = 'Plinth graphic data'
             elif cavern_num == 2:
                 lines.append('; @label:47840=BOOT')
-                desc = 'boot graphic that appears on the Game Over screen (see #R35210). It also appears at the bottom of the screen next to the remaining lives when cheat mode is activated (see #R34608)'
+                desc = 'boot graphic that appears on the Game Over screen (see #R35210). It also appears at the bottom of the screen next to the remaining lives when #FACT#6031769(cheat mode) is activated (see #R34608)'
                 udgarray_macro = '#UDGARRAY2,71,4,2;47840-47857-1-16(boot)'
                 comment = 'Boot graphic data'
             else:
