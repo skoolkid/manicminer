@@ -119,17 +119,17 @@ S 32965,7 Horizontal guardian 2
 S 32972,7 Horizontal guardian 3
 S 32979,7 Horizontal guardian 4
 B 32986 Terminator (set to 255)
-g 32987 Eugene's direction and the Kong Beast's status
+g 32987 Eugene's direction or the Kong Beast's status
 ; @label:32987=EUGDIR
 D 32987 Initialised by the routine at #R34436, and used by the routines at #R36344 (to hold Eugene's direction: 0=down, 1=up) and #R37173 (to hold the Kong Beast's status: 0=on the ledge, 1=falling, 2=dead).
-g 32988 Eugene's and the Kong Beast's pixel y-coordinate
+g 32988 Eugene's or the Kong Beast's pixel y-coordinate
 ; @label:32988=EUGHGT
 D 32988 Initialised by the routine at #R34436, and used by the routines at #R34252 (to hold the index into the message scrolled across the screen after the theme tune has finished playing), #R35140 (to hold the distance of the boot from the top of the screen as it descends onto Willy), #R36344 (to hold Eugene's pixel y-coordinate) and #R37173 (to hold the Kong Beast's pixel y-coordinate).
 g 32989 Vertical guardians
 ; @label:32989=VGUARDS
 D 32989 The vertical guardian definitions are copied here by the routine at #R34436, and then used by the routines at #R36469 and #R36593. There are four slots, each one seven bytes long, used to hold the state of the vertical guardians in the current cavern.
 D 32989 For each vertical guardian, the seven bytes are used as follows:
-D 32989 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ 0 | Attribute (BRIGHT, PAPER and INK) }} {{ 1 | Animation frame }} {{ 2 | Pixel y-coordinate }} {{ 3 | x-coordinate }} {{ 4 | Pixel y-coordinate increment }} {{ 5 | Minimum pixel y-coordinate }} {{ 6 | Maximum pixel y-coordinate }} TABLE#
+D 32989 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ 0 | Attribute }} {{ 1 | Animation frame }} {{ 2 | Pixel y-coordinate }} {{ 3 | x-coordinate }} {{ 4 | Pixel y-coordinate increment }} {{ 5 | Minimum pixel y-coordinate }} {{ 6 | Maximum pixel y-coordinate }} TABLE#
 D 32989 In most of the caverns that do not have vertical guardians, this area is overwritten by unused bytes from the cavern definition. The exception is #R49152(Eugene's Lair): the routine at #R34436 copies the graphic data for the Eugene sprite into the last 32 bytes of this area, where it is then used by the routine at #R36344.
 S 32989,7 Vertical guardian 1
 S 32996,7 Vertical guardian 2
@@ -192,7 +192,7 @@ D 33823 Used by the routine at #R34574 and updated by the routine at #R35140.
 T 33823,6
 g 33829 Score
 ; @label:33829=SCORE
-D 33829 Used by the routines at #R34574, #R35140, #R36904 and #R37098.
+D 33829 Initialised by the routine at #R34436, and used by the routines at #R34574, #R35140, #R36904 and #R37098.
 T 33829,4 Overflow digits (these may be updated, but are never printed)
 ; @label:33833=SCORBUF
 T 33833,6
