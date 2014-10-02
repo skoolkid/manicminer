@@ -178,7 +178,7 @@ The cavern with the most guardians is #R62464(Amoebatrons' Revenge), which has e
 The cavern with the least guardians is #R45056(Central Cavern), which has only one.
 
 [Fact:guardiansNeedAClearPath:Guardians need a clear path]
-The guardian-drawing code kills Willy if a guardian collides with anything that's already been drawn in the room. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
+The guardian-drawing code kills Willy if a guardian collides with anything that's already been drawn in the cavern. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
 
 See this happen by placing a wall block in the path of the guardian in #R45056(Central Cavern):
 
