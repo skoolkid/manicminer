@@ -56,7 +56,7 @@ D 32874 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0
 g 32875 Airborne status indicator
 ; @label:32875=AIRBORNE
 D 32875 Initialised by the routine at #R34436, and used by the routines at #R34574, #R35515, #R35805 and #R36101. Possible values are:
-D 32875 #TABLE(default,centre,:w) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R35967) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12-15 | Willy is falling, and has fallen too far to land safely (see #R35805#35805) }} {{ 255 | Willy has collided with a nasty or a guardian (see #R36101) }} TABLE#
+D 32875 #TABLE(default,centre,:w) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R35967) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12+ | Willy is falling, and has fallen too far to land safely (see #R35805#35805) }} {{ 255 | Willy has collided with a nasty or a guardian (see #R36101) }} TABLE#
 g 32876 Address of Willy's location in the attribute buffer at 23552
 ; @label:32876=LOCATION
 D 32876 Initialised by the routine at #R34436, used by the routines at #R35515, #R36805, #R37403, #R37434 and #R37503, and updated by the routine at #R35805.
@@ -431,7 +431,7 @@ D 34845 Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
   34872 Jump if so
 D 34874 The next section of code plays a note of the in-game music.
   34874,7 Increment the in-game music note index at #R33883
-  34881,10 Point HL at the appropriate entry in the tune data table at #R34188
+  34881,10 Point #REGhl at the appropriate entry in the tune data table at #R34188
   34891 Pick up the border colour for the current cavern from #R32883
   34894 Initialise the pitch delay counter in #REGe
   34895 Initialise the duration delay counters in #REGb (0) and #REGc (3)
@@ -471,10 +471,10 @@ D 34948 Here we check the teleport keys.
   34981 Teleport into the cavern
 ; @label:34984=CKCHEAT
 D 34984 Now check the 6031769 keys.
-  34984 Pick up the 6031769 key counter from #R33885.
+  34984 Pick up the 6031769 key counter from #R33885
   34987 Has 6031769 been keyed in yet?
   34989 If so, jump back to the start of the main loop
-  34992,10 Point IX at the corresponding entry in the 6031769 table at #R33888
+  34992,10 Point #REGix at the corresponding entry in the 6031769 table at #R33888
   35002,5 Read keys 1-2-3-4-5
   35007 Keep only bits 0-5
   35009 Does this match the first byte of the entry in the 6031769 table?
@@ -612,7 +612,7 @@ D 35388 Used by the routines at #R34574, #R36211 and #R36904. Returns with the z
   35433,3 Set #REGhl to the display file address at which to draw the top row of pixels in the cell at the right end of the air bar
   35436 There are four rows of pixels to draw
   35438,6 Draw the four rows of pixels at the right end of the air bar
-  35442,2 Reset the zero flag: there is still some air remaining
+  35442,2 Reset the zero flag to indicate that there is still some air remaining; these instructions are redundant, since the zero flag is already reset at this point
 c 35445 Draw the current cavern to the screen buffer at 28672
 ; @label:35445=DRAWSHEET
   35445 Point #REGix at the first byte of the attribute buffer at #R24064
@@ -710,7 +710,7 @@ D 35673 If we get here, then Willy is either in the process of falling or just a
   35678 Is Willy already falling?
   35679 Jump if not
   35682,4 Increment the airborne status indicator at #R32875
-  35686,5 #REGd=8*#REGa; this value determines the pitch of the falling sound effect
+  35686,5 #REGd=16*#REGa; this value determines the pitch of the falling sound effect
   35691 #REGc=32; this value determines the duration of the falling sound effect
   35693 Pick up the border colour for the current cavern from #R32883
   35696,10 Make a falling sound effect
@@ -719,7 +719,7 @@ D 35673 If we get here, then Willy is either in the process of falling or just a
   35717 Clear #REGa and the carry flag
   35718 Now #REGl=32*(Y-8*INT(Y/8)), and the carry flag is set if Willy is in the lower half of the cavern (Y>=8)
   35720,3 #REGh=92 or 93 (MSB of the address of Willy's location in the attribute buffer)
-  35723,5 Pick up Willy's screen x-coordinate (0-30) from bits 0-5 at #R32876
+  35723,5 Pick up Willy's screen x-coordinate (1-29) from bits 0-5 at #R32876
   35728,2 Now #REGl holds the LSB of Willy's attribute buffer address
   35730,3 Store Willy's updated attribute buffer location at #R32876
 D 35734 Willy has just finished a jump.
@@ -1133,7 +1133,7 @@ D 36750 This item has not been collected yet.
   36777 There are eight pixel rows to copy
   36779 Draw the item to the screen buffer at #R24576
 D 36782 The current item definition has been dealt with. Time for the next one.
-  36782,10 Point IY at the first byte of the next item definition
+  36782,10 Point #REGiy at the first byte of the next item definition
   36792 Jump back to deal with the next item
 D 36794 All the items have been dealt with. Check whether there were any left.
   36794 Pick up the attribute of the last item drawn at #R32884
@@ -1159,7 +1159,7 @@ D 36831 Willy has not entered the portal, or it's not flashing, so just draw it.
   36831 Pick up the portal's attribute byte from #R32911
   36834,10 Set the attribute bytes for the portal in the buffer at #R23552
   36844 Point #REGde at the graphic data for the portal at #R32912
-  36847 Pick up the address of the portal's location in the screen buffer at #R24576
+  36847 Pick up the address of the portal's location in the screen buffer at #R24576 from #R32946
   36850 #REGc=0: overwrite mode
 E 36805 This routine continues into the one at #R36852.
 c 36852 Draw a sprite
@@ -1305,7 +1305,7 @@ D 37193 The left-hand switch has been flipped. Deal with opening up the wall if 
   37215,6 Change the attributes at (11,17) and (12,17) in the buffer at #R24064 to match the background tile (the wall there is now gone)
   37221,5 Update the seventh byte of the guardian definition at #R32965 so that the guardian moves through the opening in the wall
   37228 Clear a pixel row of the wall tile at (11,17) in the screen buffer at #R28672
-  37230,6 Point #REGhl at the opposite pixel row of the wall tile one cell down at (12,7)
+  37230,6 Point #REGhl at the opposite pixel row of the wall tile one cell down at (12,17)
   37236 Clear that pixel row as well
 D 37238 Now check the right-hand switch.
   37238,6 Flip the right-hand switch at (0,18) if Willy is touching it (and it hasn't already been flipped)
@@ -1326,7 +1326,7 @@ D 37283 The Kong Beast is falling.
   37290,5 Add 4 to the Kong Beast's pixel y-coordinate at #R32988 (moving him downwards)
   37295 Copy the pixel y-coordinate to #REGc; this value determines the pitch of the sound effect
   37296 #REGd=16; this value determines the duration of the sound effect
-  37298 Pick the border colour for the current cavern from #R32883
+  37298 Pick up the border colour for the current cavern from #R32883
   37301,10 Make a falling sound effect
   37311 Copy the Kong Beast's pixel y-coordinate back into #REGa
   37312,4 Point #REGde at the entry in the screen buffer address lookup table at #R33536 that corresponds to the Kong Beast's pixel y-coordinate
@@ -1443,7 +1443,7 @@ R 37579 DE Display file address
   37579,8 Point #REGhl at the bitmap for the character (in the ROM)
   37587 There are eight pixel rows in a character bitmap
 D 37589 This entry point is used by the routine at #R36707 to draw an item in the current cavern.
-  37589,6 Copy the character bitmap (or item graphic) to the screen (or screen buffer)
+  37589,6 Copy the character bitmap to the screen (or item graphic to the screen buffer)
 c 37596 Play the theme tune
 ; @label:37596=PLAYTUNE
 D 37596 Used by the routine at #R34252. Returns with the zero flag reset if ENTER or the fire button is pressed while the tune is being played.
