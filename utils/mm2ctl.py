@@ -153,9 +153,9 @@ def get_caverns(snapshot):
         # Conveyor
         lines.append('D {} The next four bytes are copied to #R32879 and specify the direction, location and length of the conveyor.'.format(a + 623))
         direction = 'left' if snapshot[a + 623] == 0 else 'right'
-        p1, p2 = snapshot[a + 624:a + 626]
-        x = p1 & 31
-        y = p2 & 8 + (p1 & 224) // 32
+        sb_addr = snapshot[a + 624] + 256 * snapshot[a + 625]
+        x = sb_addr % 32
+        y = 8 * ((sb_addr - 28672) // 2048) + (sb_addr % 256) // 32
         length = snapshot[a + 626]
         lines.append('B {} Direction ({})'.format(a + 623, direction))
         lines.append('W {} Location in the screen buffer at #R28672: ({},{})'.format(a + 624, y, x))
