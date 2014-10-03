@@ -273,6 +273,13 @@ This happens because the section of code at #R35600 - which is executed during j
 
 Perhaps the assumption in this code is that if there is a nasty tile below Willy's sprite in step 16, then he will be killed by the nasty in step 17; however, in this particular case Willy's x-coordinate decreases by one from step 16 to step 17, which moves him out of the nasty's range.
 
+[Bug:attributeCrash:Attribute crash]
+When a Skylab in #R58368(Skylab Landing Bay) crashes into a section of floor or conveyor, the attributes of that section are temporarily changed to that of the Skylab; the attributes are restored after the Skylab has finished disintegrating.
+
+#UDGTABLE { #CALL:attribute_crash_img() } TABLE#
+
+The reason for this is that the code at #R36447 (which is used to set the attributes for a Skylab) sets the attributes in not two but three rows of cells, to handle the case where a guardian's sprite is not cell-aligned. However, when a Skylab crashes, it <em>is</em> cell-aligned, and so its attributes needlessly bleed over to the floor or conveyor cells immediately below it.
+
 [Poke:gentleGuardians:Gentle guardians]
 To enable Willy to walk through guardians with impunity:
 
@@ -350,7 +357,9 @@ Added trivia entries:
   #FACT#theUnreachableMillion()
   #FACT#horizontalSkylabs()
   #FACT#sourceCodeRemnants()
-Documented a bug: #BUG#throughTheWall()
+Documented bugs:
+  #BUG#throughTheWall()
+  #BUG#attributeCrash()
 Added POKEs:
   #POKE#gentleGuardians()
   #POKE#niceNasties()

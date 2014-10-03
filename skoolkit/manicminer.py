@@ -65,6 +65,20 @@ class ManicMinerHtmlWriter(HtmlWriter):
             self.write_image(img_path, udg_array, scale=2)
         return self.img_element(cwd, img_path)
 
+    def attribute_crash_img(self, cwd):
+        img_path = self.image_path('attribute_crash', 'ScreenshotImagePath')
+        if self.need_image(img_path):
+            self.push_snapshot()
+            self.snapshot[59102] = 2
+            self.snapshot[59103] = 72
+            self.snapshot[59104] = 17
+            cavern = self._get_cavern_udgs(58368)
+            self.pop_snapshot()
+            cavern[11][17] = cavern[11][18] = Udg(15, cavern[11][15].data)
+            udg_array = [row[14:22] for row in cavern[8:13]]
+            self.write_image(img_path, udg_array, scale=2)
+        return self.img_element(cwd, img_path)
+
     def _get_cavern_names(self):
         caverns = {}
         for a in range(45056, 65536, 1024):
