@@ -23,13 +23,13 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="36111.html">36111</a></span></td>
 </tr>
 </table>
-<div class="description">36101: Routine at 36101</div>
+<div class="description">36101: Kill Willy</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="37471.html">37471</a>.
+Used by the routine at <a class="link" href="37471.html">37471</a> when Willy hits a nasty.
 </div>
 </div>
 <table class="input-0">
@@ -50,14 +50,14 @@ Used by the routine at <a class="link" href="37471.html">37471</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36101"></a>36101</td>
 <td class="instruction">POP HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Drop the return address from the stack</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
 <a name="36102"></a>
 <div class="comments">
 <div class="paragraph">
-This entry point is used by the routines at <a class="link" href="35805.html">35805</a>, <a class="link" href="36266.html">36266</a>, <a class="link" href="36344.html">36344</a>, <a class="link" href="36593.html">36593</a> and <a class="link" href="37173.html">37173</a>.
+This entry point is used by the routines at <a class="link" href="35805.html">35805</a> (when Willy lands after falling from too great a height), <a class="link" href="36266.html">36266</a> (when Willy collides with a horizontal guardian), <a class="link" href="36344.html">36344</a> (when Willy collides with Eugene), <a class="link" href="36593.html">36593</a> (when Willy collides with a vertical guardian) and <a class="link" href="37173.html">37173</a> (when Willy collides with the Kong Beast).
 </div>
 </div>
 </td>
@@ -66,14 +66,14 @@ This entry point is used by the routines at <a class="link" href="35805.html">35
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36102"></a>36102</td>
 <td class="instruction">POP HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Drop the return address from the stack</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
 <a name="36103"></a>
 <div class="comments">
 <div class="paragraph">
-This entry point is used by the routine at <a class="link" href="36469.html">36469</a>.
+This entry point is used by the routine at <a class="link" href="36469.html">36469</a> when a Skylab falls on Willy.
 </div>
 </div>
 </td>
@@ -82,19 +82,19 @@ This entry point is used by the routine at <a class="link" href="36469.html">364
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36103"></a>36103</td>
 <td class="instruction">LD A,255</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a class="link" href="32875.html">32875</a> to 255 (meaning Willy has had a fatal accident)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36105"></a>36105</td>
 <td class="instruction">LD (32875),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36108"></a>36108</td>
-<td class="instruction">JP <a class="link" href="34252.html#34722">34722</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JP <a class="link" href="34574.html#34722">34722</a></td>
+<td class="comment-11" rowspan="1">Jump back into the main loop</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -105,9 +105,9 @@ This entry point is used by the routine at <a class="link" href="36469.html">364
 </tr>
 </table>
 <div class="footer">
-<div class="release">The incomplete Manic Miner RAM disassembly 20140308</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

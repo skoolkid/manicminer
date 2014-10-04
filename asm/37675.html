@@ -23,20 +23,23 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="37687.html">37687</a></span></td>
 </tr>
 </table>
-<div class="description">37675: Routine at 37675</div>
+<div class="description">37675: Calculate the attribute file address for a piano key</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="37596.html">37596</a>.
+Used by the routine at <a class="link" href="37596.html">37596</a>. Returns with the attribute file address in <span class="register">HL</span>.
 </div>
 </div>
-<table class="input-0">
+<table class="input-1">
 <tr class="asm-input-header">
 <th colspan="2">Input</th>
 </tr>
-
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Frequency parameter from the tune data table at <a class="link" href="33902.html">33902</a></td>
+</tr>
 </table>
 <table class="output-0">
 <tr class="asm-output-header">
@@ -50,55 +53,55 @@ Used by the routine at <a class="link" href="37596.html">37596</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="37675"></a>37675</td>
 <td class="instruction">SUB 8</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="5">Compute the piano key index (K) based on the frequency parameter (F), and store it in bits 0-4 of <span class="register">A</span>: K=31-INT((F-8)/8)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37677"></a>37677</td>
 <td class="instruction">RRCA</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37678"></a>37678</td>
 <td class="instruction">RRCA</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37679"></a>37679</td>
 <td class="instruction">RRCA</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37680"></a>37680</td>
 <td class="instruction">CPL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37681"></a>37681</td>
 <td class="instruction">OR 224</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=224+K; this is the LSB</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37683"></a>37683</td>
 <td class="instruction">LD L,A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Set <span class="register">HL</span> to the attribute file address for the piano key</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37684"></a>37684</td>
 <td class="instruction">LD H,89</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37686"></a>37686</td>
 <td class="instruction">RET</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -109,9 +112,9 @@ Used by the routine at <a class="link" href="37596.html">37596</a>.
 </tr>
 </table>
 <div class="footer">
-<div class="release">The incomplete Manic Miner RAM disassembly 20140308</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

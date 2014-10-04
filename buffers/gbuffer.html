@@ -26,22 +26,623 @@
 <th>Description</th>
 </tr>
 <tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">0</td>
+<td class="map-g"><a name="32768"></a><a class="link" href="../asm/32768.html">32768</a></td>
+<td class="map-length-1">32</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Cavern name</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The cavern name is copied here and then used by the routine at <a class="link" href="../asm/34436.html">34436</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">32</td>
+<td class="map-g"><a name="32800"></a><a class="link" href="../asm/32800.html">32800</a></td>
+<td class="map-length-1">72</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Cavern tiles</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The cavern tiles are copied here by the routine at <a class="link" href="../asm/34436.html">34436</a> and then used to draw the cavern by the routine at <a class="link" href="../asm/35445.html">35445</a>.
+</div>
+<div class="paragraph">
+The extra tile at <a class="link" href="../asm/32800.html#32863">32863</a> behaves like a floor tile, and is used as such in <a class="link" href="../asm/54272.html">The Endorian Forest</a>, <a class="link" href="../asm/55296.html">Attack of the Mutant Telephones</a>, <a class="link" href="../asm/57344.html">Ore Refinery</a>, <a class="link" href="../asm/58368.html">Skylab Landing Bay</a> and <a class="link" href="../asm/59392.html">The Bank</a>. It is also used in <a class="link" href="../asm/47104.html">The Menagerie</a> as spider silk, and in <a class="link" href="../asm/52224.html">Miner Willy meets the Kong Beast</a> and <a class="link" href="../asm/56320.html">Return of the Alien Kong Beast</a> as a switch.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">104</td>
+<td class="map-g"><a name="32872"></a><a class="link" href="../asm/32872.html">32872</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Willy's pixel y-coordinate (x2)</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>, and used by the routines at <a class="link" href="../asm/35515.html">35515</a>, <a class="link" href="../asm/35805.html">35805</a>, <a class="link" href="../asm/37434.html">37434</a> and <a class="link" href="../asm/37503.html">37503</a>. Holds the LSB of the address of the entry in the screen buffer address lookup table at <a class="link" href="../asm/33536.html">33536</a> that corresponds to Willy's pixel y-coordinate; in practice, this is twice Willy's actual pixel y-coordinate.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">105</td>
+<td class="map-g"><a name="32873"></a><a class="link" href="../asm/32873.html">32873</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Willy's animation frame</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>, used by the routine at <a class="link" href="../asm/37503.html">37503</a>, and updated by the routine at <a class="link" href="../asm/35805.html">35805</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">106</td>
+<td class="map-g"><a name="32874"></a><a class="link" href="../asm/32874.html">32874</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Willy's direction and movement flags</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>.
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Bit(s)</th>
+<th>Meaning</th>
+<th>Used by</th>
+</tr>
+<tr>
+<td class="centre">0</td>
+<td>Direction Willy is facing (reset=right, set=left)</td>
+<td><a class="link" href="../asm/35805.html">35805</a>, <a class="link" href="../asm/37503.html">37503</a></td>
+</tr>
+<tr>
+<td class="centre">1</td>
+<td>Willy's movement flag (set=moving)</td>
+<td><a class="link" href="../asm/35515.html">35515</a>, <a class="link" href="../asm/35805.html">35805</a></td>
+</tr>
+<tr>
+<td class="centre">2-7</td>
+<td>Unused (always reset)</td>
+<td></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">107</td>
+<td class="map-g"><a name="32875"></a><a class="link" href="../asm/32875.html">32875</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Airborne status indicator</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>, and used by the routines at <a class="link" href="../asm/34574.html">34574</a>, <a class="link" href="../asm/35515.html">35515</a>, <a class="link" href="../asm/35805.html">35805</a> and <a class="link" href="../asm/36101.html">36101</a>. Possible values are:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td class="centre">0</td>
+<td>Willy is neither falling nor jumping</td>
+</tr>
+<tr>
+<td class="centre">1</td>
+<td>Willy is jumping (see <a class="link" href="../asm/35805.html#35967">35967</a>)</td>
+</tr>
+<tr>
+<td class="centre">2-11</td>
+<td>Willy is falling, and can land safely</td>
+</tr>
+<tr>
+<td class="centre">12+</td>
+<td>Willy is falling, and has fallen too far to land safely (see <a class="link" href="../asm/35805.html#35805">35805</a>)</td>
+</tr>
+<tr>
+<td class="centre">255</td>
+<td>Willy has collided with a nasty or a guardian (see <a class="link" href="../asm/36101.html">36101</a>)</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">108</td>
+<td class="map-g"><a name="32876"></a><a class="link" href="../asm/32876.html">32876</a></td>
+<td class="map-length-1">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Address of Willy's location in the attribute buffer at 23552</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>, used by the routines at <a class="link" href="../asm/35515.html">35515</a>, <a class="link" href="../asm/36805.html">36805</a>, <a class="link" href="../asm/37403.html">37403</a>, <a class="link" href="../asm/37434.html">37434</a> and <a class="link" href="../asm/37503.html">37503</a>, and updated by the routine at <a class="link" href="../asm/35805.html">35805</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">110</td>
+<td class="map-g"><a name="32878"></a><a class="link" href="../asm/32878.html">32878</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Jumping animation counter</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>, and used by the routines at <a class="link" href="../asm/35515.html">35515</a> and <a class="link" href="../asm/35805.html">35805</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">111</td>
+<td class="map-g"><a name="32879"></a><a class="link" href="../asm/32879.html">32879</a></td>
+<td class="map-length-1">4</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Conveyor definition</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The conveyor definition is copied here by the routine at <a class="link" href="../asm/34436.html">34436</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">115</td>
+<td class="map-g"><a name="32883"></a><a class="link" href="../asm/32883.html">32883</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Border colour</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised and used by the routine at <a class="link" href="../asm/34436.html">34436</a>, and also used by the routines at <a class="link" href="../asm/34574.html">34574</a>, <a class="link" href="../asm/35515.html">35515</a> and <a class="link" href="../asm/37173.html">37173</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">116</td>
+<td class="map-g"><a name="32884"></a><a class="link" href="../asm/32884.html">32884</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Attribute of the last item drawn</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Used by the routines at <a class="link" href="../asm/36344.html">36344</a> and <a class="link" href="../asm/36707.html">36707</a>. Holds the attribute byte of the last item drawn, or 0 if all the items have been collected.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">117</td>
+<td class="map-g"><a name="32885"></a><a class="link" href="../asm/32885.html">32885</a></td>
+<td class="map-length-1">26</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Item definitions</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The item definitions are copied here by the routine at <a class="link" href="../asm/34436.html">34436</a>, and then used by the routine at <a class="link" href="../asm/36707.html">36707</a>. An item definition contains the following information:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Byte(s)</th>
+<th>Contents</th>
+</tr>
+<tr>
+<td class="centre">0</td>
+<td>Current attribute</td>
+</tr>
+<tr>
+<td class="centre">1,2</td>
+<td>Address of the item's location in the attribute buffer at <a class="link" href="../asm/23552.html">23552</a></td>
+</tr>
+<tr>
+<td class="centre">3</td>
+<td>MSB of the address of the item's location in the screen buffer at <a class="link" href="../asm/24576.html">24576</a></td>
+</tr>
+<tr>
+<td class="centre">4</td>
+<td>Unused (always 255)</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">143</td>
+<td class="map-g"><a name="32911"></a><a class="link" href="../asm/32911.html">32911</a></td>
+<td class="map-length-1">37</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Portal definition</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The portal definition is copied here by the routine at <a class="link" href="../asm/34436.html">34436</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">180</td>
+<td class="map-g"><a name="32948"></a><a class="link" href="../asm/32948.html">32948</a></td>
+<td class="map-length-1">8</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Item graphic</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The item graphic is copied here by the routine at <a class="link" href="../asm/34436.html">34436</a>, and then used by the routine at <a class="link" href="../asm/36707.html">36707</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">188</td>
+<td class="map-g"><a name="32956"></a><a class="link" href="../asm/32956.html">32956</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Remaining air supply</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised (always to 63 in practice) and used by the routine at <a class="link" href="../asm/34436.html">34436</a>, updated by the routine at <a class="link" href="../asm/35388.html">35388</a>, and also used by the routine at <a class="link" href="../asm/36904.html">36904</a>. Its value ranges from 36 to 63 and is actually the LSB of the display file address for the cell at the right end of the air bar. The amount of air to draw in this cell is determined by the value of the game clock at <a class="link" href="../asm/32957.html">32957</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">189</td>
+<td class="map-g"><a name="32957"></a><a class="link" href="../asm/32957.html">32957</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Game clock</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>, updated on every pass through the main loop by the routine at <a class="link" href="../asm/35388.html">35388</a>, and used for timing purposes by the routines at <a class="link" href="../asm/36111.html">36111</a>, <a class="link" href="../asm/36344.html">36344</a> and <a class="link" href="../asm/37173.html">37173</a>. Its value (which is always a multiple of 4) is also used by the routine at <a class="link" href="../asm/35388.html">35388</a> to compute the amount of air to draw in the cell at the right end of the air bar.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">190</td>
+<td class="map-g"><a name="32958"></a><a class="link" href="../asm/32958.html">32958</a></td>
+<td class="map-length-1">29</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Horizontal guardians</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The horizontal guardian definitions are copied here by the routine at <a class="link" href="../asm/34436.html">34436</a>, and then used by the routines at <a class="link" href="../asm/36111.html">36111</a> and <a class="link" href="../asm/36266.html">36266</a>. There are four slots, each one seven bytes long, used to hold the state of the horizontal guardians in the current cavern.
+</div>
+<div class="paragraph">
+For each horizontal guardian, the seven bytes are used as follows:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Byte</th>
+<th>Contents</th>
+</tr>
+<tr>
+<td class="centre" rowspan="2">0</td>
+<td>Bit 7: animation speed (0=normal, 1=slow)</td>
+</tr>
+<tr>
+<td>Bits 0-6: attribute (BRIGHT, PAPER and INK)</td>
+</tr>
+<tr>
+<td class="centre">1,2</td>
+<td>Address of the guardian's location in the attribute buffer at <a class="link" href="../asm/23552.html">23552</a></td>
+</tr>
+<tr>
+<td class="centre">3</td>
+<td>MSB of the address of the guardian's location in the screen buffer at <a class="link" href="../asm/24576.html">24576</a></td>
+</tr>
+<tr>
+<td class="centre">4</td>
+<td>Animation frame</td>
+</tr>
+<tr>
+<td class="centre">5</td>
+<td>LSB of the address of the leftmost point of the guardian's path in the attribute buffer</td>
+</tr>
+<tr>
+<td class="centre">6</td>
+<td>LSB of the address of the rightmost point of the guardian's path in the attribute buffer</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">219</td>
+<td class="map-g"><a name="32987"></a><a class="link" href="../asm/32987.html">32987</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Eugene's direction or the Kong Beast's status</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>, and used by the routines at <a class="link" href="../asm/36344.html">36344</a> (to hold Eugene's direction: 0=down, 1=up) and <a class="link" href="../asm/37173.html">37173</a> (to hold the Kong Beast's status: 0=on the ledge, 1=falling, 2=dead).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">220</td>
+<td class="map-g"><a name="32988"></a><a class="link" href="../asm/32988.html">32988</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Eugene's or the Kong Beast's pixel y-coordinate</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>, and used by the routines at <a class="link" href="../asm/34252.html">34252</a> (to hold the index into the message scrolled across the screen after the theme tune has finished playing), <a class="link" href="../asm/35140.html">35140</a> (to hold the distance of the boot from the top of the screen as it descends onto Willy), <a class="link" href="../asm/36344.html">36344</a> (to hold Eugene's pixel y-coordinate) and <a class="link" href="../asm/37173.html">37173</a> (to hold the Kong Beast's pixel y-coordinate).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">128</td>
+<td class="map-byte-0">221</td>
+<td class="map-g"><a name="32989"></a><a class="link" href="../asm/32989.html">32989</a></td>
+<td class="map-length-1">35</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Vertical guardians</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The vertical guardian definitions are copied here by the routine at <a class="link" href="../asm/34436.html">34436</a>, and then used by the routines at <a class="link" href="../asm/36469.html">36469</a> and <a class="link" href="../asm/36593.html">36593</a>. There are four slots, each one seven bytes long, used to hold the state of the vertical guardians in the current cavern.
+</div>
+<div class="paragraph">
+For each vertical guardian, the seven bytes are used as follows:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Byte</th>
+<th>Contents</th>
+</tr>
+<tr>
+<td class="centre">0</td>
+<td>Attribute</td>
+</tr>
+<tr>
+<td class="centre">1</td>
+<td>Animation frame</td>
+</tr>
+<tr>
+<td class="centre">2</td>
+<td>Pixel y-coordinate</td>
+</tr>
+<tr>
+<td class="centre">3</td>
+<td>x-coordinate</td>
+</tr>
+<tr>
+<td class="centre">4</td>
+<td>Pixel y-coordinate increment</td>
+</tr>
+<tr>
+<td class="centre">5</td>
+<td>Minimum pixel y-coordinate</td>
+</tr>
+<tr>
+<td class="centre">6</td>
+<td>Maximum pixel y-coordinate</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+In most of the caverns that do not have vertical guardians, this area is overwritten by unused bytes from the cavern definition. The exception is <a class="link" href="../asm/49152.html">Eugene's Lair</a>: the routine at <a class="link" href="../asm/34436.html">34436</a> copies the graphic data for the Eugene sprite into the last 32 bytes of this area, where it is then used by the routine at <a class="link" href="../asm/36344.html">36344</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">129</td>
+<td class="map-byte-0">0</td>
+<td class="map-g"><a name="33024"></a><a class="link" href="../asm/33024.html">33024</a></td>
+<td class="map-length-1">256</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Guardian graphic data</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The guardian graphic data is copied here by the routine at <a class="link" href="../asm/34436.html">34436</a>, and then used by the routines at <a class="link" href="../asm/36266.html">36266</a>, <a class="link" href="../asm/36469.html">36469</a>, <a class="link" href="../asm/36593.html">36593</a> and <a class="link" href="../asm/37173.html">37173</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">132</td>
+<td class="map-byte-0">7</td>
+<td class="map-g"><a name="33799"></a><a class="link" href="../asm/33799.html">33799</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Current cavern number</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34252.html">34252</a>, used by the routines at <a class="link" href="../asm/34436.html">34436</a>, <a class="link" href="../asm/34574.html">34574</a>, <a class="link" href="../asm/35445.html">35445</a> and <a class="link" href="../asm/36266.html">36266</a>, and updated by the routine at <a class="link" href="../asm/36904.html">36904</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">132</td>
+<td class="map-byte-0">31</td>
+<td class="map-g"><a name="33823"></a><a class="link" href="../asm/33823.html">33823</a></td>
+<td class="map-length-1">6</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">High score</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Used by the routine at <a class="link" href="../asm/34574.html">34574</a> and updated by the routine at <a class="link" href="../asm/35140.html">35140</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">132</td>
+<td class="map-byte-0">37</td>
+<td class="map-g"><a name="33829"></a><a class="link" href="../asm/33829.html">33829</a></td>
+<td class="map-length-1">10</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Score</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>, and used by the routines at <a class="link" href="../asm/34574.html">34574</a>, <a class="link" href="../asm/35140.html">35140</a>, <a class="link" href="../asm/36904.html">36904</a> and <a class="link" href="../asm/37098.html">37098</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="map-page-0">132</td>
 <td class="map-byte-0">87</td>
 <td class="map-g"><a name="33879"></a><a class="link" href="../asm/33879.html">33879</a></td>
-<td class="map-length-1">7</td>
+<td class="map-length-1">1</td>
 <td class="map-g-desc">
-<div class="map-entry-title-11">Game status buffer</div>
+<div class="map-entry-title-11">Lives remaining</div>
 <div class="map-entry-desc-1">
-
+<div class="paragraph">
+Initialised to 2 by the routine at <a class="link" href="../asm/34252.html">34252</a>, and used and updated by the routines at <a class="link" href="../asm/34574.html">34574</a> and <a class="link" href="../asm/37098.html">37098</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">132</td>
+<td class="map-byte-0">88</td>
+<td class="map-g"><a name="33880"></a><a class="link" href="../asm/33880.html">33880</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Screen flash counter</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34252.html">34252</a>, and used by the routines at <a class="link" href="../asm/34574.html">34574</a> and <a class="link" href="../asm/37098.html">37098</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">132</td>
+<td class="map-byte-0">89</td>
+<td class="map-g"><a name="33881"></a><a class="link" href="../asm/33881.html">33881</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Kempston joystick indicator</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34252.html">34252</a>, and used by the routines at <a class="link" href="../asm/34574.html">34574</a>, <a class="link" href="../asm/35805.html">35805</a> and <a class="link" href="../asm/37687.html">37687</a>. Holds 1 if a joystick is present, 0 otherwise.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">132</td>
+<td class="map-byte-0">90</td>
+<td class="map-g"><a name="33882"></a><a class="link" href="../asm/33882.html">33882</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Game mode indicator</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34252.html">34252</a>, and used by the routines at <a class="link" href="../asm/34436.html">34436</a>, <a class="link" href="../asm/34574.html">34574</a> and <a class="link" href="../asm/36904.html">36904</a>. Holds 0 when a game is in progress, or a value from 1 to 64 when in demo mode.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">132</td>
+<td class="map-byte-0">91</td>
+<td class="map-g"><a name="33883"></a><a class="link" href="../asm/33883.html">33883</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">In-game music note index</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="../asm/34252.html">34252</a>, and used and updated by the routine at <a class="link" href="../asm/34574.html">34574</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">132</td>
+<td class="map-byte-0">92</td>
+<td class="map-g"><a name="33884"></a><a class="link" href="../asm/33884.html">33884</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">Music flags</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+The keypress flag in bit 0 is initialised by the routine at <a class="link" href="../asm/34252.html">34252</a>; bits 0 and 1 are checked and updated by the routine at <a class="link" href="../asm/34574.html">34574</a>.
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Bit(s)</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td class="centre">0</td>
+<td>Keypress flag (set=H-ENTER being pressed, reset=no key pressed)</td>
+</tr>
+<tr>
+<td class="centre">1</td>
+<td>In-game music flag (set=music off, reset=music on)</td>
+</tr>
+<tr>
+<td class="centre">2-7</td>
+<td>Unused</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-0">132</td>
+<td class="map-byte-0">93</td>
+<td class="map-g"><a name="33885"></a><a class="link" href="../asm/33885.html">33885</a></td>
+<td class="map-length-1">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11">6031769 key counter</div>
+<div class="map-entry-desc-1">
+<div class="paragraph">
+Used by the routines at <a class="link" href="../asm/34574.html">34574</a> and <a class="link" href="../asm/36904.html">36904</a>.
+</div>
 </div>
 </td>
 </tr>
 </table>
 <div class="footer">
-<div class="release">The incomplete Manic Miner RAM disassembly 20140308</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

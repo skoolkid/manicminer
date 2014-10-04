@@ -23,13 +23,13 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="37173.html">37173</a></span></td>
 </tr>
 </table>
-<div class="description">37125: Routine at 37125</div>
+<div class="description">37125: Move the conveyor in the current cavern</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="34252.html">34252</a>.
+Used by the routine at <a class="link" href="34574.html">34574</a>.
 </div>
 </div>
 <table class="input-0">
@@ -50,187 +50,207 @@ Used by the routine at <a class="link" href="34252.html">34252</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="37125"></a>37125</td>
 <td class="instruction">LD HL,(32880)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the address of the conveyor's location in the screen buffer at <a class="link" href="28672.html">28672</a> from <a class="link" href="32879.html#32880">32880</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37128"></a>37128</td>
 <td class="instruction">LD E,L</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Copy this address to <span class="register">DE</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37129"></a>37129</td>
 <td class="instruction">LD D,H</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37130"></a>37130</td>
 <td class="instruction">LD A,(32882)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the length of the conveyor from <a class="link" href="32879.html#32882">32882</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37133"></a>37133</td>
 <td class="instruction">LD B,A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1"><span class="register">B</span> will count the conveyor tiles</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37134"></a>37134</td>
 <td class="instruction">LD A,(32879)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the direction of the conveyor from <a class="link" href="32879.html">32879</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37137"></a>37137</td>
 <td class="instruction">OR A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Is the conveyor moving right?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37138"></a>37138</td>
-<td class="instruction">JR NZ,37159</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR NZ,<a class="link" href="37125.html#37159">37159</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="37140"></a>
+<div class="comments">
+<div class="paragraph">
+The conveyor is moving left.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37140"></a>37140</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Copy the first pixel row of the conveyor tile to <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37141"></a>37141</td>
 <td class="instruction">RLC A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Rotate it left twice</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37143"></a>37143</td>
 <td class="instruction">RLC A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37145"></a>37145</td>
 <td class="instruction">INC H</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the third pixel row of the conveyor tile</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37146"></a>37146</td>
 <td class="instruction">INC H</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37147"></a>37147</td>
 <td class="instruction">LD C,(HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Copy this pixel row to <span class="register">C</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37148"></a>37148</td>
 <td class="instruction">RRC C</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Rotate it right twice</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37150"></a>37150</td>
 <td class="instruction">RRC C</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="37152"></a>37152</td>
 <td class="instruction">LD (DE),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="5">Update the first and third pixel rows of every conveyor tile in the screen buffer at <a class="link" href="28672.html">28672</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37153"></a>37153</td>
 <td class="instruction">LD (HL),C</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37154"></a>37154</td>
 <td class="instruction">INC L</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37155"></a>37155</td>
 <td class="instruction">INC E</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37156"></a>37156</td>
-<td class="instruction">DJNZ 37152</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">DJNZ <a class="link" href="37125.html#37152">37152</a></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37158"></a>37158</td>
 <td class="instruction">RET</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="37159"></a>
+<div class="comments">
+<div class="paragraph">
+The conveyor is moving right.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="37159"></a>37159</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Copy the first pixel row of the conveyor tile to <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37160"></a>37160</td>
 <td class="instruction">RRC A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Rotate it right twice</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37162"></a>37162</td>
 <td class="instruction">RRC A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37164"></a>37164</td>
 <td class="instruction">INC H</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the third pixel row of the conveyor tile</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37165"></a>37165</td>
 <td class="instruction">INC H</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37166"></a>37166</td>
 <td class="instruction">LD C,(HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Copy this pixel row to <span class="register">C</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37167"></a>37167</td>
 <td class="instruction">RLC C</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Rotate it left twice</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37169"></a>37169</td>
 <td class="instruction">RLC C</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37171"></a>37171</td>
-<td class="instruction">JR 37152</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR <a class="link" href="37125.html#37152">37152</a></td>
+<td class="comment-11" rowspan="1">Jump back to update the first and third pixel rows of every conveyor tile</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -241,9 +261,9 @@ Used by the routine at <a class="link" href="34252.html">34252</a>.
 </tr>
 </table>
 <div class="footer">
-<div class="release">The incomplete Manic Miner RAM disassembly 20140308</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

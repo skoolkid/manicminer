@@ -26,12 +26,300 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="map-page-1">128</td>
+<td class="map-page-1">92</td>
 <td class="map-byte-1">0</td>
-<td class="map-b"><a name="32768"></a><a class="link" href="../asm/32768.html">32768</a></td>
+<td class="map-b"><a name="23552"></a><a class="link" href="../asm/23552.html">23552</a></td>
 <td class="map-length-0">512</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Cavern buffer</div>
+<div class="map-entry-title-10">Attribute buffer (cavern + Willy + guardians + items)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">94</td>
+<td class="map-byte-1">0</td>
+<td class="map-b"><a name="24064"></a><a class="link" href="../asm/24064.html">24064</a></td>
+<td class="map-length-0">512</td>
+<td class="map-b-desc">
+<div class="map-entry-title-10">Attribute buffer (empty cavern)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">96</td>
+<td class="map-byte-1">0</td>
+<td class="map-b"><a name="24576"></a><a class="link" href="../asm/24576.html">24576</a></td>
+<td class="map-length-0">4096</td>
+<td class="map-b-desc">
+<div class="map-entry-title-10">Screen buffer (cavern + Willy + guardians + items)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">112</td>
+<td class="map-byte-1">0</td>
+<td class="map-b"><a name="28672"></a><a class="link" href="../asm/28672.html">28672</a></td>
+<td class="map-length-0">4096</td>
+<td class="map-b-desc">
+<div class="map-entry-title-10">Screen buffer (empty cavern)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">0</td>
+<td class="map-g"><a name="32768"></a><a class="link" href="../asm/32768.html">32768</a></td>
+<td class="map-length-0">32</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Cavern name</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">32</td>
+<td class="map-g"><a name="32800"></a><a class="link" href="../asm/32800.html">32800</a></td>
+<td class="map-length-0">72</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Cavern tiles</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">104</td>
+<td class="map-g"><a name="32872"></a><a class="link" href="../asm/32872.html">32872</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Willy's pixel y-coordinate (x2)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">105</td>
+<td class="map-g"><a name="32873"></a><a class="link" href="../asm/32873.html">32873</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Willy's animation frame</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">106</td>
+<td class="map-g"><a name="32874"></a><a class="link" href="../asm/32874.html">32874</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Willy's direction and movement flags</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">107</td>
+<td class="map-g"><a name="32875"></a><a class="link" href="../asm/32875.html">32875</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Airborne status indicator</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">108</td>
+<td class="map-g"><a name="32876"></a><a class="link" href="../asm/32876.html">32876</a></td>
+<td class="map-length-0">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Address of Willy's location in the attribute buffer at 23552</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">110</td>
+<td class="map-g"><a name="32878"></a><a class="link" href="../asm/32878.html">32878</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Jumping animation counter</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">111</td>
+<td class="map-g"><a name="32879"></a><a class="link" href="../asm/32879.html">32879</a></td>
+<td class="map-length-0">4</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Conveyor definition</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">115</td>
+<td class="map-g"><a name="32883"></a><a class="link" href="../asm/32883.html">32883</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Border colour</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">116</td>
+<td class="map-g"><a name="32884"></a><a class="link" href="../asm/32884.html">32884</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Attribute of the last item drawn</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">117</td>
+<td class="map-g"><a name="32885"></a><a class="link" href="../asm/32885.html">32885</a></td>
+<td class="map-length-0">26</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Item definitions</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">143</td>
+<td class="map-g"><a name="32911"></a><a class="link" href="../asm/32911.html">32911</a></td>
+<td class="map-length-0">37</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Portal definition</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">180</td>
+<td class="map-g"><a name="32948"></a><a class="link" href="../asm/32948.html">32948</a></td>
+<td class="map-length-0">8</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Item graphic</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">188</td>
+<td class="map-g"><a name="32956"></a><a class="link" href="../asm/32956.html">32956</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Remaining air supply</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">189</td>
+<td class="map-g"><a name="32957"></a><a class="link" href="../asm/32957.html">32957</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Game clock</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">190</td>
+<td class="map-g"><a name="32958"></a><a class="link" href="../asm/32958.html">32958</a></td>
+<td class="map-length-0">29</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Horizontal guardians</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">219</td>
+<td class="map-g"><a name="32987"></a><a class="link" href="../asm/32987.html">32987</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Eugene's direction or the Kong Beast's status</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">220</td>
+<td class="map-g"><a name="32988"></a><a class="link" href="../asm/32988.html">32988</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Eugene's or the Kong Beast's pixel y-coordinate</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">128</td>
+<td class="map-byte-1">221</td>
+<td class="map-g"><a name="32989"></a><a class="link" href="../asm/32989.html">32989</a></td>
+<td class="map-length-0">35</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Vertical guardians</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">129</td>
+<td class="map-byte-1">0</td>
+<td class="map-g"><a name="33024"></a><a class="link" href="../asm/33024.html">33024</a></td>
+<td class="map-length-0">256</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Guardian graphic data</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -43,7 +331,7 @@
 <td class="map-b"><a name="33280"></a><a class="link" href="../asm/33280.html">33280</a></td>
 <td class="map-length-0">256</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Miner Willy sprite data</div>
+<div class="map-entry-title-10">Willy sprite graphic data</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -76,9 +364,9 @@
 <tr>
 <td class="map-page-1">132</td>
 <td class="map-byte-1">7</td>
-<td class="map-b"><a name="33799"></a><a class="link" href="../asm/33799.html">33799</a></td>
+<td class="map-g"><a name="33799"></a><a class="link" href="../asm/33799.html">33799</a></td>
 <td class="map-length-0">1</td>
-<td class="map-b-desc">
+<td class="map-g-desc">
 <div class="map-entry-title-10">Current cavern number</div>
 <div class="map-entry-desc-0">
 
@@ -91,7 +379,7 @@
 <td class="map-b"><a name="33800"></a><a class="link" href="../asm/33800.html">33800</a></td>
 <td class="map-length-0">16</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Movement lookup table</div>
+<div class="map-entry-title-10">Left-right movement table</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -112,10 +400,34 @@
 <tr>
 <td class="map-page-1">132</td>
 <td class="map-byte-1">27</td>
-<td class="map-b"><a name="33819"></a><a class="link" href="../asm/33819.html">33819</a></td>
-<td class="map-length-0">20</td>
-<td class="map-b-desc">
-<div class="map-entry-title-10">Score and high score</div>
+<td class="map-u"><a name="33819"></a><a class="link" href="../asm/33819.html">33819</a></td>
+<td class="map-length-0">4</td>
+<td class="map-u-desc">
+<div class="map-entry-title-10">Unused</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">132</td>
+<td class="map-byte-1">31</td>
+<td class="map-g"><a name="33823"></a><a class="link" href="../asm/33823.html">33823</a></td>
+<td class="map-length-0">6</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">High score</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">132</td>
+<td class="map-byte-1">37</td>
+<td class="map-g"><a name="33829"></a><a class="link" href="../asm/33829.html">33829</a></td>
+<td class="map-length-0">10</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Score</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -137,9 +449,21 @@
 <td class="map-page-1">132</td>
 <td class="map-byte-1">79</td>
 <td class="map-t"><a name="33871"></a><a class="link" href="../asm/33871.html">33871</a></td>
-<td class="map-length-0">8</td>
+<td class="map-length-0">4</td>
 <td class="map-t-desc">
-<div class="map-entry-title-10">'GameOver'</div>
+<div class="map-entry-title-10">'Game'</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">132</td>
+<td class="map-byte-1">83</td>
+<td class="map-t"><a name="33875"></a><a class="link" href="../asm/33875.html">33875</a></td>
+<td class="map-length-0">4</td>
+<td class="map-t-desc">
+<div class="map-entry-title-10">'Over'</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -149,9 +473,81 @@
 <td class="map-page-1">132</td>
 <td class="map-byte-1">87</td>
 <td class="map-g"><a name="33879"></a><a class="link" href="../asm/33879.html">33879</a></td>
-<td class="map-length-0">7</td>
+<td class="map-length-0">1</td>
 <td class="map-g-desc">
-<div class="map-entry-title-10">Game status buffer</div>
+<div class="map-entry-title-10">Lives remaining</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">132</td>
+<td class="map-byte-1">88</td>
+<td class="map-g"><a name="33880"></a><a class="link" href="../asm/33880.html">33880</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Screen flash counter</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">132</td>
+<td class="map-byte-1">89</td>
+<td class="map-g"><a name="33881"></a><a class="link" href="../asm/33881.html">33881</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Kempston joystick indicator</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">132</td>
+<td class="map-byte-1">90</td>
+<td class="map-g"><a name="33882"></a><a class="link" href="../asm/33882.html">33882</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Game mode indicator</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">132</td>
+<td class="map-byte-1">91</td>
+<td class="map-g"><a name="33883"></a><a class="link" href="../asm/33883.html">33883</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">In-game music note index</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">132</td>
+<td class="map-byte-1">92</td>
+<td class="map-g"><a name="33884"></a><a class="link" href="../asm/33884.html">33884</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Music flags</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">132</td>
+<td class="map-byte-1">93</td>
+<td class="map-g"><a name="33885"></a><a class="link" href="../asm/33885.html">33885</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">6031769 key counter</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -197,9 +593,45 @@
 <td class="map-page-1">133</td>
 <td class="map-byte-1">204</td>
 <td class="map-c"><a name="34252"></a><a class="link" href="../asm/34252.html">34252</a></td>
-<td class="map-length-0">1136</td>
+<td class="map-length-0">184</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Start</div>
+<div class="map-entry-title-10">Display the title screen and play the theme tune</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">134</td>
+<td class="map-byte-1">132</td>
+<td class="map-c"><a name="34436"></a><a class="link" href="../asm/34436.html">34436</a></td>
+<td class="map-length-0">138</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Start the game (or demo mode)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">135</td>
+<td class="map-byte-1">14</td>
+<td class="map-c"><a name="34574"></a><a class="link" href="../asm/34574.html">34574</a></td>
+<td class="map-length-0">566</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Main loop</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">137</td>
+<td class="map-byte-1">68</td>
+<td class="map-c"><a name="35140"></a><a class="link" href="../asm/35140.html">35140</a></td>
+<td class="map-length-0">248</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Display the game over sequence</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -211,7 +643,7 @@
 <td class="map-c"><a name="35388"></a><a class="link" href="../asm/35388.html">35388</a></td>
 <td class="map-length-0">57</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 35388</div>
+<div class="map-entry-title-10">Decrease the air remaining in the current cavern</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -223,7 +655,7 @@
 <td class="map-c"><a name="35445"></a><a class="link" href="../asm/35445.html">35445</a></td>
 <td class="map-length-0">70</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 35445</div>
+<div class="map-entry-title-10">Draw the current cavern to the screen buffer at 28672</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -235,7 +667,7 @@
 <td class="map-c"><a name="35515"></a><a class="link" href="../asm/35515.html">35515</a></td>
 <td class="map-length-0">255</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 35515</div>
+<div class="map-entry-title-10">Move Willy (1)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -247,7 +679,7 @@
 <td class="map-c"><a name="35770"></a><a class="link" href="../asm/35770.html">35770</a></td>
 <td class="map-length-0">35</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 35770</div>
+<div class="map-entry-title-10">Animate a crumbling floor tile in the current cavern</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -259,7 +691,7 @@
 <td class="map-c"><a name="35805"></a><a class="link" href="../asm/35805.html">35805</a></td>
 <td class="map-length-0">296</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 35805</div>
+<div class="map-entry-title-10">Move Willy (2)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -271,7 +703,7 @@
 <td class="map-c"><a name="36101"></a><a class="link" href="../asm/36101.html">36101</a></td>
 <td class="map-length-0">10</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36101</div>
+<div class="map-entry-title-10">Kill Willy</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -283,7 +715,7 @@
 <td class="map-c"><a name="36111"></a><a class="link" href="../asm/36111.html">36111</a></td>
 <td class="map-length-0">100</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36111</div>
+<div class="map-entry-title-10">Move the horizontal guardians in the current cavern</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -295,7 +727,7 @@
 <td class="map-c"><a name="36211"></a><a class="link" href="../asm/36211.html">36211</a></td>
 <td class="map-length-0">55</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36211</div>
+<div class="map-entry-title-10">Move and draw the light beam in Solar Power Generator</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -307,7 +739,7 @@
 <td class="map-c"><a name="36266"></a><a class="link" href="../asm/36266.html">36266</a></td>
 <td class="map-length-0">78</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36266</div>
+<div class="map-entry-title-10">Draw the horizontal guardians in the current cavern</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -319,7 +751,7 @@
 <td class="map-c"><a name="36344"></a><a class="link" href="../asm/36344.html">36344</a></td>
 <td class="map-length-0">125</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36344</div>
+<div class="map-entry-title-10">Move and draw Eugene in Eugene's Lair</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -331,7 +763,7 @@
 <td class="map-c"><a name="36469"></a><a class="link" href="../asm/36469.html">36469</a></td>
 <td class="map-length-0">124</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36469</div>
+<div class="map-entry-title-10">Move and draw the Skylabs in Skylab Landing Bay</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -343,7 +775,7 @@
 <td class="map-c"><a name="36593"></a><a class="link" href="../asm/36593.html">36593</a></td>
 <td class="map-length-0">114</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36593</div>
+<div class="map-entry-title-10">Move and draw the vertical guardians in the current cavern</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -355,7 +787,7 @@
 <td class="map-c"><a name="36707"></a><a class="link" href="../asm/36707.html">36707</a></td>
 <td class="map-length-0">98</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36707</div>
+<div class="map-entry-title-10">Draw the items in the current cavern and collect any that Willy is touching</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -365,9 +797,33 @@
 <td class="map-page-1">143</td>
 <td class="map-byte-1">197</td>
 <td class="map-c"><a name="36805"></a><a class="link" href="../asm/36805.html">36805</a></td>
-<td class="map-length-0">293</td>
+<td class="map-length-0">47</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36805</div>
+<div class="map-entry-title-10">Draw the portal, or move to the next cavern if Willy has entered it</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">143</td>
+<td class="map-byte-1">244</td>
+<td class="map-c"><a name="36852"></a><a class="link" href="../asm/36852.html">36852</a></td>
+<td class="map-length-0">52</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Draw a sprite</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">144</td>
+<td class="map-byte-1">40</td>
+<td class="map-c"><a name="36904"></a><a class="link" href="../asm/36904.html">36904</a></td>
+<td class="map-length-0">194</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Move to the next cavern</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -379,7 +835,7 @@
 <td class="map-c"><a name="37098"></a><a class="link" href="../asm/37098.html">37098</a></td>
 <td class="map-length-0">27</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37098</div>
+<div class="map-entry-title-10">Add to the score</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -391,7 +847,7 @@
 <td class="map-c"><a name="37125"></a><a class="link" href="../asm/37125.html">37125</a></td>
 <td class="map-length-0">48</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37125</div>
+<div class="map-entry-title-10">Move the conveyor in the current cavern</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -403,7 +859,7 @@
 <td class="map-c"><a name="37173"></a><a class="link" href="../asm/37173.html">37173</a></td>
 <td class="map-length-0">230</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37173</div>
+<div class="map-entry-title-10">Move and draw the Kong Beast in the current cavern</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -415,7 +871,7 @@
 <td class="map-c"><a name="37403"></a><a class="link" href="../asm/37403.html">37403</a></td>
 <td class="map-length-0">31</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37403</div>
+<div class="map-entry-title-10">Flip a switch in a Kong Beast cavern if Willy is touching it</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -427,7 +883,7 @@
 <td class="map-c"><a name="37434"></a><a class="link" href="../asm/37434.html">37434</a></td>
 <td class="map-length-0">37</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37434</div>
+<div class="map-entry-title-10">Check and set the attribute bytes for Willy's sprite in the buffer at 23552</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -439,7 +895,7 @@
 <td class="map-c"><a name="37471"></a><a class="link" href="../asm/37471.html">37471</a></td>
 <td class="map-length-0">32</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37471</div>
+<div class="map-entry-title-10">Check and set the attribute byte for a cell occupied by Willy's sprite</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -451,7 +907,7 @@
 <td class="map-c"><a name="37503"></a><a class="link" href="../asm/37503.html">37503</a></td>
 <td class="map-length-0">59</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37503</div>
+<div class="map-entry-title-10">Draw Willy to the screen buffer at 24576</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -475,7 +931,7 @@
 <td class="map-c"><a name="37579"></a><a class="link" href="../asm/37579.html">37579</a></td>
 <td class="map-length-0">17</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37579</div>
+<div class="map-entry-title-10">Print a single character</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -487,7 +943,7 @@
 <td class="map-c"><a name="37596"></a><a class="link" href="../asm/37596.html">37596</a></td>
 <td class="map-length-0">79</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37596</div>
+<div class="map-entry-title-10">Play the theme tune</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -499,7 +955,7 @@
 <td class="map-c"><a name="37675"></a><a class="link" href="../asm/37675.html">37675</a></td>
 <td class="map-length-0">12</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37675</div>
+<div class="map-entry-title-10">Calculate the attribute file address for a piano key</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -511,7 +967,7 @@
 <td class="map-c"><a name="37687"></a><a class="link" href="../asm/37687.html">37687</a></td>
 <td class="map-length-0">21</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37687</div>
+<div class="map-entry-title-10">Check whether ENTER or the fire button is being pressed</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -520,9 +976,9 @@
 <tr>
 <td class="map-page-1">147</td>
 <td class="map-byte-1">76</td>
-<td class="map-t"><a name="37708"></a><a class="link" href="../asm/37708.html">37708</a></td>
+<td class="map-u"><a name="37708"></a><a class="link" href="../asm/37708.html">37708</a></td>
 <td class="map-length-0">2484</td>
-<td class="map-t-desc">
+<td class="map-u-desc">
 <div class="map-entry-title-10">Source code remnants</div>
 <div class="map-entry-desc-0">
 
@@ -535,7 +991,7 @@
 <td class="map-t"><a name="40192"></a><a class="link" href="../asm/40192.html">40192</a></td>
 <td class="map-length-0">256</td>
 <td class="map-t-desc">
-<div class="map-entry-title-10">Scrolling intro text</div>
+<div class="map-entry-title-10">'...MANIC MINER . . &#169; BUG-BYTE ltd. 1983...'</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -547,7 +1003,7 @@
 <td class="map-b"><a name="40448"></a><a class="link" href="../asm/40448.html">40448</a></td>
 <td class="map-length-0">512</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Attribute data for the middle third of the title screen</div>
+<div class="map-entry-title-10">Attribute data for the bottom two-thirds of the title screen</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -571,7 +1027,7 @@
 <td class="map-b"><a name="45056"></a><a class="link" href="../asm/45056.html">45056</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Central Cavern</div>
+<div class="map-entry-title-10">Central Cavern (teleport: 6)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -583,7 +1039,7 @@
 <td class="map-b"><a name="46080"></a><a class="link" href="../asm/46080.html">46080</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Cold Room</div>
+<div class="map-entry-title-10">The Cold Room (teleport: 16)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -595,7 +1051,7 @@
 <td class="map-b"><a name="47104"></a><a class="link" href="../asm/47104.html">47104</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Menagerie</div>
+<div class="map-entry-title-10">The Menagerie (teleport: 26)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -607,7 +1063,7 @@
 <td class="map-b"><a name="48128"></a><a class="link" href="../asm/48128.html">48128</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Abandoned Uranium Workings</div>
+<div class="map-entry-title-10">Abandoned Uranium Workings (teleport: 126)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -619,7 +1075,7 @@
 <td class="map-b"><a name="49152"></a><a class="link" href="../asm/49152.html">49152</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Eugene's Lair</div>
+<div class="map-entry-title-10">Eugene's Lair (teleport: 36)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -631,7 +1087,7 @@
 <td class="map-b"><a name="50176"></a><a class="link" href="../asm/50176.html">50176</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Processing Plant</div>
+<div class="map-entry-title-10">Processing Plant (teleport: 136)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -643,7 +1099,7 @@
 <td class="map-b"><a name="51200"></a><a class="link" href="../asm/51200.html">51200</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Vat</div>
+<div class="map-entry-title-10">The Vat (teleport: 236)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -655,7 +1111,7 @@
 <td class="map-b"><a name="52224"></a><a class="link" href="../asm/52224.html">52224</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Miner Willy meets the Kong Beast</div>
+<div class="map-entry-title-10">Miner Willy meets the Kong Beast (teleport: 1236)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -667,7 +1123,7 @@
 <td class="map-b"><a name="53248"></a><a class="link" href="../asm/53248.html">53248</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Wacky Amoebatrons</div>
+<div class="map-entry-title-10">Wacky Amoebatrons (teleport: 46)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -679,7 +1135,7 @@
 <td class="map-b"><a name="54272"></a><a class="link" href="../asm/54272.html">54272</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Endorian Forest</div>
+<div class="map-entry-title-10">The Endorian Forest (teleport: 146)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -691,7 +1147,7 @@
 <td class="map-b"><a name="55296"></a><a class="link" href="../asm/55296.html">55296</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Attack of the Mutant Telephones</div>
+<div class="map-entry-title-10">Attack of the Mutant Telephones (teleport: 246)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -703,7 +1159,7 @@
 <td class="map-b"><a name="56320"></a><a class="link" href="../asm/56320.html">56320</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Return of the Alien Kong Beast</div>
+<div class="map-entry-title-10">Return of the Alien Kong Beast (teleport: 1246)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -715,7 +1171,7 @@
 <td class="map-b"><a name="57344"></a><a class="link" href="../asm/57344.html">57344</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Ore Refinery</div>
+<div class="map-entry-title-10">Ore Refinery (teleport: 346)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -727,7 +1183,7 @@
 <td class="map-b"><a name="58368"></a><a class="link" href="../asm/58368.html">58368</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Skylab Landing Bay</div>
+<div class="map-entry-title-10">Skylab Landing Bay (teleport: 1346)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -739,7 +1195,7 @@
 <td class="map-b"><a name="59392"></a><a class="link" href="../asm/59392.html">59392</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Bank</div>
+<div class="map-entry-title-10">The Bank (teleport: 2346)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -751,7 +1207,7 @@
 <td class="map-b"><a name="60416"></a><a class="link" href="../asm/60416.html">60416</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Sixteenth Cavern</div>
+<div class="map-entry-title-10">The Sixteenth Cavern (teleport: 12346)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -763,7 +1219,7 @@
 <td class="map-b"><a name="61440"></a><a class="link" href="../asm/61440.html">61440</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Warehouse</div>
+<div class="map-entry-title-10">The Warehouse (teleport: 56)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -775,7 +1231,7 @@
 <td class="map-b"><a name="62464"></a><a class="link" href="../asm/62464.html">62464</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Amoebatrons' Revenge</div>
+<div class="map-entry-title-10">Amoebatrons' Revenge (teleport: 156)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -787,7 +1243,7 @@
 <td class="map-b"><a name="63488"></a><a class="link" href="../asm/63488.html">63488</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Solar Power Generator</div>
+<div class="map-entry-title-10">Solar Power Generator (teleport: 256)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -799,7 +1255,7 @@
 <td class="map-b"><a name="64512"></a><a class="link" href="../asm/64512.html">64512</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Final Barrier</div>
+<div class="map-entry-title-10">The Final Barrier (teleport: 1256)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -807,9 +1263,9 @@
 </tr>
 </table>
 <div class="footer">
-<div class="release">The incomplete Manic Miner RAM disassembly 20140308</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

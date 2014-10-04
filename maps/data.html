@@ -26,12 +26,48 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="map-page-1">128</td>
+<td class="map-page-1">92</td>
 <td class="map-byte-1">0</td>
-<td class="map-b"><a name="32768"></a><a class="link" href="../asm/32768.html">32768</a></td>
+<td class="map-b"><a name="23552"></a><a class="link" href="../asm/23552.html">23552</a></td>
 <td class="map-length-0">512</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Cavern buffer</div>
+<div class="map-entry-title-10">Attribute buffer (cavern + Willy + guardians + items)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">94</td>
+<td class="map-byte-1">0</td>
+<td class="map-b"><a name="24064"></a><a class="link" href="../asm/24064.html">24064</a></td>
+<td class="map-length-0">512</td>
+<td class="map-b-desc">
+<div class="map-entry-title-10">Attribute buffer (empty cavern)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">96</td>
+<td class="map-byte-1">0</td>
+<td class="map-b"><a name="24576"></a><a class="link" href="../asm/24576.html">24576</a></td>
+<td class="map-length-0">4096</td>
+<td class="map-b-desc">
+<div class="map-entry-title-10">Screen buffer (cavern + Willy + guardians + items)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">112</td>
+<td class="map-byte-1">0</td>
+<td class="map-b"><a name="28672"></a><a class="link" href="../asm/28672.html">28672</a></td>
+<td class="map-length-0">4096</td>
+<td class="map-b-desc">
+<div class="map-entry-title-10">Screen buffer (empty cavern)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -43,7 +79,7 @@
 <td class="map-b"><a name="33280"></a><a class="link" href="../asm/33280.html">33280</a></td>
 <td class="map-length-0">256</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Miner Willy sprite data</div>
+<div class="map-entry-title-10">Willy sprite graphic data</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -63,35 +99,11 @@
 </tr>
 <tr>
 <td class="map-page-1">132</td>
-<td class="map-byte-1">7</td>
-<td class="map-b"><a name="33799"></a><a class="link" href="../asm/33799.html">33799</a></td>
-<td class="map-length-0">1</td>
-<td class="map-b-desc">
-<div class="map-entry-title-10">Current cavern number</div>
-<div class="map-entry-desc-0">
-
-</div>
-</td>
-</tr>
-<tr>
-<td class="map-page-1">132</td>
 <td class="map-byte-1">8</td>
 <td class="map-b"><a name="33800"></a><a class="link" href="../asm/33800.html">33800</a></td>
 <td class="map-length-0">16</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Movement lookup table</div>
-<div class="map-entry-desc-0">
-
-</div>
-</td>
-</tr>
-<tr>
-<td class="map-page-1">132</td>
-<td class="map-byte-1">27</td>
-<td class="map-b"><a name="33819"></a><a class="link" href="../asm/33819.html">33819</a></td>
-<td class="map-length-0">20</td>
-<td class="map-b-desc">
-<div class="map-entry-title-10">Score and high score</div>
+<div class="map-entry-title-10">Left-right movement table</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -139,7 +151,7 @@
 <td class="map-b"><a name="40448"></a><a class="link" href="../asm/40448.html">40448</a></td>
 <td class="map-length-0">512</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Attribute data for the middle third of the title screen</div>
+<div class="map-entry-title-10">Attribute data for the bottom two-thirds of the title screen</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -163,7 +175,7 @@
 <td class="map-b"><a name="45056"></a><a class="link" href="../asm/45056.html">45056</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Central Cavern</div>
+<div class="map-entry-title-10">Central Cavern (teleport: 6)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -175,7 +187,7 @@
 <td class="map-b"><a name="46080"></a><a class="link" href="../asm/46080.html">46080</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Cold Room</div>
+<div class="map-entry-title-10">The Cold Room (teleport: 16)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -187,7 +199,7 @@
 <td class="map-b"><a name="47104"></a><a class="link" href="../asm/47104.html">47104</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Menagerie</div>
+<div class="map-entry-title-10">The Menagerie (teleport: 26)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -199,7 +211,7 @@
 <td class="map-b"><a name="48128"></a><a class="link" href="../asm/48128.html">48128</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Abandoned Uranium Workings</div>
+<div class="map-entry-title-10">Abandoned Uranium Workings (teleport: 126)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -211,7 +223,7 @@
 <td class="map-b"><a name="49152"></a><a class="link" href="../asm/49152.html">49152</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Eugene's Lair</div>
+<div class="map-entry-title-10">Eugene's Lair (teleport: 36)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -223,7 +235,7 @@
 <td class="map-b"><a name="50176"></a><a class="link" href="../asm/50176.html">50176</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Processing Plant</div>
+<div class="map-entry-title-10">Processing Plant (teleport: 136)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -235,7 +247,7 @@
 <td class="map-b"><a name="51200"></a><a class="link" href="../asm/51200.html">51200</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Vat</div>
+<div class="map-entry-title-10">The Vat (teleport: 236)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -247,7 +259,7 @@
 <td class="map-b"><a name="52224"></a><a class="link" href="../asm/52224.html">52224</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Miner Willy meets the Kong Beast</div>
+<div class="map-entry-title-10">Miner Willy meets the Kong Beast (teleport: 1236)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -259,7 +271,7 @@
 <td class="map-b"><a name="53248"></a><a class="link" href="../asm/53248.html">53248</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Wacky Amoebatrons</div>
+<div class="map-entry-title-10">Wacky Amoebatrons (teleport: 46)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -271,7 +283,7 @@
 <td class="map-b"><a name="54272"></a><a class="link" href="../asm/54272.html">54272</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Endorian Forest</div>
+<div class="map-entry-title-10">The Endorian Forest (teleport: 146)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -283,7 +295,7 @@
 <td class="map-b"><a name="55296"></a><a class="link" href="../asm/55296.html">55296</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Attack of the Mutant Telephones</div>
+<div class="map-entry-title-10">Attack of the Mutant Telephones (teleport: 246)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -295,7 +307,7 @@
 <td class="map-b"><a name="56320"></a><a class="link" href="../asm/56320.html">56320</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Return of the Alien Kong Beast</div>
+<div class="map-entry-title-10">Return of the Alien Kong Beast (teleport: 1246)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -307,7 +319,7 @@
 <td class="map-b"><a name="57344"></a><a class="link" href="../asm/57344.html">57344</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Ore Refinery</div>
+<div class="map-entry-title-10">Ore Refinery (teleport: 346)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -319,7 +331,7 @@
 <td class="map-b"><a name="58368"></a><a class="link" href="../asm/58368.html">58368</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Skylab Landing Bay</div>
+<div class="map-entry-title-10">Skylab Landing Bay (teleport: 1346)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -331,7 +343,7 @@
 <td class="map-b"><a name="59392"></a><a class="link" href="../asm/59392.html">59392</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Bank</div>
+<div class="map-entry-title-10">The Bank (teleport: 2346)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -343,7 +355,7 @@
 <td class="map-b"><a name="60416"></a><a class="link" href="../asm/60416.html">60416</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Sixteenth Cavern</div>
+<div class="map-entry-title-10">The Sixteenth Cavern (teleport: 12346)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -355,7 +367,7 @@
 <td class="map-b"><a name="61440"></a><a class="link" href="../asm/61440.html">61440</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Warehouse</div>
+<div class="map-entry-title-10">The Warehouse (teleport: 56)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -367,7 +379,7 @@
 <td class="map-b"><a name="62464"></a><a class="link" href="../asm/62464.html">62464</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Amoebatrons' Revenge</div>
+<div class="map-entry-title-10">Amoebatrons' Revenge (teleport: 156)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -379,7 +391,7 @@
 <td class="map-b"><a name="63488"></a><a class="link" href="../asm/63488.html">63488</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Solar Power Generator</div>
+<div class="map-entry-title-10">Solar Power Generator (teleport: 256)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -391,7 +403,7 @@
 <td class="map-b"><a name="64512"></a><a class="link" href="../asm/64512.html">64512</a></td>
 <td class="map-length-0">1024</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">The Final Barrier</div>
+<div class="map-entry-title-10">The Final Barrier (teleport: 1256)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -399,9 +411,9 @@
 </tr>
 </table>
 <div class="footer">
-<div class="release">The incomplete Manic Miner RAM disassembly 20140308</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

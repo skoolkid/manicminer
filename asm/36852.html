@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Manic Miner: Routine at 36852</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a class="link" href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="36805.html">36805</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#36852">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="36904.html">36904</a></span></td>
+</tr>
+</table>
+<div class="description">36852: Draw a sprite</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a class="link" href="34252.html">34252</a> (to draw Willy on the title screen), <a class="link" href="34574.html">34574</a> (to draw the remaining lives), <a class="link" href="35140.html">35140</a> (to draw Willy, the boot and the plinth during the game over sequence), <a class="link" href="36266.html">36266</a> (to draw horizontal guardians), <a class="link" href="36344.html">36344</a> (to draw Eugene in <a class="link" href="49152.html">Eugene's Lair</a>), <a class="link" href="36469.html">36469</a> (to draw the Skylabs in <a class="link" href="58368.html">Skylab Landing Bay</a>), <a class="link" href="36593.html">36593</a> (to draw vertical guardians), <a class="link" href="36805.html">36805</a> (to draw the portal in the current cavern), <a class="link" href="36904.html">36904</a> (to draw Willy above ground and the swordfish graphic over the portal in <a class="link" href="64512.html">The Final Barrier</a>) and <a class="link" href="37173.html">37173</a> (to draw the Kong Beast in <a class="link" href="52224.html">Miner Willy meets the Kong Beast</a> and <a class="link" href="56320.html">Return of the Alien Kong Beast</a>). If <span class="register">C</span>=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
+</div>
+</div>
+<table class="input-1">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">C</td>
+<td class="register-desc">Drawing mode: 0 (overwrite) or 1 (blend)</td>
+</tr>
+<tr>
+<td class="register">DE</td>
+<td class="register-desc">Address of sprite graphic data</td>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">Address to draw at</td>
+</tr>
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="36852"></a>36852</td>
+<td class="instruction">LD B,16</td>
+<td class="comment-11" rowspan="1">There are 16 rows of pixels to draw</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="36854"></a>36854</td>
+<td class="instruction">BIT 0,C</td>
+<td class="comment-11" rowspan="1">Set the zero flag if we're in overwrite mode</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36856"></a>36856</td>
+<td class="instruction">LD A,(DE)</td>
+<td class="comment-11" rowspan="1">Pick up a sprite graphic byte</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36857"></a>36857</td>
+<td class="instruction">JR Z,<a class="link" href="36852.html#36863">36863</a></td>
+<td class="comment-11" rowspan="1">Jump if we're in overwrite mode</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36859"></a>36859</td>
+<td class="instruction">AND (HL)</td>
+<td class="comment-11" rowspan="2">Return with the zero flag reset if any of the set bits in the sprite graphic byte collide with a set bit in the background (e.g. in Willy's sprite)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36860"></a>36860</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36861"></a>36861</td>
+<td class="instruction">LD A,(DE)</td>
+<td class="comment-11" rowspan="1">Pick up the sprite graphic byte again</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36862"></a>36862</td>
+<td class="instruction">OR (HL)</td>
+<td class="comment-11" rowspan="1">Blend it with the background byte</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="36863"></a>36863</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-11" rowspan="1">Copy the graphic byte to its destination cell</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36864"></a>36864</td>
+<td class="instruction">INC L</td>
+<td class="comment-11" rowspan="1">Move <span class="register">HL</span> along to the next cell on the right</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36865"></a>36865</td>
+<td class="instruction">INC DE</td>
+<td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the next sprite graphic byte</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36866"></a>36866</td>
+<td class="instruction">BIT 0,C</td>
+<td class="comment-11" rowspan="1">Set the zero flag if we're in overwrite mode</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36868"></a>36868</td>
+<td class="instruction">LD A,(DE)</td>
+<td class="comment-11" rowspan="1">Pick up a sprite graphic byte</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36869"></a>36869</td>
+<td class="instruction">JR Z,<a class="link" href="36852.html#36875">36875</a></td>
+<td class="comment-11" rowspan="1">Jump if we're in overwrite mode</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36871"></a>36871</td>
+<td class="instruction">AND (HL)</td>
+<td class="comment-11" rowspan="2">Return with the zero flag reset if any of the set bits in the sprite graphic byte collide with a set bit in the background (e.g. in Willy's sprite)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36872"></a>36872</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36873"></a>36873</td>
+<td class="instruction">LD A,(DE)</td>
+<td class="comment-11" rowspan="1">Pick up the sprite graphic byte again</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36874"></a>36874</td>
+<td class="instruction">OR (HL)</td>
+<td class="comment-11" rowspan="1">Blend it with the background byte</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="36875"></a>36875</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-11" rowspan="1">Copy the graphic byte to its destination cell</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36876"></a>36876</td>
+<td class="instruction">DEC L</td>
+<td class="comment-11" rowspan="2">Move <span class="register">HL</span> to the next pixel row down in the cell on the left</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36877"></a>36877</td>
+<td class="instruction">INC H</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36878"></a>36878</td>
+<td class="instruction">INC DE</td>
+<td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the next sprite graphic byte</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36879"></a>36879</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-11" rowspan="2">Have we drawn the bottom pixel row in this pair of cells yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36880"></a>36880</td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36882"></a>36882</td>
+<td class="instruction">JR NZ,<a class="link" href="36852.html#36900">36900</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36884"></a>36884</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-11" rowspan="6">Otherwise move <span class="register">HL</span> to the top pixel row in the cell below</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36885"></a>36885</td>
+<td class="instruction">SUB 8</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36887"></a>36887</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36888"></a>36888</td>
+<td class="instruction">LD A,L</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36889"></a>36889</td>
+<td class="instruction">ADD A,32</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36891"></a>36891</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36892"></a>36892</td>
+<td class="instruction">AND 224</td>
+<td class="comment-11" rowspan="1">Was the last pair of cells at y-coordinate 7 or 15?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36894"></a>36894</td>
+<td class="instruction">JR NZ,<a class="link" href="36852.html#36900">36900</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36896"></a>36896</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-11" rowspan="3">Otherwise adjust <span class="register">HL</span> to account for the movement from the top or middle third of the screen to the next one down</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36897"></a>36897</td>
+<td class="instruction">ADD A,8</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36899"></a>36899</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="36900"></a>36900</td>
+<td class="instruction">DJNZ <a class="link" href="36852.html#36854">36854</a></td>
+<td class="comment-11" rowspan="1">Jump back until all 16 rows of pixels have been drawn</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36902"></a>36902</td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="1">Set the zero flag (to indicate no collision)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="36903"></a>36903</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="36805.html">36805</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#36852">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="36904.html">36904</a></span></td>
+</tr>
+</table>
+<div class="footer">
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
+</div>
+</body>
+</html>

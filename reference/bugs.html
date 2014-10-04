@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Manic Miner: Bugs</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Bugs">
+<table class="header">
+<tr>
+<td class="logo"><a class="link" href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Bugs</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a class="link" href="#throughTheWall">Through the wall</a></li>
+<li><a class="link" href="#attributeCrash">Attribute crash</a></li>
+</ul>
+<div><a name="throughTheWall"></a></div>
+<div class="box box-1">
+<div class="box-title">Through the wall</div>
+<div class="paragraph">
+If Willy jumps left over the two nasties at the bottom right of <a class="link" href="../asm/49152.html">Eugene's Lair</a> such that he lands on the top layer of bricks with animation frame 0 at step 16 of the jumping animation, he will then fall through them to the bottom layer of bricks:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td><img alt="through_the_wall1" src="../images/scr/through_the_wall1.png" /></td>
+<td><img alt="through_the_wall2" src="../images/scr/through_the_wall2.png" /></td>
+<td><img alt="through_the_wall3" src="../images/scr/through_the_wall3.png" /></td>
+<td><img alt="through_the_wall4" src="../images/scr/through_the_wall4.png" /></td>
+</tr>
+<tr>
+<td>Step 15</td>
+<td>Step 16</td>
+<td>Step 17</td>
+<td>Step 18</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+This happens because the section of code at <a class="link" href="../asm/35515.html#35600">35600</a> - which is executed during jumping animation step 16, when Willy is exactly one cell height above the place he jumped from - checks whether there are any nasty tiles in the cells below Willy's sprite; if there are, the code jumps forward to <a class="link" href="../asm/35515.html#35665">35665</a>, which makes Willy proceed to the next jumping animation step (as if the bricks and the nasty were not there), instead of landing on the bricks (and being killed by the nasty).
+</div>
+<div class="paragraph">
+Perhaps the assumption in this code is that if there is a nasty tile below Willy's sprite in step 16, then he will be killed by the nasty in step 17; however, in this particular case Willy's x-coordinate decreases by one from step 16 to step 17, which moves him out of the nasty's range.
+</div>
+</div>
+<div><a name="attributeCrash"></a></div>
+<div class="box box-2">
+<div class="box-title">Attribute crash</div>
+<div class="paragraph">
+When a Skylab in <a class="link" href="../asm/58368.html">Skylab Landing Bay</a> crashes into a section of floor or conveyor, the attributes of that section are temporarily changed to that of the Skylab; the attributes are restored after the Skylab has finished disintegrating.
+</div>
+<div class="paragraph">
+<table>
+<tr>
+<td><img alt="attribute_crash" src="../images/scr/attribute_crash.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The reason for this is that the code at <a class="link" href="../asm/36344.html#36447">36447</a> (which is used to set the attributes for a Skylab) sets the attributes in not two but three rows of cells, to handle the case where a guardian's sprite is not cell-aligned. However, when a Skylab crashes, it <em>is</em> cell-aligned, and so its attributes needlessly bleed over to the floor or conveyor cells immediately below it.
+</div>
+</div>
+<div class="footer">
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
+</div>
+</body>
+</html>

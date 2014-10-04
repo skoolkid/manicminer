@@ -18,18 +18,18 @@
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a class="link" href="34252.html">34252</a></span></td>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="35140.html">35140</a></span></td>
 <td class="up">Up: <a class="link" href="../maps/all.html#35388">Map</a></td>
 <td class="next"><span class="next-1">Next: <a class="link" href="35445.html">35445</a></span></td>
 </tr>
 </table>
-<div class="description">35388: Routine at 35388</div>
+<div class="description">35388: Decrease the air remaining in the current cavern</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routines at <a class="link" href="34252.html">34252</a>, <a class="link" href="36211.html">36211</a> and <a class="link" href="36805.html">36805</a>.
+Used by the routines at <a class="link" href="34574.html">34574</a>, <a class="link" href="36211.html">36211</a> and <a class="link" href="36904.html">36904</a>. Returns with the zero flag set if there is no air remaining.
 </div>
 </div>
 <table class="input-0">
@@ -50,206 +50,206 @@ Used by the routines at <a class="link" href="34252.html">34252</a>, <a class="l
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="35388"></a>35388</td>
 <td class="instruction">LD A,(32957)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="3">Update the game clock at <a class="link" href="32957.html">32957</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35391"></a>35391</td>
 <td class="instruction">SUB 4</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35393"></a>35393</td>
 <td class="instruction">LD (32957),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35396"></a>35396</td>
 <td class="instruction">CP 252</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Was it just decreased from zero?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35398"></a>35398</td>
-<td class="instruction">JR NZ,35413</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR NZ,<a class="link" href="35388.html#35413">35413</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35400"></a>35400</td>
 <td class="instruction">LD A,(32956)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the value of the remaining air supply from <a class="link" href="32956.html">32956</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35403"></a>35403</td>
 <td class="instruction">CP 36</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Has the air supply run out?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35405"></a>35405</td>
 <td class="instruction">RET Z</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Return (with the zero flag set) if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35406"></a>35406</td>
 <td class="instruction">DEC A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Decrement the air supply at <a class="link" href="32956.html">32956</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35407"></a>35407</td>
 <td class="instruction">LD (32956),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35410"></a>35410</td>
 <td class="instruction">LD A,(32957)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the value of the game clock at <a class="link" href="32957.html">32957</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="35413"></a>35413</td>
 <td class="instruction">AND 224</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="4"><span class="register">A</span>=INT(<span class="register">A</span>/32); this value specifies how many pixels to draw from left to right in the cell at the right end of the air bar</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35415"></a>35415</td>
 <td class="instruction">RLCA</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35416"></a>35416</td>
 <td class="instruction">RLCA</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35417"></a>35417</td>
 <td class="instruction">RLCA</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35418"></a>35418</td>
 <td class="instruction">LD E,0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Initialise <span class="register">E</span> to 0 (all bits reset)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35420"></a>35420</td>
 <td class="instruction">OR A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Do we need to draw any pixels in the cell at the right end of the air bar?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35421"></a>35421</td>
-<td class="instruction">JR Z,35430</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR Z,<a class="link" href="35388.html#35430">35430</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35423"></a>35423</td>
 <td class="instruction">LD B,A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Copy the number of pixels to draw (1-7) to <span class="register">B</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="35424"></a>35424</td>
 <td class="instruction">RRC E</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="3">Set this many bits in <span class="register">E</span> (from bit 7 towards bit 0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35426"></a>35426</td>
 <td class="instruction">SET 7,E</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35428"></a>35428</td>
-<td class="instruction">DJNZ 35424</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">DJNZ <a class="link" href="35388.html#35424">35424</a></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="35430"></a>35430</td>
 <td class="instruction">LD A,(32956)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the value of the remaining air supply from <a class="link" href="32956.html">32956</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35433"></a>35433</td>
 <td class="instruction">LD L,A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Set <span class="register">HL</span> to the display file address at which to draw the top row of pixels in the cell at the right end of the air bar</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35434"></a>35434</td>
 <td class="instruction">LD H,82</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35436"></a>35436</td>
 <td class="instruction">LD B,4</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">There are four rows of pixels to draw</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="35438"></a>35438</td>
 <td class="instruction">LD (HL),E</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="3">Draw the four rows of pixels at the right end of the air bar</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35439"></a>35439</td>
 <td class="instruction">INC H</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35440"></a>35440</td>
-<td class="instruction">DJNZ 35438</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">DJNZ <a class="link" href="35388.html#35438">35438</a></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35442"></a>35442</td>
 <td class="instruction">XOR A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Reset the zero flag to indicate that there is still some air remaining; these instructions are redundant, since the zero flag is already reset at this point</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35443"></a>35443</td>
 <td class="instruction">INC A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35444"></a>35444</td>
 <td class="instruction">RET</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a class="link" href="34252.html">34252</a></span></td>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="35140.html">35140</a></span></td>
 <td class="up">Up: <a class="link" href="../maps/all.html#35388">Map</a></td>
 <td class="next"><span class="next-1">Next: <a class="link" href="35445.html">35445</a></span></td>
 </tr>
 </table>
 <div class="footer">
-<div class="release">The incomplete Manic Miner RAM disassembly 20140308</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

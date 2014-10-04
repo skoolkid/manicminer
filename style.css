@@ -269,3 +269,24 @@ div.map-entry-title-11, div.map-entry-desc-1, td.map-s-desc, td.map-t-desc, td.m
   color: #ffffff;
 }
 
+table.asm {
+  background-color: #ddeeff;
+}
+table.gallery {
+  border-collapse: collapse;
+}
+table.gallery td {
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+  padding: 5px;
+}
+
+table.asm {
+  background-color: #330019;
+}
+table.gallery td {
+  border-color: #ffffff;
+}
+

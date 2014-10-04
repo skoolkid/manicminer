@@ -23,13 +23,13 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="36344.html">36344</a></span></td>
 </tr>
 </table>
-<div class="description">36266: Routine at 36266</div>
+<div class="description">36266: Draw the horizontal guardians in the current cavern</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="34252.html">34252</a>.
+Used by the routine at <a class="link" href="34574.html">34574</a>.
 </div>
 </div>
 <table class="input-0">
@@ -50,235 +50,255 @@ Used by the routine at <a class="link" href="34252.html">34252</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36266"></a>36266</td>
 <td class="instruction">LD IY,32958</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Point <span class="register">IY</span> at the first byte of the first horizontal guardian definition at <a class="link" href="32958.html">32958</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="36270"></a>
+<div class="comments">
+<div class="paragraph">
+The guardian-drawing loop begins here.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36270"></a>36270</td>
 <td class="instruction">LD A,(IY+0)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the first byte of the guardian definition</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36273"></a>36273</td>
 <td class="instruction">CP 255</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Have we dealt with all the guardians yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36275"></a>36275</td>
 <td class="instruction">RET Z</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Return if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36276"></a>36276</td>
 <td class="instruction">OR A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Is this guardian definition blank?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36277"></a>36277</td>
-<td class="instruction">JR Z,36337</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR Z,<a class="link" href="36266.html#36337">36337</a></td>
+<td class="comment-11" rowspan="1">If so, skip it and consider the next one</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36279"></a>36279</td>
 <td class="instruction">LD DE,31</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Prepare <span class="register">DE</span> for addition</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36282"></a>36282</td>
 <td class="instruction">LD L,(IY+1)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the address of the guardian's location in the attribute buffer at <a class="link" href="23552.html">23552</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36285"></a>36285</td>
 <td class="instruction">LD H,(IY+2)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36288"></a>36288</td>
 <td class="instruction">AND 127</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Reset bit 7 (which specifies the animation speed) of the attribute byte, ensuring no FLASH</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36290"></a>36290</td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="7">Set the attribute bytes for the guardian in the buffer at <a class="link" href="23552.html">23552</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36291"></a>36291</td>
 <td class="instruction">INC HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36292"></a>36292</td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36293"></a>36293</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36294"></a>36294</td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36295"></a>36295</td>
 <td class="instruction">INC HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36296"></a>36296</td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36297"></a>36297</td>
 <td class="instruction">LD C,1</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Prepare <span class="register">C</span> for the call to the drawing routine at <a class="link" href="36852.html">36852</a> later on</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36299"></a>36299</td>
 <td class="instruction">LD A,(IY+4)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the animation frame (0-7)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36302"></a>36302</td>
 <td class="instruction">RRCA</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="3">Multiply it by 32</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36303"></a>36303</td>
 <td class="instruction">RRCA</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36304"></a>36304</td>
 <td class="instruction">RRCA</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36305"></a>36305</td>
 <td class="instruction">LD E,A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Copy the result to <span class="register">E</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36306"></a>36306</td>
 <td class="instruction">LD A,(33799)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a class="link" href="33799.html">33799</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36309"></a>36309</td>
 <td class="instruction">CP 7</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Are we in one of the first seven caverns?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36311"></a>36311</td>
-<td class="instruction">JR C,36323</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR C,<a class="link" href="36266.html#36323">36323</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36313"></a>36313</td>
 <td class="instruction">CP 9</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Are we in <a class="link" href="54272.html">The Endorian Forest</a>?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36315"></a>36315</td>
-<td class="instruction">JR Z,36323</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR Z,<a class="link" href="36266.html#36323">36323</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36317"></a>36317</td>
 <td class="instruction">CP 15</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Are we in <a class="link" href="60416.html">The Sixteenth Cavern</a>?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36319"></a>36319</td>
-<td class="instruction">JR Z,36323</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR Z,<a class="link" href="36266.html#36323">36323</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36321"></a>36321</td>
 <td class="instruction">SET 7,E</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Add 128 to <span class="register">E</span> (the horizontal guardians in this cavern use frames 4-7 only)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36323"></a>36323</td>
 <td class="instruction">LD D,129</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the graphic data for the appropriate guardian sprite (at <a class="link" href="33024.html">33024</a>+<span class="register">E</span>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36325"></a>36325</td>
 <td class="instruction">LD L,(IY+1)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the address of the guardian's location in the screen buffer at <a class="link" href="24576.html">24576</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36328"></a>36328</td>
 <td class="instruction">LD H,(IY+3)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36331"></a>36331</td>
-<td class="instruction">CALL <a class="link" href="36805.html#36852">36852</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">CALL <a class="link" href="36852.html">36852</a></td>
+<td class="comment-11" rowspan="1">Draw the guardian to the screen buffer at <a class="link" href="24576.html">24576</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36334"></a>36334</td>
 <td class="instruction">JP NZ,<a class="link" href="36101.html#36102">36102</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Kill Willy if the guardian collided with him</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="36337"></a>
+<div class="comments">
+<div class="paragraph">
+The current guardian definition has been dealt with. Time for the next one.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36337"></a>36337</td>
 <td class="instruction">LD DE,7</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Point <span class="register">IY</span> at the first byte of the next horizontal guardian definition</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36340"></a>36340</td>
 <td class="instruction">ADD IY,DE</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36342"></a>36342</td>
-<td class="instruction">JR 36270</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR <a class="link" href="36266.html#36270">36270</a></td>
+<td class="comment-11" rowspan="1">Jump back to deal with the next horizontal guardian</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -289,9 +309,9 @@ Used by the routine at <a class="link" href="34252.html">34252</a>.
 </tr>
 </table>
 <div class="footer">
-<div class="release">The incomplete Manic Miner RAM disassembly 20140308</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

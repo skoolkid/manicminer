@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Manic Miner: Game status buffer entry at 32875</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-g">
+<table class="header">
+<tr>
+<td class="logo"><a class="link" href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Game status buffer</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="32874.html">32874</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#32875">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="32876.html">32876</a></span></td>
+</tr>
+</table>
+<div class="description">32875: Airborne status indicator</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Initialised by the routine at <a class="link" href="34436.html">34436</a>, and used by the routines at <a class="link" href="34574.html">34574</a>, <a class="link" href="35515.html">35515</a>, <a class="link" href="35805.html">35805</a> and <a class="link" href="36101.html">36101</a>. Possible values are:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td class="centre">0</td>
+<td>Willy is neither falling nor jumping</td>
+</tr>
+<tr>
+<td class="centre">1</td>
+<td>Willy is jumping (see <a class="link" href="35805.html#35967">35967</a>)</td>
+</tr>
+<tr>
+<td class="centre">2-11</td>
+<td>Willy is falling, and can land safely</td>
+</tr>
+<tr>
+<td class="centre">12+</td>
+<td>Willy is falling, and has fallen too far to land safely (see <a class="link" href="35805.html#35805">35805</a>)</td>
+</tr>
+<tr>
+<td class="centre">255</td>
+<td>Willy has collided with a nasty or a guardian (see <a class="link" href="36101.html">36101</a>)</td>
+</tr>
+</table>
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="32875"></a>32875</td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="32874.html">32874</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#32875">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="32876.html">32876</a></span></td>
+</tr>
+</table>
+<div class="footer">
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
+</div>
+</body>
+</html>

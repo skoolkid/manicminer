@@ -23,7 +23,7 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="37503.html">37503</a></span></td>
 </tr>
 </table>
-<div class="description">37471: Routine at 37471</div>
+<div class="description">37471: Check and set the attribute byte for a cell occupied by Willy's sprite</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
@@ -32,11 +32,18 @@
 Used by the routine at <a class="link" href="37434.html">37434</a>.
 </div>
 </div>
-<table class="input-0">
+<table class="input-1">
 <tr class="asm-input-header">
 <th colspan="2">Input</th>
 </tr>
-
+<tr>
+<td class="register">C</td>
+<td class="register-desc">15 or Willy's pixel y-coordinate</td>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">Address of the cell in the attribute buffer at <a class="link" href="23552.html">23552</a></td>
+</tr>
 </table>
 <table class="output-0">
 <tr class="asm-output-header">
@@ -50,97 +57,97 @@ Used by the routine at <a class="link" href="37434.html">37434</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="37471"></a>37471</td>
 <td class="instruction">LD A,(32800)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the background tile for the current cavern from <a class="link" href="32800.html">32800</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37474"></a>37474</td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Does this cell contain a background tile?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37475"></a>37475</td>
-<td class="instruction">JR NZ,37488</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR NZ,<a class="link" href="37471.html#37488">37488</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37477"></a>37477</td>
 <td class="instruction">LD A,C</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Set the zero flag if we are going to retain the INK colour in this cell; this happens only if the cell is in the bottom row and Willy's sprite is confined to the top two rows</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37478"></a>37478</td>
 <td class="instruction">AND 15</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37480"></a>37480</td>
-<td class="instruction">JR Z,37488</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR Z,<a class="link" href="37471.html#37488">37488</a></td>
+<td class="comment-11" rowspan="1">Jump if we are going to retain the current INK colour in this cell</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37482"></a>37482</td>
 <td class="instruction">LD A,(32800)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the background tile for the current cavern from <a class="link" href="32800.html">32800</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37485"></a>37485</td>
 <td class="instruction">OR 7</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Set bits 0-2, making the INK white</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37487"></a>37487</td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Set the attribute byte for this cell in the buffer at <a class="link" href="23552.html">23552</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="37488"></a>37488</td>
 <td class="instruction">LD A,(32845)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the first nasty tile for the current cavern from <a class="link" href="32800.html#32845">32845</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37491"></a>37491</td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Has Willy hit a nasty of the first kind?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37492"></a>37492</td>
 <td class="instruction">JP Z,<a class="link" href="36101.html">36101</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Kill Willy if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37495"></a>37495</td>
 <td class="instruction">LD A,(32854)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the second nasty tile for the current cavern from <a class="link" href="32800.html#32854">32854</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37498"></a>37498</td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Has Willy hit a nasty of the second kind?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37499"></a>37499</td>
 <td class="instruction">JP Z,<a class="link" href="36101.html">36101</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Kill Willy if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37502"></a>37502</td>
 <td class="instruction">RET</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -151,9 +158,9 @@ Used by the routine at <a class="link" href="37434.html">37434</a>.
 </tr>
 </table>
 <div class="footer">
-<div class="release">The incomplete Manic Miner RAM disassembly 20140308</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

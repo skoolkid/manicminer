@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Manic Miner: Game status buffer entry at 32958</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-g">
+<table class="header">
+<tr>
+<td class="logo"><a class="link" href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Game status buffer</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="32957.html">32957</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#32958">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="32987.html">32987</a></span></td>
+</tr>
+</table>
+<div class="description">32958: Horizontal guardians</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+The horizontal guardian definitions are copied here by the routine at <a class="link" href="34436.html">34436</a>, and then used by the routines at <a class="link" href="36111.html">36111</a> and <a class="link" href="36266.html">36266</a>. There are four slots, each one seven bytes long, used to hold the state of the horizontal guardians in the current cavern.
+</div>
+<div class="paragraph">
+For each horizontal guardian, the seven bytes are used as follows:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Byte</th>
+<th>Contents</th>
+</tr>
+<tr>
+<td class="centre" rowspan="2">0</td>
+<td>Bit 7: animation speed (0=normal, 1=slow)</td>
+</tr>
+<tr>
+<td>Bits 0-6: attribute (BRIGHT, PAPER and INK)</td>
+</tr>
+<tr>
+<td class="centre">1,2</td>
+<td>Address of the guardian's location in the attribute buffer at <a class="link" href="23552.html">23552</a></td>
+</tr>
+<tr>
+<td class="centre">3</td>
+<td>MSB of the address of the guardian's location in the screen buffer at <a class="link" href="24576.html">24576</a></td>
+</tr>
+<tr>
+<td class="centre">4</td>
+<td>Animation frame</td>
+</tr>
+<tr>
+<td class="centre">5</td>
+<td>LSB of the address of the leftmost point of the guardian's path in the attribute buffer</td>
+</tr>
+<tr>
+<td class="centre">6</td>
+<td>LSB of the address of the rightmost point of the guardian's path in the attribute buffer</td>
+</tr>
+</table>
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="32958"></a>32958</td>
+<td class="instruction">DEFS 7</td>
+<td class="comment-11" rowspan="1">Horizontal guardian 1</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="32965"></a>32965</td>
+<td class="instruction">DEFS 7</td>
+<td class="comment-11" rowspan="1">Horizontal guardian 2</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="32972"></a>32972</td>
+<td class="instruction">DEFS 7</td>
+<td class="comment-11" rowspan="1">Horizontal guardian 3</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="32979"></a>32979</td>
+<td class="instruction">DEFS 7</td>
+<td class="comment-11" rowspan="1">Horizontal guardian 4</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="32986"></a>32986</td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-11" rowspan="1">Terminator (set to 255)</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="32957.html">32957</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#32958">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="32987.html">32987</a></span></td>
+</tr>
+</table>
+<div class="footer">
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
+</div>
+</body>
+</html>

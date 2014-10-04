@@ -1,0 +1,1780 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Manic Miner: Routine at 34574</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a class="link" href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="34436.html">34436</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#34574">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="35140.html">35140</a></span></td>
+</tr>
+</table>
+<div class="description">34574: Main loop</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+The routine at <a class="link" href="34436.html">34436</a> continues here.
+</div>
+<div class="paragraph">
+The first thing to do is check whether there are any remaining lives to draw at the bottom of the screen.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34574"></a>34574</td>
+<td class="instruction">LD A,(33879)</td>
+<td class="comment-11" rowspan="1">Pick up the number of lives remaining from <a class="link" href="33879.html">33879</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34577"></a>34577</td>
+<td class="instruction">LD HL,20640</td>
+<td class="comment-11" rowspan="1">Set <span class="register">HL</span> to the display file address at which to draw the first Willy sprite</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34580"></a>34580</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Are there any lives remaining?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34581"></a>34581</td>
+<td class="instruction">JR Z,<a class="link" href="34574.html#34608">34608</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34583"></a>34583</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-11" rowspan="1">Initialise <span class="register">B</span> to the number of lives remaining</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34584"></a>
+<div class="comments">
+<div class="paragraph">
+The following loop draws the remaining lives at the bottom of the screen.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34584"></a>34584</td>
+<td class="instruction">LD C,0</td>
+<td class="comment-11" rowspan="1"><span class="register">C</span>=0; this tells the sprite-drawing routine at <a class="link" href="36852.html">36852</a> to overwrite any existing graphics</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34586"></a>34586</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-11" rowspan="2">Save <span class="register">HL</span> and <span class="register">BC</span> briefly</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34587"></a>34587</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34588"></a>34588</td>
+<td class="instruction">LD A,(33883)</td>
+<td class="comment-11" rowspan="1">Pick up the in-game music note index from <a class="link" href="33883.html">33883</a>; this will determine the animation frame for the Willy sprites</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34591"></a>34591</td>
+<td class="instruction">RLCA</td>
+<td class="comment-11" rowspan="4">Now <span class="register">A</span>=0 (frame 0), 32 (frame 1), 64 (frame 2) or 96 (frame 3)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34592"></a>34592</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34593"></a>34593</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34594"></a>34594</td>
+<td class="instruction">AND 96</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34596"></a>34596</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-11" rowspan="2">Point <span class="register">DE</span> at the corresponding Willy sprite (at <a class="link" href="33280.html">33280</a>+<span class="register">A</span>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34597"></a>34597</td>
+<td class="instruction">LD D,130</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34599"></a>34599</td>
+<td class="instruction">CALL <a class="link" href="36852.html">36852</a></td>
+<td class="comment-11" rowspan="1">Draw the Willy sprite on the screen</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34602"></a>34602</td>
+<td class="instruction">POP BC</td>
+<td class="comment-11" rowspan="2">Restore <span class="register">HL</span> and <span class="register">BC</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34603"></a>34603</td>
+<td class="instruction">POP HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34604"></a>34604</td>
+<td class="instruction">INC HL</td>
+<td class="comment-11" rowspan="2">Move <span class="register">HL</span> along to the location at which to draw the next Willy sprite</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34605"></a>34605</td>
+<td class="instruction">INC HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34606"></a>34606</td>
+<td class="instruction">DJNZ <a class="link" href="34574.html#34584">34584</a></td>
+<td class="comment-11" rowspan="1">Jump back to draw any remaining sprites</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34608"></a>
+<div class="comments">
+<div class="paragraph">
+Now draw a boot if cheat mode has been activated.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34608"></a>34608</td>
+<td class="instruction">LD A,(33885)</td>
+<td class="comment-11" rowspan="1">Pick up the 6031769 key counter from <a class="link" href="33885.html">33885</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34611"></a>34611</td>
+<td class="instruction">CP 7</td>
+<td class="comment-11" rowspan="1">Has 6031769 been keyed in yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34613"></a>34613</td>
+<td class="instruction">JR NZ,<a class="link" href="34574.html#34623">34623</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34615"></a>34615</td>
+<td class="instruction">LD DE,47840</td>
+<td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the graphic data for the boot (at <a class="link" href="47104.html#47840">47840</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34618"></a>34618</td>
+<td class="instruction">LD C,0</td>
+<td class="comment-11" rowspan="1"><span class="register">C</span>=0 (overwrite mode)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34620"></a>34620</td>
+<td class="instruction">CALL <a class="link" href="36852.html">36852</a></td>
+<td class="comment-11" rowspan="1">Draw the boot at the bottom of the screen next to the remaining lives</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34623"></a>
+<div class="comments">
+<div class="paragraph">
+Next, prepare the screen and attribute buffers for drawing to the screen.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34623"></a>34623</td>
+<td class="instruction">LD HL,24064</td>
+<td class="comment-11" rowspan="4">Copy the contents of the attribute buffer at <a class="link" href="24064.html">24064</a> (the attributes for the empty cavern) into the attribute buffer at <a class="link" href="23552.html">23552</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34626"></a>34626</td>
+<td class="instruction">LD DE,23552</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34629"></a>34629</td>
+<td class="instruction">LD BC,512</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34632"></a>34632</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34634"></a>34634</td>
+<td class="instruction">LD HL,28672</td>
+<td class="comment-11" rowspan="4">Copy the contents of the screen buffer at <a class="link" href="28672.html">28672</a> (the tiles for the empty cavern) into the screen buffer at <a class="link" href="24576.html">24576</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34637"></a>34637</td>
+<td class="instruction">LD DE,24576</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34640"></a>34640</td>
+<td class="instruction">LD BC,4096</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34643"></a>34643</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34645"></a>34645</td>
+<td class="instruction">CALL <a class="link" href="36111.html">36111</a></td>
+<td class="comment-11" rowspan="1">Move the horizontal guardians in the current cavern</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34648"></a>34648</td>
+<td class="instruction">LD A,(33882)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a class="link" href="33882.html">33882</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34651"></a>34651</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Are we in demo mode?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34652"></a>34652</td>
+<td class="instruction">CALL Z,<a class="link" href="35515.html">35515</a></td>
+<td class="comment-11" rowspan="1">If not, move Willy</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34655"></a>34655</td>
+<td class="instruction">LD A,(33882)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a class="link" href="33882.html">33882</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34658"></a>34658</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Are we in demo mode?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34659"></a>34659</td>
+<td class="instruction">CALL Z,<a class="link" href="37434.html">37434</a></td>
+<td class="comment-11" rowspan="1">If not, check and set the attribute bytes for Willy's sprite in the buffer at <a class="link" href="23552.html">23552</a>, and draw Willy to the screen buffer at <a class="link" href="24576.html">24576</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34662"></a>34662</td>
+<td class="instruction">CALL <a class="link" href="36266.html">36266</a></td>
+<td class="comment-11" rowspan="1">Draw the horizontal guardians in the current cavern</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34665"></a>34665</td>
+<td class="instruction">CALL <a class="link" href="37125.html">37125</a></td>
+<td class="comment-11" rowspan="1">Move the conveyor in the current cavern</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34668"></a>34668</td>
+<td class="instruction">CALL <a class="link" href="36707.html">36707</a></td>
+<td class="comment-11" rowspan="1">Draw the items in the current cavern and collect any that Willy is touching</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34671"></a>34671</td>
+<td class="instruction">LD A,(33799)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a class="link" href="33799.html">33799</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34674"></a>34674</td>
+<td class="instruction">CP 4</td>
+<td class="comment-11" rowspan="1">Are we in <a class="link" href="49152.html">Eugene's Lair</a>?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34676"></a>34676</td>
+<td class="instruction">CALL Z,<a class="link" href="36344.html">36344</a></td>
+<td class="comment-11" rowspan="1">If so, move and draw Eugene</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34679"></a>34679</td>
+<td class="instruction">LD A,(33799)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a class="link" href="33799.html">33799</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34682"></a>34682</td>
+<td class="instruction">CP 13</td>
+<td class="comment-11" rowspan="1">Are we in <a class="link" href="58368.html">Skylab Landing Bay</a>?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34684"></a>34684</td>
+<td class="instruction">JP Z,<a class="link" href="36469.html">36469</a></td>
+<td class="comment-11" rowspan="1">If so, move and draw the Skylabs</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34687"></a>34687</td>
+<td class="instruction">LD A,(33799)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a class="link" href="33799.html">33799</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34690"></a>34690</td>
+<td class="instruction">CP 8</td>
+<td class="comment-11" rowspan="1">Are we in <a class="link" href="53248.html">Wacky Amoebatrons</a> or beyond?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34692"></a>34692</td>
+<td class="instruction">CALL NC,<a class="link" href="36593.html">36593</a></td>
+<td class="comment-11" rowspan="1">If so, move and draw the vertical guardians</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34695"></a>34695</td>
+<td class="instruction">LD A,(33799)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a class="link" href="33799.html">33799</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34698"></a>34698</td>
+<td class="instruction">CP 7</td>
+<td class="comment-11" rowspan="1">Are we in <a class="link" href="52224.html">Miner Willy meets the Kong Beast</a>?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34700"></a>34700</td>
+<td class="instruction">CALL Z,<a class="link" href="37173.html">37173</a></td>
+<td class="comment-11" rowspan="1">If so, move and draw the Kong Beast</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34703"></a>34703</td>
+<td class="instruction">LD A,(33799)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a class="link" href="33799.html">33799</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34706"></a>34706</td>
+<td class="instruction">CP 11</td>
+<td class="comment-11" rowspan="1">Are we in <a class="link" href="56320.html">Return of the Alien Kong Beast</a>?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34708"></a>34708</td>
+<td class="instruction">CALL Z,<a class="link" href="37173.html">37173</a></td>
+<td class="comment-11" rowspan="1">If so, move and draw the Kong Beast</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34711"></a>34711</td>
+<td class="instruction">LD A,(33799)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a class="link" href="33799.html">33799</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34714"></a>34714</td>
+<td class="instruction">CP 18</td>
+<td class="comment-11" rowspan="1">Are we in <a class="link" href="63488.html">Solar Power Generator</a>?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34716"></a>34716</td>
+<td class="instruction">CALL Z,<a class="link" href="36211.html">36211</a></td>
+<td class="comment-11" rowspan="1">If so, move and draw the light beam</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34719"></a>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a class="link" href="36469.html">36469</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34719"></a>34719</td>
+<td class="instruction">CALL <a class="link" href="36805.html">36805</a></td>
+<td class="comment-11" rowspan="1">Draw the portal, or move to the next cavern if Willy has entered it</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34722"></a>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a class="link" href="36101.html">36101</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34722"></a>34722</td>
+<td class="instruction">LD HL,24576</td>
+<td class="comment-11" rowspan="4">Copy the contents of the screen buffer at <a class="link" href="24576.html">24576</a> to the display file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34725"></a>34725</td>
+<td class="instruction">LD DE,16384</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34728"></a>34728</td>
+<td class="instruction">LD BC,4096</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34731"></a>34731</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34733"></a>34733</td>
+<td class="instruction">LD A,(33880)</td>
+<td class="comment-11" rowspan="1">Pick up the screen flash counter from <a class="link" href="33880.html">33880</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34736"></a>34736</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Is it zero?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34737"></a>34737</td>
+<td class="instruction">JR Z,<a class="link" href="34574.html#34760">34760</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34739"></a>34739</td>
+<td class="instruction">DEC A</td>
+<td class="comment-11" rowspan="2">Decrement the screen flash counter at <a class="link" href="33880.html">33880</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34740"></a>34740</td>
+<td class="instruction">LD (33880),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34743"></a>34743</td>
+<td class="instruction">RLCA</td>
+<td class="comment-11" rowspan="4">Move bits 0-2 into bits 3-5 and clear all the other bits</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34744"></a>34744</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34745"></a>34745</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34746"></a>34746</td>
+<td class="instruction">AND 56</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34748"></a>34748</td>
+<td class="instruction">LD HL,23552</td>
+<td class="comment-11" rowspan="5">Set every attribute byte in the buffer at <a class="link" href="23552.html">23552</a> to this value</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34751"></a>34751</td>
+<td class="instruction">LD DE,23553</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34754"></a>34754</td>
+<td class="instruction">LD BC,511</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34757"></a>34757</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34758"></a>34758</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34760"></a>34760</td>
+<td class="instruction">LD HL,23552</td>
+<td class="comment-11" rowspan="4">Copy the contents of the attribute buffer at <a class="link" href="23552.html">23552</a> to the attribute file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34763"></a>34763</td>
+<td class="instruction">LD DE,22528</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34766"></a>34766</td>
+<td class="instruction">LD BC,512</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34769"></a>34769</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34771"></a>34771</td>
+<td class="instruction">LD IX,33833</td>
+<td class="comment-11" rowspan="4">Print the score (see <a class="link" href="33829.html#33833">33833</a>) at (19,26)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34775"></a>34775</td>
+<td class="instruction">LD DE,20602</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34778"></a>34778</td>
+<td class="instruction">LD C,6</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34780"></a>34780</td>
+<td class="instruction">CALL <a class="link" href="37562.html">37562</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34783"></a>34783</td>
+<td class="instruction">LD IX,33823</td>
+<td class="comment-11" rowspan="4">Print the high score (see <a class="link" href="33823.html">33823</a>) at (19,11)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34787"></a>34787</td>
+<td class="instruction">LD DE,20587</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34790"></a>34790</td>
+<td class="instruction">LD C,6</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34792"></a>34792</td>
+<td class="instruction">CALL <a class="link" href="37562.html">37562</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34795"></a>34795</td>
+<td class="instruction">CALL <a class="link" href="35388.html">35388</a></td>
+<td class="comment-11" rowspan="1">Decrease the air remaining in the current cavern</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34798"></a>34798</td>
+<td class="instruction">JP Z,<a class="link" href="34574.html#35071">35071</a></td>
+<td class="comment-11" rowspan="1">Jump if there's no air left</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34801"></a>
+<div class="comments">
+<div class="paragraph">
+Now check whether SHIFT and SPACE are being pressed.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34801"></a>34801</td>
+<td class="instruction">LD BC,65278</td>
+<td class="comment-11" rowspan="2">Read keys SHIFT-Z-X-C-V</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34804"></a>34804</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34806"></a>34806</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-11" rowspan="1">Save the result in <span class="register">E</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34807"></a>34807</td>
+<td class="instruction">LD B,127</td>
+<td class="comment-11" rowspan="2">Read keys B-N-M-SS-SPACE</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34809"></a>34809</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34811"></a>34811</td>
+<td class="instruction">OR E</td>
+<td class="comment-11" rowspan="1">Combine the results</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34812"></a>34812</td>
+<td class="instruction">AND 1</td>
+<td class="comment-11" rowspan="1">Are SHIFT and SPACE being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34814"></a>34814</td>
+<td class="instruction">JP Z,<a class="link" href="34252.html">34252</a></td>
+<td class="comment-11" rowspan="1">If so, quit the game</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34817"></a>
+<div class="comments">
+<div class="paragraph">
+Now read the keys A, S, D, F and G (which pause the game).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34817"></a>34817</td>
+<td class="instruction">LD B,253</td>
+<td class="comment-11" rowspan="2">Read keys A-S-D-F-G</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34819"></a>34819</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34821"></a>34821</td>
+<td class="instruction">AND 31</td>
+<td class="comment-11" rowspan="2">Are any of these keys being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34823"></a>34823</td>
+<td class="instruction">CP 31</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34825"></a>34825</td>
+<td class="instruction">JR Z,<a class="link" href="34574.html#34837">34837</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34827"></a>34827</td>
+<td class="instruction">LD B,2</td>
+<td class="comment-11" rowspan="2">Read every half-row of keys except A-S-D-F-G</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34829"></a>34829</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34831"></a>34831</td>
+<td class="instruction">AND 31</td>
+<td class="comment-11" rowspan="2">Are any of these keys being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34833"></a>34833</td>
+<td class="instruction">CP 31</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34835"></a>34835</td>
+<td class="instruction">JR Z,<a class="link" href="34574.html#34827">34827</a></td>
+<td class="comment-11" rowspan="1">Jump back if not (the game is still paused)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34837"></a>
+<div class="comments">
+<div class="paragraph">
+Here we check whether Willy has had a fatal accident.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34837"></a>34837</td>
+<td class="instruction">LD A,(32875)</td>
+<td class="comment-11" rowspan="1">Pick up the airborne status indicator from <a class="link" href="32875.html">32875</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34840"></a>34840</td>
+<td class="instruction">CP 255</td>
+<td class="comment-11" rowspan="1">Has Willy landed after falling from too great a height, or collided with a nasty or a guardian?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34842"></a>34842</td>
+<td class="instruction">JP Z,<a class="link" href="34574.html#35071">35071</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34845"></a>
+<div class="comments">
+<div class="paragraph">
+Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34845"></a>34845</td>
+<td class="instruction">LD B,191</td>
+<td class="comment-11" rowspan="1">Prepare <span class="register">B</span> for reading keys H-J-K-L-ENTER</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34847"></a>34847</td>
+<td class="instruction">LD HL,33884</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the music flags at <a class="link" href="33884.html">33884</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34850"></a>34850</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-11" rowspan="1">Read keys H-J-K-L-ENTER</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34852"></a>34852</td>
+<td class="instruction">AND 31</td>
+<td class="comment-11" rowspan="2">Are any of these keys being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34854"></a>34854</td>
+<td class="instruction">CP 31</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34856"></a>34856</td>
+<td class="instruction">JR Z,<a class="link" href="34574.html#34868">34868</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34858"></a>34858</td>
+<td class="instruction">BIT 0,(HL)</td>
+<td class="comment-11" rowspan="1">Were any of these keys being pressed the last time we checked?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34860"></a>34860</td>
+<td class="instruction">JR NZ,<a class="link" href="34574.html#34870">34870</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34862"></a>34862</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-11" rowspan="3">Set bit 0 (the keypress flag) and flip bit 1 (the in-game music flag) at <a class="link" href="33884.html">33884</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34863"></a>34863</td>
+<td class="instruction">XOR 3</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34865"></a>34865</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34866"></a>34866</td>
+<td class="instruction">JR <a class="link" href="34574.html#34870">34870</a></td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34868"></a>34868</td>
+<td class="instruction">RES 0,(HL)</td>
+<td class="comment-11" rowspan="1">Reset bit 0 (the keypress flag) at <a class="link" href="33884.html">33884</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34870"></a>34870</td>
+<td class="instruction">BIT 1,(HL)</td>
+<td class="comment-11" rowspan="1">Has the in-game music been switched off?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34872"></a>34872</td>
+<td class="instruction">JR NZ,<a class="link" href="34574.html#34911">34911</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34874"></a>
+<div class="comments">
+<div class="paragraph">
+The next section of code plays a note of the in-game music.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34874"></a>34874</td>
+<td class="instruction">LD A,(33883)</td>
+<td class="comment-11" rowspan="3">Increment the in-game music note index at <a class="link" href="33883.html">33883</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34877"></a>34877</td>
+<td class="instruction">INC A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34878"></a>34878</td>
+<td class="instruction">LD (33883),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34881"></a>34881</td>
+<td class="instruction">AND 126</td>
+<td class="comment-11" rowspan="6">Point <span class="register">HL</span> at the appropriate entry in the tune data table at <a class="link" href="34188.html">34188</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34883"></a>34883</td>
+<td class="instruction">RRCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34884"></a>34884</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34885"></a>34885</td>
+<td class="instruction">LD D,0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34887"></a>34887</td>
+<td class="instruction">LD HL,34188</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34890"></a>34890</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34891"></a>34891</td>
+<td class="instruction">LD A,(32883)</td>
+<td class="comment-11" rowspan="1">Pick up the border colour for the current cavern from <a class="link" href="32883.html">32883</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34894"></a>34894</td>
+<td class="instruction">LD E,(HL)</td>
+<td class="comment-11" rowspan="1">Initialise the pitch delay counter in <span class="register">E</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34895"></a>34895</td>
+<td class="instruction">LD BC,3</td>
+<td class="comment-11" rowspan="1">Initialise the duration delay counters in <span class="register">B</span> (0) and <span class="register">C</span> (3)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34898"></a>34898</td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-11" rowspan="8">Produce a note of the in-game music</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34900"></a>34900</td>
+<td class="instruction">DEC E</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34901"></a>34901</td>
+<td class="instruction">JR NZ,<a class="link" href="34574.html#34906">34906</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34903"></a>34903</td>
+<td class="instruction">LD E,(HL)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34904"></a>34904</td>
+<td class="instruction">XOR 24</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34906"></a>34906</td>
+<td class="instruction">DJNZ <a class="link" href="34574.html#34898">34898</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34908"></a>34908</td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34909"></a>34909</td>
+<td class="instruction">JR NZ,<a class="link" href="34574.html#34898">34898</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34911"></a>
+<div class="comments">
+<div class="paragraph">
+If we're in demo mode, check the keyboard and joystick and return to the title screen if there's any input.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34911"></a>34911</td>
+<td class="instruction">LD A,(33882)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a class="link" href="33882.html">33882</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34914"></a>34914</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Are we in demo mode?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34915"></a>34915</td>
+<td class="instruction">JR Z,<a class="link" href="34574.html#34948">34948</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34917"></a>34917</td>
+<td class="instruction">DEC A</td>
+<td class="comment-11" rowspan="1">We're in demo mode; is it time to show the next cavern?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34918"></a>34918</td>
+<td class="instruction">JP Z,<a class="link" href="34574.html#35071">35071</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34921"></a>34921</td>
+<td class="instruction">LD (33882),A</td>
+<td class="comment-11" rowspan="1">Update the game mode indicator at <a class="link" href="33882.html">33882</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34924"></a>34924</td>
+<td class="instruction">LD BC,254</td>
+<td class="comment-11" rowspan="2">Read every row of keys on the keyboard</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34927"></a>34927</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34929"></a>34929</td>
+<td class="instruction">AND 31</td>
+<td class="comment-11" rowspan="2">Are any keys being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34931"></a>34931</td>
+<td class="instruction">CP 31</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34933"></a>34933</td>
+<td class="instruction">JP NZ,<a class="link" href="34252.html">34252</a></td>
+<td class="comment-11" rowspan="1">If so, return to the title screen</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34936"></a>34936</td>
+<td class="instruction">LD A,(33881)</td>
+<td class="comment-11" rowspan="1">Pick up the Kempston joystick indicator from <a class="link" href="33881.html">33881</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34939"></a>34939</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Is there a joystick connected?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34940"></a>34940</td>
+<td class="instruction">JR Z,<a class="link" href="34574.html#34948">34948</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34942"></a>34942</td>
+<td class="instruction">IN A,(31)</td>
+<td class="comment-11" rowspan="1">Collect input from the joystick</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34944"></a>34944</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Is the joystick being moved or the fire button being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34945"></a>34945</td>
+<td class="instruction">JP NZ,<a class="link" href="34252.html">34252</a></td>
+<td class="comment-11" rowspan="1">If so, return to the title screen</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34948"></a>
+<div class="comments">
+<div class="paragraph">
+Here we check the teleport keys.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34948"></a>34948</td>
+<td class="instruction">LD BC,61438</td>
+<td class="comment-11" rowspan="2">Read keys 6-7-8-9-0</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34951"></a>34951</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34953"></a>34953</td>
+<td class="instruction">BIT 4,A</td>
+<td class="comment-11" rowspan="1">Is '6' (the activator key) being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34955"></a>34955</td>
+<td class="instruction">JP NZ,<a class="link" href="34574.html#34984">34984</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34958"></a>34958</td>
+<td class="instruction">LD A,(33885)</td>
+<td class="comment-11" rowspan="1">Pick up the 6031769 key counter from <a class="link" href="33885.html">33885</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34961"></a>34961</td>
+<td class="instruction">CP 7</td>
+<td class="comment-11" rowspan="1">Has 6031769 been keyed in yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34963"></a>34963</td>
+<td class="instruction">JP NZ,<a class="link" href="34574.html#34984">34984</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34966"></a>34966</td>
+<td class="instruction">LD B,247</td>
+<td class="comment-11" rowspan="2">Read keys 1-2-3-4-5</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34968"></a>34968</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34970"></a>34970</td>
+<td class="instruction">CPL</td>
+<td class="comment-11" rowspan="2">Keep only bits 0-4 and flip them</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34971"></a>34971</td>
+<td class="instruction">AND 31</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34973"></a>34973</td>
+<td class="instruction">CP 20</td>
+<td class="comment-11" rowspan="1">Is the result 20 or greater?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34975"></a>34975</td>
+<td class="instruction">JP NC,<a class="link" href="34574.html#34984">34984</a></td>
+<td class="comment-11" rowspan="1">Jump if so (this is not a cavern number)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34978"></a>34978</td>
+<td class="instruction">LD (33799),A</td>
+<td class="comment-11" rowspan="1">Store the cavern number at <a class="link" href="33799.html">33799</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34981"></a>34981</td>
+<td class="instruction">JP <a class="link" href="34436.html#34449">34449</a></td>
+<td class="comment-11" rowspan="1">Teleport into the cavern</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="34984"></a>
+<div class="comments">
+<div class="paragraph">
+Now check the 6031769 keys.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="34984"></a>34984</td>
+<td class="instruction">LD A,(33885)</td>
+<td class="comment-11" rowspan="1">Pick up the 6031769 key counter from <a class="link" href="33885.html">33885</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34987"></a>34987</td>
+<td class="instruction">CP 7</td>
+<td class="comment-11" rowspan="1">Has 6031769 been keyed in yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34989"></a>34989</td>
+<td class="instruction">JP Z,<a class="link" href="34574.html#34574">34574</a></td>
+<td class="comment-11" rowspan="1">If so, jump back to the start of the main loop</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34992"></a>34992</td>
+<td class="instruction">RLCA</td>
+<td class="comment-11" rowspan="5">Point <span class="register">IX</span> at the corresponding entry in the 6031769 table at <a class="link" href="33886.html#33888">33888</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34993"></a>34993</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34994"></a>34994</td>
+<td class="instruction">LD D,0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="34996"></a>34996</td>
+<td class="instruction">LD IX,33888</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35000"></a>35000</td>
+<td class="instruction">ADD IX,DE</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35002"></a>35002</td>
+<td class="instruction">LD BC,63486</td>
+<td class="comment-11" rowspan="2">Read keys 1-2-3-4-5</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35005"></a>35005</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35007"></a>35007</td>
+<td class="instruction">AND 31</td>
+<td class="comment-11" rowspan="1">Keep only bits 0-5</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35009"></a>35009</td>
+<td class="instruction">CP (IX+0)</td>
+<td class="comment-11" rowspan="1">Does this match the first byte of the entry in the 6031769 table?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35012"></a>35012</td>
+<td class="instruction">JR Z,<a class="link" href="34574.html#35032">35032</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35014"></a>35014</td>
+<td class="instruction">CP 31</td>
+<td class="comment-11" rowspan="1">Are any of the keys 1-2-3-4-5 being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35016"></a>35016</td>
+<td class="instruction">JP Z,<a class="link" href="34574.html#34574">34574</a></td>
+<td class="comment-11" rowspan="1">If not, jump back to the start of the main loop</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35019"></a>35019</td>
+<td class="instruction">CP (IX-2)</td>
+<td class="comment-11" rowspan="1">Does the keyboard reading match the first byte of the previous entry in the 6031769 table?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35022"></a>35022</td>
+<td class="instruction">JP Z,<a class="link" href="34574.html#34574">34574</a></td>
+<td class="comment-11" rowspan="1">If so, jump back to the start of the main loop</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35025"></a>35025</td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="2">Reset the 6031769 key counter at <a class="link" href="33885.html">33885</a> to 0 (an incorrect key is being pressed)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35026"></a>35026</td>
+<td class="instruction">LD (33885),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35029"></a>35029</td>
+<td class="instruction">JP <a class="link" href="34574.html#34574">34574</a></td>
+<td class="comment-11" rowspan="1">Jump back to the start of the main loop</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="35032"></a>35032</td>
+<td class="instruction">LD B,239</td>
+<td class="comment-11" rowspan="2">Read keys 6-7-8-9-0</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35034"></a>35034</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35036"></a>35036</td>
+<td class="instruction">AND 31</td>
+<td class="comment-11" rowspan="1">Keep only bits 0-5</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35038"></a>35038</td>
+<td class="instruction">CP (IX+1)</td>
+<td class="comment-11" rowspan="1">Does this match the second byte of the entry in the 6031769 table?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35041"></a>35041</td>
+<td class="instruction">JR Z,<a class="link" href="34574.html#35061">35061</a></td>
+<td class="comment-11" rowspan="1">If so, jump to increment the 6031769 key counter</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35043"></a>35043</td>
+<td class="instruction">CP 31</td>
+<td class="comment-11" rowspan="1">Are any of the keys 6-7-8-9-0 being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35045"></a>35045</td>
+<td class="instruction">JP Z,<a class="link" href="34574.html#34574">34574</a></td>
+<td class="comment-11" rowspan="1">If not, jump back to the start of the main loop</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35048"></a>35048</td>
+<td class="instruction">CP (IX-1)</td>
+<td class="comment-11" rowspan="1">Does the keyboard reading match the second byte of the previous entry in the 6031769 table?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35051"></a>35051</td>
+<td class="instruction">JP Z,<a class="link" href="34574.html#34574">34574</a></td>
+<td class="comment-11" rowspan="1">If so, jump back to the start of the main loop</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35054"></a>35054</td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="2">Reset the 6031769 key counter at <a class="link" href="33885.html">33885</a> to 0 (an incorrect key is being pressed)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35055"></a>35055</td>
+<td class="instruction">LD (33885),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35058"></a>35058</td>
+<td class="instruction">JP <a class="link" href="34574.html#34574">34574</a></td>
+<td class="comment-11" rowspan="1">Jump back to the start of the main loop</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="35061"></a>35061</td>
+<td class="instruction">LD A,(33885)</td>
+<td class="comment-11" rowspan="3">Increment the 6031769 key counter at <a class="link" href="33885.html">33885</a> (the next key in the sequence is being pressed)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35064"></a>35064</td>
+<td class="instruction">INC A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35065"></a>35065</td>
+<td class="instruction">LD (33885),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35068"></a>35068</td>
+<td class="instruction">JP <a class="link" href="34574.html#34574">34574</a></td>
+<td class="comment-11" rowspan="1">Jump back to the start of the main loop</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="35071"></a>
+<div class="comments">
+<div class="paragraph">
+The air in the cavern has run out, or Willy has had a fatal accident, or it's demo mode and it's time to show the next cavern.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="35071"></a>35071</td>
+<td class="instruction">LD A,(33882)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a class="link" href="33882.html">33882</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35074"></a>35074</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Is it demo mode?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35075"></a>35075</td>
+<td class="instruction">JP NZ,<a class="link" href="36904.html">36904</a></td>
+<td class="comment-11" rowspan="1">If so, move to the next cavern</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35078"></a>35078</td>
+<td class="instruction">LD A,71</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=71 (INK 7: PAPER 0: BRIGHT 1)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="35080"></a>
+<div class="comments">
+<div class="paragraph">
+The following loop fills the top two thirds of the attribute file with a single value (71 TO 64 STEP -1) and makes a sound effect.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="35080"></a>35080</td>
+<td class="instruction">LD HL,22528</td>
+<td class="comment-11" rowspan="5">Fill the top two thirds of the attribute file with the value in <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35083"></a>35083</td>
+<td class="instruction">LD DE,22529</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35086"></a>35086</td>
+<td class="instruction">LD BC,511</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35089"></a>35089</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35090"></a>35090</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35092"></a>35092</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-11" rowspan="1">Save the attribute byte (64-71) in <span class="register">E</span> for later retrieval</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35093"></a>35093</td>
+<td class="instruction">CPL</td>
+<td class="comment-11" rowspan="7"><span class="register">D</span>=7+8*(7-(<span class="register">E</span> AND 7)); this value determines the pitch of the short note that will be played</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35094"></a>35094</td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35096"></a>35096</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35097"></a>35097</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35098"></a>35098</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35099"></a>35099</td>
+<td class="instruction">OR 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35101"></a>35101</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35102"></a>35102</td>
+<td class="instruction">LD C,E</td>
+<td class="comment-11" rowspan="4"><span class="register">C</span>=8+32*(<span class="register">E</span> AND 7); this value determines the duration of the short note that will be played</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35103"></a>35103</td>
+<td class="instruction">RRC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35105"></a>35105</td>
+<td class="instruction">RRC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35107"></a>35107</td>
+<td class="instruction">RRC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35109"></a>35109</td>
+<td class="instruction">OR 16</td>
+<td class="comment-11" rowspan="1">Set bit 4 of <span class="register">A</span> (for no apparent reason)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35111"></a>35111</td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="1">Set <span class="register">A</span>=0 (this will make the border black)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="35112"></a>35112</td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-11" rowspan="6">Produce a short note whose pitch is determined by <span class="register">D</span> and whose duration is determined by <span class="register">C</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35114"></a>35114</td>
+<td class="instruction">XOR 24</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35116"></a>35116</td>
+<td class="instruction">LD B,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><a name="35117"></a>35117</td>
+<td class="instruction">DJNZ <a class="link" href="34574.html#35117">35117</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35119"></a>35119</td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35120"></a>35120</td>
+<td class="instruction">JR NZ,<a class="link" href="34574.html#35112">35112</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35122"></a>35122</td>
+<td class="instruction">LD A,E</td>
+<td class="comment-11" rowspan="1">Restore the attribute byte (originally 71) to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35123"></a>35123</td>
+<td class="instruction">DEC A</td>
+<td class="comment-11" rowspan="1">Decrement it (effectively decrementing the INK colour)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35124"></a>35124</td>
+<td class="instruction">CP 63</td>
+<td class="comment-11" rowspan="1">Have we used attribute value 64 (INK 0) yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35126"></a>35126</td>
+<td class="instruction">JR NZ,<a class="link" href="34574.html#35080">35080</a></td>
+<td class="comment-11" rowspan="1">If not, jump back to update the INK colour in the top two thirds of the screen and make another sound effect</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="35128"></a>
+<div class="comments">
+<div class="paragraph">
+Finally, check whether any lives remain.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35128"></a>35128</td>
+<td class="instruction">LD HL,33879</td>
+<td class="comment-11" rowspan="2">Pick up the number of lives remaining from <a class="link" href="33879.html">33879</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35131"></a>35131</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35132"></a>35132</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Are there any lives remaining?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35133"></a>35133</td>
+<td class="instruction">JP Z,<a class="link" href="35140.html">35140</a></td>
+<td class="comment-11" rowspan="1">If not, display the game over sequence</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35136"></a>35136</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-11" rowspan="1">Decrease the number of lives remaining by one</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35137"></a>35137</td>
+<td class="instruction">JP <a class="link" href="34436.html#34449">34449</a></td>
+<td class="comment-11" rowspan="1">Jump back to reinitialise the current cavern</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="34436.html">34436</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#34574">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="35140.html">35140</a></span></td>
+</tr>
+</table>
+<div class="footer">
+<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
+</div>
+</body>
+</html>
