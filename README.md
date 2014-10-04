@@ -1,10 +1,9 @@
 Manic Miner disassembly
 =======================
 
-A work-in-progress disassembly of the
-[Spectrum](http://en.wikipedia.org/wiki/ZX_Spectrum) version of
-[Manic Miner](http://en.wikipedia.org/wiki/Manic_Miner), created using
-[SkoolKit](http://skoolkit.ca/).
+A disassembly of the [Spectrum](http://en.wikipedia.org/wiki/ZX_Spectrum)
+version of [Manic Miner](http://en.wikipedia.org/wiki/Manic_Miner), created
+using [SkoolKit](http://skoolkit.ca/).
 
 Browse the latest release [here](http://skoolkid.github.io/manicminer/).
 

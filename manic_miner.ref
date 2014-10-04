@@ -12,7 +12,7 @@ Game=Manic Miner
 Logo=#SCR2,0,1,19,2,43008,40448{10,,292}(/images/logo)
 StyleSheet=skoolkit.css;manic_miner.css
 Copyright=&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).
-Release=The complete Manic Miner RAM disassembly YYYYMMDD
+Release=The complete Manic Miner RAM disassembly 20141004
 LinkInternalOperands=1
 
 [Font]
@@ -336,7 +336,7 @@ To give Willy infinite lives:
 
 POKE #R35136,0
 
-[Changelog:YYYYMMDD]
+[Changelog:20141004]
 The disassembly is now 'complete'.
 
 Annotated all the #LINK:RoutinesMap(routines)
