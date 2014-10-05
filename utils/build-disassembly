@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+D_VERSIONS=(
+  20141004
+)
+
 declare -A SK_VERSIONS
 SK_VERSIONS=(
   [20140308]=3.7
@@ -22,7 +26,7 @@ if [ $# -lt 2 ]; then
   echo ""
   echo "  VERSION must be one of:"
   echo ""
-  for v in ${!SK_VERSIONS[@]}; do
+  for v in ${D_VERSIONS[@]} ${!SK_VERSIONS[@]}; do
     echo "    $v"
   done | sort -r | column -c 80
   echo ""
@@ -46,16 +50,6 @@ SK_VERSION=$2
 SK_VERSION_INT=$(echo $SK_VERSION | tr -d . )0
 SK_VERSION_INT=${SK_VERSION_INT:0:3}
 
-SK_DIR=skoolkit-$SK_VERSION
-odir=mm-$D_VERSION-$SK_VERSION
-rm -rf $SK_DIR $odir
-
-D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
-if [[ -z "$D_SK_VERSION" ]]; then
-  echo "Disassembly version not recognised: $D_VERSION"
-  exit 1
-fi
-
 odir=mm-$D_VERSION-$SK_VERSION
 rm -rf $odir
 mkdir $odir
@@ -66,20 +60,36 @@ tar xf $SKOOLKIT_ARCHIVE/$SK_DIR.tar.*
 SK_BUILD_DIR=${SK_DIR}-build
 mv $SK_DIR $SK_BUILD_DIR
 
-D_SK_VERSION_INT=$(echo $D_SK_VERSION | tr -d . )0
-D_SK_VERSION_INT=${D_SK_VERSION_INT:0:3}
-D_SK_DIR=skoolkit-$D_SK_VERSION
-tar xf $SKOOLKIT_ARCHIVE/$D_SK_DIR.tar.*
-D_DIR=$D_SK_DIR-src
-mv $D_SK_DIR $D_DIR
-
-cd $SK_BUILD_DIR
-rm -f *.ctl *.skool *.ref
-find ../$D_DIR -name manic_miner.ctl -exec cp -a {} . \;
-find ../$D_DIR -name manic_miner.ref -exec cp -a {} . \;
-find ../$D_DIR -name manicminer.py -exec cp -a {} skoolkit \;
-
-./sna2skool.py -c manic_miner.ctl $MMZ80 > manic_miner.skool
+if [[ $D_VERSION -ge 20141004 ]]; then
+  if [[ -z "$DISASSEMBLY_ARCHIVE" ]]; then
+      echo 'DISASSEMBLY_ARCHIVE is not set; aborting'
+      exit 1
+  fi
+  if [[ ! -d "$DISASSEMBLY_ARCHIVE" ]]; then
+      echo "DISASSEMBLY_ARCHIVE=$DISASSEMBLY_ARCHIVE: directory not found"
+      exit 1
+  fi
+  D_DIR=mm-disassembly-$D_VERSION
+  tar xf $DISASSEMBLY_ARCHIVE/$D_DIR.tar.xz
+  cd $SK_BUILD_DIR
+  cp -p ../$D_DIR/src/manic* .
+else
+  D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
+  if [[ -z "$D_SK_VERSION" ]]; then
+    echo "Disassembly version not recognised: $D_VERSION"
+    exit 1
+  fi
+  D_SK_DIR=skoolkit-$D_SK_VERSION
+  tar xf $SKOOLKIT_ARCHIVE/$D_SK_DIR.tar.*
+  D_DIR=$D_SK_DIR-src
+  mv $D_SK_DIR $D_DIR
+  cd $SK_BUILD_DIR
+  rm -f *.ctl *.skool *.ref
+  find ../$D_DIR -name manic_miner.ctl -exec cp -p {} . \;
+  find ../$D_DIR -name manic_miner.ref -exec cp -p {} . \;
+  find ../$D_DIR -name manicminer.py -exec cp -p {} skoolkit \;
+  ./sna2skool.py -c manic_miner.ctl $MMZ80 > manic_miner.skool
+fi
 
 if [ $SK_VERSION_INT -ge 220 ]; then
   # SkoolKit 2.2+
