@@ -32,7 +32,7 @@ XHTML_XSD = os.path.join(SKOOLKIT_HOME, 'XSD', 'xhtml1-strict.xsd')
 
 OUTPUT_MM = """Creating directory {odir}
 Using skool file: {skoolfile}
-Using ref file: {reffile}
+Using ref files: ../manic_miner.ref, ../manic_miner-bugs.ref, ../manic_miner-changelog.ref, ../manic_miner-facts.ref, ../manic_miner-pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/manic_miner
 Copying {SKOOLKIT_HOME}/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css
@@ -236,7 +236,7 @@ class HtmlTestCase(DisassembliesTestCase):
         # Write the disassembly
         output, error = self.run_skoolkit_command(skool2html.main, '{} {} {}'.format(main_options, options, MMREF))
         self.assertEqual(len(error), 0)
-        reps = {'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': MM_SKOOL, 'reffile': MMREF}
+        reps = {'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': MM_SKOOL}
         self.assertEqual(OUTPUT_MM.format(**reps).split('\n'), output)
 
         self._validate_xhtml()

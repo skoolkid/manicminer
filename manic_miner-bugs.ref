@@ -1,0 +1,20 @@
+; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
+
+[Bug:throughTheWall:Through the wall]
+If Willy jumps left over the two nasties at the bottom right of #R49152(Eugene's Lair) such that he lands on the top layer of bricks with animation frame 0 at step 16 of the jumping animation, he will then fall through them to the bottom layer of bricks:
+
+#UDGTABLE(gallery)
+{ #CALL:wall_bug_img(1) | #CALL:wall_bug_img(2)  | #CALL:wall_bug_img(3) | #CALL:wall_bug_img(4) }
+{ Step 15               | Step 16                | Step 17               | Step 18 }
+TABLE#
+
+This happens because the section of code at #R35600 - which is executed during jumping animation step 16, when Willy is exactly one cell height above the place he jumped from - checks whether there are any nasty tiles in the cells below Willy's sprite; if there are, the code jumps forward to #R35665, which makes Willy proceed to the next jumping animation step (as if the bricks and the nasty were not there), instead of landing on the bricks (and being killed by the nasty).
+
+Perhaps the assumption in this code is that if there is a nasty tile below Willy's sprite in step 16, then he will be killed by the nasty in step 17; however, in this particular case Willy's x-coordinate decreases by one from step 16 to step 17, which moves him out of the nasty's range.
+
+[Bug:attributeCrash:Attribute crash]
+When a Skylab in #R58368(Skylab Landing Bay) crashes into a section of floor or conveyor, the attributes of that section are temporarily changed to that of the Skylab; the attributes are restored after the Skylab has finished disintegrating.
+
+#UDGTABLE { #CALL:attribute_crash_img() } TABLE#
+
+The reason for this is that the code at #R36447 (which is used to set the attributes for a Skylab) sets the attributes in not two but three rows of cells, to handle the case where a guardian's sprite is not cell-aligned. However, when a Skylab crashes, it <em>is</em> cell-aligned, and so its attributes needlessly bleed over to the floor or conveyor cells immediately below it.

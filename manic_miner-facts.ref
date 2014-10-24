@@ -1,0 +1,167 @@
+; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
+
+[Fact:takingABreak:Taking a BREAK]
+The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see #R34801).
+
+[Fact:6031769:6031769]
+If you type the digits 6031769 at any point during the game, a cheat mode is activated that enables Willy to teleport to any cavern; a boot appears next to Willy's remaining lives to show that the cheat mode has been activated.
+
+For example, to teleport to #R51200(The Vat), hold down keys '2' and '3', and then press '6' to activate the teleporter. For a list of all the caverns and their teleport codes, see the #LINK:Caverns(Caverns page).
+
+The number 6031769 comes from Matthew Smith's driving licence, "with an error in it and twisted round a bit" (as he put it in an interview for issue 48 of <i>Retro Gamer</i> magazine).
+
+[Fact:noSwordfishForCheats:No swordfish for cheats]
+The game ending - with Willy above ground and the portal in #R64512(The Final Barrier) changed to the #R45792(swordfish) graphic - is not shown if #LINK:Facts#6031769(cheat mode) is activated (see #R36919).
+
+[Fact:unusedCrumblingFloor:Unused crumbling floor]
+The crumbling floor tile in #R58368(Skylab Landing Bay) is unique to that cavern, and also not used.
+
+#UDGTABLE { #UDG58931,2(crumbling_floor_13) } TABLE#
+
+To place a couple of these tiles in the cavern in order to see them crumble:
+
+POKE 58811,10: POKE 58812,10: POKE 58930,10
+
+[Fact:itemGraphics:Item graphics]
+The commonest item graphic is the key, which appears in #R45056(Central Cavern), #R47104(The Menagerie), #R48128(Abandoned Uranium Workings), #R50176(Processing Plant), #R51200(The Vat), #R53248(Wacky Amoebatrons), #R61440(The Warehouse), #R62464(Amoebatrons' Revenge), #R63488(Solar Power Generator) and #R64512(The Final Barrier).
+
+#UDGTABLE { #UDG45748,3(item00) } TABLE#
+
+Next is the banana, which appears in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast):
+
+#UDGTABLE { #UDG52916,3(item07) } TABLE#
+
+The other eight caverns have their own unique item graphics:
+
+#UDGTABLE(gallery)
+{ #R46080(The Cold Room)                   | #UDG46772,11(item01) }
+{ #R49152(Eugene's Lair)                   | #UDG49844,19(item04) }
+{ #R54272(The Endorian Forest)             | #UDG54964,3(item09) }
+{ #R55296(Attack of the Mutant Telephones) | #UDG55988,3(item10) }
+{ #R57344(Ore Refinery)                    | #UDG58036,3(item12) }
+{ #R58368(Skylab Landing Bay)              | #UDG59060,11(item13) }
+{ #R59392(The Bank)                        | #UDG60084,3(item14) }
+{ #R60416(The Sixteenth Cavern)            | #UDG61108,3(item15) }
+TABLE#
+
+[Fact:itemCounts:Item counts]
+Fourteen of the twenty caverns have a full set of five items.
+
+#R52224(Miner Willy meets the Kong Beast) and #R60416(The Sixteenth Cavern) both have four items.
+
+#R59392(The Bank) and #R63488(Solar Power Generator) both have three items.
+
+There are no caverns that have exactly two items.
+
+#R53248(Wacky Amoebatrons) and #R62464(Amoebatrons' Revenge) both have only one item.
+
+[Fact:extraItems:Extra items]
+#R59392(The Bank) has five items defined, but only three of them are used; #R60416(The Sixteenth Cavern) also has five items defined, but only four of them are used.
+
+The two extra items in #R59392(The Bank) are at (6,19) and (13,30), shown here in bright white:
+
+#PUSHS
+#POKES60036,71;60041,71
+#UDGTABLE { #CALL:cavern(59392,2,the_bank_extra_items) } TABLE#
+#POPS
+
+The extra item in #R60416(The Sixteenth Cavern) is at (5,26) - in the path of the cyan guardian - shown here in bright white:
+
+#PUSHS
+#POKES61065,71;61140,188
+#UDGTABLE { #CALL:cavern(60416,2,the_sixteenth_cavern_extra_items) } TABLE#
+#POPS
+
+[Fact:guardianColours:Guardian colours]
+The most common guardian colour is yellow (21 instances), and the least common colour is black (only one instance, in #R49152(Eugene's Lair)).
+
+As for the other colours, there are 3 blue guardians, 10 red guardians, 12 magenta guardians, 13 green guardians, 14 cyan guardians, and 5 white guardians.
+
+[Fact:guardianCounts:Guardian counts]
+The cavern with the most guardians is #R62464(Amoebatrons' Revenge), which has eight (the maximum).
+
+The cavern with the least guardians is #R45056(Central Cavern), which has only one.
+
+[Fact:guardiansNeedAClearPath:Guardians need a clear path]
+The guardian-drawing code kills Willy if a guardian collides with anything that's already been drawn in the cavern. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
+
+See this happen by placing a wall block in the path of the guardian in #R45056(Central Cavern):
+
+POKE 45327,22
+
+[Fact:variableAirSupply:Variable air supply]
+The initial air supply varies from cavern to cavern by small amounts, because of differences in the initial value of the game clock at #R32957 - 128, 240, 248 or 252 - which is copied from byte 701 of the cavern definition.
+
+The caverns with the greatest initial air supply are #R45056(Central Cavern), #R46080(The Cold Room), #R57344(Ore Refinery), #R59392(The Bank) and #R64512(The Final Barrier), which initialise the game clock to 252.
+
+Next are #R54272(The Endorian Forest), #R58368(Skylab Landing Bay) and #R60416(The Sixteenth Cavern), which initialise the game clock to 248.
+
+Then it's #R63488(Solar Power Generator), which initialises the game clock to 240.
+
+The other 11 caverns initialise the game clock to 128, which means the cell at the right end of the air bar in those caverns starts off with only three white pixel columns instead of seven.
+
+[Fact:theUnreachableMillion:The unreachable million]
+The score (at least, the part of it that is printed - see #R33829) rolls around to zero when it hits a million.
+
+[Fact:horizontalSkylabs:Horizontal Skylabs?]
+There are three horizontal guardians defined in #R58368(Skylab Landing Bay), but they're not used. We can only wonder what they might have looked like before being replaced by the Skylabs.
+
+[Fact:sourceCodeRemnants:Source code remnants]
+Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
+
+#TABLE(asm,address-1,instruction,comment-11)
+{ 32768 | DEFM "50,171,192,50,48,68" | }
+{ 32787 | DEFW 790 | =r3 790 DB "50,48,68,50,171,192,50,136,137" }
+{ 32789 | DEFB 34 }
+{ 32790 | DEFM 9,"DB",9,"50,48,68,50,171,192,50,136,137" }
+{ 32824 | DEFW 800 | =r3 800 DB "50,136,137,50,114,115,50,76,77" }
+{ 32826 | DEFB 34 }
+{ 32827 | DEFM 9,"DB",9,"50,136,137,50,114,115,50,76,77" }
+{ 32861 | DEFW 810 | =r5 810 DB "50,7?????????????92,50,38,48" }
+{ 32863 | DEFB 32 }
+{ 32864 | DEFM 9,"DB",9,"50,7" }
+{ 32872 | DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0 }
+{ 32885 | DEFM "92,50,38,48" }
+{ 32896 | DEFW 820 | =r5 820 DB "50,38,4??50,171,192,50,48,68" }
+{ 32898 | DEFB 32 }
+{ 32899 | DEFM 9,"DB",9,"50,38,4" }
+{ 32910 | DEFB 255,0 }
+{ 32912 | DEFM "50,171,192,50,48,68" }
+{ 32931 | DEFW 830 | =r7 830 DB "50,48,????0,171,19??50,136,137" }
+{ 32933 | DEFB 34 }
+{ 32934 | DEFM 9,"DB",9,"50,48," }
+{ 32944 | DEFB 0,0,0,0 }
+{ 32948 | DEFM "0,171,19" }
+{ 32956 | DEFB 0,0 }
+{ 32958 | DEFM "50,136,137" }
+{ 32968 | DEFW 840 | =r5 840 DB "50,136,137,???114,115,50,76,77" }
+{ 32970 | DEFB 34 }
+{ 32971 | DEFM 9,"DB",9,"50,136,137," }
+{ 32986 | DEFB 255,0,0 }
+{ 32989 | DEFM "114,115,50,76,77" }
+{ 33005 | DEFW 850 | =r3 850 ?B "50,76,77,50,171,203,50,38,51" }
+{ 33007 | DEFB 32 }
+{ 33008 | DEFM 9,255,"B",9,"50,76,77,50,171,203,50,38,51" }
+{ 33040 | DEFW 860 | =r4 860 DB "50,38,51,50,171,203,50,51,64" }
+{ 33042 | DEFB 32 }
+{ 33043 | DEFM 9,"DB",9 }
+{ 33047 | DEFM "50,38,51,50,171,203,50,51,64" }
+{ 33075 | DEFW 870 | =r3 870 DB "50,51,64,50,171,203,50,128,129" }
+{ 33077 | DEFB 34 }
+{ 33078 | DEFM 9,"DB",9,"50,51,64,50,171,203,50,128,129" }
+{ 33112 | DEFW 880 | =r3 880 DB "50,128,129,50,102,103,50,86,87" }
+{ 33114 | DEFB 34 }
+{ 33115 | DEFM 9,"DB",9,"50,128,129,50,102,103,50,86,87" }
+{ 33149 | DEFW 890 | =r3 890 DB "50,64,65,50,128,171,50,32,43" }
+{ 33151 | DEFB 32 }
+{ 33152 | DEFM 9,"DB",9,"50,64,65,50,128,171,50,32,43" }
+{ 33184 | DEFW 900 | =r3 900 DB "50,32,43,50,128,171,50,43,51" }
+{ 33186 | DEFB 32 }
+{ 33187 | DEFM 9,"DB",9,"50,32,43,50,128,171,50,43,51" }
+{ 33219 | DEFW 910 | =r3 910 DB "50,43,51,50,128,171,50,128,129" }
+{ 33221 | DEFB 34 }
+{ 33222 | DEFM 9,"DB",9,"50,43,51,50,128,171,50,128,129" }
+{ 33256 | DEFW 920 | =r3 920 DB "50,128,129,50,102............." }
+{ 33258 | DEFB 34 }
+{ 33259 | DEFM 9,"DB",9,"50,128,129,50,102" }
+TABLE#

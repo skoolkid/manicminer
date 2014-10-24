@@ -124,7 +124,7 @@ rm -rf src
 mkdir src
 cp -p $MANICMINER_HOME/skoolkit/manicminer.py src
 cp -p $MANICMINER_HOME/manic_miner.skool src
-cp -p $MANICMINER_HOME/manic_miner.ref src
+cp -p $MANICMINER_HOME/manic_miner*.ref src
 cp -p $MANICMINER_HOME/resources/manic_miner*.css src
 
 DISTDIR=dist
