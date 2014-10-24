@@ -3667,7 +3667,8 @@ t40192 DEFM ".  .  .  .  .  .  .  .  .  .  . MANIC MINER . . "
  40240 DEFM 127," BUG-BYTE ltd. 1983 . . By Matthew Smith . . . "
  40288 DEFM "Q to P = Left & Right . . Bottom row = Jump . . "
  40336 DEFM "A to G = Pause . . H to L = Tune On/Off . . . "
- 40382 DEFM "Guide Miner Willy through 20 lethal caverns .  .  .  .  .  .  .  ."
+ 40382 DEFM "Guide Miner Willy through 20 lethal caverns"
+ 40425 DEFM " .  .  .  .  .  .  .  ."
 
 ; Attribute data for the bottom two-thirds of the title screen
 ;
