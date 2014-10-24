@@ -60,7 +60,7 @@ The ASM disassembly can be built by following these steps:
 
 3. Change to the directory where SkoolKit was unpacked and run this command:
 
-  $ ./skool2asm.py -w manic_miner.skool > manic_miner.asm
+  $ ./skool2asm.py manic_miner.skool > manic_miner.asm
 
 Now manic_miner.asm can be assembled using pasmo (http://pasmo.speccy.org/):
 
