@@ -25,6 +25,7 @@ sys.path.insert(1, SKOOLKIT_HOME)
 from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
 
 MMZ80 = '../build/manic_miner.z80'
+MM_SKOOL = '../manic_miner.skool'
 MMREF = '../manic_miner.ref'
 
 XHTML_XSD = os.path.join(SKOOLKIT_HOME, 'XSD', 'xhtml1-strict.xsd')
@@ -169,17 +170,9 @@ class DisassembliesTestCase(TestCase):
         err = self._to_lines(self.err.getvalue()) if err_lines else self.err.getvalue()
         return out, err
 
-    def write_mm_skool(self):
-        import mm2ctl
-        ctl = mm2ctl.main(MMZ80)
-        options = '-c {}'.format(self.write_text_file(ctl))
-        skool, error = self.run_skoolkit_command(sna2skool.main, '{} {}'.format(options, MMZ80), out_lines=False)
-        self.assertEqual(len(error), 0)
-        return self.write_text_file(skool)
-
 class AsmTestCase(DisassembliesTestCase):
     def write_mm(self, options):
-        skoolfile = self.write_mm_skool()
+        skoolfile = MM_SKOOL
         args = '{} {}'.format(options, skoolfile)
         output, error = self.run_skoolkit_command(skool2asm.main, args, err_lines=True)
         self.assertTrue(any([line.startswith('Parsed {}'.format(skoolfile)) for line in error]))
@@ -187,7 +180,7 @@ class AsmTestCase(DisassembliesTestCase):
 
 class CtlTestCase(DisassembliesTestCase):
     def write_mm(self, options):
-        args = '{} {}'.format(options, self.write_mm_skool())
+        args = '{} {}'.format(options, MM_SKOOL)
         output, stderr = self.run_skoolkit_command(skool2ctl.main, args)
         self.assertEqual(stderr, '')
 
@@ -234,17 +227,15 @@ class HtmlTestCase(DisassembliesTestCase):
             self.fail('\n'.join(error_msg))
 
     def write_mm(self, options):
-        skoolfile = self.write_mm_skool()
         main_options = '-W ../skoolkit:manicminer.ManicMinerHtmlWriter'
-        main_options += ' -c Config/SkoolFile={}'.format(skoolfile)
-        main_options += ' -S {} -S {}'.format('{}/resources'.format(SKOOLKIT_HOME), '../resources')
+        main_options += ' -S {}/resources -S ../resources'.format(SKOOLKIT_HOME)
         main_options += ' -d {}'.format(self.odir)
         shutil.rmtree(self.odir, True)
 
         # Write the disassembly
         output, error = self.run_skoolkit_command(skool2html.main, '{} {} {}'.format(main_options, options, MMREF))
         self.assertEqual(len(error), 0)
-        reps = {'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': skoolfile, 'reffile': MMREF}
+        reps = {'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': MM_SKOOL, 'reffile': MMREF}
         self.assertEqual(OUTPUT_MM.format(**reps).split('\n'), output)
 
         self._validate_xhtml()
@@ -252,7 +243,7 @@ class HtmlTestCase(DisassembliesTestCase):
 
 class SftTestCase(DisassembliesTestCase):
     def write_mm(self, options):
-        skoolfile = self.write_mm_skool()
+        skoolfile = MM_SKOOL
         with open(skoolfile, 'rt') as f:
             orig_skool = f.read().split('\n')
         args = '{} {}'.format(options, skoolfile)

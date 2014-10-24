@@ -108,8 +108,6 @@ if [ ! -d "$MANICMINER_HOME" ]; then
   exit 1
 fi
 
-MMZ80=$MANICMINER_HOME/build/manic_miner.z80
-
 if [ ! -f skool2html.py ]; then
   echo "Error: skool2html.py not found."
   exit 1
@@ -125,6 +123,7 @@ fi
 rm -rf src
 mkdir src
 cp -p $MANICMINER_HOME/skoolkit/manicminer.py src
+cp -p $MANICMINER_HOME/manic_miner.skool src
 cp -p $MANICMINER_HOME/manic_miner.ref src
 cp -p $MANICMINER_HOME/resources/manic_miner*.css src
 
@@ -132,24 +131,6 @@ DISTDIR=dist
 PKGNAME=mm-disassembly-$VERSION
 ABSDIR=${DISTDIR}/${PKGNAME}
 [ -e $ABSDIR ] && rm -rf $ABSDIR
-
-if [ ! -f $MMZ80 ]; then
-  echo -n "Writing $MMZ80..."
-  if ./tap2sna.py -d $(dirname $MMZ80) $MANICMINER_HOME/manic_miner.t2s &> /dev/null; then
-    echo "done"
-  else
-    echo "failed"
-    exit 1
-  fi
-fi
-
-echo -n "Writing control file..."
-$MANICMINER_HOME/utils/mm2ctl.py $MMZ80 > manic_miner.ctl
-echo "done"
-
-echo -n "Writing skool file..."
-./sna2skool.py -c manic_miner.ctl $MMZ80 > src/manic_miner.skool
-echo "done"
 
 echo -n "Writing disassembly..."
 cd src
