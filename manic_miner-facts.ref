@@ -1,5 +1,8 @@
 ; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
 
+[Fact:tunes:Tunes]
+The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss II. The tune played during gameplay is <i>In the Hall of the Mountain King</i> by Edvard Grieg.
+
 [Fact:takingABreak:Taking a BREAK]
 The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see #R34801).
 

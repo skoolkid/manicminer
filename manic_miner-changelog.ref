@@ -1,5 +1,10 @@
 ; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
 
+[Changelog:YYYYMMDD]
+-
+
+Added a trivia entry: #FACT#tunes()
+
 [Changelog:20141004]
 The disassembly is now 'complete'.
 

@@ -659,7 +659,7 @@ b33886 DEFB %00011111,%00011111 ; (no keys pressed)
  33898 DEFB %00011111,%00001111 ; 6
  33900 DEFB %00011111,%00011101 ; 9
 
-; Title screen tune data
+; Title screen tune data (The Blue Danube)
 ;
 ; Used by the routine at #R37596. The tune data is organised into 95 groups of
 ; three bytes each, one group for each note in the tune. The first byte in each
@@ -763,7 +763,7 @@ b33902 DEFB 80,128,129
  34184 DEFB 50,128,203
  34187 DEFB 255         ; End marker
 
-; In-game tune data
+; In-game tune data (In the Hall of the Mountain King)
 ;
 ; Used by the routine at #R34574.
 ; @label=GAMETUNE
@@ -2982,7 +2982,7 @@ c37579 LD H,7        ; {Point #REGhl at the bitmap for the character (in the
  37593 DJNZ 37589    ; }
  37595 RET           ;
 
-; Play the theme tune
+; Play the theme tune (The Blue Danube)
 ;
 ; Used by the routine at #R34252. Returns with the zero flag reset if ENTER or
 ; the fire button is pressed while the tune is being played.
