@@ -25,6 +25,11 @@ To place a couple of these tiles in the cavern in order to see them crumble:
 
 POKE 58811,10: POKE 58812,10: POKE 58930,10
 
+[Fact:thePersistentItem:The persistent item]
+The item below the portal in #R60416(The Sixteenth Cavern) does not disappear if Willy leaves it till last and collects it by falling on it from above. The reason for this is that the portal is opened as soon as Willy collects the item, and the screen is not refreshed before he moves on to the next cavern.
+
+#UDGTABLE { #CALL:cavern(60416,2,persistent_item,10,4,9,6,0) } TABLE#
+
 [Fact:itemGraphics:Item graphics]
 The commonest item graphic is the key, which appears in #R45056(Central Cavern), #R47104(The Menagerie), #R48128(Abandoned Uranium Workings), #R50176(Processing Plant), #R51200(The Vat), #R53248(Wacky Amoebatrons), #R61440(The Warehouse), #R62464(Amoebatrons' Revenge), #R63488(Solar Power Generator) and #R64512(The Final Barrier).
 

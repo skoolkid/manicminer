@@ -27,12 +27,14 @@ class ManicMinerHtmlWriter(HtmlWriter):
             self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
         self.cavern_names = self._get_cavern_names()
 
-    def cavern(self, cwd, address, scale=2, fname=None):
+    def cavern(self, cwd, address, scale=2, fname=None, x=0, y=0, w=32, h=17, guardians=1):
         if fname is None:
             fname = self.cavern_names[address].lower().replace(' ', '_')
         img_path = self.image_path(fname, 'ScreenshotImagePath')
         if self.need_image(img_path):
-            self.write_image(img_path, self._get_cavern_udgs(address), scale=scale)
+            cavern_udgs = self._get_cavern_udgs(address, guardians)
+            img_udgs = [cavern_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
+            self.write_image(img_path, img_udgs, scale=scale)
         return self.img_element(cwd, img_path)
 
     def caverns(self, cwd):
@@ -95,29 +97,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
             key += 1
         return code + '6'
 
-    def _get_cavern_udgs(self, addr):
-        # Collect block graphics
-        block_graphics = {}
-        bg_attr = self.snapshot[addr + 544]
-        bg_udg = Udg(bg_attr, self.snapshot[addr + 545:addr + 553])
-        block_graphics[bg_udg.attr] = bg_udg
-        for a in range(addr + 553, addr + 616, 9):
-            attr = self.snapshot[a]
-            block_graphics[attr] = Udg(attr, self.snapshot[a + 1:a + 9])
-
-        # Build the cavern UDG array
-        udg_array = []
-        for a in range(addr, addr + 512, 32):
-            udg_array.append([block_graphics.get(attr, bg_udg) for attr in self.snapshot[a:a + 32]])
-        if addr == 64512:
-            # The Final Barrier (top half)
-            udg_array[:8] = self.screenshot(h=8, df_addr=40960, af_addr=64512)
-
-        # Cavern name
-        name_udgs = [Udg(48, self.font[b]) for b in self.snapshot[addr + 512:addr + 544]]
-        udg_array.append(name_udgs)
-
-        # Items
+    def _place_items(self, udg_array, addr):
         item_udg_data = self.snapshot[addr + 692:addr + 700]
         for a in range(addr + 629, addr + 653, 5):
             attr = self.snapshot[a]
@@ -132,6 +112,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
             x, y = self._get_coords(a + 1)
             udg_array[y][x] = Udg(attr, item_udg_data)
 
+    def _place_guardians(self, udg_array, addr):
         cavern_no = (addr - 45056) // 1024
 
         # Horizontal guardians
@@ -148,7 +129,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
 
         if cavern_no == 4:
             # Eugene
-            attr = (bg_attr & 248) + 7
+            attr = (self.snapshot[addr + 544] & 248) + 7
             sprite = self._get_graphic(addr + 736, attr)
             self._place_graphic(udg_array, sprite, 15, 0)
         elif cavern_no in (7, 11):
@@ -169,19 +150,45 @@ class ManicMinerHtmlWriter(HtmlWriter):
                 x = self.snapshot[a + 3]
                 self._place_graphic(udg_array, sprite, x, y, y_delta)
 
-        # Miner Willy
-        attr = (bg_attr & 248) + 7
+        # Light beam in Solar Power Generator
+        if cavern_no == 18:
+            beam_udg = Udg(119, (0,) * 8)
+            for y in range(15):
+                udg_array[y][23] = beam_udg
+
+    def _place_willy(self, udg_array, addr):
+        attr = (self.snapshot[addr + 544] & 248) + 7
         sprite_index = self.snapshot[addr + 617]
         direction = self.snapshot[addr + 618]
         willy = self._get_graphic(33280 + 128 * direction + 32 * sprite_index, attr)
         x, y = self._get_coords(addr + 620)
         self._place_graphic(udg_array, willy, x, y)
 
-        # Light beam in Solar Power Generator
-        if cavern_no == 18:
-            beam_udg = Udg(119, (0,) * 8)
-            for y in range(15):
-                udg_array[y][23] = beam_udg
+    def _get_cavern_udgs(self, addr, guardians=1):
+        # Collect block graphics
+        block_graphics = {}
+        bg_udg = Udg(self.snapshot[addr + 544], self.snapshot[addr + 545:addr + 553])
+        block_graphics[bg_udg.attr] = bg_udg
+        for a in range(addr + 553, addr + 616, 9):
+            attr = self.snapshot[a]
+            block_graphics[attr] = Udg(attr, self.snapshot[a + 1:a + 9])
+
+        # Build the cavern UDG array
+        udg_array = []
+        for a in range(addr, addr + 512, 32):
+            udg_array.append([block_graphics.get(attr, bg_udg) for attr in self.snapshot[a:a + 32]])
+        if addr == 64512:
+            # The Final Barrier (top half)
+            udg_array[:8] = self.screenshot(h=8, df_addr=40960, af_addr=64512)
+
+        # Cavern name
+        name_udgs = [Udg(48, self.font[b]) for b in self.snapshot[addr + 512:addr + 544]]
+        udg_array.append(name_udgs)
+
+        self._place_items(udg_array, addr)
+        if guardians:
+            self._place_guardians(udg_array, addr)
+        self._place_willy(udg_array, addr)
 
         # Portal
         attr = self.snapshot[addr + 655]

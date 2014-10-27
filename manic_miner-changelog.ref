@@ -3,7 +3,9 @@
 [Changelog:YYYYMMDD]
 -
 
-Added a trivia entry: #FACT#tunes()
+Added trivia entries:
+  #FACT#tunes()
+  #FACT#thePersistentItem() (thanks Zaph0dd)
 
 [Changelog:20141004]
 The disassembly is now 'complete'.
