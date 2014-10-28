@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 import sys
 import os
+import argparse
+from collections import OrderedDict
 
 try:
     from skoolkit.snapshot import get_snapshot
+    from skoolkit import tap2sna, sna2skool
 except ImportError:
     SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
     if not SKOOLKIT_HOME:
@@ -14,13 +17,21 @@ except ImportError:
         sys.exit(1)
     sys.path.insert(0, SKOOLKIT_HOME)
     from skoolkit.snapshot import get_snapshot
+    from skoolkit import tap2sna, sna2skool
 
-def get_screen_buffer_address_table():
-    lines = []
+MANICMINER_HOME = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BUILD_DIR = '{}/build'.format(MANICMINER_HOME)
+MM_Z80 = '{}/manic_miner.z80'.format(BUILD_DIR)
+
+def get_screen_buffer_address_table(snapshot):
+    lines = ['w 33536 Screen buffer address lookup table ']
+    lines.append('D 33536 Used by the routines at #R35140, #R36344, #R36469, #R36593, #R37173 and #R37503. The value of the Nth entry (0<=N<=127) in this lookup table is the screen buffer address for the point with pixel coordinates (x,y)=(0,N), with the origin (0,0) at the top-left corner.')
+    lines.append('; @label:33536=SBUFADDRS')
     y = 0
     for addr in range(33536, 33792, 2):
         lines.append('W {} y={}'.format(addr, y))
         y += 1
+    lines.append('i 33792')
     return '\n'.join(lines)
 
 def _write_horizontal_guardians(lines, snapshot, start):
@@ -252,12 +263,12 @@ def get_caverns(snapshot):
                 lines.append('B {},2 Unused'.format(a + 734))
             if cavern_num == 0:
                 lines.append('; @label:45792=SWORDFISH')
-                desc = 'swordfish graphic that appears in #R64512(The Final Barrier) when the game is completed (see #R36937)'
+                desc = 'swordfish graphic that appears in #R64512(The Final Barrier) when the game is completed'
                 udgarray_macro = '#UDGARRAY2,69,4,2;45792;45793;45808,70;45809,71(swordfish)'
                 comment = 'Swordfish graphic data'
             elif cavern_num == 1:
                 lines.append('; @label:46816=PLINTH')
-                desc = 'plinth graphic that appears on the Game Over screen (see #R35199)'
+                desc = 'plinth graphic that appears on the Game Over screen'
                 udgarray_macro = '#UDGARRAY2,71,4,2;46816-46833-1-16(plinth)'
                 comment = 'Plinth graphic data'
             elif cavern_num == 2:
@@ -306,29 +317,33 @@ def get_caverns(snapshot):
 
     return '\n'.join(lines)
 
-def get_ctl(snapshot):
-    template = ''
-    cft = '{}/manic_miner.cft'.format(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    with open(cft) as f:
-        for line in f:
-            if not line.startswith('#'):
-                template += line
-    return template.format(
-        sba_table=get_screen_buffer_address_table(),
-        caverns=get_caverns(snapshot)
-    )
+def run(subcommand):
+    func = functions[subcommand][0]
+    if not os.path.isdir(BUILD_DIR):
+        os.mkdir(BUILD_DIR)
+    if not os.path.isfile(MM_Z80):
+        tap2sna.main(('-d', BUILD_DIR, '@{}/manic_miner.t2s'.format(MANICMINER_HOME)))
+    ctlfile = '{}/{}.ctl'.format(BUILD_DIR, subcommand)
+    with open(ctlfile, 'wt') as f:
+        f.write(func(get_snapshot(MM_Z80)))
+    sna2skool.main(('-c', ctlfile, MM_Z80))
 
-def show_usage():
-    sys.stderr.write("""Usage: {} manic_miner.[sna|z80|szx]
-
-  Generate a control file for Manic Miner.
-""".format(os.path.basename(sys.argv[0])))
-    sys.exit(1)
-
-def main(snapshot):
-    return get_ctl(get_snapshot(snapshot))
-
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        show_usage()
-    sys.stdout.write(main(sys.argv[1]))
+###############################################################################
+# Begin
+###############################################################################
+functions = OrderedDict((
+    ('caverns', (get_caverns, 'Caverns (45056-65535)')),
+    ('sbat', (get_screen_buffer_address_table, 'Screen buffer address table (33536-33791)'))
+))
+subcommands = '\n'.join('  {} - {}'.format(k, v[1]) for k, v in functions.items())
+parser = argparse.ArgumentParser(
+    usage='%(prog)s SUBCOMMAND',
+    description="Produce a skool file snippet for Manic Miner. SUBCOMMAND must be one of:\n\n{}".format(subcommands),
+    formatter_class=argparse.RawTextHelpFormatter,
+    add_help=False
+)
+parser.add_argument('subcommand', help=argparse.SUPPRESS, nargs='?')
+namespace, unknown_args = parser.parse_known_args()
+if unknown_args or namespace.subcommand not in functions:
+    parser.exit(2, parser.format_help())
+run(namespace.subcommand)
