@@ -1,0 +1,4 @@
+# rc file for $DISASSEMBLIES_HOME/utils/disassembly-diff
+
+MM_OLD_VERSION=20141004
+MM_SK_OLD_VERSION=4.1.1
