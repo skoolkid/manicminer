@@ -840,6 +840,7 @@ c34252 XOR A         ; #REGa=0
  34388 RRCA          ; determines the animation frame to use for Willy
  34389 RRCA          ; }
  34390 LD E,A        ; {Point #REGde at the graphic data for Willy's sprite
+; @ssub=LD D,33280/256
  34391 LD D,130      ; (#R33280+#REGa)}
  34393 LD HL,18493   ; {Draw Willy at (9,29)
  34396 LD C,0        ;
@@ -882,6 +883,7 @@ c34436 LD HL,33829   ; {Initialise the score at #R33829
 *34449 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
  34452 SLA A         ; {Point #REGhl at the first byte of the cavern
  34454 SLA A         ; definition
+; @ssub=ADD A,45056/256
  34456 ADD A,176     ;
  34458 LD H,A        ;
  34459 LD L,0        ; }
@@ -967,6 +969,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34593 RLCA          ;
  34594 AND 96        ; }
  34596 LD E,A        ; {Point #REGde at the corresponding Willy sprite (at
+; @ssub=LD D,33280/256
  34597 LD D,130      ; #R33280+#REGa)}
  34599 CALL 36852    ; Draw the Willy sprite on the screen
  34602 POP BC        ; {Restore #REGhl and #REGbc
@@ -1309,6 +1312,7 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
 ; @label=LOOPFT
 *35210 LD A,(32988)  ; Pick up the distance variable from #R32988
  35213 LD C,A        ; {Point #REGbc at the corresponding entry in the screen
+; @ssub=LD B,33536/256
  35214 LD B,131      ; buffer address lookup table at #R33536}
  35216 LD A,(BC)     ; {Point #REGhl at the corresponding location in the
  35217 OR 15         ; display file
@@ -2098,6 +2102,7 @@ c36266 LD IY,32958   ; Point #REGiy at the first byte of the first horizontal
  36319 JR Z,36323    ; Jump if so
  36321 SET 7,E       ; Add 128 to #REGe (the horizontal guardians in this
                      ; cavern use frames 4-7 only)
+; @ssub=LD D,33024/256
 *36323 LD D,129      ; Point #REGde at the graphic data for the appropriate
                      ; guardian sprite (at #R33024+#REGe)
  36325 LD L,(IY+1)   ; {Point #REGhl at the address of the guardian's location
@@ -2140,6 +2145,7 @@ c36344 LD A,(32884)  ; Pick up the attribute of the last item drawn from
  36391 AND 127       ; {Point #REGde at the entry in the screen buffer address
  36393 RLCA          ; lookup table at #R33536 that corresponds to Eugene's
  36394 LD E,A        ; y-coordinate
+; @ssub=LD D,33536/256
  36395 LD D,131      ; }
  36397 LD A,(DE)     ; {Point #REGhl at the address of Eugene's location in the
  36398 OR 15         ; screen buffer at #R24576
@@ -2147,7 +2153,7 @@ c36344 LD A,(32884)  ; Pick up the attribute of the last item drawn from
  36401 INC DE        ;
  36402 LD A,(DE)     ;
  36403 LD H,A        ; }
-; @nowarn
+; @ssub=LD DE,32989+3
  36404 LD DE,32992   ; {Draw Eugene to the screen buffer at #R24576
  36407 LD C,1        ;
  36409 CALL 36852    ; }
@@ -2225,6 +2231,7 @@ c36469 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
 ; Now that the Skylab's movement has been dealt with, time to draw it.
 *36527 LD E,(IY+2)   ; Pick up the Skylab's pixel y-coordinate in #REGe
  36530 RLC E         ; {Point #REGde at the entry in the screen buffer address
+; @ssub=LD D,33536/256
  36532 LD D,131      ; lookup table at #R33536 that corresponds to the Skylab's
                      ; pixel y-coordinate}
  36534 LD A,(DE)     ; {Point #REGhl at the address of the Skylab's location in
@@ -2238,6 +2245,7 @@ c36469 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
  36546 RRCA          ;
  36547 RRCA          ; }
  36548 LD E,A        ; {Point #REGde at the graphic data for the corresponding
+; @ssub=LD D,33024/256
  36549 LD D,129      ; Skylab sprite (at #R33024+#REGa)}
  36551 LD C,1        ; {Draw the Skylab to the screen buffer at #R24576
  36553 CALL 36852    ; }
@@ -2291,6 +2299,7 @@ c36593 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
  36642 AND 127       ; {Point #REGde at the entry in the screen buffer address
  36644 RLCA          ; lookup table at #R33536 that corresponds to the
  36645 LD E,A        ; guardian's pixel y-coordinate
+; @ssub=LD D,33536/256
  36646 LD D,131      ; }
  36648 LD A,(DE)     ; {Point #REGhl at the address of the guardian's location
  36649 OR (IY+3)     ; in the screen buffer at #R24576
@@ -2303,6 +2312,7 @@ c36593 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
  36660 RRCA          ;
  36661 RRCA          ; }
  36662 LD E,A        ; {Point #REGde at the graphic data for the appropriate
+; @ssub=LD D,33024/256
  36663 LD D,129      ; guardian sprite (at #R33024+#REGa)}
  36665 LD C,1        ; {Draw the guardian to the screen buffer at #R24576
  36667 CALL 36852    ; }
@@ -2607,6 +2617,7 @@ c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
 c37098 LD (HL),48    ; Roll the digit over from '9' to '0'
  37100 DEC HL        ; Point #REGhl at the next digit to the left
  37101 LD A,L        ; {Is this the 10000s digit?
+; @ssub=CP (33833+1)%256
  37102 CP 42         ; }
  37104 JR NZ,37118   ; Jump if not
 ; Willy has scored another 10000 points. Give him an extra life.
@@ -2754,6 +2765,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37311 LD A,C        ; Copy the Kong Beast's pixel y-coordinate back into #REGa
  37312 RLCA          ; {Point #REGde at the entry in the screen buffer address
  37313 LD E,A        ; lookup table at #R33536 that corresponds to the Kong
+; @ssub=LD D,33536/256
  37314 LD D,131      ; Beast's pixel y-coordinate}
  37316 LD A,(DE)     ; {Point #REGhl at the address of the Kong Beast's
  37317 OR 15         ; location in the screen buffer at #R24576
@@ -2761,6 +2773,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37320 INC DE        ;
  37321 LD A,(DE)     ;
  37322 LD H,A        ; }
+; @ssub=LD D,33024/256
  37323 LD D,129      ; {Use bit 5 of the value of the game clock at #R32957
  37325 LD A,(32957)  ; (which is toggled once every eight passes through the
  37328 AND 32        ; main loop) to point #REGde at the graphic data for the
@@ -2790,6 +2803,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
 *37369 LD A,(32957)  ; Pick up the value of the game clock at #R32957
  37372 AND 32        ; {Use bit 5 of this value (which is toggled once every
  37374 LD E,A        ; eight passes through the main loop) to point #REGde at
+; @ssub=LD D,33024/256
  37375 LD D,129      ; the graphic data for the appropriate Kong Beast sprite}
  37377 LD HL,24591   ; {Draw the Kong Beast at (0,15) in the screen buffer at
  37380 LD C,1        ; #R24576
@@ -2902,6 +2916,7 @@ c37471 LD A,(32800)  ; Pick up the attribute byte of the background tile for
 ; Used by the routine at #R37434.
 ; @label=DRAWWILLY
 c37503 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
+; @ssub=LD IXh,33536/256
  37506 LD IXh,131    ; {Point #REGix at the entry in the screen buffer address
  37509 LD IXl,A      ; lookup table at #R33536 that corresponds to Willy's
                      ; y-coordinate}
@@ -2917,6 +2932,7 @@ c37503 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
  37525 RRCA          ;
  37526 OR E          ;
  37527 LD E,A        ;
+; @ssub=LD D,33280/256
  37528 LD D,130      ; }
  37530 LD B,16       ; There are 16 rows of pixels to copy
  37532 LD A,(32876)  ; {Pick up Willy's screen x-coordinate (0-31) from
