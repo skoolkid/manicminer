@@ -3,9 +3,9 @@ ASM_OPTIONS = $(ASM_OPTS)
 HTML_OPTIONS = $(HTML_OPTS)
 HTML_OPTIONS += -d $(BUILD)/html -t
 NOSETESTS27 = /usr/bin/python2.7 /usr/bin/nosetests
-NOSETESTS32 = /usr/bin/python3.2 /usr/bin/nosetests
+NOSETESTS32 = $(HOME)/Python/Python3.2/bin/nosetests
 NOSETESTS33 = $(HOME)/Python/Python3.3/bin/nosetests
-NOSETESTS34 = $(HOME)/Python/Python3.4/bin/nosetests
+NOSETESTS34 = /usr/bin/python3.4 /usr/bin/nosetests
 
 HTML_OPTIONS += $(foreach theme,$(THEMES),-T $(theme))
 ifeq ($(findstring spectrum,$(THEMES)),spectrum)
