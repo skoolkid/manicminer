@@ -69,7 +69,7 @@ Now manic_miner.asm can be assembled using pasmo (http://pasmo.speccy.org/):
 To create a TAP file from manic_miner.bin, use the bin2tap.py utility,
 included with SkoolKit:
 
-  $ ./bin2tap.py -s 33792 manic_miner.bin
+  $ ./bin2tap.py manic_miner.bin
 
 The resultant TAP file, manic_miner.tap, can be loaded into an emulator, and
 the game will start automatically.
