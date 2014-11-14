@@ -1,6 +1,6 @@
 # rc file for disassembly-diff, skooldiff and write-files
 
-OLD_VERSION=20141004
+OLD_VERSION=20141114
 SK_OLD_VERSION=4.1.1
 SKOOL=$MANICMINER_HOME/manic_miner.skool
 SNAPSHOT=$MANICMINER_HOME/build/manic_miner.z80

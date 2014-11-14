@@ -2,6 +2,7 @@
 
 D_VERSIONS=(
   20141004
+  20141114
 )
 
 declare -A SK_VERSIONS
