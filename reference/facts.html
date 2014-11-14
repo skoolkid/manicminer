@@ -17,10 +17,12 @@
 </tr>
 </table>
 <ul class="contents">
+<li><a class="link" href="#tunes">Tunes</a></li>
 <li><a class="link" href="#takingABreak">Taking a BREAK</a></li>
 <li><a class="link" href="#6031769">6031769</a></li>
 <li><a class="link" href="#noSwordfishForCheats">No swordfish for cheats</a></li>
 <li><a class="link" href="#unusedCrumblingFloor">Unused crumbling floor</a></li>
+<li><a class="link" href="#thePersistentItem">The persistent item</a></li>
 <li><a class="link" href="#itemGraphics">Item graphics</a></li>
 <li><a class="link" href="#itemCounts">Item counts</a></li>
 <li><a class="link" href="#extraItems">Extra items</a></li>
@@ -32,15 +34,22 @@
 <li><a class="link" href="#horizontalSkylabs">Horizontal Skylabs?</a></li>
 <li><a class="link" href="#sourceCodeRemnants">Source code remnants</a></li>
 </ul>
-<div><a name="takingABreak"></a></div>
+<div><a name="tunes"></a></div>
 <div class="box box-1">
+<div class="box-title">Tunes</div>
+<div class="paragraph">
+The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss II. The tune played during gameplay is <i>In the Hall of the Mountain King</i> by Edvard Grieg.
+</div>
+</div>
+<div><a name="takingABreak"></a></div>
+<div class="box box-2">
 <div class="box-title">Taking a BREAK</div>
 <div class="paragraph">
 The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see <a class="link" href="../asm/34574.html#34801">34801</a>).
 </div>
 </div>
 <div><a name="6031769"></a></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">6031769</div>
 <div class="paragraph">
 If you type the digits 6031769 at any point during the game, a cheat mode is activated that enables Willy to teleport to any cavern; a boot appears next to Willy's remaining lives to show that the cheat mode has been activated.
@@ -53,14 +62,14 @@ The number 6031769 comes from Matthew Smith's driving licence, "with an error in
 </div>
 </div>
 <div><a name="noSwordfishForCheats"></a></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">No swordfish for cheats</div>
 <div class="paragraph">
 The game ending - with Willy above ground and the portal in <a class="link" href="../asm/64512.html">The Final Barrier</a> changed to the <a class="link" href="../asm/45056.html#45792">swordfish</a> graphic - is not shown if <a class="link" href="facts.html#6031769">cheat mode</a> is activated (see <a class="link" href="../asm/36904.html#36919">36919</a>).
 </div>
 </div>
 <div><a name="unusedCrumblingFloor"></a></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Unused crumbling floor</div>
 <div class="paragraph">
 The crumbling floor tile in <a class="link" href="../asm/58368.html">Skylab Landing Bay</a> is unique to that cavern, and also not used.
@@ -77,6 +86,20 @@ To place a couple of these tiles in the cavern in order to see them crumble:
 </div>
 <div class="paragraph">
 POKE 58811,10: POKE 58812,10: POKE 58930,10
+</div>
+</div>
+<div><a name="thePersistentItem"></a></div>
+<div class="box box-2">
+<div class="box-title">The persistent item</div>
+<div class="paragraph">
+The item below the portal in <a class="link" href="../asm/60416.html">The Sixteenth Cavern</a> does not disappear if Willy leaves it till last and collects it by falling on it from above. The reason for this is that the portal is opened as soon as Willy collects the item, and the screen is not refreshed before he moves on to the next cavern.
+</div>
+<div class="paragraph">
+<table>
+<tr>
+<td><img alt="persistent_item" src="../images/scr/persistent_item.png" /></td>
+</tr>
+</table>
 </div>
 </div>
 <div><a name="itemGraphics"></a></div>
@@ -497,7 +520,7 @@ Before the game starts for the first time, the 512-byte cavern buffer at <a clas
 </div>
 </div>
 <div class="footer">
-<div class="release">The complete Manic Miner RAM disassembly 20141004</div>
+<div class="release">The complete Manic Miner RAM disassembly 20141114</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
 <div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
