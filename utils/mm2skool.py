@@ -149,6 +149,7 @@ def get_caverns(snapshot):
         lines.append('B {},9,9 Extra{}'.format(a + 607, tile_usage[7]))
 
         # Miner Willy's start position
+        lines.append("; @ignoreua:{}:m".format(a + 616))
         lines.append("D {} The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878) and specify Miner Willy's initial location and appearance in the cavern.".format(a + 616))
         lines.append("B {} Pixel y-coordinate * 2 (see #R32872)".format(a + 616))
         lines.append("B {} Animation frame (see #R32873)".format(a + 617))
