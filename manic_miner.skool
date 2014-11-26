@@ -1690,7 +1690,8 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
 ;
 ; Used by the routine at #R35515.
 ;
-; HL Address of the crumbling floor tile's location in the attribute buffer at #R23552
+; HL Address of the crumbling floor tile's location in the attribute buffer at
+; .  #R23552
 ; @label=CRUMBLE
 c35770 LD C,L        ; {Point #REGbc at the bottom row of pixels of the
  35771 LD A,H        ; crumbling floor tile in the screen buffer at #R28672
