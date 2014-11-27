@@ -9,7 +9,7 @@ HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
 
 [Game]
 Game=Manic Miner
-Logo=#SCR2,0,1,19,2,43008,40448{10,,292}(/images/logo)
+Logo=#SCR2,0,1,19,2,43008,40448{10,,292}(/images/logo|Manic Miner)
 StyleSheet=skoolkit.css;manic_miner.css
 Copyright=&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).
 Release=The complete Manic Miner RAM disassembly 20141114
