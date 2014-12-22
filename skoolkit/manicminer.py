@@ -123,7 +123,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
             sprite_index = self.snapshot[a + 4]
             if cavern_no >= 7 and cavern_no not in (9, 15):
                 sprite_index |= 4
-            sprite = self._get_graphic(addr + 768 + 32 * sprite_index, attr)
+            sprite = self._get_graphic(addr + 768 + 32 * sprite_index, attr & 127)
             x, y = self._get_coords(a + 1)
             self._place_graphic(udg_array, sprite, x, y)
 
