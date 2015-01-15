@@ -35,7 +35,7 @@ Using skool file: {skoolfile}
 Using ref files: ../manic_miner.ref, ../manic_miner-bugs.ref, ../manic_miner-changelog.ref, ../manic_miner-facts.ref, ../manic_miner-pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/manic_miner
-Copying {SKOOLKIT_HOME}/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css
+Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css
 Copying ../resources/manic_miner.css to {odir}/manic_miner/manic_miner.css
   Writing disassembly files in manic_miner/asm
   Writing manic_miner/maps/all.html
@@ -229,7 +229,7 @@ class HtmlTestCase(DisassembliesTestCase):
 
     def write_mm(self, options):
         main_options = '-W ../skoolkit:manicminer.ManicMinerHtmlWriter'
-        main_options += ' -S {}/resources -S ../resources'.format(SKOOLKIT_HOME)
+        main_options += ' -S ../resources'
         main_options += ' -d {}'.format(self.odir)
         shutil.rmtree(self.odir, True)
 
