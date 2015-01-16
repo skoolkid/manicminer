@@ -8,9 +8,6 @@ NOSETESTS33 = $(HOME)/Python/Python3.3/bin/nosetests
 NOSETESTS34 = /usr/bin/python3.4 /usr/bin/nosetests
 
 HTML_OPTIONS += $(foreach theme,$(THEMES),-T $(theme))
-ifeq ($(findstring spectrum,$(THEMES)),spectrum)
-  HTML_OPTIONS += -c Game/Font=spectrum.ttf
-endif
 
 .PHONY: usage
 usage:
