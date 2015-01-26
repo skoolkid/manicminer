@@ -27,23 +27,23 @@ b24576 DEFS 4096
 ; the routines at #R35770, #R37125 and #R37173.
 b28672 DEFS 4096
 
-; @start
+@start
 ; Manic Miner disassembly
 ; http://skoolkit.ca/
 ;
 ; Copyright 1983 Bug-Byte Ltd (Manic Miner)
 ; Copyright 2010, 2012-2015 Richard Dymond (this disassembly)
 
-; @isub+begin
-; @org=32765
+@isub+begin
+@org=32765
 c32765 JP 33792
-; @isub+end
+@isub+end
 
-; @set-handle-unsupported-macros=1
+@set-handle-unsupported-macros=1
 ; Cavern name
 ;
 ; The cavern name is copied here and then used by the routine at #R34436.
-; @label=CAVERNNAME
+@label=CAVERNNAME
 g32768 DEFS 32
 
 ; Cavern tiles
@@ -57,26 +57,26 @@ g32768 DEFS 32
 ; is also used in #R47104(The Menagerie) as spider silk, and in #R52224(Miner
 ; Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast) as a
 ; switch.
-; @label=BACKGROUND
+@label=BACKGROUND
 g32800 DEFS 9        ; Background tile (also used by the routines at #R35515,
                      ; #R35770, #R36211, #R36344, #R37173 and #R37471)
-; @label=FLOOR
+@label=FLOOR
  32809 DEFS 9        ; Floor tile (also used by the routine at #R36211)
-; @label=CRUMBLING
+@label=CRUMBLING
  32818 DEFS 9        ; Crumbling floor tile (also used by the routine at
                      ; #R35515)
-; @label=WALL
+@label=WALL
  32827 DEFS 9        ; Wall tile (also used by the routines at #R35515, #R35805
                      ; and #R36211)
-; @label=CONVEYOR
+@label=CONVEYOR
  32836 DEFS 9        ; Conveyor tile (also used by the routine at #R35805)
-; @label=NASTY1
+@label=NASTY1
  32845 DEFS 9        ; Nasty tile 1 (also used by the routines at #R35515 and
                      ; #R37471)
-; @label=NASTY2
+@label=NASTY2
  32854 DEFS 9        ; Nasty tile 2 (also used by the routines at #R35515 and
                      ; #R37471)
-; @label=EXTRA
+@label=EXTRA
  32863 DEFS 9        ; Extra tile (also used by the routine at #R37403)
 
 ; Willy's pixel y-coordinate (x2)
@@ -86,14 +86,14 @@ g32800 DEFS 9        ; Background tile (also used by the routines at #R35515,
 ; the screen buffer address lookup table at #R33536 that corresponds to Willy's
 ; pixel y-coordinate; in practice, this is twice Willy's actual pixel
 ; y-coordinate.
-; @label=PIXEL_Y
+@label=PIXEL_Y
 g32872 DEFB 0
 
 ; Willy's animation frame
 ;
 ; Initialised by the routine at #R34436, used by the routine at #R37503, and
 ; updated by the routine at #R35805.
-; @label=FRAME
+@label=FRAME
 g32873 DEFB 0
 
 ; Willy's direction and movement flags
@@ -106,7 +106,7 @@ g32873 DEFB 0
 ; { 1 | Willy's movement flag (set=moving) | #R35515, #R35805 }
 ; { 2-7 | Unused (always reset) | }
 ; TABLE#
-; @label=DMFLAGS
+@label=DMFLAGS
 g32874 DEFB 0
 
 ; Airborne status indicator
@@ -123,47 +123,47 @@ g32874 DEFB 0
 ; #R35805#35805) }
 ; { 255 | Willy has collided with a nasty or a guardian (see #R36101) }
 ; TABLE#
-; @label=AIRBORNE
+@label=AIRBORNE
 g32875 DEFB 0
 
 ; Address of Willy's location in the attribute buffer at 23552
 ;
 ; Initialised by the routine at #R34436, used by the routines at #R35515,
 ; #R36805, #R37403, #R37434 and #R37503, and updated by the routine at #R35805.
-; @label=LOCATION
+@label=LOCATION
 g32876 DEFW 0
 
 ; Jumping animation counter
 ;
 ; Initialised by the routine at #R34436, and used by the routines at #R35515
 ; and #R35805.
-; @label=JUMPING
+@label=JUMPING
 g32878 DEFB 0
 
 ; Conveyor definition
 ;
 ; The conveyor definition is copied here by the routine at #R34436.
-; @label=CONVDIR
+@label=CONVDIR
 g32879 DEFB 0        ; Direction (0=left, 1=right; used by the routines at
                      ; #R35805 and #R37125)
-; @label=CONVLOC
+@label=CONVLOC
  32880 DEFW 0        ; Address of the conveyor's location in the screen buffer
                      ; at #R28672 (used by the routine at #R37125)
-; @label=CONVLEN
+@label=CONVLEN
  32882 DEFB 0        ; Length (used by the routine at #R37125)
 
 ; Border colour
 ;
 ; Initialised and used by the routine at #R34436, and also used by the routines
 ; at #R34574, #R35515 and #R37173.
-; @label=BORDER
+@label=BORDER
 g32883 DEFB 0
 
 ; Attribute of the last item drawn
 ;
 ; Used by the routines at #R36344 and #R36707. Holds the attribute byte of the
 ; last item drawn, or 0 if all the items have been collected.
-; @label=ITEMATTR
+@label=ITEMATTR
 g32884 DEFB 0
 
 ; Item definitions
@@ -180,7 +180,7 @@ g32884 DEFB 0
 ; #R24576 }
 ; { 4 | Unused (always 255) }
 ; TABLE#
-; @label=ITEMS
+@label=ITEMS
 g32885 DEFS 5        ; Item 1
  32890 DEFS 5        ; Item 2
  32895 DEFS 5        ; Item 3
@@ -191,15 +191,15 @@ g32885 DEFS 5        ; Item 1
 ; Portal definition
 ;
 ; The portal definition is copied here by the routine at #R34436.
-; @label=PORTAL
+@label=PORTAL
 g32911 DEFB 0        ; Attribute byte (used by the routines at #R36707 and
                      ; #R36805)
-; @label=PORTALG
+@label=PORTALG
  32912 DEFS 32       ; Graphic data (used by the routine at #R36805)
-; @label=PORTALLOC1
+@label=PORTALLOC1
  32944 DEFW 0        ; Address of the portal's location in the attribute buffer
                      ; at #R23552 (used by the routine at #R36805)
-; @label=PORTALLOC2
+@label=PORTALLOC2
  32946 DEFW 0        ; Address of the portal's location in the screen buffer at
                      ; #R24576 (used by the routine at #R36805)
 
@@ -207,7 +207,7 @@ g32911 DEFB 0        ; Attribute byte (used by the routines at #R36707 and
 ;
 ; The item graphic is copied here by the routine at #R34436, and then used by
 ; the routine at #R36707.
-; @label=ITEM
+@label=ITEM
 g32948 DEFS 8
 
 ; Remaining air supply
@@ -217,7 +217,7 @@ g32948 DEFS 8
 ; Its value ranges from 36 to 63 and is actually the LSB of the display file
 ; address for the cell at the right end of the air bar. The amount of air to
 ; draw in this cell is determined by the value of the game clock at #R32957.
-; @label=AIR
+@label=AIR
 g32956 DEFB 0
 
 ; Game clock
@@ -227,7 +227,7 @@ g32956 DEFB 0
 ; at #R36111, #R36344 and #R37173. Its value (which is always a multiple of 4)
 ; is also used by the routine at #R35388 to compute the amount of air to draw
 ; in the cell at the right end of the air bar.
-; @label=CLOCK
+@label=CLOCK
 g32957 DEFB 0
 
 ; Horizontal guardians
@@ -253,9 +253,9 @@ g32957 DEFB 0
 ; { 6 | LSB of the address of the rightmost point of the guardian's path in the
 ; attribute buffer }
 ; TABLE#
-; @label=HGUARDS
+@label=HGUARDS
 g32958 DEFS 7        ; Horizontal guardian 1
-; @label=HGUARD2
+@label=HGUARD2
  32965 DEFS 7        ; Horizontal guardian 2
  32972 DEFS 7        ; Horizontal guardian 3
  32979 DEFS 7        ; Horizontal guardian 4
@@ -266,7 +266,7 @@ g32958 DEFS 7        ; Horizontal guardian 1
 ; Initialised by the routine at #R34436, and used by the routines at #R36344
 ; (to hold Eugene's direction: 0=down, 1=up) and #R37173 (to hold the Kong
 ; Beast's status: 0=on the ledge, 1=falling, 2=dead).
-; @label=EUGDIR
+@label=EUGDIR
 g32987 DEFB 0
 
 ; Eugene's or the Kong Beast's pixel y-coordinate
@@ -277,7 +277,7 @@ g32987 DEFB 0
 ; from the top of the screen as it descends onto Willy), #R36344 (to hold
 ; Eugene's pixel y-coordinate) and #R37173 (to hold the Kong Beast's pixel
 ; y-coordinate).
-; @label=EUGHGT
+@label=EUGHGT
 g32988 DEFB 0
 
 ; Vertical guardians
@@ -305,7 +305,7 @@ g32988 DEFB 0
 ; #R49152(Eugene's Lair): the routine at #R34436 copies the graphic data for
 ; the Eugene sprite into the last 32 bytes of this area, where it is then used
 ; by the routine at #R36344.
-; @label=VGUARDS
+@label=VGUARDS
 g32989 DEFS 7        ; Vertical guardian 1
  32996 DEFS 7        ; Vertical guardian 2
  33003 DEFS 7        ; Vertical guardian 3
@@ -318,7 +318,7 @@ g32989 DEFS 7        ; Vertical guardian 1
 ;
 ; The guardian graphic data is copied here by the routine at #R34436, and then
 ; used by the routines at #R36266, #R36469, #R36593 and #R37173.
-; @label=GGDATA
+@label=GGDATA
 g33024 DEFS 256
 
 ; Willy sprite graphic data
@@ -337,15 +337,15 @@ g33024 DEFS 256
 ; #UDGARRAY2,7,,2;33504-33521-1-16(willy7*) |
 ; #UDGARRAY*willy7;willy6;willy5;willy4(willy_l.gif) }
 ; TABLE#
-; @label=MANDAT
+@label=MANDAT
 b33280 DEFB 6,0,62,0,124,0,52,0,62,0,60,0,24,0,60,0
  33296 DEFB 126,0,126,0,247,0,251,0,60,0,118,0,110,0,119,0
  33312 DEFB 1,128,15,128,31,0,13,0,15,128,15,0,6,0,15,0
  33328 DEFB 27,128,27,128,27,128,29,128,15,0,6,0,6,0,7,0
-; @label=WILLYR2
+@label=WILLYR2
  33344 DEFB 0,96,3,224,7,192,3,64,3,224,3,192,1,128,3,192
  33360 DEFB 7,224,7,224,15,112,15,176,3,192,7,96,6,224,7,112
-; @label=WILLYR3
+@label=WILLYR3
  33376 DEFB 0,24,0,248,1,240,0,208,0,248,0,240,0,96,0,240
  33392 DEFB 1,248,3,252,7,254,6,246,0,248,1,218,3,14,3,132
  33408 DEFB 24,0,31,0,15,128,11,0,31,0,15,0,6,0,15,0
@@ -363,7 +363,7 @@ b33280 DEFB 6,0,62,0,124,0,52,0,62,0,60,0,24,0,60,0
 ; #R37503. The value of the Nth entry (0<=N<=127) in this lookup table is the
 ; screen buffer address for the point with pixel coordinates (x,y)=(0,N), with
 ; the origin (0,0) at the top-left corner.
-; @label=SBUFADDRS
+@label=SBUFADDRS
 w33536 DEFW 24576    ; y=0
  33538 DEFW 24832    ; y=1
  33540 DEFW 25088    ; y=2
@@ -494,9 +494,9 @@ w33536 DEFW 24576    ; y=0
  33790 DEFW 28640    ; y=127
 
 ; The game has just loaded
-; @label=BEGIN
+@label=BEGIN
 c33792 DI            ; Disable interrupts
-; @keep
+@keep
  33793 LD SP,40190   ; Place the stack somewhere safe (near the end of the
                      ; source code remnants at #R37708)
  33796 JP 34252      ; Display the title screen and play the theme tune
@@ -505,7 +505,7 @@ c33792 DI            ; Disable interrupts
 ;
 ; Initialised by the routine at #R34252, used by the routines at #R34436,
 ; #R34574, #R35445 and #R36266, and updated by the routine at #R36904.
-; @label=SHEET
+@label=SHEET
 g33799 DEFB 0
 
 ; Left-right movement table
@@ -517,7 +517,7 @@ g33799 DEFB 0
 ; or by a conveyor).
 ; .
 ; One of the first four entries is used when Willy is not moving.
-; @label=LRMOVEMENT
+@label=LRMOVEMENT
 b33800 DEFB 0        ; V=0 (facing right, no movement) + no movement: V'=0 (no
                      ; change)
  33801 DEFB 1        ; V=1 (facing left, no movement) + no movement: V'=1 (no
@@ -554,7 +554,7 @@ b33800 DEFB 0        ; V=0 (facing right, no movement) + no movement: V'=0 (no
 ; 'AIR'
 ;
 ; Used by the routine at #R34436.
-; @label=MESSAIR
+@label=MESSAIR
 t33816 DEFM "AIR"
 
 ; Unused
@@ -563,56 +563,56 @@ u33819 DEFM "0000"
 ; High score
 ;
 ; Used by the routine at #R34574 and updated by the routine at #R35140.
-; @label=HGHSCOR
+@label=HGHSCOR
 g33823 DEFM "000000"
 
 ; Score
 ;
 ; Initialised by the routine at #R34436, and used by the routines at #R34574,
 ; #R35140, #R36904 and #R37098.
-; @label=SCORE
+@label=SCORE
 g33829 DEFM "0000"   ; Overflow digits (these may be updated, but are never
                      ; printed)
-; @label=SCORBUF
+@label=SCORBUF
  33833 DEFM "000000"
 
 ; 'High Score 000000#SPACE(3)Score 000000'
 ;
 ; Used by the routine at #R34436.
-; @label=MESSHSSC
+@label=MESSHSSC
 t33839 DEFM "High Score 000000   Score 000000"
 
 ; 'Game'
 ;
 ; Used by the routine at #R35140.
-; @label=MESSG
+@label=MESSG
 t33871 DEFM "Game"
 
 ; 'Over'
 ;
 ; Used by the routine at #R35140.
-; @label=MESSO
+@label=MESSO
 t33875 DEFM "Over"
 
 ; Lives remaining
 ;
 ; Initialised to 2 by the routine at #R34252, and used and updated by the
 ; routines at #R34574 and #R37098.
-; @label=NOMEN
+@label=NOMEN
 g33879 DEFB 0
 
 ; Screen flash counter
 ;
 ; Initialised by the routine at #R34252, and used by the routines at #R34574
 ; and #R37098.
-; @label=FLASH
+@label=FLASH
 g33880 DEFB 0
 
 ; Kempston joystick indicator
 ;
 ; Initialised by the routine at #R34252, and used by the routines at #R34574,
 ; #R35805 and #R37687. Holds 1 if a joystick is present, 0 otherwise.
-; @label=KEMP
+@label=KEMP
 g33881 DEFB 0
 
 ; Game mode indicator
@@ -620,14 +620,14 @@ g33881 DEFB 0
 ; Initialised by the routine at #R34252, and used by the routines at #R34436,
 ; #R34574 and #R36904. Holds 0 when a game is in progress, or a value from 1 to
 ; 64 when in demo mode.
-; @label=DEMO
+@label=DEMO
 g33882 DEFB 0
 
 ; In-game music note index
 ;
 ; Initialised by the routine at #R34252, and used and updated by the routine at
 ; #R34574.
-; @label=NOTEINDEX
+@label=NOTEINDEX
 g33883 DEFB 0
 
 ; Music flags
@@ -641,20 +641,20 @@ g33883 DEFB 0
 ; { 1 | In-game music flag (set=music off, reset=music on) }
 ; { 2-7 | Unused }
 ; TABLE#
-; @label=MUSICFLAGS
+@label=MUSICFLAGS
 g33884 DEFB 0
 
 ; 6031769 key counter
 ;
 ; Used by the routines at #R34574 and #R36904.
-; @label=CHEAT
+@label=CHEAT
 g33885 DEFB 0
 
 ; 6031769
 ;
 ; Used by the routine at #R34574.
 b33886 DEFB %00011111,%00011111 ; (no keys pressed)
-; @label=CHEATDT
+@label=CHEATDT
  33888 DEFB %00011111,%00001111 ; 6
  33890 DEFB %00011111,%00011110 ; 0
  33892 DEFB %00011011,%00011111 ; 3
@@ -669,7 +669,7 @@ b33886 DEFB %00011111,%00011111 ; (no keys pressed)
 ; three bytes each, one group for each note in the tune. The first byte in each
 ; group determines the duration of the note, and the second and third bytes
 ; determine the frequency (and also the piano keys that light up).
-; @label=THEMETUNE
+@label=THEMETUNE
 b33902 DEFB 80,128,129
  33905 DEFB 80,102,103
  33908 DEFB 80,86,87
@@ -770,7 +770,7 @@ b33902 DEFB 80,128,129
 ; In-game tune data (In the Hall of the Mountain King)
 ;
 ; Used by the routine at #R34574.
-; @label=GAMETUNE
+@label=GAMETUNE
 b34188 DEFB 128,114,102,96,86,102,86,86,81,96,81,81,86,102,86,86
  34204 DEFB 128,114,102,96,86,102,86,86,81,96,81,81,86,86,86,86
  34220 DEFB 128,114,102,96,86,102,86,86,81,96,81,81,86,102,86,86
@@ -782,7 +782,7 @@ b34188 DEFB 128,114,102,96,86,102,86,86,81,96,81,81,86,102,86,86
 ; .
 ; The first thing this routine does is initialise some game status buffer
 ; variables in preparation for the next game.
-; @label=START
+@label=START
 c34252 XOR A         ; #REGa=0
  34253 LD (33799),A  ; Initialise the current cavern number at #R33799
  34256 LD (33881),A  ; Initialise the Kempston joystick indicator at #R33881
@@ -844,7 +844,7 @@ c34252 XOR A         ; #REGa=0
  34388 RRCA          ; determines the animation frame to use for Willy
  34389 RRCA          ; }
  34390 LD E,A        ; {Point #REGde at the graphic data for Willy's sprite
-; @ssub=LD D,33280/256
+@ssub=LD D,33280/256
  34391 LD D,130      ; (#R33280+#REGa)}
  34393 LD HL,18493   ; {Draw Willy at (9,29)
  34396 LD C,0        ;
@@ -853,7 +853,7 @@ c34252 XOR A         ; #REGa=0
 *34404 DJNZ 34404    ;
  34406 DEC C         ;
  34407 JR NZ,34404   ; }
-; @keep
+@keep
  34409 LD BC,49150   ; {Read keys H-J-K-L-ENTER
  34412 IN A,(C)      ; }
  34414 AND 1         ; Keep only bit 0 of the result (ENTER)
@@ -873,9 +873,9 @@ c34252 XOR A         ; #REGa=0
 ; Start the game (or demo mode)
 ;
 ; Used by the routine at #R34252.
-; @label=STARTGAME
+@label=STARTGAME
 c34436 LD HL,33829   ; {Initialise the score at #R33829
-; @ssub=LD DE,33829+1
+@ssub=LD DE,33829+1
  34439 LD DE,33830   ;
  34442 LD BC,9       ;
  34445 LD (HL),48    ;
@@ -883,18 +883,18 @@ c34436 LD HL,33829   ; {Initialise the score at #R33829
 ; This entry point is used by the routines at #R34574 (when teleporting into a
 ; cavern or reinitialising the current cavern after Willy has lost a life) and
 ; #R36904.
-; @label=NEWSHT
+@label=NEWSHT
 *34449 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
  34452 SLA A         ; {Point #REGhl at the first byte of the cavern
  34454 SLA A         ; definition
-; @ssub=ADD A,45056/256
+@ssub=ADD A,45056/256
  34456 ADD A,176     ;
  34458 LD H,A        ;
  34459 LD L,0        ; }
  34461 LD DE,24064   ; {Copy the cavern's attribute bytes into the buffer at
  34464 LD BC,512     ; #R24064
  34467 LDIR          ; }
-; @ignoreua
+@ignoreua
  34469 LD DE,32768   ; {Copy the rest of the cavern definition into the game
  34472 LD BC,512     ; status buffer at
  34475 LDIR          ; #LINK:GameStatusBuffer#32768(32768-33279)}
@@ -954,7 +954,7 @@ c34436 LD HL,33829   ; {Initialise the score at #R33829
 ; .
 ; The first thing to do is check whether there are any remaining lives to draw
 ; at the bottom of the screen.
-; @label=LOOP
+@label=LOOP
 c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34577 LD HL,20640   ; Set #REGhl to the display file address at which to draw
                      ; the first Willy sprite
@@ -973,7 +973,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34593 RLCA          ;
  34594 AND 96        ; }
  34596 LD E,A        ; {Point #REGde at the corresponding Willy sprite (at
-; @ssub=LD D,33280/256
+@ssub=LD D,33280/256
  34597 LD D,130      ; #R33280+#REGa)}
  34599 CALL 36852    ; Draw the Willy sprite on the screen
  34602 POP BC        ; {Restore #REGhl and #REGbc
@@ -1067,7 +1067,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34795 CALL 35388    ; Decrease the air remaining in the current cavern
  34798 JP Z,35071    ; Jump if there's no air left
 ; Now check whether SHIFT and SPACE are being pressed.
-; @keep
+@keep
  34801 LD BC,65278   ; {Read keys SHIFT-Z-X-C-V
  34804 IN A,(C)      ; }
  34806 LD E,A        ; Save the result in #REGe
@@ -1124,20 +1124,20 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34894 LD E,(HL)     ; Initialise the pitch delay counter in #REGe
  34895 LD BC,3       ; Initialise the duration delay counters in #REGb (0) and
                      ; #REGc (3)
-; @label=TM51
+@label=TM51
 *34898 OUT (254),A   ; {Produce a note of the in-game music
-; @label=SEE37708
+@label=SEE37708
  34900 DEC E         ;
  34901 JR NZ,34906   ;
  34903 LD E,(HL)     ;
  34904 XOR 24        ;
-; @label=NOFLP6
+@label=NOFLP6
 *34906 DJNZ 34898    ;
  34908 DEC C         ;
  34909 JR NZ,34898   ; }
 ; If we're in demo mode, check the keyboard and joystick and return to the
 ; title screen if there's any input.
-; @label=NONOTE4
+@label=NONOTE4
 *34911 LD A,(33882)  ; Pick up the game mode indicator from #R33882
  34914 OR A          ; Are we in demo mode?
  34915 JR Z,34948    ; Jump if not
@@ -1157,8 +1157,8 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
                      ; pressed?
  34945 JP NZ,34252   ; If so, return to the title screen
 ; Here we check the teleport keys.
-; @label=NODEM1
-; @keep
+@label=NODEM1
+@keep
 *34948 LD BC,61438   ; {Read keys 6-7-8-9-0
  34951 IN A,(C)      ; }
  34953 BIT 4,A       ; Is '6' (the activator key) being pressed?
@@ -1175,7 +1175,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34978 LD (33799),A  ; Store the cavern number at #R33799
  34981 JP 34449      ; Teleport into the cavern
 ; Now check the 6031769 keys.
-; @label=CKCHEAT
+@label=CKCHEAT
 *34984 LD A,(33885)  ; Pick up the 6031769 key counter from #R33885
  34987 CP 7          ; Has 6031769 been keyed in yet?
  34989 JP Z,34574    ; If so, jump back to the start of the main loop
@@ -1184,7 +1184,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34994 LD D,0        ;
  34996 LD IX,33888   ;
  35000 ADD IX,DE     ; }
-; @keep
+@keep
  35002 LD BC,63486   ; {Read keys 1-2-3-4-5
  35005 IN A,(C)      ; }
  35007 AND 31        ; Keep only bits 0-5
@@ -1199,7 +1199,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  35025 XOR A         ; {Reset the 6031769 key counter at #R33885 to 0 (an
  35026 LD (33885),A  ; incorrect key is being pressed)}
  35029 JP 34574      ; Jump back to the start of the main loop
-; @label=CKNXCHT
+@label=CKNXCHT
 *35032 LD B,239      ; {Read keys 6-7-8-9-0
  35034 IN A,(C)      ; }
  35036 AND 31        ; Keep only bits 0-5
@@ -1214,21 +1214,21 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  35054 XOR A         ; {Reset the 6031769 key counter at #R33885 to 0 (an
  35055 LD (33885),A  ; incorrect key is being pressed)}
  35058 JP 34574      ; Jump back to the start of the main loop
-; @label=INCCHT
+@label=INCCHT
 *35061 LD A,(33885)  ; {Increment the 6031769 key counter at #R33885 (the next
  35064 INC A         ; key in the sequence is being pressed)
  35065 LD (33885),A  ; }
  35068 JP 34574      ; Jump back to the start of the main loop
 ; The air in the cavern has run out, or Willy has had a fatal accident, or it's
 ; demo mode and it's time to show the next cavern.
-; @label=MANDEAD
+@label=MANDEAD
 *35071 LD A,(33882)  ; Pick up the game mode indicator from #R33882
  35074 OR A          ; Is it demo mode?
  35075 JP NZ,36904   ; If so, move to the next cavern
  35078 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
 ; The following loop fills the top two thirds of the attribute file with a
 ; single value (71 TO 64 STEP -1) and makes a sound effect.
-; @label=LPDEAD1
+@label=LPDEAD1
 *35080 LD HL,22528   ; {Fill the top two thirds of the attribute file with the
  35083 LD DE,22529   ; value in #REGa
  35086 LD BC,511     ;
@@ -1249,11 +1249,11 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  35107 RRC C         ; }
  35109 OR 16         ; Set bit 4 of #REGa (for no apparent reason)
  35111 XOR A         ; Set #REGa=0 (this will make the border black)
-; @label=TM21
+@label=TM21
 *35112 OUT (254),A   ; {Produce a short note whose pitch is determined by #REGd
  35114 XOR 24        ; and whose duration is determined by #REGc
  35116 LD B,D        ;
-; @label=TM22
+@label=TM22
 *35117 DJNZ 35117    ;
  35119 DEC C         ;
  35120 JR NZ,35112   ; }
@@ -1273,11 +1273,11 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
 ; Display the game over sequence
 ;
 ; Used by the routine at #R34574. First check whether we have a new high score.
-; @label=ENDGAM
+@label=ENDGAM
 c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
  35143 LD DE,33833   ; Point #REGde at the current score at #R33833
  35146 LD B,6        ; There are 6 digits to compare
-; @label=LPHGH
+@label=LPHGH
 *35148 LD A,(DE)     ; Pick up a digit of the current score
  35149 CP (HL)       ; Compare it with the corresponding digit of the high
                      ; score
@@ -1288,13 +1288,13 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
  35156 INC HL        ; Point #REGhl at the next digit of the high score
  35157 INC DE        ; Point #REGde at the next digit of the current score
  35158 DJNZ 35148    ; Jump back to compare the next pair of digits
-; @label=NEWHGH
+@label=NEWHGH
 *35160 LD HL,33833   ; {Replace the high score with the current score
  35163 LD DE,33823   ;
  35166 LD BC,6       ;
  35169 LDIR          ; }
 ; Now prepare the screen for the game over sequence.
-; @label=FEET
+@label=FEET
 *35171 LD HL,16384   ; {Clear the top two-thirds of the display file
  35174 LD DE,16385   ;
  35177 LD BC,4095    ;
@@ -1313,10 +1313,10 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
  35207 CALL 36852    ; }
 ; The following loop draws the boot's descent onto the plinth that supports
 ; Willy.
-; @label=LOOPFT
+@label=LOOPFT
 *35210 LD A,(32988)  ; Pick up the distance variable from #R32988
  35213 LD C,A        ; {Point #REGbc at the corresponding entry in the screen
-; @ssub=LD B,33536/256
+@ssub=LD B,33536/256
  35214 LD B,131      ; buffer address lookup table at #R33536}
  35216 LD A,(BC)     ; {Point #REGhl at the corresponding location in the
  35217 OR 15         ; display file
@@ -1337,11 +1337,11 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
  35238 XOR A         ; #REGa=0 (black border)
  35239 LD BC,64      ; #REGc=64; this value determines the duration of the
                      ; sound effect
-; @label=TM111
+@label=TM111
 *35242 OUT (254),A   ; {Produce a short note whose pitch is determined by
  35244 XOR 24        ; #REGe
  35246 LD B,E        ;
-; @label=TM112
+@label=TM112
 *35247 DJNZ 35247    ;
  35249 DEC C         ;
  35250 JR NZ,35242   ; }
@@ -1373,7 +1373,7 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
  35311 LD D,6        ; counter in #REGc will also determine the INK colours to
                      ; use for the "Game Over" message}
 ; The following loop makes the "Game Over" message glisten for about 1.57s.
-; @label=TM91
+@label=TM91
 *35313 DJNZ 35313    ; Delay for about a millisecond
  35315 LD A,C        ; {Change the INK colour of the "G" in "Game" at (6,10)
  35316 AND 7         ;
@@ -1417,7 +1417,7 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
 ;
 ; Used by the routines at #R34574, #R36211 and #R36904. Returns with the zero
 ; flag set if there is no air remaining.
-; @label=DECAIR
+@label=DECAIR
 c35388 LD A,(32957)  ; {Update the game clock at #R32957
  35391 SUB 4         ;
  35393 LD (32957),A  ; }
@@ -1459,11 +1459,11 @@ c35388 LD A,(32957)  ; {Update the game clock at #R32957
 ; Draw the current cavern to the screen buffer at 28672
 ;
 ; Used by the routine at #R34436.
-; @label=DRAWSHEET
+@label=DRAWSHEET
 c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; at #R24064
  35449 LD A,112      ; {Set the operand of the 'LD D,n' instruction at #R35483
-; @ssub=LD (35483+1),A
+@ssub=LD (35483+1),A
  35451 LD (35484),A  ; (below) to 112}
  35454 CALL 35466    ; Draw the tiles for the top half of the cavern to the
                      ; screen buffer at #R28672
@@ -1472,7 +1472,7 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; the cavern; this instruction is redundant, since #REGix
                      ; already holds 24320
  35461 LD A,120      ; {Set the operand of the 'LD D,n' instruction at #R35483
-; @ssub=LD (35483+1),A
+@ssub=LD (35483+1),A
  35463 LD (35484),A  ; (below) to 120}
 *35466 LD C,0        ; #REGc will count 256 tiles
 ; The following loop draws 256 tiles (for either the top half or the bottom
@@ -1487,7 +1487,7 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; to be drawn}
  35480 LD C,E        ; Restore the value of the tile counter in #REGc
  35481 LD B,8        ; There are eight bytes in the tile
-; @label=SBMSB
+@label=SBMSB
  35483 LD D,0        ; This instruction is set to either 'LD D,112' or 'LD
                      ; D,120' above; now #REGde holds the appropriate address
                      ; in the screen buffer at #R28672
@@ -1515,7 +1515,7 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
 ;
 ; Used by the routine at #R34574. This routine deals with Willy if he's jumping
 ; or falling.
-; @label=MOVEWILLY
+@label=MOVEWILLY
 c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35518 CP 1          ; Is Willy jumping?
  35520 JR NZ,35600   ; Jump if not
@@ -1692,7 +1692,7 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
 ;
 ; HL Address of the crumbling floor tile's location in the attribute buffer at
 ; .  #R23552
-; @label=CRUMBLE
+@label=CRUMBLE
 c35770 LD C,L        ; {Point #REGbc at the bottom row of pixels of the
  35771 LD A,H        ; crumbling floor tile in the screen buffer at #R28672
  35772 ADD A,27      ;
@@ -1732,7 +1732,7 @@ c35770 LD C,L        ; {Point #REGbc at the bottom row of pixels of the
 ; joystick, and moves Willy left or right if necessary.
 ;
 ; HL Attribute buffer address of the left-hand cell below Willy's sprite
-; @label=MOVEWILLY2
+@label=MOVEWILLY2
 c35805 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35808 CP 12         ; Has Willy just landed after falling from too great a
                      ; height?
@@ -1754,7 +1754,7 @@ c35805 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
                      ; from #R32879 (0=left, 1=right)
  35832 SUB 3         ; {Now #REGe=253 (bit 1 reset) if the conveyor is moving
  35834 LD E,A        ; left, or 254 (bit 0 reset) if it's moving right}
-; @keep
+@keep
 *35835 LD BC,57342   ; {Read keys P-O-I-U-Y (right, left, right, left, right)
  35838 IN A,(C)      ; into bits 0-4 of #REGa}
  35840 AND 31        ; {Set bit 5 and reset bits 6 and 7
@@ -1762,7 +1762,7 @@ c35805 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35844 AND E         ; Reset bit 0 if the conveyor is moving right, or bit 1 if
                      ; it's moving left
  35845 LD E,A        ; Save the result in #REGe
-; @keep
+@keep
  35846 LD BC,64510   ; {Read keys Q-W-E-R-T (left, right, left, right, left)
  35849 IN A,(C)      ; into bits 0-4 of #REGa}
  35851 AND 31        ; {Keep only bits 0-4, shift them into bits 1-5, and set
@@ -1937,7 +1937,7 @@ c35805 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
 ; Kill Willy
 ;
 ; Used by the routine at #R37471 when Willy hits a nasty.
-; @label=KILLWILLY
+@label=KILLWILLY
 c36101 POP HL        ; Drop the return address from the stack
 ; This entry point is used by the routines at #R35805 (when Willy lands after
 ; falling from too great a height), #R36266 (when Willy collides with a
@@ -1954,7 +1954,7 @@ c36101 POP HL        ; Drop the return address from the stack
 ; Move the horizontal guardians in the current cavern
 ;
 ; Used by the routine at #R34574.
-; @label=MOVEHG
+@label=MOVEHG
 c36111 LD IY,32958   ; Point #REGiy at the first byte of the first horizontal
                      ; guardian definition at #R32958
  36115 LD DE,7       ; Prepare #REGde for addition (there are 7 bytes in a
@@ -2024,7 +2024,7 @@ c36111 LD IY,32958   ; Point #REGiy at the first byte of the first horizontal
 ; Move and draw the light beam in Solar Power Generator
 ;
 ; Used by the routine at #R34574.
-; @label=LIGHTBEAM
+@label=LIGHTBEAM
 c36211 LD HL,23575   ; Point #REGhl at the cell at (0,23) in the attribute
                      ; buffer at #R23552 (the source of the light beam)
  36214 LD DE,32      ; Prepare #REGde for addition (the beam travels vertically
@@ -2070,7 +2070,7 @@ c36211 LD HL,23575   ; Point #REGhl at the cell at (0,23) in the attribute
 ; Draw the horizontal guardians in the current cavern
 ;
 ; Used by the routine at #R34574.
-; @label=DRAWHG
+@label=DRAWHG
 c36266 LD IY,32958   ; Point #REGiy at the first byte of the first horizontal
                      ; guardian definition at #R32958
 ; The guardian-drawing loop begins here.
@@ -2107,7 +2107,7 @@ c36266 LD IY,32958   ; Point #REGiy at the first byte of the first horizontal
  36319 JR Z,36323    ; Jump if so
  36321 SET 7,E       ; Add 128 to #REGe (the horizontal guardians in this
                      ; cavern use frames 4-7 only)
-; @ssub=LD D,33024/256
+@ssub=LD D,33024/256
 *36323 LD D,129      ; Point #REGde at the graphic data for the appropriate
                      ; guardian sprite (at #R33024+#REGe)
  36325 LD L,(IY+1)   ; {Point #REGhl at the address of the guardian's location
@@ -2123,7 +2123,7 @@ c36266 LD IY,32958   ; Point #REGiy at the first byte of the first horizontal
 ;
 ; Used by the routine at #R34574. First we move Eugene up or down, or change
 ; his direction.
-; @label=EUGENE
+@label=EUGENE
 c36344 LD A,(32884)  ; Pick up the attribute of the last item drawn from
                      ; #R32884
  36347 OR A          ; Have all the items been collected?
@@ -2150,7 +2150,7 @@ c36344 LD A,(32884)  ; Pick up the attribute of the last item drawn from
  36391 AND 127       ; {Point #REGde at the entry in the screen buffer address
  36393 RLCA          ; lookup table at #R33536 that corresponds to Eugene's
  36394 LD E,A        ; y-coordinate
-; @ssub=LD D,33536/256
+@ssub=LD D,33536/256
  36395 LD D,131      ; }
  36397 LD A,(DE)     ; {Point #REGhl at the address of Eugene's location in the
  36398 OR 15         ; screen buffer at #R24576
@@ -2158,7 +2158,7 @@ c36344 LD A,(32884)  ; Pick up the attribute of the last item drawn from
  36401 INC DE        ;
  36402 LD A,(DE)     ;
  36403 LD H,A        ; }
-; @ssub=LD DE,32989+3
+@ssub=LD DE,32989+3
  36404 LD DE,32992   ; {Draw Eugene to the screen buffer at #R24576
  36407 LD C,1        ;
  36409 CALL 36852    ; }
@@ -2208,7 +2208,7 @@ c36344 LD A,(32884)  ; Pick up the attribute of the last item drawn from
 ; Move and draw the Skylabs in Skylab Landing Bay
 ;
 ; Used by the routine at #R34574.
-; @label=SKYLABS
+@label=SKYLABS
 c36469 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
                      ; guardian definition at #R32989
 ; The Skylab-moving loop begins here.
@@ -2236,7 +2236,7 @@ c36469 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
 ; Now that the Skylab's movement has been dealt with, time to draw it.
 *36527 LD E,(IY+2)   ; Pick up the Skylab's pixel y-coordinate in #REGe
  36530 RLC E         ; {Point #REGde at the entry in the screen buffer address
-; @ssub=LD D,33536/256
+@ssub=LD D,33536/256
  36532 LD D,131      ; lookup table at #R33536 that corresponds to the Skylab's
                      ; pixel y-coordinate}
  36534 LD A,(DE)     ; {Point #REGhl at the address of the Skylab's location in
@@ -2250,7 +2250,7 @@ c36469 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
  36546 RRCA          ;
  36547 RRCA          ; }
  36548 LD E,A        ; {Point #REGde at the graphic data for the corresponding
-; @ssub=LD D,33024/256
+@ssub=LD D,33024/256
  36549 LD D,129      ; Skylab sprite (at #R33024+#REGa)}
  36551 LD C,1        ; {Draw the Skylab to the screen buffer at #R24576
  36553 CALL 36852    ; }
@@ -2277,7 +2277,7 @@ c36469 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
 ; Move and draw the vertical guardians in the current cavern
 ;
 ; Used by the routine at #R34574.
-; @label=VGUARDIANS
+@label=VGUARDIANS
 c36593 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
                      ; guardian definition at #R32989
 ; The guardian-moving loop begins here.
@@ -2304,7 +2304,7 @@ c36593 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
  36642 AND 127       ; {Point #REGde at the entry in the screen buffer address
  36644 RLCA          ; lookup table at #R33536 that corresponds to the
  36645 LD E,A        ; guardian's pixel y-coordinate
-; @ssub=LD D,33536/256
+@ssub=LD D,33536/256
  36646 LD D,131      ; }
  36648 LD A,(DE)     ; {Point #REGhl at the address of the guardian's location
  36649 OR (IY+3)     ; in the screen buffer at #R24576
@@ -2317,7 +2317,7 @@ c36593 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
  36660 RRCA          ;
  36661 RRCA          ; }
  36662 LD E,A        ; {Point #REGde at the graphic data for the appropriate
-; @ssub=LD D,33024/256
+@ssub=LD D,33024/256
  36663 LD D,129      ; guardian sprite (at #R33024+#REGa)}
  36665 LD C,1        ; {Draw the guardian to the screen buffer at #R24576
  36667 CALL 36852    ; }
@@ -2344,7 +2344,7 @@ c36593 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
 ; Draw the items in the current cavern and collect any that Willy is touching
 ;
 ; Used by the routine at #R34574.
-; @label=DRAWITEMS
+@label=DRAWITEMS
 c36707 XOR A         ; {Initialise the attribute of the last item drawn at
  36708 LD (32884),A  ; #R32884 to 0 (in case there are no items left to draw)}
  36711 LD IY,32885   ; Point #REGiy at the first byte of the first item
@@ -2363,7 +2363,7 @@ c36707 XOR A         ; {Initialise the attribute of the last item drawn at
  36734 CP 7          ; the item)?}
  36736 JR NZ,36750   ; Jump if not
 ; Willy is touching this item, so add it to his collection.
-; @ssub=LD HL,33829+7
+@ssub=LD HL,33829+7
  36738 LD HL,33836   ; {Add 100 to the score
  36741 CALL 37118    ; }
  36744 LD (IY+0),0   ; Set the item's attribute byte to 0 so that it will be
@@ -2407,14 +2407,14 @@ c36707 XOR A         ; {Initialise the attribute of the last item drawn at
 ;
 ; Used by the routine at #R34574. First check whether Willy has entered the
 ; portal.
-; @label=CHKPORTAL
+@label=CHKPORTAL
 c36805 LD HL,(32944) ; Pick up the address of the portal's location in the
                      ; attribute buffer at #R23552 from #R32944
  36808 LD A,(32876)  ; Pick up the LSB of the address of Willy's location in
                      ; the attribute buffer at #R23552 from #R32876
  36811 CP L          ; Does it match that of the portal?
  36812 JR NZ,36831   ; Jump if not
-; @ssub=LD A,(32876+1)
+@ssub=LD A,(32876+1)
  36814 LD A,(32877)  ; Pick up the MSB of the address of Willy's location in
                      ; the attribute buffer at #R23552 from #R32876(32877)
  36817 CP H          ; Does it match that of the portal?
@@ -2459,7 +2459,7 @@ c36805 LD HL,(32944) ; Pick up the address of the portal's location in the
 ; C Drawing mode: 0 (overwrite) or 1 (blend)
 ; DE Address of sprite graphic data
 ; HL Address to draw at
-; @label=DRWFIX
+@label=DRWFIX
 c36852 LD B,16       ; There are 16 rows of pixels to draw
 *36854 BIT 0,C       ; Set the zero flag if we're in overwrite mode
  36856 LD A,(DE)     ; Pick up a sprite graphic byte
@@ -2505,7 +2505,7 @@ c36852 LD B,16       ; There are 16 rows of pixels to draw
 ; Move to the next cavern
 ;
 ; Used by the routines at #R34574 and #R36805.
-; @label=NXSHEET
+@label=NXSHEET
 c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
  36907 INC A         ; Increment the cavern number
  36908 CP 20         ; Is the current cavern #R64512(The Final Barrier)?
@@ -2589,7 +2589,7 @@ c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
 ; runs out.
 *37044 CALL 35388    ; Decrease the air remaining in the current cavern
  37047 JP Z,34449    ; Move to the next cavern if the air supply is now gone
-; @ssub=LD HL,33829+9
+@ssub=LD HL,33829+9
  37050 LD HL,33838   ; {Add 1 to the score
  37053 CALL 37118    ; }
  37056 LD IX,33833   ; {Print the new score at (19,26)
@@ -2618,11 +2618,11 @@ c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
 ; Add to the score
 ;
 ; The entry point to this routine is at #R37118.
-; @label=INCSCORE
+@label=INCSCORE
 c37098 LD (HL),48    ; Roll the digit over from '9' to '0'
  37100 DEC HL        ; Point #REGhl at the next digit to the left
  37101 LD A,L        ; {Is this the 10000s digit?
-; @ssub=CP (33833+1)%256
+@ssub=CP (33833+1)%256
  37102 CP 42         ; }
  37104 JR NZ,37118   ; Jump if not
 ; Willy has scored another 10000 points. Give him an extra life.
@@ -2643,7 +2643,7 @@ c37098 LD (HL),48    ; Roll the digit over from '9' to '0'
 ; Move the conveyor in the current cavern
 ;
 ; Used by the routine at #R34574.
-; @label=MVCONVEYOR
+@label=MVCONVEYOR
 c37125 LD HL,(32880) ; Pick up the address of the conveyor's location in the
                      ; screen buffer at #R28672 from #R32880
  37128 LD E,L        ; {Copy this address to #REGde
@@ -2683,7 +2683,7 @@ c37125 LD HL,(32880) ; Pick up the address of the conveyor's location in the
 ; Move and draw the Kong Beast in the current cavern
 ;
 ; Used by the routine at #R34574.
-; @label=KONGBEAST
+@label=KONGBEAST
 c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37176 CALL 37403    ; it}
  37179 LD A,(32987)  ; Pick up the Kong Beast's status from #R32987
@@ -2714,7 +2714,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37218 LD (24465),A  ; buffer at #R24064 to match the background tile (the wall
                      ; there is now gone)}
  37221 LD A,114      ; {Update the seventh byte of the guardian definition at
-; @ssub=LD (32958+13),A
+@ssub=LD (32958+13),A
  37223 LD (32971),A  ; #R32965 so that the guardian moves through the opening
                      ; in the wall}
  37226 JR 37238      ;
@@ -2770,7 +2770,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37311 LD A,C        ; Copy the Kong Beast's pixel y-coordinate back into #REGa
  37312 RLCA          ; {Point #REGde at the entry in the screen buffer address
  37313 LD E,A        ; lookup table at #R33536 that corresponds to the Kong
-; @ssub=LD D,33536/256
+@ssub=LD D,33536/256
  37314 LD D,131      ; Beast's pixel y-coordinate}
  37316 LD A,(DE)     ; {Point #REGhl at the address of the Kong Beast's
  37317 OR 15         ; location in the screen buffer at #R24576
@@ -2778,7 +2778,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37320 INC DE        ;
  37321 LD A,(DE)     ;
  37322 LD H,A        ; }
-; @ssub=LD D,33024/256
+@ssub=LD D,33024/256
  37323 LD D,129      ; {Use bit 5 of the value of the game clock at #R32957
  37325 LD A,(32957)  ; (which is toggled once every eight passes through the
  37328 AND 32        ; main loop) to point #REGde at the graphic data for the
@@ -2786,7 +2786,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37332 LD E,A        ; }
  37333 LD C,0        ; {Draw the Kong Beast to the screen buffer at #R24576
  37335 CALL 36852    ; }
-; @ssub=LD HL,33829+7
+@ssub=LD HL,33829+7
  37338 LD HL,33836   ; {Add 100 to the score
  37341 CALL 37118    ; }
  37344 LD A,(32988)  ; Pick up the Kong Beast's pixel y-coordinate from #R32988
@@ -2808,7 +2808,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
 *37369 LD A,(32957)  ; Pick up the value of the game clock at #R32957
  37372 AND 32        ; {Use bit 5 of this value (which is toggled once every
  37374 LD E,A        ; eight passes through the main loop) to point #REGde at
-; @ssub=LD D,33024/256
+@ssub=LD D,33024/256
  37375 LD D,129      ; the graphic data for the appropriate Kong Beast sprite}
  37377 LD HL,24591   ; {Draw the Kong Beast at (0,15) in the screen buffer at
  37380 LD C,1        ; #R24576
@@ -2827,21 +2827,21 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
 ; the switch.
 ;
 ; HL Address of the switch's location in the attribute buffer at #R23552
-; @label=CHKSWITCH
+@label=CHKSWITCH
 c37403 LD A,(32876)  ; Pick up the LSB of the address of Willy's location in
                      ; the attribute buffer at #R23552 from #R32876
  37406 INC A         ; {Is it equal to or one less than the LSB of the address
  37407 AND 254       ; of the switch's location?
  37409 CP L          ; }
  37410 RET NZ        ; Return (with the zero flag reset) if not
-; @ssub=LD A,(32876+1)
+@ssub=LD A,(32876+1)
  37411 LD A,(32877)  ; Pick up the MSB of the address of Willy's location in
                      ; the attribute buffer at #R23552 from #R32876(32877)
  37414 CP H          ; Does it match the MSB of the address of the switch's
                      ; location?
  37415 RET NZ        ; Return (with the zero flag reset) if not
-; @ignoreua
-; @ssub=LD A,(32863+6)
+@ignoreua
+@ssub=LD A,(32863+6)
  37416 LD A,(32869)  ; Pick up the sixth byte of the graphic data for the
                      ; switch tile from #R32863(32869)
  37419 LD H,117      ; Point #REGhl at the sixth row of pixels of the switch
@@ -2861,7 +2861,7 @@ c37403 LD A,(32876)  ; Pick up the LSB of the address of Willy's location in
 ; Check and set the attribute bytes for Willy's sprite in the buffer at 23552
 ;
 ; Used by the routine at #R34574.
-; @label=WILLYATTRS
+@label=WILLYATTRS
 c37434 LD HL,(32876) ; Pick up the address of Willy's location in the attribute
                      ; buffer at #R23552 from #R32876
  37437 LD DE,31      ; Prepare #REGde for addition
@@ -2890,7 +2890,7 @@ c37434 LD HL,(32876) ; Pick up the address of Willy's location in the attribute
 ;
 ; C 15 or Willy's pixel y-coordinate
 ; HL Address of the cell in the attribute buffer at #R23552
-; @label=WILLYATTR
+@label=WILLYATTR
 c37471 LD A,(32800)  ; Pick up the attribute byte of the background tile for
                      ; the current cavern from #R32800
  37474 CP (HL)       ; Does this cell contain a background tile?
@@ -2919,9 +2919,9 @@ c37471 LD A,(32800)  ; Pick up the attribute byte of the background tile for
 ; Draw Willy to the screen buffer at 24576
 ;
 ; Used by the routine at #R37434.
-; @label=DRAWWILLY
+@label=DRAWWILLY
 c37503 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
-; @ssub=LD IXh,33536/256
+@ssub=LD IXh,33536/256
  37506 LD IXh,131    ; {Point #REGix at the entry in the screen buffer address
  37509 LD IXl,A      ; lookup table at #R33536 that corresponds to Willy's
                      ; y-coordinate}
@@ -2937,7 +2937,7 @@ c37503 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
  37525 RRCA          ;
  37526 OR E          ;
  37527 LD E,A        ;
-; @ssub=LD D,33280/256
+@ssub=LD D,33280/256
  37528 LD D,130      ; }
  37530 LD B,16       ; There are 16 rows of pixels to copy
  37532 LD A,(32876)  ; {Pick up Willy's screen x-coordinate (0-31) from
@@ -2968,7 +2968,7 @@ c37503 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
 ; IX Address of the message
 ; C Length of the message
 ; DE Display file address
-; @label=PMESS
+@label=PMESS
 c37562 LD A,(IX+0)   ; Collect a character from the message
  37565 CALL 37579    ; Print it
  37568 INC IX        ; Point #REGix at the next character in the message
@@ -2986,7 +2986,7 @@ c37562 LD A,(IX+0)   ; Collect a character from the message
 ;
 ; A ASCII code of the character
 ; DE Display file address
-; @label=PRINTCHAR
+@label=PRINTCHAR
 c37579 LD H,7        ; {Point #REGhl at the bitmap for the character (in the
  37581 LD L,A        ; ROM)
  37582 SET 7,L       ;
@@ -3009,7 +3009,7 @@ c37579 LD H,7        ; {Point #REGhl at the bitmap for the character (in the
 ; the fire button is pressed while the tune is being played.
 ;
 ; IY #R33902 (tune data)
-; @label=PLAYTUNE
+@label=PLAYTUNE
 c37596 LD A,(IY+0)   ; Pick up the next byte of tune data from the table at
                      ; #R33902
  37599 CP 255        ; Has the tune finished?
@@ -3066,7 +3066,7 @@ c37596 LD A,(IY+0)   ; Pick up the next byte of tune data from the table at
 ; #REGhl.
 ;
 ; A Frequency parameter from the tune data table at #R33902
-; @label=PIANOKEY
+@label=PIANOKEY
 c37675 SUB 8         ; {Compute the piano key index (K) based on the frequency
  37677 RRCA          ; parameter (F), and store it in bits 0-4 of #REGa:
  37678 RRCA          ; K=31-INT((F-8)/8)
@@ -3081,14 +3081,14 @@ c37675 SUB 8         ; {Compute the piano key index (K) based on the frequency
 ;
 ; Used by the routine at #R37596. Returns with the zero flag reset if ENTER or
 ; the fire button on the joystick is being pressed.
-; @label=CHECKENTER
+@label=CHECKENTER
 c37687 LD A,(33881)  ; Pick up the Kempston joystick indicator from #R33881
  37690 OR A          ; Is the joystick connected?
  37691 JR Z,37698    ; Jump if not
  37693 IN A,(31)     ; Collect input from the joystick
  37695 BIT 4,A       ; Is the fire button being pressed?
  37697 RET NZ        ; Return (with the zero flag reset) if so
-; @keep
+@keep
 *37698 LD BC,49150   ; {Read keys H-J-K-L-ENTER
  37701 IN A,(C)      ; }
  37703 AND 1         ; Keep only bit 0 of the result (ENTER)
@@ -3098,7 +3098,7 @@ c37687 LD A,(33881)  ; Pick up the Kempston joystick indicator from #R33881
 ; Source code remnants
 ;
 ; The source code here corresponds to the code at #R34900.
-; @label=SOURCE
+@label=SOURCE
 u37708 DEFM 9,"DEC",9,"E"                  ; DEC E
  37714 DEFW 3960                           ; {3960 JR NZ,NOFLP6
  37716 DEFB 13
@@ -3683,7 +3683,7 @@ u37708 DEFM 9,"DEC",9,"E"                  ; DEC E
 ; '...MANIC MINER . . #CHR(169) BUG-BYTE ltd. 1983...'
 ;
 ; Used by the routine at #R34252.
-; @label=MESSINTRO
+@label=MESSINTRO
 t40192 DEFM ".  .  .  .  .  .  .  .  .  .  . MANIC MINER . . "
  40240 DEFM 127," BUG-BYTE ltd. 1983 . . By Matthew Smith . . . "
  40288 DEFM "Q to P = Left & Right . . Bottom row = Jump . . "
@@ -3695,7 +3695,7 @@ t40192 DEFM ".  .  .  .  .  .  .  .  .  .  . MANIC MINER . . "
 ;
 ; Used by the routine at #R34252. The graphic data for the middle third of the
 ; title screen is located at #R43008.
-; @label=LOWERATTRS
+@label=LOWERATTRS
 b40448 DEFB 22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22
  40464 DEFB 22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22
  40480 DEFB 23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23
@@ -3742,7 +3742,7 @@ b40448 DEFB 22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22
 ; .
 ; The attributes for the middle third of the title screen are located at
 ; #R40448.
-; @label=TITLESCR1
+@label=TITLESCR1
 b40960 DEFB 5,0,0,0,0,0,224,0,0,0,0,0,0,0,0,0
  40976 DEFB 0,0,0,0,0,0,1,129,129,128,0,0,0,0,0,0
  40992 DEFB 59,0,8,99,0,0,224,0,0,0,0,0,0,0,0,0
@@ -3871,7 +3871,7 @@ b40960 DEFB 5,0,0,0,0,0,224,0,0,0,0,0,0,0,0,0
  42960 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
  42976 DEFB 252,189,254,188,253,190,203,223,235,207,205,239,207,191,254,205
  42992 DEFB 188,206,189,0,0,219,0,0,0,0,0,0,0,0,0,189
-; @label=TITLESCR2
+@label=TITLESCR2
  43008 DEFB 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255
  43024 DEFB 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255
  43040 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -4010,7 +4010,7 @@ b40960 DEFB 5,0,0,0,0,0,224,0,0,0,0,0,0,0,0,0
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN0
+@label=CAVERN0
 b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  45064 DEFB 0,0,0,5,0,0,0,0
  45072 DEFB 5,0,0,0,0,0,0,0
@@ -4094,7 +4094,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  45645 DEFB 68,68,40,148,81,53,214,88,16       ; Nasty 1
  45654 DEFB 5,255,254,126,124,76,76,8,8        ; Nasty 2
  45663 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  45672 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -4192,7 +4192,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; #UDGTABLE
 ; { #UDGARRAY2,69,4,2;45792;45793;45808,70;45809,71(swordfish) }
 ; TABLE#
-; @label=SWORDFISH
+@label=SWORDFISH
  45792 DEFB 2,160,5,67,31,228,115,255          ; {Swordfish graphic data
  45800 DEFB 242,248,31,63,255,228,63,195
  45808 DEFB 0,0,1,0,57,252,111,2
@@ -4251,7 +4251,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN1
+@label=CAVERN1
 b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
  46088 DEFB 8,8,8,8,8,8,8,8
  46096 DEFB 8,8,8,22,22,22,22,22
@@ -4335,7 +4335,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
  46669 DEFB 12,68,40,148,81,53,214,88,16       ; Nasty 1 (unused)
  46678 DEFB 13,255,254,94,108,76,76,8,8        ; Nasty 2
  46687 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  46696 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -4438,7 +4438,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; #UDGTABLE
 ; { #UDGARRAY2,71,4,2;46816-46833-1-16(plinth) }
 ; TABLE#
-; @label=PLINTH
+@label=PLINTH
  46816 DEFB 255,255,114,78,138,81,170,85       ; {Plinth graphic data
  46824 DEFB 74,82,18,72,34,68,42,84
  46832 DEFB 42,84,42,84,42,84,42,84
@@ -4497,7 +4497,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN2
+@label=CAVERN2
 b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
  47112 DEFB 0,0,67,0,0,0,0,0
  47120 DEFB 0,0,3,0,0,0,0,0
@@ -4581,7 +4581,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
  47693 DEFB 6,68,40,148,81,53,214,88,16        ; Nasty 1 (unused)
  47702 DEFB 67,16,214,56,214,56,68,198,40      ; Nasty 2
  47711 DEFB 3,16,16,16,16,16,16,16,16          ; Extra
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  47720 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -4690,7 +4690,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; #UDGTABLE
 ; { #UDGARRAY2,71,4,2;47840-47857-1-16(boot) }
 ; TABLE#
-; @label=BOOT
+@label=BOOT
  47840 DEFB 42,192,53,64,63,192,9,0            ; {Boot graphic data
  47848 DEFB 9,0,31,128,16,128,16,128
  47856 DEFB 17,128,34,64,32,184,89,36
@@ -4749,7 +4749,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN3
+@label=CAVERN3
 b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
  48136 DEFB 0,0,0,0,0,0,41,41
  48144 DEFB 41,41,41,41,41,41,41,41
@@ -4833,7 +4833,7 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
  48717 DEFB 4,68,40,148,81,53,214,88,16        ; Nasty 1 (unused)
  48726 DEFB 5,16,16,16,84,56,214,56,84         ; Nasty 2
  48735 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  48744 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -4986,7 +4986,7 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN4
+@label=CAVERN4
 b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
  49160 DEFB 16,16,16,16,16,16,16,16
  49168 DEFB 16,16,16,16,19,16,16,16
@@ -5070,7 +5070,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
  49741 DEFB 22,68,40,148,81,53,214,88,16       ; Nasty 1
  49750 DEFB 19,126,60,28,24,24,8,8,8           ; Nasty 2
  49759 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  49768 DEFB 48                                 ; Pixel y-coordinate * 2 (see
@@ -5171,7 +5171,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; #UDGTABLE
 ; { #UDGARRAY2,23,4,2;49888-49905-1-16(eugene) }
 ; TABLE#
-; @label=EUGENEG
+@label=EUGENEG
  49888 DEFB 3,192,15,240,31,248,31,248         ; {Eugene graphic data
  49896 DEFB 49,140,14,112,111,246,174,117
  49904 DEFB 177,141,159,249,155,217,140,49
@@ -5230,7 +5230,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN5
+@label=CAVERN5
 b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  50184 DEFB 0,0,0,0,0,0,0,0
  50192 DEFB 0,0,0,0,0,0,0,0
@@ -5314,7 +5314,7 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  50765 DEFB 67,68,40,148,81,53,214,88,16       ; Nasty 1
  50774 DEFB 6,60,24,189,231,231,189,24,60      ; Nasty 2
  50783 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  50792 DEFB 48                                 ; Pixel y-coordinate * 2 (see
@@ -5477,7 +5477,7 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN6
+@label=CAVERN6
 b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
  51208 DEFB 0,0,0,0,0,0,77,77
  51216 DEFB 77,77,77,77,77,77,77,77
@@ -5561,7 +5561,7 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
  51789 DEFB 21,68,40,148,81,53,214,88,16       ; Nasty 1 (unused)
  51798 DEFB 22,165,66,60,219,60,126,165,36     ; Nasty 2
  51807 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  51816 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -5719,7 +5719,7 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN7
+@label=CAVERN7
 b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
  52232 DEFB 0,0,5,0,0,0,0,0
  52240 DEFB 0,114,6,0,114,0,0,0
@@ -5803,7 +5803,7 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
  52813 DEFB 4,68,40,148,81,53,214,88,16        ; Nasty 1
  52822 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2
  52831 DEFB 6,255,129,129,66,60,16,96,96       ; Extra
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  52840 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -5969,7 +5969,7 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN8
+@label=CAVERN8
 b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
  53256 DEFB 0,0,0,0,0,0,0,0
  53264 DEFB 0,0,0,0,0,0,0,0
@@ -6053,7 +6053,7 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
  53837 DEFB 68,68,40,148,81,53,214,88,16       ; Nasty 1 (unused)
  53846 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2 (unused)
  53855 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  53864 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -6219,7 +6219,7 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN9
+@label=CAVERN9
 b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  54280 DEFB 0,0,0,4,0,68,68,68
  54288 DEFB 22,0,4,0,4,68,68,68
@@ -6303,7 +6303,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  54861 DEFB 69,68,40,148,81,53,214,88,16       ; Nasty 1 (unused)
  54870 DEFB 4,72,178,93,18,112,174,169,71      ; Nasty 2
  54879 DEFB 5,255,255,202,101,146,40,130,0     ; Extra
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  54888 DEFB 64                                 ; Pixel y-coordinate * 2 (see
@@ -6466,7 +6466,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN10
+@label=CAVERN10
 b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
  55304 DEFB 0,0,0,0,0,0,0,0
  55312 DEFB 0,0,0,66,0,0,0,0
@@ -6550,7 +6550,7 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
  55885 DEFB 70,16,16,214,56,214,56,84,146      ; Nasty 1
  55894 DEFB 66,16,16,16,16,16,16,16,16         ; Nasty 2
  55903 DEFB 69,255,255,255,255,170,0,0,0       ; Extra
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  55912 DEFB 16                                 ; Pixel y-coordinate * 2 (see
@@ -6742,7 +6742,7 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN11
+@label=CAVERN11
 b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
  56328 DEFB 0,0,5,0,0,0,0,0
  56336 DEFB 0,101,6,0,0,101,0,0
@@ -6826,7 +6826,7 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
  56909 DEFB 4,68,40,148,81,53,214,88,16        ; Nasty 1
  56918 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2
  56927 DEFB 6,255,129,129,66,60,16,96,96       ; Extra
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  56936 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -6995,7 +6995,7 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN12
+@label=CAVERN12
 b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
  57352 DEFB 22,22,22,22,22,22,22,22
  57360 DEFB 22,22,22,22,22,22,22,22
@@ -7079,7 +7079,7 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
  57933 DEFB 68,68,40,148,81,53,214,88,16       ; Nasty 1 (unused)
  57942 DEFB 69,126,60,28,24,24,8,8,8           ; Nasty 2 (unused)
  57951 DEFB 6,255,129,129,129,129,129,129,129  ; Extra
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  57960 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -7248,7 +7248,7 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN13
+@label=CAVERN13
 b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
  58376 DEFB 8,8,8,8,8,8,8,8
  58384 DEFB 8,8,8,8,8,8,8,8
@@ -7332,7 +7332,7 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
  58957 DEFB 0,68,40,148,81,53,214,88,16        ; Nasty 1 (unused)
  58966 DEFB 0,72,178,93,18,112,174,169,71      ; Nasty 2 (unused)
  58975 DEFB 12,255,255,70,38,30,14,6,6         ; Extra
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  58984 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -7505,7 +7505,7 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN14
+@label=CAVERN14
 b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
  59400 DEFB 14,14,14,14,14,14,14,14
  59408 DEFB 14,14,14,14,14,14,14,14
@@ -7589,7 +7589,7 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
  59981 DEFB 70,16,16,214,56,214,56,84,146      ; Nasty 1
  59990 DEFB 66,16,16,16,16,16,16,16,16         ; Nasty 2
  59999 DEFB 6,255,255,24,24,24,24,24,24        ; Extra
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  60008 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -7756,7 +7756,7 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN15
+@label=CAVERN15
 b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
  60424 DEFB 0,0,0,0,0,0,0,0
  60432 DEFB 0,0,0,0,0,0,0,0
@@ -7840,7 +7840,7 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
  61005 DEFB 4,68,68,68,68,102,238,238,255      ; Nasty 1
  61014 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2 (unused)
  61023 DEFB 6,255,129,129,66,60,16,96,96       ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  61032 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -8003,7 +8003,7 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN16
+@label=CAVERN16
 b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  61448 DEFB 0,0,0,0,0,0,0,0
  61456 DEFB 0,0,0,0,0,0,0,0
@@ -8087,7 +8087,7 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  62029 DEFB 6,68,40,148,81,53,214,88,16        ; Nasty 1
  62038 DEFB 33,66,215,254,101,166,125,238,215  ; Nasty 2
  62047 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  62056 DEFB 48                                 ; Pixel y-coordinate * 2 (see
@@ -8265,7 +8265,7 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN17
+@label=CAVERN17
 b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  62472 DEFB 0,0,0,0,0,0,0,0
  62480 DEFB 0,0,0,0,0,0,0,0
@@ -8349,7 +8349,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  63053 DEFB 68,68,40,148,81,53,214,88,16       ; Nasty 1 (unused)
  63062 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2 (unused)
  63071 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  63080 DEFB 208                                ; Pixel y-coordinate * 2 (see
@@ -8525,7 +8525,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN18
+@label=CAVERN18
 b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
  63496 DEFB 36,36,36,36,36,36,36,36
  63504 DEFB 36,36,36,36,36,36,36,36
@@ -8609,7 +8609,7 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
  64077 DEFB 68,68,40,148,81,53,214,88,16       ; Nasty 1 (unused)
  64086 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2 (unused)
  64095 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  64104 DEFB 160                                ; Pixel y-coordinate * 2 (see
@@ -8784,7 +8784,7 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
-; @label=CAVERN19
+@label=CAVERN19
 b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
  64520 DEFB 40,40,40,40,47,47,47,47
  64528 DEFB 47,40,40,40,40,40,46,50
@@ -8868,7 +8868,7 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
  65101 DEFB 68,16,16,214,56,214,56,84,146      ; Nasty 1
  65110 DEFB 10,126,60,28,24,24,8,8,8           ; Nasty 2 (unused)
  65119 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
-; @ignoreua
+@ignoreua
 ; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
 ; and specify Miner Willy's initial location and appearance in the cavern.
  65128 DEFB 208                                ; Pixel y-coordinate * 2 (see
