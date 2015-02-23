@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -e # Abort on errors
+
+if [[ -z $MANICMINER_HOME ]]; then
+  echo "Error: MANICMINER_HOME not defined."
+  exit 1
+fi
+if [[ ! -d $MANICMINER_HOME ]]; then
+  echo "Error: directory not found: $MANICMINER_HOME"
+  exit 1
+fi
+
+if [[ -z $SKOOLKIT_HOME ]]; then
+  echo "Error: SKOOLKIT_HOME not defined."
+  exit 1
+fi
+if [[ ! -d $SKOOLKIT_HOME ]]; then
+  echo "Error: directory not found: $SKOOLKIT_HOME"
+  exit 1
+fi
+
+GAME=mm
+GAMENAME="Manic Miner"
+REFFILE=$MANICMINER_HOME/manic_miner.ref
+MKDTARBALL="$MANICMINER_HOME/utils/mkdtarball"
+DIST=$MANICMINER_HOME/dist
+SRCDIR=src
+SRCFILES=$(echo COPYING manic_miner{,-bugs,-changelog,-facts,-pokes}.ref manic_miner{,-dark,-green,-plum}.css manicminer.py manic_miner.skool)
+
+. $SKOOLKIT_HOME/tools/drelease-functions
+
+parse_args $*
