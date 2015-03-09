@@ -1,4 +1,9 @@
-; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
+
+[Changelog:YYYYMMDD]
+-
+
+Added a POKE: #POKE#infiniteTime()
 
 [Changelog:20141114]
 -

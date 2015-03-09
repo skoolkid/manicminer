@@ -1,4 +1,4 @@
-; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:gentleGuardians:Gentle guardians]
 To enable Willy to walk through guardians with impunity:
@@ -14,6 +14,11 @@ POKE #R37488,201
 To enable Willy to survive a fall from any height:
 
 POKE #R35808(35809),255
+
+[Poke:infiniteTime:Infinite time]
+To make the game continue without loss of life after all the air has run out of the cavern:
+
+POKE #R34798,1
 
 [Poke:noConveyors:No conveyors]
 To enable Willy to walk freely in any direction on conveyors:
