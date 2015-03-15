@@ -24,7 +24,7 @@ MM_SKOOL=$MANICMINER_HOME/manic_miner.skool
 
 sed '/^ 33520 .*/q' $MM_SKOOL
 echo
-$mm2skool sbat | tail -n +3
+$mm2skool sbat
 sed -n '/^; The game has just loaded/,/^ 45040 .*/p' $MM_SKOOL
 echo
-$mm2skool caverns | tail -n +3
+$mm2skool caverns
