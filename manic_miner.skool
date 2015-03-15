@@ -6319,7 +6319,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  54894 DEFB 0                                  ; Jumping animation counter (see
                                                ; #R32878)
 ; The next four bytes are copied to #R32879 and specify the direction, location
-; and length of the conveyor.
+; and length of the (unused) conveyor.
  54895 DEFB 0                                  ; Direction (left)
  54896 DEFW 28691                              ; Location in the screen buffer
                                                ; at #R28672: (0,19)
@@ -8365,7 +8365,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  63086 DEFB 0                                  ; Jumping animation counter (see
                                                ; #R32878)
 ; The next four bytes are copied to #R32879 and specify the direction, location
-; and length of the conveyor.
+; and length of the (unused) conveyor.
  63087 DEFB 1                                  ; Direction (right)
  63088 DEFW 30759                              ; Location in the screen buffer
                                                ; at #R28672: (9,7)

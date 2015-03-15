@@ -163,7 +163,7 @@ def get_caverns(snapshot):
         lines.append("B {} Jumping animation counter (see #R32878)".format(a + 622))
 
         # Conveyor
-        lines.append('D {} The next four bytes are copied to #R32879 and specify the direction, location and length of the conveyor.'.format(a + 623))
+        lines.append('D {} The next four bytes are copied to #R32879 and specify the direction, location and length of the{} conveyor.'.format(a + 623, tile_usage[4]))
         direction = 'left' if snapshot[a + 623] == 0 else 'right'
         sb_addr = snapshot[a + 624] + 256 * snapshot[a + 625]
         x = sb_addr % 32
