@@ -1,4 +1,4 @@
-; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:tunes:Tunes]
 The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss II. The tune played during gameplay is <i>In the Hall of the Mountain King</i> by Edvard Grieg.
@@ -24,6 +24,29 @@ The crumbling floor tile in #R58368(Skylab Landing Bay) is unique to that cavern
 To place a couple of these tiles in the cavern in order to see them crumble:
 
 POKE 58811,10: POKE 58812,10: POKE 58930,10
+
+[Fact:unusedConveyors:Unused conveyors]
+There is an unused (and useless) conveyor of length 1 defined at (0,19) in #R54272(The Endorian Forest) (see #R54895). Instead of a conveyor, the space is occupied by a background tile.
+
+To show the conveyor:
+
+POKE 54291,67
+
+#UDGTABLE(gallery)
+{ #CALL:cavern(54272,2,uc1_before,11,0,16,8,0,1) | #PUSHS #POKES54291,67 #CALL:cavern(54272,2,uc1_after.gif,11,0,16,8,0,1) #POPS }
+{ Before | After }
+TABLE#
+
+There is another unused conveyor of length 3 defined at (9,7) in #R62464(Amoebatrons' Revenge) (see #R63087). Instead of a conveyor, the space is occupied by a ledge, whose third row of pixels is animated as if it were a conveyor.
+
+To replace the ledge with conveyor tiles:
+
+POKE 62759,4: POKE 62760,4: POKE 62761,4
+
+#UDGTABLE(gallery)
+{ #CALL:cavern(62464,2,uc2_before.gif,0,5,16,8,0,1)  | #PUSHS #POKES62759,4,3  #CALL:cavern(62464,2,uc2_after.gif,0,5,16,8,0,1) #POPS }
+{ Before | After }
+TABLE#
 
 [Fact:thePersistentItem:The persistent item]
 The item below the portal in #R60416(The Sixteenth Cavern) does not disappear if Willy leaves it till last and collects it by falling on it from above. The reason for this is that the portal is opened as soon as Willy collects the item, and the screen is not refreshed before he moves on to the next cavern.

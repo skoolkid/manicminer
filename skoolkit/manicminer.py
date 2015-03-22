@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2012, 2014 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014, 2015 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -16,9 +16,9 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from .skoolhtml import HtmlWriter, Udg
+    from .skoolhtml import HtmlWriter, Frame, Udg
 except (ValueError, SystemError, ImportError):
-    from skoolkit.skoolhtml import HtmlWriter, Udg
+    from skoolkit.skoolhtml import HtmlWriter, Frame, Udg
 
 class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
@@ -27,15 +27,54 @@ class ManicMinerHtmlWriter(HtmlWriter):
             self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
         self.cavern_names = self._get_cavern_names()
 
-    def cavern(self, cwd, address, scale=2, fname=None, x=0, y=0, w=32, h=17, guardians=1):
+    def cavern(self, cwd, address, scale=2, fname=None, x=0, y=0, w=32, h=17, guardians=1, animate=0):
         if fname is None:
             fname = self.cavern_names[address].lower().replace(' ', '_')
         img_path = self.image_path(fname, 'ScreenshotImagePath')
         if self.need_image(img_path):
             cavern_udgs = self._get_cavern_udgs(address, guardians)
             img_udgs = [cavern_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
-            self.write_image(img_path, img_udgs, scale=scale)
+            if animate:
+                direction = self.snapshot[address + 623]
+                sb_addr = self.snapshot[address + 624] + 256 * self.snapshot[address + 625]
+                conveyor_x = sb_addr % 32 - x
+                conveyor_y = 8 * ((sb_addr - 28672) // 2048) + (sb_addr % 256) // 32 - y
+                length = self.snapshot[address + 626]
+                frames = self._animate_conveyor(img_udgs, direction, conveyor_x, conveyor_y, length, scale)
+                self.write_animated_image(img_path, frames)
+            else:
+                self.write_image(img_path, img_udgs, scale=scale)
         return self.img_element(cwd, img_path)
+
+    def _animate_conveyor(self, udgs, direction, x, y, length, scale):
+        mask = 0
+        delay = 10
+        frame1 = Frame(udgs, scale, mask, delay=delay)
+        frames = [frame1]
+
+        if y < 0 or y >= len(udgs) or x + length < 0 or x >= len(udgs[0]):
+            return frames
+        min_x = max(x, 0)
+        max_x = min(x + length, len(udgs[0]))
+        length_t = max_x - min_x
+
+        base_udg = prev_udg = udgs[y][min_x]
+        while True:
+            next_udg = prev_udg.copy()
+            data = next_udg.data
+            if direction:
+                data[0] = (data[0] >> 2) + (data[0] & 3) * 64
+                data[2] = ((data[2] << 2) & 255) + (data[2] >> 6)
+            else:
+                data[0] = ((data[0] << 2) & 255) + (data[0] >> 6)
+                data[2] = (data[2] >> 2) + (data[2] & 3) * 64
+            if next_udg.data == base_udg.data:
+                break
+            next_udgs = [row[:] for row in udgs]
+            next_udgs[y][min_x:max_x] = [next_udg] * length_t
+            frames.append(Frame(next_udgs, scale, mask, delay=delay))
+            prev_udg = next_udg
+        return frames
 
     def caverns(self, cwd):
         lines = [
