@@ -26,7 +26,9 @@ To place a couple of these tiles in the cavern in order to see them crumble:
 POKE 58811,10: POKE 58812,10: POKE 58930,10
 
 [Fact:unusedConveyors:Unused conveyors]
-There is an unused (and useless) conveyor of length 1 defined at (0,19) in #R54272(The Endorian Forest) (see #R54895). Instead of a conveyor, the space is occupied by a background tile.
+Every cavern definition contains a conveyor definition, and every conveyor has non-zero length and is animated by the routine at #R37125. But there are two caverns in which the conveyor is hidden or otherwise unusable.
+
+The first unused conveyor is of length 1, defined at (0,19) in #R54272(The Endorian Forest) (see #R54895). Instead of a conveyor, the space is occupied by a background tile.
 
 To show the conveyor:
 
@@ -37,9 +39,9 @@ POKE 54291,67
 { Before | After }
 TABLE#
 
-There is another unused conveyor of length 3 defined at (9,7) in #R62464(Amoebatrons' Revenge) (see #R63087). Instead of a conveyor, the space is occupied by a ledge, whose third row of pixels is animated as if it were a conveyor.
+The other unused conveyor is of length 3, defined at (9,7) in #R62464(Amoebatrons' Revenge) (see #R63087). Instead of a conveyor, the space is occupied by a platform, whose third row of pixels is animated as if it were a conveyor (which is a #BUG#animatedPlatform).
 
-To replace the ledge with conveyor tiles:
+To replace the platform with conveyor tiles:
 
 POKE 62759,4: POKE 62760,4: POKE 62761,4
 

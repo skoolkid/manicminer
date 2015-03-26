@@ -3,6 +3,7 @@
 [Changelog:YYYYMMDD]
 -
 
+Documented a bug: #BUG#animatedPlatform()
 Added a trivia entry: #FACT#unusedConveyors()
 Added a POKE: #POKE#infiniteTime()
 
