@@ -41,8 +41,6 @@ EOF
 
 asm_readme() {
   cat <<EOF
-ASM
-===
 An ASM version of the disassembly in this archive can be built from the source
 files in the 'src' subdirectory using version $SK_VERSION of SkoolKit.
 
