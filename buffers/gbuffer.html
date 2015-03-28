@@ -12,7 +12,7 @@
 <body class="GameStatusBuffer">
 <table class="header">
 <tr>
-<td class="logo"><a class="link" href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="logo"><a class="link" href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
 <td class="page-header">Game status buffer</td>
 </tr>
 </table>
@@ -98,24 +98,24 @@ Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>
 <div class="paragraph">
 <table class="default">
 <tr>
-<th>Bit(s)</th>
-<th>Meaning</th>
-<th>Used by</th>
+<th colspan="1" rowspan="1">Bit(s)</th>
+<th colspan="1" rowspan="1">Meaning</th>
+<th colspan="1" rowspan="1">Used by</th>
 </tr>
 <tr>
-<td class="centre">0</td>
-<td>Direction Willy is facing (reset=right, set=left)</td>
-<td><a class="link" href="../asm/35805.html">35805</a>, <a class="link" href="../asm/37503.html">37503</a></td>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Direction Willy is facing (reset=right, set=left)</td>
+<td class="" colspan="1" rowspan="1"><a class="link" href="../asm/35805.html">35805</a>, <a class="link" href="../asm/37503.html">37503</a></td>
 </tr>
 <tr>
-<td class="centre">1</td>
-<td>Willy's movement flag (set=moving)</td>
-<td><a class="link" href="../asm/35515.html">35515</a>, <a class="link" href="../asm/35805.html">35805</a></td>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">Willy's movement flag (set=moving)</td>
+<td class="" colspan="1" rowspan="1"><a class="link" href="../asm/35515.html">35515</a>, <a class="link" href="../asm/35805.html">35805</a></td>
 </tr>
 <tr>
-<td class="centre">2-7</td>
-<td>Unused (always reset)</td>
-<td></td>
+<td class="centre" colspan="1" rowspan="1">2-7</td>
+<td class="" colspan="1" rowspan="1">Unused (always reset)</td>
+<td class="" colspan="1" rowspan="1"></td>
 </tr>
 </table>
 </div>
@@ -136,28 +136,28 @@ Initialised by the routine at <a class="link" href="../asm/34436.html">34436</a>
 <div class="paragraph">
 <table class="default">
 <tr>
-<th>Value</th>
-<th>Meaning</th>
+<th colspan="1" rowspan="1">Value</th>
+<th colspan="1" rowspan="1">Meaning</th>
 </tr>
 <tr>
-<td class="centre">0</td>
-<td>Willy is neither falling nor jumping</td>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Willy is neither falling nor jumping</td>
 </tr>
 <tr>
-<td class="centre">1</td>
-<td>Willy is jumping</td>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">Willy is jumping</td>
 </tr>
 <tr>
-<td class="centre">2-11</td>
-<td>Willy is falling, and can land safely</td>
+<td class="centre" colspan="1" rowspan="1">2-11</td>
+<td class="" colspan="1" rowspan="1">Willy is falling, and can land safely</td>
 </tr>
 <tr>
-<td class="centre">12+</td>
-<td>Willy is falling, and has fallen too far to land safely (see <a class="link" href="../asm/35805.html#35805">35805</a>)</td>
+<td class="centre" colspan="1" rowspan="1">12+</td>
+<td class="" colspan="1" rowspan="1">Willy is falling, and has fallen too far to land safely (see <a class="link" href="../asm/35805.html#35805">35805</a>)</td>
 </tr>
 <tr>
-<td class="centre">255</td>
-<td>Willy has collided with a nasty or a guardian (see <a class="link" href="../asm/36101.html">36101</a>)</td>
+<td class="centre" colspan="1" rowspan="1">255</td>
+<td class="" colspan="1" rowspan="1">Willy has collided with a nasty or a guardian (see <a class="link" href="../asm/36101.html">36101</a>)</td>
 </tr>
 </table>
 </div>
@@ -248,24 +248,24 @@ The item definitions are copied here by the routine at <a class="link" href="../
 <div class="paragraph">
 <table class="default">
 <tr>
-<th>Byte(s)</th>
-<th>Contents</th>
+<th colspan="1" rowspan="1">Byte(s)</th>
+<th colspan="1" rowspan="1">Contents</th>
 </tr>
 <tr>
-<td class="centre">0</td>
-<td>Current attribute</td>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Current attribute</td>
 </tr>
 <tr>
-<td class="centre">1,2</td>
-<td>Address of the item's location in the attribute buffer at <a class="link" href="../asm/23552.html">23552</a></td>
+<td class="centre" colspan="1" rowspan="1">1,2</td>
+<td class="" colspan="1" rowspan="1">Address of the item's location in the attribute buffer at <a class="link" href="../asm/23552.html">23552</a></td>
 </tr>
 <tr>
-<td class="centre">3</td>
-<td>MSB of the address of the item's location in the screen buffer at <a class="link" href="../asm/24576.html">24576</a></td>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">MSB of the address of the item's location in the screen buffer at <a class="link" href="../asm/24576.html">24576</a></td>
 </tr>
 <tr>
-<td class="centre">4</td>
-<td>Unused (always 255)</td>
+<td class="centre" colspan="1" rowspan="1">4</td>
+<td class="" colspan="1" rowspan="1">Unused (always 255)</td>
 </tr>
 </table>
 </div>
@@ -345,35 +345,35 @@ For each horizontal guardian, the seven bytes are used as follows:
 <div class="paragraph">
 <table class="default">
 <tr>
-<th>Byte</th>
-<th>Contents</th>
+<th colspan="1" rowspan="1">Byte</th>
+<th colspan="1" rowspan="1">Contents</th>
 </tr>
 <tr>
-<td class="centre" rowspan="2">0</td>
-<td>Bit 7: animation speed (0=normal, 1=slow)</td>
+<td class="centre" colspan="1" rowspan="2">0</td>
+<td class="" colspan="1" rowspan="1">Bit 7: animation speed (0=normal, 1=slow)</td>
 </tr>
 <tr>
-<td>Bits 0-6: attribute (BRIGHT, PAPER and INK)</td>
+<td class="" colspan="1" rowspan="1">Bits 0-6: attribute (BRIGHT, PAPER and INK)</td>
 </tr>
 <tr>
-<td class="centre">1,2</td>
-<td>Address of the guardian's location in the attribute buffer at <a class="link" href="../asm/23552.html">23552</a></td>
+<td class="centre" colspan="1" rowspan="1">1,2</td>
+<td class="" colspan="1" rowspan="1">Address of the guardian's location in the attribute buffer at <a class="link" href="../asm/23552.html">23552</a></td>
 </tr>
 <tr>
-<td class="centre">3</td>
-<td>MSB of the address of the guardian's location in the screen buffer at <a class="link" href="../asm/24576.html">24576</a></td>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">MSB of the address of the guardian's location in the screen buffer at <a class="link" href="../asm/24576.html">24576</a></td>
 </tr>
 <tr>
-<td class="centre">4</td>
-<td>Animation frame</td>
+<td class="centre" colspan="1" rowspan="1">4</td>
+<td class="" colspan="1" rowspan="1">Animation frame</td>
 </tr>
 <tr>
-<td class="centre">5</td>
-<td>LSB of the address of the leftmost point of the guardian's path in the attribute buffer</td>
+<td class="centre" colspan="1" rowspan="1">5</td>
+<td class="" colspan="1" rowspan="1">LSB of the address of the leftmost point of the guardian's path in the attribute buffer</td>
 </tr>
 <tr>
-<td class="centre">6</td>
-<td>LSB of the address of the rightmost point of the guardian's path in the attribute buffer</td>
+<td class="centre" colspan="1" rowspan="1">6</td>
+<td class="" colspan="1" rowspan="1">LSB of the address of the rightmost point of the guardian's path in the attribute buffer</td>
 </tr>
 </table>
 </div>
@@ -425,36 +425,36 @@ For each vertical guardian, the seven bytes are used as follows:
 <div class="paragraph">
 <table class="default">
 <tr>
-<th>Byte</th>
-<th>Contents</th>
+<th colspan="1" rowspan="1">Byte</th>
+<th colspan="1" rowspan="1">Contents</th>
 </tr>
 <tr>
-<td class="centre">0</td>
-<td>Attribute</td>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Attribute</td>
 </tr>
 <tr>
-<td class="centre">1</td>
-<td>Animation frame</td>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">Animation frame</td>
 </tr>
 <tr>
-<td class="centre">2</td>
-<td>Pixel y-coordinate</td>
+<td class="centre" colspan="1" rowspan="1">2</td>
+<td class="" colspan="1" rowspan="1">Pixel y-coordinate</td>
 </tr>
 <tr>
-<td class="centre">3</td>
-<td>x-coordinate</td>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">x-coordinate</td>
 </tr>
 <tr>
-<td class="centre">4</td>
-<td>Pixel y-coordinate increment</td>
+<td class="centre" colspan="1" rowspan="1">4</td>
+<td class="" colspan="1" rowspan="1">Pixel y-coordinate increment</td>
 </tr>
 <tr>
-<td class="centre">5</td>
-<td>Minimum pixel y-coordinate</td>
+<td class="centre" colspan="1" rowspan="1">5</td>
+<td class="" colspan="1" rowspan="1">Minimum pixel y-coordinate</td>
 </tr>
 <tr>
-<td class="centre">6</td>
-<td>Maximum pixel y-coordinate</td>
+<td class="centre" colspan="1" rowspan="1">6</td>
+<td class="" colspan="1" rowspan="1">Maximum pixel y-coordinate</td>
 </tr>
 </table>
 </div>
@@ -604,20 +604,20 @@ The keypress flag in bit 0 is initialised by the routine at <a class="link" href
 <div class="paragraph">
 <table class="default">
 <tr>
-<th>Bit(s)</th>
-<th>Meaning</th>
+<th colspan="1" rowspan="1">Bit(s)</th>
+<th colspan="1" rowspan="1">Meaning</th>
 </tr>
 <tr>
-<td class="centre">0</td>
-<td>Keypress flag (set=H-ENTER being pressed, reset=no key pressed)</td>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Keypress flag (set=H-ENTER being pressed, reset=no key pressed)</td>
 </tr>
 <tr>
-<td class="centre">1</td>
-<td>In-game music flag (set=music off, reset=music on)</td>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">In-game music flag (set=music off, reset=music on)</td>
 </tr>
 <tr>
-<td class="centre">2-7</td>
-<td>Unused</td>
+<td class="centre" colspan="1" rowspan="1">2-7</td>
+<td class="" colspan="1" rowspan="1">Unused</td>
 </tr>
 </table>
 </div>
@@ -640,9 +640,9 @@ Used by the routines at <a class="link" href="../asm/34574.html">34574</a> and <
 </tr>
 </table>
 <div class="footer">
-<div class="release">The complete Manic Miner RAM disassembly 20141114</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20150328</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2015 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.3.</div>
 </div>
 </body>
 </html>

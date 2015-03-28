@@ -12,16 +12,40 @@
 <body class="Bugs">
 <table class="header">
 <tr>
-<td class="logo"><a class="link" href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="logo"><a class="link" href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
 <td class="page-header">Bugs</td>
 </tr>
 </table>
 <ul class="contents">
+<li><a class="link" href="#animatedPlatform">The animated platform</a></li>
 <li><a class="link" href="#throughTheWall">Through the wall</a></li>
 <li><a class="link" href="#attributeCrash">Attribute crash</a></li>
 </ul>
-<div><a name="throughTheWall"></a></div>
+<div><a name="animatedPlatform"></a></div>
 <div class="box box-1">
+<div class="box-title">The animated platform</div>
+<div class="paragraph">
+There is a platform at (9,7) in <a class="link" href="../asm/62464.html">Amoebatrons' Revenge</a> whose third row of pixels is animated as if it were a conveyor. This is because there is a conveyor defined at that location (see <a class="link" href="../asm/62464.html#63087">63087</a>), but the cavern layout places regular platform tiles there instead of conveyor tiles.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="animated_platform" src="../images/scr/animated_platform.gif" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+To disable the animation (by moving the conveyor up a row to (8,7), which is occupied by background tiles):
+</div>
+<div class="paragraph">
+POKE <a class="link" href="../asm/62464.html#63087">63088</a>,7
+</div>
+<div class="paragraph">
+See <a class="link" href="facts.html#unusedConveyors">Unused conveyors</a> for more information.
+</div>
+</div>
+<div><a name="throughTheWall"></a></div>
+<div class="box box-2">
 <div class="box-title">Through the wall</div>
 <div class="paragraph">
 If Willy jumps left over the two nasties at the bottom right of <a class="link" href="../asm/49152.html">Eugene's Lair</a> such that he lands on the top layer of bricks with animation frame 0 at step 16 of the jumping animation, he will then fall through them to the bottom layer of bricks:
@@ -29,16 +53,16 @@ If Willy jumps left over the two nasties at the bottom right of <a class="link" 
 <div class="paragraph">
 <table class="gallery">
 <tr>
-<td><img alt="through_the_wall1" src="../images/scr/through_the_wall1.png" /></td>
-<td><img alt="through_the_wall2" src="../images/scr/through_the_wall2.png" /></td>
-<td><img alt="through_the_wall3" src="../images/scr/through_the_wall3.png" /></td>
-<td><img alt="through_the_wall4" src="../images/scr/through_the_wall4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="through_the_wall1" src="../images/scr/through_the_wall1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="through_the_wall2" src="../images/scr/through_the_wall2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="through_the_wall3" src="../images/scr/through_the_wall3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="through_the_wall4" src="../images/scr/through_the_wall4.png" /></td>
 </tr>
 <tr>
-<td>Step 15</td>
-<td>Step 16</td>
-<td>Step 17</td>
-<td>Step 18</td>
+<td class="" colspan="1" rowspan="1">Step 15</td>
+<td class="" colspan="1" rowspan="1">Step 16</td>
+<td class="" colspan="1" rowspan="1">Step 17</td>
+<td class="" colspan="1" rowspan="1">Step 18</td>
 </tr>
 </table>
 </div>
@@ -50,15 +74,15 @@ Perhaps the assumption in this code is that if there is a nasty tile below Willy
 </div>
 </div>
 <div><a name="attributeCrash"></a></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Attribute crash</div>
 <div class="paragraph">
 When a Skylab in <a class="link" href="../asm/58368.html">Skylab Landing Bay</a> crashes into a section of floor or conveyor, the attributes of that section are temporarily changed to that of the Skylab; the attributes are restored after the Skylab has finished disintegrating.
 </div>
 <div class="paragraph">
-<table>
+<table class="">
 <tr>
-<td><img alt="attribute_crash" src="../images/scr/attribute_crash.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="attribute_crash" src="../images/scr/attribute_crash.png" /></td>
 </tr>
 </table>
 </div>
@@ -67,9 +91,9 @@ The reason for this is that the code at <a class="link" href="../asm/36344.html#
 </div>
 </div>
 <div class="footer">
-<div class="release">The complete Manic Miner RAM disassembly 20141114</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20150328</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2015 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.3.</div>
 </div>
 </body>
 </html>
