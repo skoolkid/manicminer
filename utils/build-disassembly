@@ -1,8 +1,9 @@
 #!/bin/bash -e
 
 D_VERSIONS=(
-  20141004
+  20150328
   20141114
+  20141004
 )
 
 declare -A SK_VERSIONS
@@ -19,7 +20,7 @@ SK_VERSIONS=(
 
 MMZ80=$MANICMINER_HOME/build/manic_miner.z80
 
-if [ $# -lt 2 ]; then
+if (($# < 2)); then
   echo "Usage: $(basename $0) VERSION SKOOLKIT_VERSION"
   echo ""
   echo "  Attempts to build a specific version of the Manic Miner disassembly using a"
@@ -33,14 +34,15 @@ if [ $# -lt 2 ]; then
   echo ""
   echo "  Environment variables:"
   echo "    SKOOLKIT_ARCHIVE - directory containing SkoolKit release tarballs"
+  echo "    DISASSEMBLY_ARCHIVE - directory containing disassembly release tarballs"
   exit 1
 fi
 
-if [ -z "$SKOOLKIT_ARCHIVE" ]; then
+if [[ -z $SKOOLKIT_ARCHIVE ]]; then
     echo 'SKOOLKIT_ARCHIVE is not set; aborting'
     exit 1
 fi
-if [ ! -d "$SKOOLKIT_ARCHIVE" ]; then
+if [[ ! -d $SKOOLKIT_ARCHIVE ]]; then
     echo "SKOOLKIT_ARCHIVE=$SKOOLKIT_ARCHIVE: directory not found"
     exit 1
 fi
@@ -61,12 +63,12 @@ tar xf $SKOOLKIT_ARCHIVE/$SK_DIR.tar.*
 SK_BUILD_DIR=${SK_DIR}-build
 mv $SK_DIR $SK_BUILD_DIR
 
-if [[ $D_VERSION -ge 20141004 ]]; then
-  if [[ -z "$DISASSEMBLY_ARCHIVE" ]]; then
+if (($D_VERSION >= 20141004)); then
+  if [[ -z $DISASSEMBLY_ARCHIVE ]]; then
       echo 'DISASSEMBLY_ARCHIVE is not set; aborting'
       exit 1
   fi
-  if [[ ! -d "$DISASSEMBLY_ARCHIVE" ]]; then
+  if [[ ! -d $DISASSEMBLY_ARCHIVE ]]; then
       echo "DISASSEMBLY_ARCHIVE=$DISASSEMBLY_ARCHIVE: directory not found"
       exit 1
   fi
@@ -76,7 +78,7 @@ if [[ $D_VERSION -ge 20141004 ]]; then
   cp -p ../$D_DIR/src/manic* .
 else
   D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
-  if [[ -z "$D_SK_VERSION" ]]; then
+  if [[ -z $D_SK_VERSION ]]; then
     echo "Disassembly version not recognised: $D_VERSION"
     exit 1
   fi
@@ -92,9 +94,9 @@ else
   ./sna2skool.py -c manic_miner.ctl $MMZ80 > manic_miner.skool
 fi
 
-if [ $SK_VERSION_INT -ge 220 ]; then
+if (($SK_VERSION_INT >= 220)); then
   # SkoolKit 2.2+
-  if [ $SK_VERSION_INT -ge 302 ]; then
+  if (($SK_VERSION_INT >= 302)); then
     HTML_OPTS=-t
   fi
   ./skool2html.py $HTML_OPTS -d .. manic_miner.skool
