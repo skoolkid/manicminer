@@ -3,7 +3,7 @@ import sys
 import os
 
 MANICMINER_HOME = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MM_SKOOL = '{}/manic_miner.skool'.format(MANICMINER_HOME)
+MM_SKOOL = '{}/sources/manic_miner.skool'.format(MANICMINER_HOME)
 
 SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
 if SKOOLKIT_HOME:

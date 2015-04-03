@@ -25,14 +25,14 @@ sys.path.insert(1, SKOOLKIT_HOME)
 from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
 
 MMZ80 = '../build/manic_miner.z80'
-MM_SKOOL = '../manic_miner.skool'
-MMREF = '../manic_miner.ref'
+MM_SKOOL = '../sources/manic_miner.skool'
+MMREF = '../sources/manic_miner.ref'
 
 XHTML_XSD = os.path.join(SKOOLKIT_HOME, 'XSD', 'xhtml1-strict.xsd')
 
 OUTPUT_MM = """Creating directory {odir}
 Using skool file: {skoolfile}
-Using ref files: ../manic_miner.ref, ../manic_miner-bugs.ref, ../manic_miner-changelog.ref, ../manic_miner-facts.ref, ../manic_miner-pokes.ref
+Using ref files: {srcdir}/manic_miner.ref, {srcdir}/manic_miner-bugs.ref, {srcdir}/manic_miner-changelog.ref, {srcdir}/manic_miner-facts.ref, {srcdir}/manic_miner-pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/manic_miner
 Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css
@@ -236,7 +236,7 @@ class HtmlTestCase(DisassembliesTestCase):
         # Write the disassembly
         output, error = self.run_skoolkit_command(skool2html.main, '{} {} {}'.format(main_options, options, MMREF))
         self.assertEqual(len(error), 0)
-        reps = {'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': MM_SKOOL}
+        reps = {'srcdir': '../sources', 'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': MM_SKOOL}
         self.assertEqual(OUTPUT_MM.format(**reps).split('\n'), output)
 
         self._validate_xhtml()

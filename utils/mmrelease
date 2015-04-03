@@ -22,7 +22,6 @@ fi
 GAME=mm
 GAMEDIR=manic_miner
 GAMENAME="Manic Miner"
-REFFILE=$MANICMINER_HOME/manic_miner.ref
 SRCDIR=src
 SRCFILES=$(echo COPYING manic_miner{,-bugs,-changelog,-facts,-pokes}.ref manic_miner{,-dark,-green,-plum}.css manicminer.py manic_miner.skool)
 DHOME=$MANICMINER_HOME
