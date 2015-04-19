@@ -19,7 +19,7 @@ if not MANICMINER_HOME:
 if not os.path.isdir(MANICMINER_HOME):
     sys.stderr.write('MANICMINER_HOME={}; directory not found\n'.format(MANICMINER_HOME))
     sys.exit(1)
-sys.path.insert(0, '{}/skoolkit'.format(MANICMINER_HOME))
+sys.path.insert(0, '{}/sources'.format(MANICMINER_HOME))
 
 from skoolkit.image import ImageWriter
 from skoolkit.refparser import RefParser

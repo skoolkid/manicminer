@@ -36,7 +36,7 @@ Using ref files: {srcdir}/manic_miner.ref, {srcdir}/manic_miner-bugs.ref, {srcdi
 Parsing {skoolfile}
 Creating directory {odir}/manic_miner
 Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css
-Copying ../resources/manic_miner.css to {odir}/manic_miner/manic_miner.css
+Copying ../sources/manic_miner.css to {odir}/manic_miner/manic_miner.css
   Writing disassembly files in manic_miner/asm
   Writing manic_miner/maps/all.html
   Writing manic_miner/maps/routines.html
@@ -228,8 +228,7 @@ class HtmlTestCase(DisassembliesTestCase):
             self.fail('\n'.join(error_msg))
 
     def write_mm(self, options):
-        main_options = '-W ../skoolkit:manicminer.ManicMinerHtmlWriter'
-        main_options += ' -S ../resources'
+        main_options = '-W ../sources:manicminer.ManicMinerHtmlWriter'
         main_options += ' -d {}'.format(self.odir)
         shutil.rmtree(self.odir, True)
 
