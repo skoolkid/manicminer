@@ -1,57 +1,44 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import sys
 import os
 
-def write_tests(class_name, options_list):
-    print('from mmtest import {}Case'.format(class_name))
-    print('')
-    print('class {0}({0}Case):'.format(class_name))
-    for options in options_list:
-        method_name_suffix = options.replace('-', '_').replace(' ', '')
-        method_name = 'test_mm{}'.format(method_name_suffix)
-        print("    def {}(self):".format(method_name))
-        print("        self.write_mm('{}')".format(options))
-        print("")
-
-def get_asm_options_list():
-    options_list = []
-    for b in ('', '-D', '-H'):
-        for c in ('', '-l', '-u'):
-            for f in ('', '-f 1', '-f 2', '-f 3'):
-                for p in ('', '-s', '-r'):
-                    options_list.append('{} {} {} {}'.format(b, c, f, p).strip())
-    return options_list
-
-def get_ctl_options_list():
-    options_list = []
-    for w in ('', '-w b', '-w bt', '-w btd', '-w btdr', '-w btdrm', '-w btdrms', '-w btdrmsc'):
-        for h in ('', '-h'):
-            for a in ('', '-a'):
-                for b in ('', '-b'):
-                    options_list.append('{} {} {} {}'.format(w, h, a, b).strip())
-    return options_list
-
-def get_html_options_list():
-    options_list = []
-    for b in ('', '-D', '-H'):
-        for c in ('', '-u', '-l'):
-            options_list.append('{} {}'.format(b, c).strip())
-    return options_list
-
-TEST_TYPES = {
-    'asm': get_asm_options_list(),
-    'ctl': get_ctl_options_list(),
-    'html': get_html_options_list(),
-    'sft': ('', '-h', '-b', '-h -b')
-}
-
-###############################################################################
-# Begin
-###############################################################################
-if len(sys.argv) != 2 or sys.argv[1].lower() not in TEST_TYPES:
-    sys.stderr.write("Usage: {} asm|ctl|html|sft\n".format(os.path.basename(sys.argv[0])))
+SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
+if not SKOOLKIT_HOME:
+    sys.stderr.write('SKOOLKIT_HOME is not set; aborting\n')
     sys.exit(1)
-test_type = sys.argv[1].lower()
-class_name = '{}Test'.format(test_type.capitalize())
-write_tests(class_name, TEST_TYPES[test_type])
+if not os.path.isdir(SKOOLKIT_HOME):
+    sys.stderr.write('SKOOLKIT_HOME={}: directory not found\n'.format(SKOOLKIT_HOME))
+    sys.exit(1)
+sys.path.insert(0, '{}/tools'.format(SKOOLKIT_HOME))
+from testwriter import write_tests
+
+SKOOL = '../sources/manic_miner.skool'
+
+SNAPSHOT = '../build/manic_miner.z80'
+
+OUTPUT = """Creating directory {odir}
+Using skool file: {skoolfile}
+Using ref files: ../sources/manic_miner.ref, ../sources/manic_miner-bugs.ref, ../sources/manic_miner-changelog.ref, ../sources/manic_miner-facts.ref, ../sources/manic_miner-pokes.ref
+Parsing {skoolfile}
+Creating directory {odir}/manic_miner
+Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css
+Copying ../sources/manic_miner.css to {odir}/manic_miner/manic_miner.css
+  Writing disassembly files in manic_miner/asm
+  Writing manic_miner/maps/all.html
+  Writing manic_miner/maps/routines.html
+  Writing manic_miner/maps/data.html
+  Writing manic_miner/maps/messages.html
+  Writing manic_miner/maps/unused.html
+  Writing manic_miner/buffers/gbuffer.html
+  Writing manic_miner/tables/caverns.html
+  Writing manic_miner/reference/credits.html
+  Writing manic_miner/reference/changelog.html
+  Writing manic_miner/reference/bugs.html
+  Writing manic_miner/reference/facts.html
+  Writing manic_miner/reference/glossary.html
+  Writing manic_miner/reference/pokes.html
+  Writing manic_miner/index.html"""
+
+HTML_WRITER = '../sources:manicminer.ManicMinerHtmlWriter'
+
+write_tests(SKOOL, SNAPSHOT, OUTPUT, HTML_WRITER)
