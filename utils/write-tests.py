@@ -16,8 +16,7 @@ SKOOL = '../sources/manic_miner.skool'
 
 SNAPSHOT = '../build/manic_miner.z80'
 
-OUTPUT = """Creating directory {odir}
-Using skool file: {skoolfile}
+OUTPUT = """Using skool file: {skoolfile}
 Using ref files: ../sources/manic_miner.ref, ../sources/manic_miner-bugs.ref, ../sources/manic_miner-changelog.ref, ../sources/manic_miner-facts.ref, ../sources/manic_miner-pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/manic_miner
