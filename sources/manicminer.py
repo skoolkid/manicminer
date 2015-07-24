@@ -15,10 +15,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
-try:
-    from .skoolhtml import HtmlWriter, Frame, Udg
-except (ValueError, SystemError, ImportError):
-    from skoolkit.skoolhtml import HtmlWriter, Frame, Udg
+from skoolkit.skoolhtml import HtmlWriter, Frame, Udg
 
 class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
