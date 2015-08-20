@@ -17,7 +17,7 @@ SKOOL = '../sources/manic_miner.skool'
 SNAPSHOT = '../build/manic_miner.z80'
 
 OUTPUT = """Using skool file: {skoolfile}
-Using ref files: ../sources/manic_miner.ref, ../sources/manic_miner-bugs.ref, ../sources/manic_miner-changelog.ref, ../sources/manic_miner-facts.ref, ../sources/manic_miner-pokes.ref
+Using ref files: ../sources/manic_miner.ref, ../sources/bugs.ref, ../sources/changelog.ref, ../sources/facts.ref, ../sources/pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/manic_miner
 Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css

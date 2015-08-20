@@ -2,6 +2,7 @@
 
 [Config]
 HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
+RefFiles=bugs.ref;changelog.ref;facts.ref;pokes.ref
 
 [Game]
 Game=Manic Miner

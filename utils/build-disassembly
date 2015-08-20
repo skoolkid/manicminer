@@ -75,7 +75,7 @@ if (($D_VERSION >= 20141004)); then
   D_DIR=mm-disassembly-$D_VERSION
   tar xf $DISASSEMBLY_ARCHIVE/$D_DIR.tar.xz
   cd $SK_BUILD_DIR
-  cp -p ../$D_DIR/src/manic* .
+  cp -p ../$D_DIR/src/*.{skool,ref,css,py} .
 else
   D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
   if [[ -z $D_SK_VERSION ]]; then
