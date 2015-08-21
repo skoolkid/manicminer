@@ -22,7 +22,7 @@ fi
 GAME=mm
 GAMEDIR=manic_miner
 GAMENAME="Manic Miner"
-SRCFILES=$(echo COPYING {manic_miner,bugs,changelog,facts,pokes}.ref manic_miner{,-dark,-green,-plum}.css manicminer.py manic_miner.skool)
+SRCFILES=$(echo COPYING manic_miner.{skool,ref,css} {bugs,changelog,facts,pokes}.ref {dark,green,plum}.css manicminer.py)
 DHOME=$MANICMINER_HOME
 GHREPO=manicminer
 GHHTMLOPTS="-T plum -j style.css"
