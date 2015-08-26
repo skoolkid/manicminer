@@ -19,13 +19,9 @@ if [[ ! -d $SKOOLKIT_HOME ]]; then
   exit 1
 fi
 
-GAME=mm
-GAMEDIR=manic_miner
-GAMENAME="Manic Miner"
-SRCFILES=$(echo COPYING manic_miner.{skool,ref,css} {bugs,changelog,facts,pokes}.ref {dark,green,plum}.css manicminer.py)
 DHOME=$MANICMINER_HOME
-GHREPO=manicminer
-GHHTMLOPTS="-T plum -j style.css"
+
+. $DHOME/.dreleaserc
 
 . $SKOOLKIT_HOME/tools/drelease-functions
 
