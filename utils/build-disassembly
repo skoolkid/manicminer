@@ -74,8 +74,9 @@ if (($D_VERSION >= 20141004)); then
   fi
   D_DIR=mm-disassembly-$D_VERSION
   tar xf $DISASSEMBLY_ARCHIVE/$D_DIR.tar.xz
+  [[ -d $D_DIR/src ]] && SOURCES_DIR=src || SOURCES_DIR=sources
   cd $SK_BUILD_DIR
-  cp -p ../$D_DIR/src/*.{skool,ref,css,py} .
+  cp -p ../$D_DIR/$SOURCES_DIR/*.{skool,ref,css,py} .
 else
   D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
   if [[ -z $D_SK_VERSION ]]; then
