@@ -3,12 +3,12 @@
 [Poke:gentleGuardians:Gentle guardians]
 To enable Willy to walk through guardians with impunity:
 
-POKE #R36860,0: POKE #R36872,0
+POKE #R36860(36860),0: POKE #R36872(36872),0
 
 [Poke:niceNasties:Nice nasties]
 To enable Willy to survive contact with nasties:
 
-POKE #R37488,201
+POKE #R37488(37488),201
 
 [Poke:harmlessHeights:Harmless heights]
 To enable Willy to survive a fall from any height:
@@ -18,17 +18,17 @@ POKE #R35808(35809),255
 [Poke:infiniteTime:Infinite time]
 To make the game continue without loss of life after all the air has run out of the cavern:
 
-POKE #R34798,1
+POKE #R34798(34798),1
 
 [Poke:noConveyors:No conveyors]
 To enable Willy to walk freely in any direction on conveyors:
 
-POKE #R35834,0
+POKE #R35834(35834),0
 
 [Poke:cheatModeCheat:Cheat mode cheat]
 To activate the #FACT#6031769(6031769 cheat mode) immediately (without having to type 6031769):
 
-POKE #R33885,7
+POKE #R33885(33885),7
 
 For a list of all the caverns and their teleport codes, see the #LINK:Caverns(Caverns page).
 
@@ -40,12 +40,12 @@ POKE #R36825(36826),0
 [Poke:noSkylabs:No Skylabs]
 To remove the Skylabs from #R58368(Skylab Landing Bay):
 
-POKE #R36478,195
+POKE #R36478(36478),195
 
 [Poke:likeableLightBeam:Likeable light beam]
 To prevent the light beam in #R63488(Solar Power Generator) from decreasing the air supply:
 
-POKE #R36230,24
+POKE #R36230(36230),24
 
 [Poke:moreLives:More lives]
 To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=2):
@@ -59,4 +59,4 @@ POKE #R34606(34607),0
 [Poke:infiniteLives:Infinite lives]
 To give Willy infinite lives:
 
-POKE #R35136,0
+POKE #R35136(35136),0
