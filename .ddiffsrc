@@ -2,5 +2,5 @@
 
 OLD_VERSION=20150328
 SK_OLD_VERSION=4.3
-SKOOL=$MANICMINER_HOME/sources/manic_miner.skool
+SKOOL=$MANICMINER_HOME/sources/mm.skool
 SNAPSHOT=$MANICMINER_HOME/build/manic_miner.z80

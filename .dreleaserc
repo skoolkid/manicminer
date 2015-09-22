@@ -1,8 +1,6 @@
 GAME=mm
-GAMEDIR=manic_miner
 GAMENAME="Manic Miner"
-REFFILE=manic_miner.ref
-SRCFILES=$(echo manic_miner.{skool,ref,css} {bugs,changelog,facts,pokes}.ref {dark,green,plum}.css manicminer.py COPYING)
+SRCFILES=$(echo mm.skool {mm,bugs,changelog,facts,pokes}.ref {mm,dark,green,plum}.css manicminer.py COPYING)
 GHREPO=manicminer
 GHHTMLOPTS="-T plum -j style.css -H -c Paths/CodeFiles={address:04X}.html -c Game/AddressAnchor={address:04x}"
 SKOOL2BINOPTS="-i -S 32765"

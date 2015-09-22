@@ -95,13 +95,14 @@ else
   ./sna2skool.py -c manic_miner.ctl $MMZ80 > manic_miner.skool
 fi
 
+[ -f mm.skool ] && MM_SKOOL=mm.skool || MM_SKOOL=manic_miner.skool
 if (($SK_VERSION_INT >= 220)); then
   # SkoolKit 2.2+
   if (($SK_VERSION_INT >= 302)); then
     HTML_OPTS=-t
   fi
-  ./skool2html.py $HTML_OPTS -d .. manic_miner.skool
+  ./skool2html.py $HTML_OPTS -d .. $MM_SKOOL
 else
   # SkoolKit 1.0 - 2.1.2
-  ./skool2html.py -f manic_miner.skool ..
+  ./skool2html.py -f $MM_SKOOL ..
 fi

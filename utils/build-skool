@@ -4,8 +4,8 @@ if (($# > 0)); then
   cat >&2 << EOM
 Usage: $(basename $0)
 
-Build a skool file using the existing contents of manic_miner.skool and the
-snippets produced by mm2skool.py.
+Build a skool file using the existing contents of mm.skool and the snippets
+produced by mm2skool.py.
 EOM
   exit 1
 fi
@@ -20,7 +20,7 @@ if [[ ! -d $MANICMINER_HOME ]]; then
 fi
 
 mm2skool=$MANICMINER_HOME/utils/mm2skool.py
-MM_SKOOL=$MANICMINER_HOME/sources/manic_miner.skool
+MM_SKOOL=$MANICMINER_HOME/sources/mm.skool
 
 sed '/^ 33520 .*/q' $MM_SKOOL
 echo

@@ -12,16 +12,16 @@ if not os.path.isdir(SKOOLKIT_HOME):
 sys.path.insert(0, '{}/tools'.format(SKOOLKIT_HOME))
 from testwriter import write_tests
 
-SKOOL = '../sources/manic_miner.skool'
+SKOOL = '../sources/mm.skool'
 
 SNAPSHOT = '../build/manic_miner.z80'
 
 OUTPUT = """Using skool file: {skoolfile}
-Using ref files: ../sources/manic_miner.ref, ../sources/bugs.ref, ../sources/changelog.ref, ../sources/facts.ref, ../sources/pokes.ref
+Using ref files: ../sources/mm.ref, ../sources/bugs.ref, ../sources/changelog.ref, ../sources/facts.ref, ../sources/pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/manic_miner
 Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css
-Copying ../sources/manic_miner.css to {odir}/manic_miner/manic_miner.css
+Copying ../sources/mm.css to {odir}/manic_miner/mm.css
   Writing disassembly files in manic_miner/asm
   Writing manic_miner/maps/all.html
   Writing manic_miner/maps/routines.html

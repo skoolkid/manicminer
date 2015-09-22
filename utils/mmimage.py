@@ -32,7 +32,7 @@ class ManicMiner(ManicMinerHtmlWriter):
         self.snapshot = snapshot
         self.defaults = RefParser()
         self.ref_parser = RefParser()
-        self.ref_parser.parse('{}/sources/manic_miner.ref'.format(MANICMINER_HOME))
+        self.ref_parser.parse('{}/sources/mm.ref'.format(MANICMINER_HOME))
         self.init()
 
 def _do_pokes(specs, snapshot):
