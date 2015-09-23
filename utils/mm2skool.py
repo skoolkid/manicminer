@@ -39,7 +39,7 @@ def get_screen_buffer_address_table(snapshot):
     return '\n'.join(lines)
 
 def _write_horizontal_guardians(lines, snapshot, start):
-    lines.append('D {} The next 28 bytes are copied to #R32958 and define the horizontal guardians.'.format(start))
+    lines.append('N {} The next 28 bytes are copied to #R32958 and define the horizontal guardians.'.format(start))
     terminated = False
     index = 1
     for a in range(start, start + 28, 7):
@@ -69,7 +69,7 @@ def _write_horizontal_guardians(lines, snapshot, start):
     lines.append('B {},1 Terminator'.format(start + 28))
 
 def _write_vertical_guardians(lines, snapshot, start):
-    lines.append('D {} The next 28 bytes are copied to #R32989 and define the vertical guardians.'.format(start))
+    lines.append('N {} The next 28 bytes are copied to #R32989 and define the vertical guardians.'.format(start))
     terminated = False
     index = 1
     for a in range(start, start + 28, 7):
@@ -117,7 +117,7 @@ def get_caverns(snapshot):
         lines.append('B {},512,8 Attributes'.format(a))
 
         # Cavern name
-        lines.append('D {} The next 32 bytes are copied to #R32768 and specify the cavern name.'.format(a + 512))
+        lines.append('N {} The next 32 bytes are copied to #R32768 and specify the cavern name.'.format(a + 512))
         lines.append('T {},32 Cavern name'.format(a + 512))
 
         # Block graphics
@@ -141,8 +141,8 @@ def get_caverns(snapshot):
             if b in attrs:
                 tile_usage[attrs.index(b)] = ''
         udg_table = '#UDGTABLE { ' + ' | '.join(udgs) + ' } TABLE#'
-        lines.append('D {} The next 72 bytes are copied to #R32800 and contain the attributes and graphic data for the tiles used to build the cavern.'.format(a + 544))
-        lines.append('D {} {}'.format(a + 544, udg_table))
+        lines.append('N {} The next 72 bytes are copied to #R32800 and contain the attributes and graphic data for the tiles used to build the cavern.'.format(a + 544))
+        lines.append('N {} {}'.format(a + 544, udg_table))
         lines.append('B {},9,9 Background{}'.format(a + 544, tile_usage[0]))
         lines.append('B {},9,9 Floor{}'.format(a + 553, tile_usage[1]))
         lines.append('B {},9,9 Crumbling floor{}'.format(a + 562, tile_usage[2]))
@@ -154,7 +154,7 @@ def get_caverns(snapshot):
 
         # Miner Willy's start position
         lines.append("@ {} ignoreua:m".format(a + 616))
-        lines.append("D {} The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878) and specify Miner Willy's initial location and appearance in the cavern.".format(a + 616))
+        lines.append("N {} The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878) and specify Miner Willy's initial location and appearance in the cavern.".format(a + 616))
         lines.append("B {} Pixel y-coordinate * 2 (see #R32872)".format(a + 616))
         lines.append("B {} Animation frame (see #R32873)".format(a + 617))
         direction = ('right', 'left')[snapshot[a + 618]]
@@ -167,7 +167,7 @@ def get_caverns(snapshot):
         lines.append("B {} Jumping animation counter (see #R32878)".format(a + 622))
 
         # Conveyor
-        lines.append('D {} The next four bytes are copied to #R32879 and specify the direction, location and length of the{} conveyor.'.format(a + 623, tile_usage[4]))
+        lines.append('N {} The next four bytes are copied to #R32879 and specify the direction, location and length of the{} conveyor.'.format(a + 623, tile_usage[4]))
         direction = 'left' if snapshot[a + 623] == 0 else 'right'
         sb_addr = snapshot[a + 624] + 256 * snapshot[a + 625]
         x = sb_addr % 32
@@ -178,15 +178,15 @@ def get_caverns(snapshot):
         lines.append('B {} Length'.format(a + 626))
 
         # Border colour
-        lines.append('D {} The next byte is copied to #R32883 and specifies the border colour.'.format(a + 627))
+        lines.append('N {} The next byte is copied to #R32883 and specifies the border colour.'.format(a + 627))
         lines.append('B {} Border colour'.format(a + 627))
 
         # Byte 628
-        lines.append('D {} The next byte is copied to #R32884, but is not used.'.format(a + 628))
+        lines.append('N {} The next byte is copied to #R32884, but is not used.'.format(a + 628))
         lines.append('B {} Unused'.format(a + 628))
 
         # Items
-        lines.append('D {} The next 25 bytes are copied to #R32885 and specify the location and initial colour of the items in the cavern.'.format(a + 629))
+        lines.append('N {} The next 25 bytes are copied to #R32885 and specify the location and initial colour of the items in the cavern.'.format(a + 629))
         terminated = False
         for i, addr in enumerate(range(a + 629, a + 654, 5)):
             terminated = terminated or snapshot[addr] == 255
@@ -212,8 +212,8 @@ def get_caverns(snapshot):
 
         # Portal
         attr = snapshot[a + 655]
-        lines.append('D {} The next 37 bytes are copied to #R32911 and define the portal graphic and its location.'.format(a + 655))
-        lines.append('D {} #UDGTABLE {{ #UDGARRAY2,{},4,2;{}-{}-1-16(portal{:02d}) }} TABLE#'.format(a + 655, attr, a + 656, a + 673, cavern_num))
+        lines.append('N {} The next 37 bytes are copied to #R32911 and define the portal graphic and its location.'.format(a + 655))
+        lines.append('N {} #UDGTABLE {{ #UDGARRAY2,{},4,2;{}-{}-1-16(portal{:02d}) }} TABLE#'.format(a + 655, attr, a + 656, a + 673, cavern_num))
         lines.append('B {},1 Attribute'.format(a + 655))
         lines.append('B {},32,8 Graphic data'.format(a + 656))
         ab_addr = snapshot[a + 688] + 256 * snapshot[a + 689]
@@ -227,16 +227,16 @@ def get_caverns(snapshot):
 
         # Item
         attr = snapshot[a + 629]
-        lines.append('D {} The next eight bytes are copied to #R32948 and define the item graphic.'.format(a + 692))
-        lines.append('D {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 692, attr, cavern_num))
+        lines.append('N {} The next eight bytes are copied to #R32948 and define the item graphic.'.format(a + 692))
+        lines.append('N {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 692, attr, cavern_num))
         lines.append('B {},8 Item graphic data'.format(a + 692))
 
         # Air
-        lines.append('D {} The next byte is copied to #R32956 and specifies the initial air supply in the cavern.'.format(a + 700))
+        lines.append('N {} The next byte is copied to #R32956 and specifies the initial air supply in the cavern.'.format(a + 700))
         lines.append('B {} Air'.format(a + 700))
 
         # Game clock
-        lines.append('D {} The next byte is copied to #R32957 and initialises the game clock.'.format(a + 701))
+        lines.append('N {} The next byte is copied to #R32957 and initialises the game clock.'.format(a + 701))
         lines.append('B {} Game clock'.format(a + 701))
 
         # Horizontal guardians
@@ -245,26 +245,26 @@ def get_caverns(snapshot):
         # Bytes 731 and 732
         prefix = 'The next two bytes are copied to #R32987 and #R32988'
         if cavern_num == 4:
-            lines.append("D {} {} and specify Eugene's initial direction and pixel y-coordinate.".format(a + 731, prefix))
+            lines.append("N {} {} and specify Eugene's initial direction and pixel y-coordinate.".format(a + 731, prefix))
             lines.append('B {},1 Initial direction (down)'.format(a + 731))
             lines.append('B {},1 Initial pixel y-coordinate'.format(a + 732))
         elif cavern_num in (7, 11):
-            lines.append("D {} {}; the first byte specifies the Kong Beast's initial status, but the second byte is not used.".format(a + 731, prefix))
+            lines.append("N {} {}; the first byte specifies the Kong Beast's initial status, but the second byte is not used.".format(a + 731, prefix))
             lines.append('B {},1 Initial status (on the ledge)'.format(a + 731))
             lines.append('B {},1 Unused'.format(a + 732))
         else:
-            lines.append('D {} {} but are not used.'.format(a + 731, prefix))
+            lines.append('N {} {} but are not used.'.format(a + 731, prefix))
             lines.append('B {},2 Unused'.format(a + 731))
 
         # Special graphics and vertical guardians
         if cavern_num in (0, 1, 2, 4):
             if cavern_num == 4:
-                lines.append('D {} The next three bytes are unused.'.format(a + 733))
+                lines.append('N {} The next three bytes are unused.'.format(a + 733))
                 lines.append('B {},3 Unused'.format(a + 733))
             else:
-                lines.append('D {} The next byte is copied to #R32989 and indicates that there are no vertical guardians in this cavern.'.format(a + 733))
+                lines.append('N {} The next byte is copied to #R32989 and indicates that there are no vertical guardians in this cavern.'.format(a + 733))
                 lines.append('B {},1 Terminator'.format(a + 733))
-                lines.append('D {} The next two bytes are unused.'.format(a + 734))
+                lines.append('N {} The next two bytes are unused.'.format(a + 734))
                 lines.append('B {},2 Unused'.format(a + 734))
             if cavern_num == 0:
                 lines.append('@ 45792 label=SWORDFISH')
@@ -286,8 +286,8 @@ def get_caverns(snapshot):
                 desc = 'Eugene graphic'
                 udgarray_macro = '#UDGARRAY2,23,4,2;49888-49905-1-16(eugene)'
                 comment = 'Eugene graphic data'
-            lines.append('D {} The next 32 bytes define the {}.'.format(a + 736, desc))
-            lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a + 736, udgarray_macro))
+            lines.append('N {} The next 32 bytes define the {}.'.format(a + 736, desc))
+            lines.append('N {} #UDGTABLE {{ {} }} TABLE#'.format(a + 736, udgarray_macro))
             lines.append('B {},32,8 {}'.format(a + 736, comment))
         else:
             _write_vertical_guardians(lines, snapshot, a + 733)
@@ -296,7 +296,7 @@ def get_caverns(snapshot):
                 lines.append('B {},1 Terminator'.format(start))
                 start += 1
             unused = a + 768 - start
-            lines.append('D {} The next {} bytes are unused.'.format(start, unused))
+            lines.append('N {} The next {} bytes are unused.'.format(start, unused))
             lines.append('B {},{} Unused'.format(start, unused))
 
         # Guardian graphic data
@@ -316,8 +316,8 @@ def get_caverns(snapshot):
                 attr = snapshot[a + 702] # Horizontal guardian
             macros.append('#UDGARRAY2,{},4,2;{}-{}-1-16({})'.format(attr, addr, addr + 17, img_fname))
         gg_table += ' | '.join(macros) + ' } TABLE#'
-        lines.append('D {} The next 256 bytes are copied to #R33024 and define the guardian graphics.'.format(gg_addr))
-        lines.append('D {} {}'.format(gg_addr, gg_table))
+        lines.append('N {} The next 256 bytes are copied to #R33024 and define the guardian graphics.'.format(gg_addr))
+        lines.append('N {} {}'.format(gg_addr, gg_table))
         lines.append('B {},256,8 Guardian graphic data'.format(gg_addr))
 
     return '\n'.join(lines)
