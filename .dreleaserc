@@ -1,4 +1,4 @@
 GAME=mm
+GHTHEME=plum
 SRCFILES=$(echo mm.skool {mm,bugs,changelog,facts,pokes}.ref {mm,dark,green,plum}.css manicminer.py COPYING)
-GHHTMLOPTS="-T plum -j style.css -H -c Paths/CodeFiles={address:04X}.html -c Game/AddressAnchor={address:04x}"
 SKOOL2BINOPTS="-i -S 32765"
