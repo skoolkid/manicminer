@@ -28,6 +28,7 @@ b24576 DEFS 4096
 b28672 DEFS 4096
 
 @start
+@writer=:manicminer.ManicMinerAsmWriter
 ; Manic Miner disassembly
 ; http://skoolkit.ca/
 ;
@@ -896,8 +897,8 @@ c34436 LD HL,33829   ; {Initialise the score at #R33829
  34467 LDIR          ; }
 @ignoreua
  34469 LD DE,32768   ; {Copy the rest of the cavern definition into the game
- 34472 LD BC,512     ; status buffer at
- 34475 LDIR          ; #LINK:GameStatusBuffer#32768(32768-33279)}
+ 34472 LD BC,512     ; status buffer at #GBUF32768
+ 34475 LDIR          ; }
  34477 CALL 35445    ; Draw the current cavern to the screen buffer at #R28672
  34480 LD HL,20480   ; {Clear the bottom third of the display file
  34483 LD DE,20481   ;
@@ -4095,8 +4096,8 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  45654 DEFB 5,255,254,126,124,76,76,8,8        ; Nasty 2
  45663 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  45672 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  45673 DEFB 0                                  ; Animation frame (see #R32873)
@@ -4336,8 +4337,8 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
  46678 DEFB 13,255,254,94,108,76,76,8,8        ; Nasty 2
  46687 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  46696 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  46697 DEFB 0                                  ; Animation frame (see #R32873)
@@ -4582,8 +4583,8 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
  47702 DEFB 67,16,214,56,214,56,68,198,40      ; Nasty 2
  47711 DEFB 3,16,16,16,16,16,16,16,16          ; Extra
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  47720 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  47721 DEFB 0                                  ; Animation frame (see #R32873)
@@ -4834,8 +4835,8 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
  48726 DEFB 5,16,16,16,84,56,214,56,84         ; Nasty 2
  48735 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  48744 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  48745 DEFB 0                                  ; Animation frame (see #R32873)
@@ -5071,8 +5072,8 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
  49750 DEFB 19,126,60,28,24,24,8,8,8           ; Nasty 2
  49759 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  49768 DEFB 48                                 ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  49769 DEFB 0                                  ; Animation frame (see #R32873)
@@ -5315,8 +5316,8 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  50774 DEFB 6,60,24,189,231,231,189,24,60      ; Nasty 2
  50783 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  50792 DEFB 48                                 ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  50793 DEFB 3                                  ; Animation frame (see #R32873)
@@ -5562,8 +5563,8 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
  51798 DEFB 22,165,66,60,219,60,126,165,36     ; Nasty 2
  51807 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  51816 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  51817 DEFB 0                                  ; Animation frame (see #R32873)
@@ -5804,8 +5805,8 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
  52822 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2
  52831 DEFB 6,255,129,129,66,60,16,96,96       ; Extra
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  52840 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  52841 DEFB 0                                  ; Animation frame (see #R32873)
@@ -6054,8 +6055,8 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
  53846 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2 (unused)
  53855 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  53864 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  53865 DEFB 0                                  ; Animation frame (see #R32873)
@@ -6304,8 +6305,8 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  54870 DEFB 4,72,178,93,18,112,174,169,71      ; Nasty 2
  54879 DEFB 5,255,255,202,101,146,40,130,0     ; Extra
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  54888 DEFB 64                                 ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  54889 DEFB 0                                  ; Animation frame (see #R32873)
@@ -6551,8 +6552,8 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
  55894 DEFB 66,16,16,16,16,16,16,16,16         ; Nasty 2
  55903 DEFB 69,255,255,255,255,170,0,0,0       ; Extra
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  55912 DEFB 16                                 ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  55913 DEFB 0                                  ; Animation frame (see #R32873)
@@ -6827,8 +6828,8 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
  56918 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2
  56927 DEFB 6,255,129,129,66,60,16,96,96       ; Extra
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  56936 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  56937 DEFB 0                                  ; Animation frame (see #R32873)
@@ -7080,8 +7081,8 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
  57942 DEFB 69,126,60,28,24,24,8,8,8           ; Nasty 2 (unused)
  57951 DEFB 6,255,129,129,129,129,129,129,129  ; Extra
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  57960 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  57961 DEFB 0                                  ; Animation frame (see #R32873)
@@ -7333,8 +7334,8 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
  58966 DEFB 0,72,178,93,18,112,174,169,71      ; Nasty 2 (unused)
  58975 DEFB 12,255,255,70,38,30,14,6,6         ; Extra
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  58984 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  58985 DEFB 0                                  ; Animation frame (see #R32873)
@@ -7590,8 +7591,8 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
  59990 DEFB 66,16,16,16,16,16,16,16,16         ; Nasty 2
  59999 DEFB 6,255,255,24,24,24,24,24,24        ; Extra
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  60008 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  60009 DEFB 0                                  ; Animation frame (see #R32873)
@@ -7841,8 +7842,8 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
  61014 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2 (unused)
  61023 DEFB 6,255,129,129,66,60,16,96,96       ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  61032 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  61033 DEFB 0                                  ; Animation frame (see #R32873)
@@ -8088,8 +8089,8 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  62038 DEFB 33,66,215,254,101,166,125,238,215  ; Nasty 2
  62047 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  62056 DEFB 48                                 ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  62057 DEFB 3                                  ; Animation frame (see #R32873)
@@ -8350,8 +8351,8 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  63062 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2 (unused)
  63071 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  63080 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  63081 DEFB 3                                  ; Animation frame (see #R32873)
@@ -8610,8 +8611,8 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
  64086 DEFB 5,126,60,28,24,24,8,8,8            ; Nasty 2 (unused)
  64095 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  64104 DEFB 160                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  64105 DEFB 0                                  ; Animation frame (see #R32873)
@@ -8869,8 +8870,8 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
  65110 DEFB 10,126,60,28,24,24,8,8,8           ; Nasty 2 (unused)
  65119 DEFB 0,0,0,0,0,0,0,0,0                  ; Extra (unused)
 @ignoreua
-; The next seven bytes are copied to #LINK:GameStatusBuffer#32872(32872-32878)
-; and specify Miner Willy's initial location and appearance in the cavern.
+; The next seven bytes are copied to #GBUF32872,32878 and specify Miner Willy's
+; initial location and appearance in the cavern.
  65128 DEFB 208                                ; Pixel y-coordinate * 2 (see
                                                ; #R32872)
  65129 DEFB 0                                  ; Animation frame (see #R32873)

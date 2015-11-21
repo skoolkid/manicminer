@@ -40,4 +40,6 @@ Copying ../sources/mm.css to {odir}/manic_miner/mm.css
 
 HTML_WRITER = '../sources:manicminer.ManicMinerHtmlWriter'
 
-write_tests(SKOOL, SNAPSHOT, OUTPUT, HTML_WRITER)
+ASM_WRITER = '../sources:manicminer.ManicMinerAsmWriter'
+
+write_tests(SKOOL, SNAPSHOT, OUTPUT, HTML_WRITER, ASM_WRITER)

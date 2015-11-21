@@ -15,7 +15,13 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
+from skoolkit.skoolasm import AsmWriter
 from skoolkit.skoolhtml import HtmlWriter, Frame, Udg
+from skoolkit.skoolmacro import parse_ints
+
+def parse_gbuf(text, index):
+    # #GBUFfrom[,to]
+    return parse_ints(text, index, 2, (None,))
 
 class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
@@ -23,6 +29,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
         for b, h in self.get_dictionary('Font').items():
             self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
         self.cavern_names = self._get_cavern_names()
+        self.addr_anchor_fmt = self.get_dictionary('Game')['AddressAnchor']
 
     def cavern(self, cwd, address, scale=2, fname=None, x=0, y=0, w=32, h=17, guardians=1, animate=0):
         if fname is None:
@@ -42,6 +49,14 @@ class ManicMinerHtmlWriter(HtmlWriter):
             else:
                 self.write_image(img_path, img_udgs, scale=scale)
         return self.img_element(cwd, img_path)
+
+    def expand_gbuf(self, text, index, cwd):
+        end, addr_from, addr_to = parse_gbuf(text, index)
+        anchor = self.addr_anchor_fmt.format(address=addr_from)
+        link_text = self.parser.get_instruction_addr_str(addr_from)
+        if addr_to is not None:
+            link_text += '-' + self.parser.get_instruction_addr_str(addr_to)
+        return end, '#LINK:GameStatusBuffer#{}({})'.format(anchor, link_text)
 
     def _animate_conveyor(self, udgs, direction, x, y, length, scale):
         mask = 0
@@ -287,3 +302,11 @@ class ManicMinerHtmlWriter(HtmlWriter):
                     new_attr = old_udg.attr
                 new_data = [old_udg.data[k] | udg.data[k] for k in range(8)]
                 udg_array[y + i][x + j] = Udg(new_attr, new_data)
+
+class ManicMinerAsmWriter(AsmWriter):
+    def expand_gbuf(self, text, index):
+        end, addr_from, addr_to = parse_gbuf(text, index)
+        output = self.parser.get_instruction_addr_str(addr_from)
+        if addr_to is not None:
+            output += '-' + self.parser.get_instruction_addr_str(addr_to)
+        return end, output

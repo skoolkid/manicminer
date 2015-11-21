@@ -140,7 +140,7 @@ The score (at least, the part of it that is printed - see #R33829) rolls around 
 There are three horizontal guardians defined in #R58368(Skylab Landing Bay), but they're not used. We can only wonder what they might have looked like before being replaced by the Skylabs.
 
 [Fact:sourceCodeRemnants:Source code remnants]
-Before the game starts for the first time, the 512-byte cavern buffer at #LINK:GameStatusBuffer#32768(32768) contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
+Before the game starts for the first time, the 512-byte cavern buffer at #GBUF32768 contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
 
 #TABLE(asm,address-1,instruction,comment-11)
 { 32768 | DEFM "50,171,192,50,48,68" | }
