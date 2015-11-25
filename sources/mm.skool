@@ -28,6 +28,8 @@ b24576 DEFS 4096
 b28672 DEFS 4096
 
 @start
+@replace=/#tiles\i/#FOR(45600+\1*1024,45663+\1*1024,9);;$n;#UDG#(($n+1,#PEEK$n)(<tmap>_\1)); | ;;
+@replace=/<tmap>/#MAP($n%1024)(,544:background,553:floor,562:crumbling_floor,571:wall,580:conveyor,589:nasty1,598:nasty2,607:extra)
 @writer=:manicminer.ManicMinerAsmWriter
 ; Manic Miner disassembly
 ; http://skoolkit.ca/
@@ -4082,10 +4084,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG45601,0(background_0) | #UDG45610,66(floor_0) |
-; #UDG45619,2(crumbling_floor_0) | #UDG45628,22(wall_0) |
-; #UDG45637,4(conveyor_0) | #UDG45646,68(nasty1_0) | #UDG45655,5(nasty2_0) |
-; #UDG45664,0(extra_0) }
+; { #tiles0 }
 ; TABLE#
  45600 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  45609 DEFB 66,255,255,219,110,197,64,0,0      ; Floor
@@ -4323,10 +4322,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG46625,8(background_1) | #UDG46634,75(floor_1) |
-; #UDG46643,11(crumbling_floor_1) | #UDG46652,22(wall_1) |
-; #UDG46661,14(conveyor_1) | #UDG46670,12(nasty1_1) | #UDG46679,13(nasty2_1) |
-; #UDG46688,0(extra_1) }
+; { #tiles1 }
 ; TABLE#
  46624 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  46633 DEFB 75,255,255,219,110,197,64,0,0      ; Floor
@@ -4569,10 +4565,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG47649,0(background_2) | #UDG47658,69(floor_2) |
-; #UDG47667,5(crumbling_floor_2) | #UDG47676,13(wall_2) |
-; #UDG47685,2(conveyor_2) | #UDG47694,6(nasty1_2) | #UDG47703,67(nasty2_2) |
-; #UDG47712,3(extra_2) }
+; { #tiles2 }
 ; TABLE#
  47648 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  47657 DEFB 69,255,255,102,153,102,153,255,0   ; Floor
@@ -4821,10 +4814,7 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG48673,0(background_3) | #UDG48682,70(floor_3) |
-; #UDG48691,6(crumbling_floor_3) | #UDG48700,41(wall_3) |
-; #UDG48709,3(conveyor_3) | #UDG48718,4(nasty1_3) | #UDG48727,5(nasty2_3) |
-; #UDG48736,0(extra_3) }
+; { #tiles3 }
 ; TABLE#
  48672 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  48681 DEFB 70,255,255,219,110,197,64,0,0      ; Floor
@@ -5058,10 +5048,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG49697,16(background_4) | #UDG49706,21(floor_4) |
-; #UDG49715,20(crumbling_floor_4) | #UDG49724,46(wall_4) |
-; #UDG49733,86(conveyor_4) | #UDG49742,22(nasty1_4) | #UDG49751,19(nasty2_4) |
-; #UDG49760,0(extra_4) }
+; { #tiles4 }
 ; TABLE#
  49696 DEFB 16,0,0,0,0,0,0,0,0                 ; Background
  49705 DEFB 21,255,255,219,110,197,64,0,0      ; Floor
@@ -5302,10 +5289,7 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG50721,0(background_5) | #UDG50730,68(floor_5) |
-; #UDG50739,4(crumbling_floor_5) | #UDG50748,22(wall_5) |
-; #UDG50757,5(conveyor_5) | #UDG50766,67(nasty1_5) | #UDG50775,6(nasty2_5) |
-; #UDG50784,0(extra_5) }
+; { #tiles5 }
 ; TABLE#
  50720 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  50729 DEFB 68,255,255,153,153,255,153,102,0   ; Floor
@@ -5549,10 +5533,7 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG51745,0(background_6) | #UDG51754,70(floor_6) |
-; #UDG51763,2(crumbling_floor_6) | #UDG51772,77(wall_6) |
-; #UDG51781,4(conveyor_6) | #UDG51790,21(nasty1_6) | #UDG51799,22(nasty2_6) |
-; #UDG51808,0(extra_6) }
+; { #tiles6 }
 ; TABLE#
  51744 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  51753 DEFB 70,255,255,219,110,197,64,0,0      ; Floor
@@ -5791,10 +5772,7 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG52769,0(background_7) | #UDG52778,66(floor_7) |
-; #UDG52787,2(crumbling_floor_7) | #UDG52796,114(wall_7) |
-; #UDG52805,68(conveyor_7) | #UDG52814,4(nasty1_7) | #UDG52823,5(nasty2_7) |
-; #UDG52832,6(extra_7) }
+; { #tiles7 }
 ; TABLE#
  52768 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  52777 DEFB 66,255,255,219,110,197,64,0,0      ; Floor
@@ -6041,10 +6019,7 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG53793,0(background_8) | #UDG53802,6(floor_8) |
-; #UDG53811,66(crumbling_floor_8) | #UDG53820,22(wall_8) |
-; #UDG53829,4(conveyor_8) | #UDG53838,68(nasty1_8) | #UDG53847,5(nasty2_8) |
-; #UDG53856,0(extra_8) }
+; { #tiles8 }
 ; TABLE#
  53792 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  53801 DEFB 6,255,255,219,110,197,64,0,0       ; Floor
@@ -6291,10 +6266,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG54817,0(background_9) | #UDG54826,68(floor_9) |
-; #UDG54835,2(crumbling_floor_9) | #UDG54844,22(wall_9) |
-; #UDG54853,67(conveyor_9) | #UDG54862,69(nasty1_9) | #UDG54871,4(nasty2_9) |
-; #UDG54880,5(extra_9) }
+; { #tiles9 }
 ; TABLE#
  54816 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  54825 DEFB 68,124,255,239,30,12,8,8,8         ; Floor
@@ -6538,10 +6510,7 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG55841,0(background_10) | #UDG55850,65(floor_10) |
-; #UDG55859,1(crumbling_floor_10) | #UDG55868,14(wall_10) |
-; #UDG55877,6(conveyor_10) | #UDG55886,70(nasty1_10) | #UDG55895,66(nasty2_10)
-; | #UDG55904,69(extra_10) }
+; { #tiles10 }
 ; TABLE#
  55840 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  55849 DEFB 65,255,255,219,110,197,64,0,0      ; Floor
@@ -6814,10 +6783,7 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG56865,0(background_11) | #UDG56874,67(floor_11) |
-; #UDG56883,3(crumbling_floor_11) | #UDG56892,101(wall_11) |
-; #UDG56901,70(conveyor_11) | #UDG56910,4(nasty1_11) | #UDG56919,5(nasty2_11) |
-; #UDG56928,6(extra_11) }
+; { #tiles11 }
 ; TABLE#
  56864 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  56873 DEFB 67,255,255,219,110,197,64,0,0      ; Floor
@@ -7067,10 +7033,7 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG57889,0(background_12) | #UDG57898,5(floor_12) |
-; #UDG57907,66(crumbling_floor_12) | #UDG57916,22(wall_12) |
-; #UDG57925,4(conveyor_12) | #UDG57934,68(nasty1_12) | #UDG57943,69(nasty2_12)
-; | #UDG57952,6(extra_12) }
+; { #tiles12 }
 ; TABLE#
  57888 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  57897 DEFB 5,255,255,17,34,68,136,255,255     ; Floor
@@ -7320,10 +7283,7 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG58913,8(background_13) | #UDG58922,76(floor_13) |
-; #UDG58931,2(crumbling_floor_13) | #UDG58940,104(wall_13) |
-; #UDG58949,75(conveyor_13) | #UDG58958,0(nasty1_13) | #UDG58967,0(nasty2_13) |
-; #UDG58976,12(extra_13) }
+; { #tiles13 }
 ; TABLE#
  58912 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  58921 DEFB 76,255,255,98,100,120,112,96,96    ; Floor
@@ -7577,10 +7537,7 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG59937,0(background_14) | #UDG59946,65(floor_14) |
-; #UDG59955,1(crumbling_floor_14) | #UDG59964,14(wall_14) |
-; #UDG59973,69(conveyor_14) | #UDG59982,70(nasty1_14) | #UDG59991,66(nasty2_14)
-; | #UDG60000,6(extra_14) }
+; { #tiles14 }
 ; TABLE#
  59936 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  59945 DEFB 65,255,255,221,119,170,85,34,0     ; Floor
@@ -7828,10 +7785,7 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG60961,0(background_15) | #UDG60970,66(floor_15) |
-; #UDG60979,2(crumbling_floor_15) | #UDG60988,101(wall_15) |
-; #UDG60997,70(conveyor_15) | #UDG61006,4(nasty1_15) | #UDG61015,5(nasty2_15) |
-; #UDG61024,6(extra_15) }
+; { #tiles15 }
 ; TABLE#
  60960 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  60969 DEFB 66,255,255,219,110,197,64,0,0      ; Floor
@@ -8075,10 +8029,7 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG61985,0(background_16) | #UDG61994,4(floor_16) |
-; #UDG62003,68(crumbling_floor_16) | #UDG62012,22(wall_16) |
-; #UDG62021,32(conveyor_16) | #UDG62030,6(nasty1_16) | #UDG62039,33(nasty2_16)
-; | #UDG62048,0(extra_16) }
+; { #tiles16 }
 ; TABLE#
  61984 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  61993 DEFB 4,255,255,219,110,197,64,0,0       ; Floor
@@ -8337,10 +8288,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG63009,0(background_17) | #UDG63018,66(floor_17) |
-; #UDG63027,2(crumbling_floor_17) | #UDG63036,22(wall_17) |
-; #UDG63045,4(conveyor_17) | #UDG63054,68(nasty1_17) | #UDG63063,5(nasty2_17) |
-; #UDG63072,0(extra_17) }
+; { #tiles17 }
 ; TABLE#
  63008 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63017 DEFB 66,255,255,219,110,197,64,0,0      ; Floor
@@ -8597,10 +8545,7 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG64033,36(background_18) | #UDG64042,32(floor_18) |
-; #UDG64051,2(crumbling_floor_18) | #UDG64060,22(wall_18) |
-; #UDG64069,38(conveyor_18) | #UDG64078,68(nasty1_18) | #UDG64087,5(nasty2_18)
-; | #UDG64096,0(extra_18) }
+; { #tiles18 }
 ; TABLE#
  64032 DEFB 36,0,0,0,0,0,0,0,0                 ; Background
  64041 DEFB 32,255,255,219,110,197,64,0,0      ; Floor
@@ -8856,10 +8801,7 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #UDG65057,0(background_19) | #UDG65066,66(floor_19) |
-; #UDG65075,2(crumbling_floor_19) | #UDG65084,38(wall_19) |
-; #UDG65093,5(conveyor_19) | #UDG65102,68(nasty1_19) | #UDG65111,10(nasty2_19)
-; | #UDG65120,0(extra_19) }
+; { #tiles19 }
 ; TABLE#
  65056 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  65065 DEFB 66,255,255,219,110,197,64,0,0      ; Floor

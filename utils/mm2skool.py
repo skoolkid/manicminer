@@ -121,26 +121,12 @@ def get_caverns(snapshot):
         lines.append('T {},32 Cavern name'.format(a + 512))
 
         # Block graphics
-        udgs = []
-        attrs = []
-        for addr, tile_type in (
-            (a + 544, 'background'),
-            (a + 553, 'floor'),
-            (a + 562, 'crumbling_floor'),
-            (a + 571, 'wall'),
-            (a + 580, 'conveyor'),
-            (a + 589, 'nasty1'),
-            (a + 598, 'nasty2'),
-            (a + 607, 'extra')
-        ):
-            attr = snapshot[addr]
-            attrs.append(attr)
-            udgs.append('#UDG{},{}({}_{})'.format(addr + 1, attr, tile_type, cavern_num))
+        attrs = snapshot[a + 544:a + 608:9]
         tile_usage = [' (unused)'] * 8
         for b in snapshot[a:a + 512]:
             if b in attrs:
                 tile_usage[attrs.index(b)] = ''
-        udg_table = '#UDGTABLE { ' + ' | '.join(udgs) + ' } TABLE#'
+        udg_table = '#UDGTABLE {{ #tiles{} }} TABLE#'.format(cavern_num)
         lines.append('N {} The next 72 bytes are copied to #R32800 and contain the attributes and graphic data for the tiles used to build the cavern.'.format(a + 544))
         lines.append('N {} {}'.format(a + 544, udg_table))
         lines.append('B {},9,9 Background{}'.format(a + 544, tile_usage[0]))
