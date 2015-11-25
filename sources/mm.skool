@@ -28,7 +28,7 @@ b24576 DEFS 4096
 b28672 DEFS 4096
 
 @start
-@replace=/#tiles\i/#FOR(45600+\1*1024,45663+\1*1024,9);;$n;#UDG#(($n+1,#PEEK$n)(<tmap>_\1)); | ;;
+@replace=/#tiles\i/#FOR(45600+\1*1024,45663+\1*1024,9);;$n;#UDG($n+1,#PEEK$n)(<tmap>_\1); | ;;
 @replace=/<tmap>/#MAP($n%1024)(,544:background,553:floor,562:crumbling_floor,571:wall,580:conveyor,589:nasty1,598:nasty2,607:extra)
 @writer=:manicminer.ManicMinerAsmWriter
 ; Manic Miner disassembly
