@@ -1,5 +1,10 @@
 ; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
 
+[Changelog:YYYYMMDD]
+-
+
+Documented a bug: #BUG#throughTheWallAgain()
+
 [Changelog:20150328]
 -
 
