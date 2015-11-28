@@ -212,9 +212,8 @@ def get_caverns(snapshot):
         lines.append('W {} Location in the screen buffer at #R24576: ({},{})'.format(a + 690, sb_y, sb_x))
 
         # Item
-        attr = snapshot[a + 629]
         lines.append('N {} The next eight bytes are copied to #R32948 and define the item graphic.'.format(a + 692))
-        lines.append('N {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 692, attr, cavern_num))
+        lines.append('N {} #UDGTABLE {{ #item{} }} TABLE#'.format(a + 692, cavern_num))
         lines.append('B {},8 Item graphic data'.format(a + 692))
 
         # Air

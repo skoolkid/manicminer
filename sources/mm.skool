@@ -30,6 +30,7 @@ b28672 DEFS 4096
 @start
 @replace=/#tiles\i/#FOR(45600+\1*1024,45663+\1*1024,9);;$n;#UDG($n+1,#PEEK$n)(<tmap>_\1); | ;;
 @replace=/<tmap>/#MAP($n%1024)(,544:background,553:floor,562:crumbling_floor,571:wall,580:conveyor,589:nasty1,598:nasty2,607:extra)
+@replace=/#item\i/#UDG(45748+1024*\1,#PEEK(45685+1024*\1))(item#EVAL\1,,2)
 @writer=:manicminer.ManicMinerAsmWriter
 ; Manic Miner disassembly
 ; http://skoolkit.ca/
@@ -4160,7 +4161,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG45748,3(item00) }
+; { #item0 }
 ; TABLE#
  45748 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -4398,7 +4399,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG46772,11(item01) }
+; { #item1 }
 ; TABLE#
  46772 DEFB 80,168,84,168,84,44,2,1            ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -4641,7 +4642,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG47796,3(item02) }
+; { #item2 }
 ; TABLE#
  47796 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -4890,7 +4891,7 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG48820,3(item03) }
+; { #item3 }
 ; TABLE#
  48820 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -5124,7 +5125,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG49844,19(item04) }
+; { #item4 }
 ; TABLE#
  49844 DEFB 31,35,71,255,143,142,140,248       ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -5365,7 +5366,7 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG50868,3(item05) }
+; { #item5 }
 ; TABLE#
  50868 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -5609,7 +5610,7 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG51892,19(item06) }
+; { #item6 }
 ; TABLE#
  51892 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -5845,7 +5846,7 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG52916,3(item07) }
+; { #item7 }
 ; TABLE#
  52916 DEFB 128,192,236,114,40,84,138,135      ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -6083,7 +6084,7 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG53940,3(item08) }
+; { #item8 }
 ; TABLE#
  53940 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -6342,7 +6343,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG54964,3(item09) }
+; { #item9 }
 ; TABLE#
  54964 DEFB 8,8,62,95,95,71,97,62              ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -6586,7 +6587,7 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG55988,3(item10) }
+; { #item10 }
 ; TABLE#
  55988 DEFB 60,90,149,213,213,213,90,60        ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -6859,7 +6860,7 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG57012,3(item11) }
+; { #item11 }
 ; TABLE#
  57012 DEFB 128,192,236,114,40,84,138,135      ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -7109,7 +7110,7 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG58036,3(item12) }
+; { #item12 }
 ; TABLE#
  58036 DEFB 24,110,66,219,201,98,126,24        ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -7356,7 +7357,7 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG59060,11(item13) }
+; { #item13 }
 ; TABLE#
  59060 DEFB 170,170,254,254,254,254,170,170    ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -7613,7 +7614,7 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG60084,3(item14) }
+; { #item14 }
 ; TABLE#
  60084 DEFB 124,56,100,222,142,222,130,124     ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -7861,7 +7862,7 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG61108,3(item15) }
+; { #item15 }
 ; TABLE#
  61108 DEFB 15,9,61,39,244,156,144,240         ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -8105,7 +8106,7 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG62132,35(item16) }
+; { #item16 }
 ; TABLE#
  62132 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -8352,7 +8353,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG63156,3(item17) }
+; { #item17 }
 ; TABLE#
  63156 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -8615,7 +8616,7 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG64180,35(item18) }
+; { #item18 }
 ; TABLE#
  64180 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -8877,7 +8878,7 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG65204,3(item19) }
+; { #item19 }
 ; TABLE#
  65204 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
