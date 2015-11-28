@@ -197,9 +197,8 @@ def get_caverns(snapshot):
         lines.append('B {} Terminator'.format(a + 654))
 
         # Portal
-        attr = snapshot[a + 655]
         lines.append('N {} The next 37 bytes are copied to #R32911 and define the portal graphic and its location.'.format(a + 655))
-        lines.append('N {} #UDGTABLE {{ #UDGARRAY2,{},4,2;{}-{}-1-16(portal{:02d}) }} TABLE#'.format(a + 655, attr, a + 656, a + 673, cavern_num))
+        lines.append('N {} #UDGTABLE {{ #portal{} }} TABLE#'.format(a + 655, cavern_num))
         lines.append('B {},1 Attribute'.format(a + 655))
         lines.append('B {},32,8 Graphic data'.format(a + 656))
         ab_addr = snapshot[a + 688] + 256 * snapshot[a + 689]

@@ -31,6 +31,7 @@ b28672 DEFS 4096
 @replace=/#tiles\i/#FOR(45600+\1*1024,45663+\1*1024,9);;$n;#UDG($n+1,#PEEK$n)(<tmap>_\1); | ;;
 @replace=/<tmap>/#MAP($n%1024)(,544:background,553:floor,562:crumbling_floor,571:wall,580:conveyor,589:nasty1,598:nasty2,607:extra)
 @replace=/#item\i/#UDG(45748+1024*\1,#PEEK(45685+1024*\1))(item#EVAL\1,,2)
+@replace=/#portal\i/#UDGARRAY(2,#PEEK(45711+1024*\1),4,2);(45712+1024*\1)-(45729+1024*\1)-1-16(portal#EVAL\1,,2)
 @writer=:manicminer.ManicMinerAsmWriter
 ; Manic Miner disassembly
 ; http://skoolkit.ca/
@@ -4147,7 +4148,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,14,4,2;45712-45729-1-16(portal00) }
+; { #portal0 }
 ; TABLE#
  45711 DEFB 14                                 ; Attribute
  45712 DEFB 255,255,146,73,182,219,255,255     ; {Graphic data
@@ -4385,7 +4386,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,83,4,2;46736-46753-1-16(portal01) }
+; { #portal1 }
 ; TABLE#
  46735 DEFB 83                                 ; Attribute
  46736 DEFB 255,255,146,73,146,73,146,73       ; {Graphic data
@@ -4628,7 +4629,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,14,4,2;47760-47777-1-16(portal02) }
+; { #portal2 }
 ; TABLE#
  47759 DEFB 14                                 ; Attribute
  47760 DEFB 255,255,68,68,153,153,34,34        ; {Graphic data
@@ -4877,7 +4878,7 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,14,4,2;48784-48801-1-16(portal03) }
+; { #portal3 }
 ; TABLE#
  48783 DEFB 14                                 ; Attribute
  48784 DEFB 34,34,17,17,136,136,68,68          ; {Graphic data
@@ -5111,7 +5112,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,87,4,2;49808-49825-1-16(portal04) }
+; { #portal4 }
 ; TABLE#
  49807 DEFB 87                                 ; Attribute
  49808 DEFB 255,255,170,170,170,170,170,170    ; {Graphic data
@@ -5352,7 +5353,7 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,14,4,2;50832-50849-1-16(portal05) }
+; { #portal5 }
 ; TABLE#
  50831 DEFB 14                                 ; Attribute
  50832 DEFB 255,255,129,129,191,253,191,253    ; {Graphic data
@@ -5596,7 +5597,7 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,11,4,2;51856-51873-1-16(portal06) }
+; { #portal6 }
 ; TABLE#
  51855 DEFB 11                                 ; Attribute
  51856 DEFB 255,255,129,129,129,129,129,129    ; {Graphic data
@@ -5832,7 +5833,7 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,14,4,2;52880-52897-1-16(portal07) }
+; { #portal7 }
 ; TABLE#
  52879 DEFB 14                                 ; Attribute
  52880 DEFB 255,255,128,1,192,3,160,5          ; {Graphic data
@@ -6070,7 +6071,7 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,14,4,2;53904-53921-1-16(portal08) }
+; { #portal8 }
 ; TABLE#
  53903 DEFB 14                                 ; Attribute
  53904 DEFB 255,255,128,1,129,129,130,65       ; {Graphic data
@@ -6329,7 +6330,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,30,4,2;54928-54945-1-16(portal09) }
+; { #portal9 }
 ; TABLE#
  54927 DEFB 30                                 ; Attribute
  54928 DEFB 255,255,248,143,136,145,170,145    ; {Graphic data
@@ -6573,7 +6574,7 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,86,4,2;55952-55969-1-16(portal10) }
+; { #portal10 }
 ; TABLE#
  55951 DEFB 86                                 ; Attribute
  55952 DEFB 255,255,218,171,234,107,255,255    ; {Graphic data
@@ -6846,7 +6847,7 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,94,4,2;56976-56993-1-16(portal11) }
+; { #portal11 }
 ; TABLE#
  56975 DEFB 94                                 ; Attribute
  56976 DEFB 255,255,128,1,143,241,143,241      ; {Graphic data
@@ -7096,7 +7097,7 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,79,4,2;58000-58017-1-16(portal12) }
+; { #portal12 }
 ; TABLE#
  57999 DEFB 79                                 ; Attribute
  58000 DEFB 3,192,7,224,15,240,9,144           ; {Graphic data
@@ -7343,7 +7344,7 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,30,4,2;59024-59041-1-16(portal13) }
+; { #portal13 }
 ; TABLE#
  59023 DEFB 30                                 ; Attribute
  59024 DEFB 255,255,255,255,252,63,248,31      ; {Graphic data
@@ -7600,7 +7601,7 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,86,4,2;60048-60065-1-16(portal14) }
+; { #portal14 }
 ; TABLE#
  60047 DEFB 86                                 ; Attribute
  60048 DEFB 255,255,128,1,128,1,128,1          ; {Graphic data
@@ -7848,7 +7849,7 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,94,4,2;61072-61089-1-16(portal15) }
+; { #portal15 }
 ; TABLE#
  61071 DEFB 94                                 ; Attribute
  61072 DEFB 255,255,129,129,129,129,255,255    ; {Graphic data
@@ -8092,7 +8093,7 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,76,4,2;62096-62113-1-16(portal16) }
+; { #portal16 }
 ; TABLE#
  62095 DEFB 76                                 ; Attribute
  62096 DEFB 255,255,128,1,191,253,160,5        ; {Graphic data
@@ -8339,7 +8340,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,14,4,2;63120-63137-1-16(portal17) }
+; { #portal17 }
 ; TABLE#
  63119 DEFB 14                                 ; Attribute
  63120 DEFB 255,255,128,1,176,13,160,5         ; {Graphic data
@@ -8602,7 +8603,7 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,78,4,2;64144-64161-1-16(portal18) }
+; { #portal18 }
 ; TABLE#
  64143 DEFB 78                                 ; Attribute
  64144 DEFB 255,255,128,1,191,253,160,5        ; {Graphic data
@@ -8864,7 +8865,7 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,30,4,2;65168-65185-1-16(portal19) }
+; { #portal19 }
 ; TABLE#
  65167 DEFB 30                                 ; Attribute
  65168 DEFB 0,0,7,224,24,24,35,196             ; {Graphic data
