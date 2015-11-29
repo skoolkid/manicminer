@@ -258,17 +258,17 @@ def get_caverns(snapshot):
             elif cavern_num == 1:
                 lines.append('@ 46816 label=PLINTH')
                 desc = 'plinth graphic that appears on the Game Over screen'
-                udgarray_macro = '#UDGARRAY2,71,4,2;46816-46833-1-16(plinth)'
+                udgarray_macro = '#sprite46816,71(plinth)'
                 comment = 'Plinth graphic data'
             elif cavern_num == 2:
                 lines.append('@ 47840 label=BOOT')
                 desc = 'boot graphic that appears on the Game Over screen (see #R35210). It also appears at the bottom of the screen next to the remaining lives when #FACT#6031769(cheat mode) is activated (see #R34608)'
-                udgarray_macro = '#UDGARRAY2,71,4,2;47840-47857-1-16(boot)'
+                udgarray_macro = '#sprite47840,71(boot)'
                 comment = 'Boot graphic data'
             else:
                 lines.append('@ 49888 label=EUGENEG')
                 desc = 'Eugene graphic'
-                udgarray_macro = '#UDGARRAY2,23,4,2;49888-49905-1-16(eugene)'
+                udgarray_macro = '#sprite49888,23(eugene)'
                 comment = 'Eugene graphic data'
             lines.append('N {} The next 32 bytes define the {}.'.format(a + 736, desc))
             lines.append('N {} #UDGTABLE {{ {} }} TABLE#'.format(a + 736, udgarray_macro))
@@ -291,14 +291,14 @@ def get_caverns(snapshot):
             sprite_index = (addr & 224) // 32
             img_fname = '{}_guardian{}'.format(cavern_name.lower().replace(' ', '_'), sprite_index)
             if cavern_num in (7, 11) and sprite_index < 4:
-                attr = 68 # Kong Beast
+                attr_addr = 37389 # Kong Beast
             elif cavern_num == 13:
-                attr = snapshot[a + 733] # Skylab
+                attr_addr = a + 733 # Skylab
             elif cavern_num in (8, 10, 12, 14, 16, 17, 18, 19) and sprite_index < 4:
-                attr = snapshot[a + 733] # Vertical guardian
+                attr_addr = a + 733 # Vertical guardian
             else:
-                attr = snapshot[a + 702] # Horizontal guardian
-            macros.append('#UDGARRAY2,{},4,2;{}-{}-1-16({})'.format(attr, addr, addr + 17, img_fname))
+                attr_addr = a + 702 # Horizontal guardian
+            macros.append('#sprite{},{}({})'.format(addr, attr_addr, img_fname))
         gg_table += ' | '.join(macros) + ' } TABLE#'
         lines.append('N {} The next 256 bytes are copied to #R33024 and define the guardian graphics.'.format(gg_addr))
         lines.append('N {} {}'.format(gg_addr, gg_table))
