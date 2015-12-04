@@ -57,6 +57,9 @@ LinkInternalOperands=1
 120=0000442810284400
 121=00004444443C0438
 
+[PageHeaders]
+Asm-t=Messages
+
 [Index:DataTables:Data tables and buffers]
 GameStatusBuffer
 Caverns
