@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 8684</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="85CC.html">85CC</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8684">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="870E.html">870E</a></span></td>
+</tr>
+</table>
+<div class="description">8684: Start the game (or demo mode)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="85CC.html">85CC</a>.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8684"></span>8684</td>
+<td class="instruction">LD HL,$8425</td>
+<td class="comment-11" rowspan="5">Initialise the score at <a href="8425.html">8425</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8687"></span>8687</td>
+<td class="instruction">LD DE,$8426</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="868a"></span>868A</td>
+<td class="instruction">LD BC,$0009</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="868d"></span>868D</td>
+<td class="instruction">LD (HL),$30</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="868f"></span>868F</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8691"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="870E.html">870E</a> (when teleporting into a cavern or reinitialising the current cavern after Willy has lost a life) and <a href="9028.html">9028</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8691"></span>8691</td>
+<td class="instruction">LD A,($8407)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a href="8407.html">8407</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8694"></span>8694</td>
+<td class="instruction">SLA A</td>
+<td class="comment-11" rowspan="5">Point <span class="register">HL</span> at the first byte of the cavern definition</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8696"></span>8696</td>
+<td class="instruction">SLA A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8698"></span>8698</td>
+<td class="instruction">ADD A,$B0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="869a"></span>869A</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="869b"></span>869B</td>
+<td class="instruction">LD L,$00</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="869d"></span>869D</td>
+<td class="instruction">LD DE,$5E00</td>
+<td class="comment-11" rowspan="3">Copy the cavern's attribute bytes into the buffer at <a href="5E00.html">5E00</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86a0"></span>86A0</td>
+<td class="instruction">LD BC,$0200</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86a3"></span>86A3</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86a5"></span>86A5</td>
+<td class="instruction">LD DE,$8000</td>
+<td class="comment-11" rowspan="3">Copy the rest of the cavern definition into the game status buffer at <a href="../buffers/gbuffer.html#8000">8000</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86a8"></span>86A8</td>
+<td class="instruction">LD BC,$0200</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86ab"></span>86AB</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86ad"></span>86AD</td>
+<td class="instruction">CALL <a href="8A75.html">$8A75</a></td>
+<td class="comment-11" rowspan="1">Draw the current cavern to the screen buffer at <a href="7000.html">7000</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86b0"></span>86B0</td>
+<td class="instruction">LD HL,$5000</td>
+<td class="comment-11" rowspan="5">Clear the bottom third of the display file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86b3"></span>86B3</td>
+<td class="instruction">LD DE,$5001</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86b6"></span>86B6</td>
+<td class="instruction">LD BC,$07FF</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86b9"></span>86B9</td>
+<td class="instruction">LD (HL),$00</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86bb"></span>86BB</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86bd"></span>86BD</td>
+<td class="instruction">LD IX,$8000</td>
+<td class="comment-11" rowspan="4">Print the cavern name (see <a href="8000.html">8000</a>) at (16,0)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86c1"></span>86C1</td>
+<td class="instruction">LD C,$20</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86c3"></span>86C3</td>
+<td class="instruction">LD DE,$5000</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86c6"></span>86C6</td>
+<td class="instruction">CALL <a href="92BA.html">$92BA</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86c9"></span>86C9</td>
+<td class="instruction">LD IX,$8418</td>
+<td class="comment-11" rowspan="4">Print 'AIR' (see <a href="8418.html">8418</a>) at (17,0)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86cd"></span>86CD</td>
+<td class="instruction">LD C,$03</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86cf"></span>86CF</td>
+<td class="instruction">LD DE,$5020</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86d2"></span>86D2</td>
+<td class="instruction">CALL <a href="92BA.html">$92BA</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86d5"></span>86D5</td>
+<td class="instruction">LD A,$52</td>
+<td class="comment-11" rowspan="1">Initialise <span class="register">A</span> to 82; this is the MSB of the display file address at which to start drawing the bar that represents the air supply</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="86d7"></span>86D7</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-11" rowspan="4">Prepare <span class="register">HL</span> and <span class="register">DE</span> for drawing a row of pixels in the air bar</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86d8"></span>86D8</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86d9"></span>86D9</td>
+<td class="instruction">LD L,$24</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86db"></span>86DB</td>
+<td class="instruction">LD E,$25</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86dd"></span>86DD</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-11" rowspan="1">Save the display file address MSB in <span class="register">B</span> briefly</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86de"></span>86DE</td>
+<td class="instruction">LD A,($80BC)</td>
+<td class="comment-11" rowspan="1">Pick up the value of the initial air supply from <a href="80BC.html">80BC</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86e1"></span>86E1</td>
+<td class="instruction">SUB $24</td>
+<td class="comment-11" rowspan="2">Now <span class="register">C</span> determines the length of the air bar (in cell widths)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86e3"></span>86E3</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86e4"></span>86E4</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-11" rowspan="1">Restore the display file address MSB to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86e5"></span>86E5</td>
+<td class="instruction">LD B,$00</td>
+<td class="comment-11" rowspan="1">Now <span class="register">BC</span> determines the length of the air bar (in cell widths)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86e7"></span>86E7</td>
+<td class="instruction">LD (HL),$FF</td>
+<td class="comment-11" rowspan="2">Draw a single row of pixels across <span class="register">C</span> cells</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86e9"></span>86E9</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86eb"></span>86EB</td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="1">Increment the display file address MSB in <span class="register">A</span> (moving down to the next row of pixels)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86ec"></span>86EC</td>
+<td class="instruction">CP $56</td>
+<td class="comment-11" rowspan="1">Have we drawn all four rows of pixels in the air bar yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86ee"></span>86EE</td>
+<td class="instruction">JR NZ,<a href="8684.html#86d7">$86D7</a></td>
+<td class="comment-11" rowspan="1">If not, jump back to draw the next one</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86f0"></span>86F0</td>
+<td class="instruction">LD IX,$842F</td>
+<td class="comment-11" rowspan="4">Print 'High Score 000000&#160;&#160;&#160;Score 000000' (see <a href="842F.html">842F</a>) at (19,0)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86f4"></span>86F4</td>
+<td class="instruction">LD DE,$5060</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86f7"></span>86F7</td>
+<td class="instruction">LD C,$20</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86f9"></span>86F9</td>
+<td class="instruction">CALL <a href="92BA.html">$92BA</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86fc"></span>86FC</td>
+<td class="instruction">LD A,($8073)</td>
+<td class="comment-11" rowspan="1">Pick up the border colour for the current cavern from <a href="8073.html">8073</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86ff"></span>86FF</td>
+<td class="instruction">LD C,$FE</td>
+<td class="comment-11" rowspan="2">Set the border colour</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8701"></span>8701</td>
+<td class="instruction">OUT (C),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8703"></span>8703</td>
+<td class="instruction">LD A,($845A)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="845A.html">845A</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8706"></span>8706</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Are we in demo mode?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8707"></span>8707</td>
+<td class="instruction">JR Z,<a href="870E.html">$870E</a></td>
+<td class="comment-11" rowspan="1">If not, enter the main loop now</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8709"></span>8709</td>
+<td class="instruction">LD A,$40</td>
+<td class="comment-11" rowspan="2">Reset the game mode indicator at <a href="845A.html">845A</a> to 64 (we're in demo mode)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="870b"></span>870B</td>
+<td class="instruction">LD ($845A),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+
+<div class="comments">
+<div class="paragraph">
+This routine continues into the main loop at <a href="870E.html">870E</a>.
+</div>
+</div>
+</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="85CC.html">85CC</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8684">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="870E.html">870E</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Data at 8408</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8407.html">8407</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8408">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8418.html">8418</a></span></td>
+</tr>
+</table>
+<div class="description">8408: Left-right movement table</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="8BDD.html">8BDD</a>. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at <a href="806A.html">806A</a> to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor).
+</div>
+<div class="paragraph">
+One of the first four entries is used when Willy is not moving.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8408"></span>8408</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-11" rowspan="1">V=0 (facing right, no movement) + no movement: V'=0 (no change)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8409"></span>8409</td>
+<td class="instruction">DEFB $01</td>
+<td class="comment-11" rowspan="1">V=1 (facing left, no movement) + no movement: V'=1 (no change)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="840a"></span>840A</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-11" rowspan="1">V=2 (facing right, moving) + no movement: V'=0 (facing right, no movement) (i.e. stop)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="840b"></span>840B</td>
+<td class="instruction">DEFB $01</td>
+<td class="comment-11" rowspan="1">V=3 (facing left, moving) + no movement: V'=1 (facing left, no movement) (i.e. stop)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="840c"></span>
+<div class="comments">
+<div class="paragraph">
+One of the next four entries is used when Willy is moving left.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="840c"></span>840C</td>
+<td class="instruction">DEFB $01</td>
+<td class="comment-11" rowspan="1">V=0 (facing right, no movement) + move left: V'=1 (facing left, no movement) (i.e. turn around)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="840d"></span>840D</td>
+<td class="instruction">DEFB $03</td>
+<td class="comment-11" rowspan="1">V=1 (facing left, no movement) + move left: V'=3 (facing left, moving)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="840e"></span>840E</td>
+<td class="instruction">DEFB $01</td>
+<td class="comment-11" rowspan="1">V=2 (facing right, moving) + move left: V'=1 (facing left, no movement) (i.e. turn around)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="840f"></span>840F</td>
+<td class="instruction">DEFB $03</td>
+<td class="comment-11" rowspan="1">V=3 (facing left, moving) + move left: V'=3 (no change)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8410"></span>
+<div class="comments">
+<div class="paragraph">
+One of the next four entries is used when Willy is moving right.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8410"></span>8410</td>
+<td class="instruction">DEFB $02</td>
+<td class="comment-11" rowspan="1">V=0 (facing right, no movement) + move right: V'=2 (facing right, moving)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8411"></span>8411</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-11" rowspan="1">V=1 (facing left, no movement) + move right: V'=0 (facing right, no movement) (i.e. turn around)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8412"></span>8412</td>
+<td class="instruction">DEFB $02</td>
+<td class="comment-11" rowspan="1">V=2 (facing right, moving) + move right: V'=2 (no change)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8413"></span>8413</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-11" rowspan="1">V=3 (facing left, moving) + move right: V'=0 (facing right, no movement) (i.e. turn around)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8414"></span>
+<div class="comments">
+<div class="paragraph">
+One of the final four entries is used when Willy is being pulled both left and right; each entry leaves the flags at <a href="806A.html">806A</a> unchanged (so Willy carries on moving in the direction he's already moving, or remains stationary).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8414"></span>8414</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-11" rowspan="1">V=V'=0 (facing right, no movement)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8415"></span>8415</td>
+<td class="instruction">DEFB $01</td>
+<td class="comment-11" rowspan="1">V=V'=1 (facing left, no movement)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8416"></span>8416</td>
+<td class="instruction">DEFB $02</td>
+<td class="comment-11" rowspan="1">V=V'=2 (facing right, moving)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8417"></span>8417</td>
+<td class="instruction">DEFB $03</td>
+<td class="comment-11" rowspan="1">V=V'=3 (facing left, moving)</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8407.html">8407</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8408">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8418.html">8418</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

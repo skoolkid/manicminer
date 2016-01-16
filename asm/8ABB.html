@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 8ABB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8A75.html">8A75</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8abb">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8BBA.html">8BBA</a></span></td>
+</tr>
+</table>
+<div class="description">8ABB: Move Willy (1)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="870E.html">870E</a>. This routine deals with Willy if he's jumping or falling.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8abb"></span>8ABB</td>
+<td class="instruction">LD A,($806B)</td>
+<td class="comment-11" rowspan="1">Pick up the airborne status indicator from <a href="806B.html">806B</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8abe"></span>8ABE</td>
+<td class="instruction">CP $01</td>
+<td class="comment-11" rowspan="1">Is Willy jumping?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ac0"></span>8AC0</td>
+<td class="instruction">JR NZ,<a href="8ABB.html#8b10">$8B10</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8ac2"></span>
+<div class="comments">
+<div class="paragraph">
+Willy is currently jumping.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ac2"></span>8AC2</td>
+<td class="instruction">LD A,($806E)</td>
+<td class="comment-11" rowspan="1">Pick up the jumping animation counter (0-17) from <a href="806E.html">806E</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ac5"></span>8AC5</td>
+<td class="instruction">RES 0,A</td>
+<td class="comment-11" rowspan="2">Now -8&lt;=<span class="register">A</span>&lt;=8 (and <span class="register">A</span> is even)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ac7"></span>8AC7</td>
+<td class="instruction">SUB $08</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ac9"></span>8AC9</td>
+<td class="instruction">LD HL,$8068</td>
+<td class="comment-11" rowspan="3">Adjust Willy's pixel y-coordinate at <a href="8068.html">8068</a> depending on where Willy is in the jump</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8acc"></span>8ACC</td>
+<td class="instruction">ADD A,(HL)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8acd"></span>8ACD</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ace"></span>8ACE</td>
+<td class="instruction">CALL <a href="8ABB.html#8b82">$8B82</a></td>
+<td class="comment-11" rowspan="1">Adjust Willy's attribute buffer location at <a href="806C.html">806C</a> depending on his pixel y-coordinate</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ad1"></span>8AD1</td>
+<td class="instruction">LD A,($803B)</td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the wall tile for the current cavern from <a href="8020.html#803b">803B</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ad4"></span>8AD4</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Is the top-left cell of Willy's sprite overlapping a wall tile?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ad5"></span>8AD5</td>
+<td class="instruction">JP Z,<a href="8ABB.html#8ba2">$8BA2</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ad8"></span>8AD8</td>
+<td class="instruction">INC HL</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the top-right cell occupied by Willy's sprite</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ad9"></span>8AD9</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Is the top-right cell of Willy's sprite overlapping a wall tile?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ada"></span>8ADA</td>
+<td class="instruction">JP Z,<a href="8ABB.html#8ba2">$8BA2</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8add"></span>8ADD</td>
+<td class="instruction">LD A,($806E)</td>
+<td class="comment-11" rowspan="3">Increment the jumping animation counter at <a href="806E.html">806E</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ae0"></span>8AE0</td>
+<td class="instruction">INC A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ae1"></span>8AE1</td>
+<td class="instruction">LD ($806E),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ae4"></span>8AE4</td>
+<td class="instruction">SUB $08</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=J-8, where J (1-18) is the new value of the jumping animation counter</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ae6"></span>8AE6</td>
+<td class="instruction">JP P,<a href="8ABB.html#8aeb">$8AEB</a></td>
+<td class="comment-11" rowspan="1">Jump if J&gt;=8</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ae9"></span>8AE9</td>
+<td class="instruction">NEG</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=8-J (1&lt;=J&lt;=7, 1&lt;=<span class="register">A</span>&lt;=7)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8aeb"></span>8AEB</td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=1+ABS(J-8)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aec"></span>8AEC</td>
+<td class="instruction">RLCA</td>
+<td class="comment-11" rowspan="4"><span class="register">D</span>=8*(1+ABS(J-8)); this value determines the pitch of the jumping sound effect (rising as Willy rises, falling as Willy falls)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aed"></span>8AED</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aee"></span>8AEE</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aef"></span>8AEF</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8af0"></span>8AF0</td>
+<td class="instruction">LD C,$20</td>
+<td class="comment-11" rowspan="1"><span class="register">C</span>=32; this value determines the duration of the jumping sound effect</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8af2"></span>8AF2</td>
+<td class="instruction">LD A,($8073)</td>
+<td class="comment-11" rowspan="1">Pick up the border colour for the current cavern from <a href="8073.html">8073</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8af5"></span>8AF5</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-11" rowspan="6">Make a jumping sound effect</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8af7"></span>8AF7</td>
+<td class="instruction">XOR $18</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8af9"></span>8AF9</td>
+<td class="instruction">LD B,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8afa"></span>8AFA</td>
+<td class="instruction">DJNZ <a href="8ABB.html#8afa">$8AFA</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8afc"></span>8AFC</td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8afd"></span>8AFD</td>
+<td class="instruction">JR NZ,<a href="8ABB.html#8af5">$8AF5</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aff"></span>8AFF</td>
+<td class="instruction">LD A,($806E)</td>
+<td class="comment-11" rowspan="1">Pick up the jumping animation counter (1-18) from <a href="806E.html">806E</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b02"></span>8B02</td>
+<td class="instruction">CP $12</td>
+<td class="comment-11" rowspan="1">Has Willy reached the end of the jump?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b04"></span>8B04</td>
+<td class="instruction">JP Z,<a href="8ABB.html#8b96">$8B96</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b07"></span>8B07</td>
+<td class="instruction">CP $10</td>
+<td class="comment-11" rowspan="1">Is the jumping animation counter now 16?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b09"></span>8B09</td>
+<td class="instruction">JR Z,<a href="8ABB.html#8b10">$8B10</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b0b"></span>8B0B</td>
+<td class="instruction">CP $0D</td>
+<td class="comment-11" rowspan="1">Is the jumping animation counter now 13?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b0d"></span>8B0D</td>
+<td class="instruction">JP NZ,<a href="8BDD.html#8c83">$8C83</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8b10"></span>
+<div class="comments">
+<div class="paragraph">
+If we get here, then Willy is standing on the floor, or he's falling, or his jumping animation counter is 13 (at which point Willy is on his way down and is exactly two cell-heights above where he started the jump) or 16 (at which point Willy is on his way down and is exactly one cell-height above where he started the jump).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8b10"></span>8B10</td>
+<td class="instruction">LD A,($8068)</td>
+<td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="8068.html">8068</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b13"></span>8B13</td>
+<td class="instruction">AND $0F</td>
+<td class="comment-11" rowspan="1">Does Willy's sprite occupy six cells at the moment?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b15"></span>8B15</td>
+<td class="instruction">JR NZ,<a href="8ABB.html#8b51">$8B51</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b17"></span>8B17</td>
+<td class="instruction">LD HL,($806C)</td>
+<td class="comment-11" rowspan="1">Pick up Willy's attribute buffer coordinates from <a href="806C.html">806C</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b1a"></span>8B1A</td>
+<td class="instruction">LD DE,$0040</td>
+<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the left-hand cell below Willy's sprite</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b1d"></span>8B1D</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b1e"></span>8B1E</td>
+<td class="instruction">LD A,($8032)</td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the crumbling floor tile for the current cavern from <a href="8020.html#8032">8032</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b21"></span>8B21</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Does the left-hand cell below Willy's sprite contain a crumbling floor tile?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b22"></span>8B22</td>
+<td class="instruction">CALL Z,<a href="8BBA.html">$8BBA</a></td>
+<td class="comment-11" rowspan="1">If so, make it crumble</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b25"></span>8B25</td>
+<td class="instruction">LD A,($804D)</td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the first nasty tile for the current cavern from <a href="8020.html#804d">804D</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b28"></span>8B28</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Does the left-hand cell below Willy's sprite contain a nasty tile?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b29"></span>8B29</td>
+<td class="instruction">JR Z,<a href="8ABB.html#8b51">$8B51</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b2b"></span>8B2B</td>
+<td class="instruction">LD A,($8056)</td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the second nasty tile for the current cavern from <a href="8020.html#8056">8056</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b2e"></span>8B2E</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Does the left-hand cell below Willy's sprite contain a nasty tile?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b2f"></span>8B2F</td>
+<td class="instruction">JR Z,<a href="8ABB.html#8b51">$8B51</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b31"></span>8B31</td>
+<td class="instruction">INC HL</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the right-hand cell below Willy's sprite</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b32"></span>8B32</td>
+<td class="instruction">LD A,($8032)</td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the crumbling floor tile for the current cavern from <a href="8020.html#8032">8032</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b35"></span>8B35</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Does the right-hand cell below Willy's sprite contain a crumbling floor tile?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b36"></span>8B36</td>
+<td class="instruction">CALL Z,<a href="8BBA.html">$8BBA</a></td>
+<td class="comment-11" rowspan="1">If so, make it crumble</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b39"></span>8B39</td>
+<td class="instruction">LD A,($804D)</td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the first nasty tile for the current cavern from <a href="8020.html#804d">804D</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b3c"></span>8B3C</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Does the right-hand cell below Willy's sprite contain a nasty tile?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b3d"></span>8B3D</td>
+<td class="instruction">JR Z,<a href="8ABB.html#8b51">$8B51</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b3f"></span>8B3F</td>
+<td class="instruction">LD A,($8056)</td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the second nasty tile for the current cavern from <a href="8020.html#8056">8056</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b42"></span>8B42</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Does the right-hand cell below Willy's sprite contain a nasty tile?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b43"></span>8B43</td>
+<td class="instruction">JR Z,<a href="8ABB.html#8b51">$8B51</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b45"></span>8B45</td>
+<td class="instruction">LD A,($8020)</td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the background tile for the current cavern from <a href="8020.html">8020</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b48"></span>8B48</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Set the zero flag if the right-hand cell below Willy's sprite is empty</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b49"></span>8B49</td>
+<td class="instruction">DEC HL</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the left-hand cell below Willy's sprite</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b4a"></span>8B4A</td>
+<td class="instruction">JP NZ,<a href="8BDD.html">$8BDD</a></td>
+<td class="comment-11" rowspan="1">Jump if the right-hand cell below Willy's sprite is not empty</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b4d"></span>8B4D</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Is the left-hand cell below Willy's sprite empty?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b4e"></span>8B4E</td>
+<td class="instruction">JP NZ,<a href="8BDD.html">$8BDD</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8b51"></span>8B51</td>
+<td class="instruction">LD A,($806B)</td>
+<td class="comment-11" rowspan="1">Pick up the airborne status indicator from <a href="806B.html">806B</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b54"></span>8B54</td>
+<td class="instruction">CP $01</td>
+<td class="comment-11" rowspan="1">Is Willy jumping?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b56"></span>8B56</td>
+<td class="instruction">JP Z,<a href="8BDD.html#8c83">$8C83</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8b59"></span>
+<div class="comments">
+<div class="paragraph">
+If we get here, then Willy is either in the process of falling or just about to start falling.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b59"></span>8B59</td>
+<td class="instruction">LD HL,$806A</td>
+<td class="comment-11" rowspan="2">Reset bit 1 at <a href="806A.html">806A</a>: Willy is not moving left or right</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b5c"></span>8B5C</td>
+<td class="instruction">RES 1,(HL)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b5e"></span>8B5E</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Is Willy already falling?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b5f"></span>8B5F</td>
+<td class="instruction">JP Z,<a href="8ABB.html#8b9c">$8B9C</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b62"></span>8B62</td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="2">Increment the airborne status indicator at <a href="806B.html">806B</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b63"></span>8B63</td>
+<td class="instruction">LD ($806B),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b66"></span>8B66</td>
+<td class="instruction">RLCA</td>
+<td class="comment-11" rowspan="5"><span class="register">D</span>=16*<span class="register">A</span>; this value determines the pitch of the falling sound effect</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b67"></span>8B67</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b68"></span>8B68</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b69"></span>8B69</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b6a"></span>8B6A</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b6b"></span>8B6B</td>
+<td class="instruction">LD C,$20</td>
+<td class="comment-11" rowspan="1"><span class="register">C</span>=32; this value determines the duration of the falling sound effect</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b6d"></span>8B6D</td>
+<td class="instruction">LD A,($8073)</td>
+<td class="comment-11" rowspan="1">Pick up the border colour for the current cavern from <a href="8073.html">8073</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8b70"></span>8B70</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-11" rowspan="6">Make a falling sound effect</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b72"></span>8B72</td>
+<td class="instruction">XOR $18</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b74"></span>8B74</td>
+<td class="instruction">LD B,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8b75"></span>8B75</td>
+<td class="instruction">DJNZ <a href="8ABB.html#8b75">$8B75</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b77"></span>8B77</td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b78"></span>8B78</td>
+<td class="instruction">JR NZ,<a href="8ABB.html#8b70">$8B70</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b7a"></span>8B7A</td>
+<td class="instruction">LD A,($8068)</td>
+<td class="comment-11" rowspan="3">Add 8 to Willy's pixel y-coordinate at <a href="8068.html">8068</a>; this moves Willy downwards by 4 pixels</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b7d"></span>8B7D</td>
+<td class="instruction">ADD A,$08</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b7f"></span>8B7F</td>
+<td class="instruction">LD ($8068),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8b82"></span>8B82</td>
+<td class="instruction">AND $F0</td>
+<td class="comment-11" rowspan="2"><span class="register">L</span>=16*Y, where Y is Willy's screen y-coordinate (0-14)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b84"></span>8B84</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b85"></span>8B85</td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="1">Clear <span class="register">A</span> and the carry flag</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b86"></span>8B86</td>
+<td class="instruction">RL L</td>
+<td class="comment-11" rowspan="1">Now <span class="register">L</span>=32*(Y-8*INT(Y/8)), and the carry flag is set if Willy is in the lower half of the cavern (Y&gt;=8)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b88"></span>8B88</td>
+<td class="instruction">ADC A,$5C</td>
+<td class="comment-11" rowspan="2"><span class="register">H</span>=92 or 93 (MSB of the address of Willy's location in the attribute buffer)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b8a"></span>8B8A</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b8b"></span>8B8B</td>
+<td class="instruction">LD A,($806C)</td>
+<td class="comment-11" rowspan="2">Pick up Willy's screen x-coordinate (1-29) from bits 0-5 at <a href="806C.html">806C</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b8e"></span>8B8E</td>
+<td class="instruction">AND $1F</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b90"></span>8B90</td>
+<td class="instruction">OR L</td>
+<td class="comment-11" rowspan="2">Now <span class="register">L</span> holds the LSB of Willy's attribute buffer address</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b91"></span>8B91</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b92"></span>8B92</td>
+<td class="instruction">LD ($806C),HL</td>
+<td class="comment-11" rowspan="1">Store Willy's updated attribute buffer location at <a href="806C.html">806C</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b95"></span>8B95</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8b96"></span>
+<div class="comments">
+<div class="paragraph">
+Willy has just finished a jump.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8b96"></span>8B96</td>
+<td class="instruction">LD A,$06</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 6: Willy will continue to fall unless he's landed on a wall or floor block</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b98"></span>8B98</td>
+<td class="instruction">LD ($806B),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b9b"></span>8B9B</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8b9c"></span>
+<div class="comments">
+<div class="paragraph">
+Willy has just started falling.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8b9c"></span>8B9C</td>
+<td class="instruction">LD A,$02</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 2</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8b9e"></span>8B9E</td>
+<td class="instruction">LD ($806B),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ba1"></span>8BA1</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8ba2"></span>
+<div class="comments">
+<div class="paragraph">
+The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8ba2"></span>8BA2</td>
+<td class="instruction">LD A,($8068)</td>
+<td class="comment-11" rowspan="4">Adjust Willy's pixel y-coordinate at <a href="8068.html">8068</a> so that the top row of cells of his sprite is just below the wall tile</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ba5"></span>8BA5</td>
+<td class="instruction">ADD A,$10</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ba7"></span>8BA7</td>
+<td class="instruction">AND $F0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ba9"></span>8BA9</td>
+<td class="instruction">LD ($8068),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8bac"></span>8BAC</td>
+<td class="instruction">CALL <a href="8ABB.html#8b82">$8B82</a></td>
+<td class="comment-11" rowspan="1">Adjust Willy's attribute buffer location at <a href="806C.html">806C</a> to account for this new pixel y-coordinate</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8baf"></span>8BAF</td>
+<td class="instruction">LD A,$02</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 2: Willy has started falling</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8bb1"></span>8BB1</td>
+<td class="instruction">LD ($806B),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8bb4"></span>8BB4</td>
+<td class="instruction">LD HL,$806A</td>
+<td class="comment-11" rowspan="2">Reset bit 1 at <a href="806A.html">806A</a>: Willy is not moving left or right</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8bb7"></span>8BB7</td>
+<td class="instruction">RES 1,(HL)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8bb9"></span>8BB9</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8A75.html">8A75</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8abb">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8BBA.html">8BBA</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

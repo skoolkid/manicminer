@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Game status buffer entry at 80BC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-g">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Game status buffer</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="80B4.html">80B4</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#80bc">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="80BD.html">80BD</a></span></td>
+</tr>
+</table>
+<div class="description">80BC: Remaining air supply</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Initialised (always to 63 in practice) and used by the routine at <a href="8684.html">8684</a>, updated by the routine at <a href="8A3C.html">8A3C</a>, and also used by the routine at <a href="9028.html">9028</a>. Its value ranges from 36 to 63 and is actually the LSB of the display file address for the cell at the right end of the air bar. The amount of air to draw in this cell is determined by the value of the game clock at <a href="80BD.html">80BD</a>.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="80bc"></span>80BC</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="80B4.html">80B4</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#80bc">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="80BD.html">80BD</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

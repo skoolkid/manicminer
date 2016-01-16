@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 92DC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="92CB.html">92CB</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#92dc">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="932B.html">932B</a></span></td>
+</tr>
+</table>
+<div class="description">92DC: Play the theme tune (The Blue Danube)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="85CC.html">85CC</a>. Returns with the zero flag reset if ENTER or the fire button is pressed while the tune is being played.
+</div>
+</div>
+<table class="input-1">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">IY</td>
+<td class="register-desc"><a href="846E.html">846E</a> (tune data)</td>
+</tr>
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="92dc"></span>92DC</td>
+<td class="instruction">LD A,(IY+$00)</td>
+<td class="comment-11" rowspan="1">Pick up the next byte of tune data from the table at <a href="846E.html">846E</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92df"></span>92DF</td>
+<td class="instruction">CP $FF</td>
+<td class="comment-11" rowspan="1">Has the tune finished?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92e1"></span>92E1</td>
+<td class="instruction">RET Z</td>
+<td class="comment-11" rowspan="1">Return (with the zero flag set) if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92e2"></span>92E2</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-11" rowspan="1">Copy the first byte of data for this note (which determines the duration) to <span class="register">C</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92e3"></span>92E3</td>
+<td class="instruction">LD B,$00</td>
+<td class="comment-11" rowspan="1">Initialise <span class="register">B</span>, which will be used as a delay counter in the note-producing loop</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92e5"></span>92E5</td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="1">Set <span class="register">A</span>=0 (for no apparent reasaon)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92e6"></span>92E6</td>
+<td class="instruction">LD D,(IY+$01)</td>
+<td class="comment-11" rowspan="1">Pick up the second byte of data for this note</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92e9"></span>92E9</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-11" rowspan="1">Copy it to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92ea"></span>92EA</td>
+<td class="instruction">CALL <a href="932B.html">$932B</a></td>
+<td class="comment-11" rowspan="1">Calculate the attribute file address for the corresponding piano key</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92ed"></span>92ED</td>
+<td class="instruction">LD (HL),$50</td>
+<td class="comment-11" rowspan="1">Set the attribute byte for the piano key to 80 (INK 0: PAPER 2: BRIGHT 1)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92ef"></span>92EF</td>
+<td class="instruction">LD E,(IY+$02)</td>
+<td class="comment-11" rowspan="1">Pick up the third byte of data for this note</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92f2"></span>92F2</td>
+<td class="instruction">LD A,E</td>
+<td class="comment-11" rowspan="1">Copy it to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92f3"></span>92F3</td>
+<td class="instruction">CALL <a href="932B.html">$932B</a></td>
+<td class="comment-11" rowspan="1">Calculate the attribute file address for the corresponding piano key</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92f6"></span>92F6</td>
+<td class="instruction">LD (HL),$28</td>
+<td class="comment-11" rowspan="1">Set the attribute byte for the piano key to 40 (INK 0: PAPER 5: BRIGHT 0)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="92f8"></span>92F8</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-11" rowspan="12">Produce a sound based on the frequency parameters in the second and third bytes of data for this note (copied into <span class="register">D</span> and <span class="register">E</span>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92fa"></span>92FA</td>
+<td class="instruction">DEC D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92fb"></span>92FB</td>
+<td class="instruction">JR NZ,<a href="92DC.html#9302">$9302</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92fd"></span>92FD</td>
+<td class="instruction">LD D,(IY+$01)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9300"></span>9300</td>
+<td class="instruction">XOR $18</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="9302"></span>9302</td>
+<td class="instruction">DEC E</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9303"></span>9303</td>
+<td class="instruction">JR NZ,<a href="92DC.html#930a">$930A</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9305"></span>9305</td>
+<td class="instruction">LD E,(IY+$02)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9308"></span>9308</td>
+<td class="instruction">XOR $18</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="930a"></span>930A</td>
+<td class="instruction">DJNZ <a href="92DC.html#92f8">$92F8</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="930c"></span>930C</td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="930d"></span>930D</td>
+<td class="instruction">JR NZ,<a href="92DC.html#92f8">$92F8</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="930f"></span>930F</td>
+<td class="instruction">CALL <a href="9337.html">$9337</a></td>
+<td class="comment-11" rowspan="1">Check whether ENTER or the fire button is being pressed</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9312"></span>9312</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-11" rowspan="1">Return (with the zero flag reset) if it is</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9313"></span>9313</td>
+<td class="instruction">LD A,(IY+$01)</td>
+<td class="comment-11" rowspan="1">Pick up the second byte of data for this note</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9316"></span>9316</td>
+<td class="instruction">CALL <a href="932B.html">$932B</a></td>
+<td class="comment-11" rowspan="1">Calculate the attribute file address for the corresponding piano key</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9319"></span>9319</td>
+<td class="instruction">LD (HL),$38</td>
+<td class="comment-11" rowspan="1">Set the attribute byte for the piano key back to 56 (INK 0: PAPER 7: BRIGHT 0)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="931b"></span>931B</td>
+<td class="instruction">LD A,(IY+$02)</td>
+<td class="comment-11" rowspan="1">Pick up the third byte of data for this note</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="931e"></span>931E</td>
+<td class="instruction">CALL <a href="932B.html">$932B</a></td>
+<td class="comment-11" rowspan="1">Calculate the attribute file address for the corresponding piano key</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9321"></span>9321</td>
+<td class="instruction">LD (HL),$38</td>
+<td class="comment-11" rowspan="1">Set the attribute byte for the piano key back to 56 (INK 0: PAPER 7: BRIGHT 0)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9323"></span>9323</td>
+<td class="instruction">INC IY</td>
+<td class="comment-11" rowspan="3">Move <span class="register">IY</span> along to the data for the next note in the tune</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9325"></span>9325</td>
+<td class="instruction">INC IY</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9327"></span>9327</td>
+<td class="instruction">INC IY</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9329"></span>9329</td>
+<td class="instruction">JR <a href="92DC.html#92dc">$92DC</a></td>
+<td class="comment-11" rowspan="1">Jump back to play the next note</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="92CB.html">92CB</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#92dc">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="932B.html">932B</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

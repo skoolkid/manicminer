@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 921B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="9135.html">9135</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#921b">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="923A.html">923A</a></span></td>
+</tr>
+</table>
+<div class="description">921B: Flip a switch in a Kong Beast cavern if Willy is touching it</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="9135.html">9135</a>. Returns with the zero flag set if Willy flips the switch.
+</div>
+</div>
+<table class="input-1">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">Address of the switch's location in the attribute buffer at <a href="5C00.html">5C00</a></td>
+</tr>
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="921b"></span>921B</td>
+<td class="instruction">LD A,($806C)</td>
+<td class="comment-11" rowspan="1">Pick up the LSB of the address of Willy's location in the attribute buffer at <a href="5C00.html">5C00</a> from <a href="806C.html">806C</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="921e"></span>921E</td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="3">Is it equal to or one less than the LSB of the address of the switch's location?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="921f"></span>921F</td>
+<td class="instruction">AND $FE</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9221"></span>9221</td>
+<td class="instruction">CP L</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9222"></span>9222</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-11" rowspan="1">Return (with the zero flag reset) if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9223"></span>9223</td>
+<td class="instruction">LD A,($806D)</td>
+<td class="comment-11" rowspan="1">Pick up the MSB of the address of Willy's location in the attribute buffer at <a href="5C00.html">5C00</a> from <a href="806C.html">32877</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9226"></span>9226</td>
+<td class="instruction">CP H</td>
+<td class="comment-11" rowspan="1">Does it match the MSB of the address of the switch's location?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9227"></span>9227</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-11" rowspan="1">Return (with the zero flag reset) if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9228"></span>9228</td>
+<td class="instruction">LD A,($8065)</td>
+<td class="comment-11" rowspan="1">Pick up the sixth byte of the graphic data for the switch tile from <a href="8020.html#805f">32869</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="922b"></span>922B</td>
+<td class="instruction">LD H,$75</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the sixth row of pixels of the switch tile in the screen buffer at <a href="7000.html">7000</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="922d"></span>922D</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-11" rowspan="1">Has the switch already been flipped?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="922e"></span>922E</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-11" rowspan="1">Return (with the zero flag reset) if so</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="922f"></span>
+<div class="comments">
+<div class="paragraph">
+Willy is flipping the switch.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="922f"></span>922F</td>
+<td class="instruction">LD (HL),$08</td>
+<td class="comment-11" rowspan="5">Update the sixth, seventh and eighth rows of pixels of the switch tile in the screen buffer at <a href="7000.html">7000</a> to make it appear flipped</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9231"></span>9231</td>
+<td class="instruction">INC H</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9232"></span>9232</td>
+<td class="instruction">LD (HL),$06</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9234"></span>9234</td>
+<td class="instruction">INC H</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9235"></span>9235</td>
+<td class="instruction">LD (HL),$06</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9237"></span>9237</td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="1">Set the zero flag: Willy has flipped the switch</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9238"></span>9238</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">This instruction is redundant</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9239"></span>9239</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="9135.html">9135</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#921b">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="923A.html">923A</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

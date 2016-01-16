@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 92BA</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="927F.html">927F</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#92ba">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="92CB.html">92CB</a></span></td>
+</tr>
+</table>
+<div class="description">92BA: Print a message</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="85CC.html">85CC</a>, <a href="8684.html">8684</a>, <a href="870E.html">870E</a>, <a href="8944.html">8944</a> and <a href="9028.html">9028</a>.
+</div>
+</div>
+<table class="input-1">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">IX</td>
+<td class="register-desc">Address of the message</td>
+</tr>
+<tr>
+<td class="register">C</td>
+<td class="register-desc">Length of the message</td>
+</tr>
+<tr>
+<td class="register">DE</td>
+<td class="register-desc">Display file address</td>
+</tr>
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="92ba"></span>92BA</td>
+<td class="instruction">LD A,(IX+$00)</td>
+<td class="comment-11" rowspan="1">Collect a character from the message</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92bd"></span>92BD</td>
+<td class="instruction">CALL <a href="92CB.html">$92CB</a></td>
+<td class="comment-11" rowspan="1">Print it</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92c0"></span>92C0</td>
+<td class="instruction">INC IX</td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the next character in the message</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92c2"></span>92C2</td>
+<td class="instruction">INC E</td>
+<td class="comment-11" rowspan="4">Point <span class="register">DE</span> at the next character cell (subtracting 8 from <span class="register">D</span> compensates for the operations performed by the routine at <a href="92CB.html">92CB</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92c3"></span>92C3</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92c4"></span>92C4</td>
+<td class="instruction">SUB $08</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92c6"></span>92C6</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92c7"></span>92C7</td>
+<td class="instruction">DEC C</td>
+<td class="comment-11" rowspan="1">Have we printed the entire message yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92c8"></span>92C8</td>
+<td class="instruction">JR NZ,<a href="92BA.html#92ba">$92BA</a></td>
+<td class="comment-11" rowspan="1">If not, jump back to print the next character</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="92ca"></span>92CA</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="927F.html">927F</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#92ba">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="92CB.html">92CB</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

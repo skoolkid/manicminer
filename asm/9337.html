@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 9337</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="932B.html">932B</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#9337">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="934C.html">934C</a></span></td>
+</tr>
+</table>
+<div class="description">9337: Check whether ENTER or the fire button is being pressed</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="92DC.html">92DC</a>. Returns with the zero flag reset if ENTER or the fire button on the joystick is being pressed.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="9337"></span>9337</td>
+<td class="instruction">LD A,($8459)</td>
+<td class="comment-11" rowspan="1">Pick up the Kempston joystick indicator from <a href="8459.html">8459</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="933a"></span>933A</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Is the joystick connected?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="933b"></span>933B</td>
+<td class="instruction">JR Z,<a href="9337.html#9342">$9342</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="933d"></span>933D</td>
+<td class="instruction">IN A,($1F)</td>
+<td class="comment-11" rowspan="1">Collect input from the joystick</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="933f"></span>933F</td>
+<td class="instruction">BIT 4,A</td>
+<td class="comment-11" rowspan="1">Is the fire button being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9341"></span>9341</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-11" rowspan="1">Return (with the zero flag reset) if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="9342"></span>9342</td>
+<td class="instruction">LD BC,$BFFE</td>
+<td class="comment-11" rowspan="2">Read keys H-J-K-L-ENTER</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9345"></span>9345</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9347"></span>9347</td>
+<td class="instruction">AND $01</td>
+<td class="comment-11" rowspan="1">Keep only bit 0 of the result (ENTER)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9349"></span>9349</td>
+<td class="instruction">CP $01</td>
+<td class="comment-11" rowspan="1">Reset the zero flag if ENTER is being pressed</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="934b"></span>934B</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="932B.html">932B</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#9337">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="934C.html">934C</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

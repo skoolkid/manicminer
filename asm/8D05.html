@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 8D05</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8BDD.html">8BDD</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8d05">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8D0F.html">8D0F</a></span></td>
+</tr>
+</table>
+<div class="description">8D05: Kill Willy</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="925F.html">925F</a> when Willy hits a nasty.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8d05"></span>8D05</td>
+<td class="instruction">POP HL</td>
+<td class="comment-11" rowspan="1">Drop the return address from the stack</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8d06"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="8BDD.html">8BDD</a> (when Willy lands after falling from too great a height), <a href="8DAA.html">8DAA</a> (when Willy collides with a horizontal guardian), <a href="8DF8.html">8DF8</a> (when Willy collides with Eugene), <a href="8EF1.html">8EF1</a> (when Willy collides with a vertical guardian) and <a href="9135.html">9135</a> (when Willy collides with the Kong Beast).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8d06"></span>8D06</td>
+<td class="instruction">POP HL</td>
+<td class="comment-11" rowspan="1">Drop the return address from the stack</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8d07"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="8E75.html">8E75</a> when a Skylab falls on Willy.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8d07"></span>8D07</td>
+<td class="instruction">LD A,$FF</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 255 (meaning Willy has had a fatal accident)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8d09"></span>8D09</td>
+<td class="instruction">LD ($806B),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8d0c"></span>8D0C</td>
+<td class="instruction">JP <a href="870E.html#87a2">$87A2</a></td>
+<td class="comment-11" rowspan="1">Jump back into the main loop</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8BDD.html">8BDD</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8d05">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8D0F.html">8D0F</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

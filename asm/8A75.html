@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 8A75</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8A3C.html">8A3C</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8a75">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8ABB.html">8ABB</a></span></td>
+</tr>
+</table>
+<div class="description">8A75: Draw the current cavern to the screen buffer at 28672</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="8684.html">8684</a>.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8a75"></span>8A75</td>
+<td class="instruction">LD IX,$5E00</td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the attribute buffer at <a href="5E00.html">5E00</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a79"></span>8A79</td>
+<td class="instruction">LD A,$70</td>
+<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8A75.html#8a9b">8A9B</a> (below) to 112</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a7b"></span>8A7B</td>
+<td class="instruction">LD ($8A9C),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a7e"></span>8A7E</td>
+<td class="instruction">CALL <a href="8A75.html#8a8a">$8A8A</a></td>
+<td class="comment-11" rowspan="1">Draw the tiles for the top half of the cavern to the screen buffer at <a href="7000.html">7000</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a81"></span>8A81</td>
+<td class="instruction">LD IX,$5F00</td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the 256th byte of the attribute buffer at <a href="5E00.html">5E00</a> in preparation for drawing the bottom half of the cavern; this instruction is redundant, since <span class="register">IX</span> already holds 24320</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a85"></span>8A85</td>
+<td class="instruction">LD A,$78</td>
+<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8A75.html#8a9b">8A9B</a> (below) to 120</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a87"></span>8A87</td>
+<td class="instruction">LD ($8A9C),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8a8a"></span>8A8A</td>
+<td class="instruction">LD C,$00</td>
+<td class="comment-11" rowspan="1"><span class="register">C</span> will count 256 tiles</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8a8c"></span>
+<div class="comments">
+<div class="paragraph">
+The following loop draws 256 tiles (for either the top half or the bottom half of the cavern) to the screen buffer at <a href="7000.html">7000</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8a8c"></span>8A8C</td>
+<td class="instruction">LD E,C</td>
+<td class="comment-11" rowspan="1"><span class="register">E</span> holds the LSB of the screen buffer address</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a8d"></span>8A8D</td>
+<td class="instruction">LD A,(IX+$00)</td>
+<td class="comment-11" rowspan="1">Pick up an attribute byte from the buffer at <a href="5E00.html">5E00</a>; this identifies the type of tile to draw</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a90"></span>8A90</td>
+<td class="instruction">LD HL,$8020</td>
+<td class="comment-11" rowspan="3">Move <span class="register">HL</span> through the attribute bytes and graphic data of the background, floor, crumbling floor, wall, conveyor and nasty tiles starting at <a href="8020.html">8020</a> until we find a byte that matches the attribute byte of the tile to be drawn</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a93"></span>8A93</td>
+<td class="instruction">LD BC,$0048</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a96"></span>8A96</td>
+<td class="instruction">CPIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a98"></span>8A98</td>
+<td class="instruction">LD C,E</td>
+<td class="comment-11" rowspan="1">Restore the value of the tile counter in <span class="register">C</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a99"></span>8A99</td>
+<td class="instruction">LD B,$08</td>
+<td class="comment-11" rowspan="1">There are eight bytes in the tile</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a9b"></span>8A9B</td>
+<td class="instruction">LD D,$00</td>
+<td class="comment-11" rowspan="1">This instruction is set to either 'LD D,112' or 'LD D,120' above; now <span class="register">DE</span> holds the appropriate address in the screen buffer at <a href="7000.html">7000</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8a9d"></span>8A9D</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-11" rowspan="5">Copy the tile graphic data to the screen buffer at <a href="7000.html">7000</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a9e"></span>8A9E</td>
+<td class="instruction">LD (DE),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a9f"></span>8A9F</td>
+<td class="instruction">INC HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aa0"></span>8AA0</td>
+<td class="instruction">INC D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aa1"></span>8AA1</td>
+<td class="instruction">DJNZ <a href="8A75.html#8a9d">$8A9D</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aa3"></span>8AA3</td>
+<td class="instruction">INC IX</td>
+<td class="comment-11" rowspan="1">Move <span class="register">IX</span> along to the next byte in the attribute buffer</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aa5"></span>8AA5</td>
+<td class="instruction">INC C</td>
+<td class="comment-11" rowspan="1">Have we drawn 256 tiles yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aa6"></span>8AA6</td>
+<td class="instruction">JP NZ,<a href="8A75.html#8a8c">$8A8C</a></td>
+<td class="comment-11" rowspan="1">If not, jump back to draw the next one</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8aa9"></span>
+<div class="comments">
+<div class="paragraph">
+The empty cavern has been drawn to the screen buffer at <a href="7000.html">7000</a>. If we're in <a href="FC00.html">The Final Barrier</a>, however, there is further work to do.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aa9"></span>8AA9</td>
+<td class="instruction">LD A,($8407)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a href="8407.html">8407</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aac"></span>8AAC</td>
+<td class="instruction">CP $13</td>
+<td class="comment-11" rowspan="1">Is it <a href="FC00.html">The Final Barrier</a>?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aae"></span>8AAE</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-11" rowspan="1">Return if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aaf"></span>8AAF</td>
+<td class="instruction">LD HL,$A000</td>
+<td class="comment-11" rowspan="4">Copy the graphic data from <a href="A000.html">A000</a> to the top half of the screen buffer at <a href="7000.html">7000</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ab2"></span>8AB2</td>
+<td class="instruction">LD DE,$7000</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ab5"></span>8AB5</td>
+<td class="instruction">LD BC,$0800</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ab8"></span>8AB8</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aba"></span>8ABA</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8A3C.html">8A3C</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8a75">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8ABB.html">8ABB</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>
