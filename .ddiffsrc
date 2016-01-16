@@ -1,5 +1,5 @@
 # rc file for disassembly-diff, skooldiff and write-files
 
-OLD_VERSION=20150328
-SK_OLD_VERSION=4.3
+OLD_VERSION=20160116
+SK_OLD_VERSION=5.1
 SNAPSHOT=$MANICMINER_HOME/build/manic_miner.z80
