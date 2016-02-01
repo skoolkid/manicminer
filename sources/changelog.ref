@@ -68,7 +68,7 @@ Added animated images of Miner Willy to the entry at #R33280
 [Changelog:20130513]
 Included in SkoolKit 3.3.2.
 
-Fixed the comments at #R40177-40191 so that they apply to a pristine snapshot (before stack operations have corrupted those addresses)
+Fixed the comments at #R40177-#N40191 so that they apply to a pristine snapshot (before stack operations have corrupted those addresses)
 
 [Changelog:20121101]
 Included in SkoolKit 3.2.
