@@ -1,4 +1,4 @@
-; Copyright 2010, 2012-2015 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2010, 2012-2016 Richard Dymond (rjdymond@gmail.com)
 
 ; Attribute buffer (cavern + Willy + guardians + items)
 ;
@@ -33,12 +33,13 @@ b28672 DEFS 4096
 @replace=/#item\i/#UDG(45748+1024*\1,#PEEK(45685+1024*\1))(item#EVAL\1,,2)
 @replace=/#portal\i/#UDGARRAY(2,#PEEK(45711+1024*\1),4,2);(45712+1024*\1)-(45729+1024*\1)-1-16(portal#EVAL\1,,2)
 @replace=/#sprite\i,\i/#UDGARRAY(2,#IF(\2<256)(\2,#PEEK\2),4,2);\1-(\1+17)-1-16
+@replace=/#n\i/#N\1,,,1($)
 @writer=:manicminer.ManicMinerAsmWriter
 ; Manic Miner disassembly
 ; http://skoolkit.ca/
 ;
 ; Copyright 1983 Bug-Byte Ltd (Manic Miner)
-; Copyright 2010, 2012-2015 Richard Dymond (this disassembly)
+; Copyright 2010, 2012-2016 Richard Dymond (this disassembly)
 
 @isub+begin
 @org=32765
