@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2012, 2014, 2015 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014-2016 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -52,11 +52,10 @@ class ManicMinerHtmlWriter(HtmlWriter):
 
     def expand_gbuf(self, text, index, cwd):
         end, addr_from, addr_to = parse_gbuf(text, index)
-        anchor = self.addr_anchor_fmt.format(address=addr_from)
-        link_text = self.parser.get_instruction_addr_str(addr_from)
+        link_text = '#N{}'.format(addr_from)
         if addr_to is not None:
-            link_text += '-' + self.parser.get_instruction_addr_str(addr_to)
-        return end, '#LINK:GameStatusBuffer#{}({})'.format(anchor, link_text)
+            link_text += '-' + '#N{}'.format(addr_to)
+        return end, '#LINK:GameStatusBuffer#{}({})'.format(addr_from, link_text)
 
     def _animate_conveyor(self, udgs, direction, x, y, length, scale):
         mask = 0
