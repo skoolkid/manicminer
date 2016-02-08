@@ -133,7 +133,7 @@ g32874 DEFB 0
 @label=AIRBORNE
 g32875 DEFB 0
 
-; Address of Willy's location in the attribute buffer at 23552
+; Address of Willy's location in the attribute buffer at #N23552
 ;
 ; Initialised by the routine at #R34436, used by the routines at #R35515,
 ; #R36805, #R37403, #R37434 and #R37503, and updated by the routine at #R35805.
@@ -1457,7 +1457,7 @@ c35388 LD A,(32957)  ; {Update the game clock at #R32957
                      ; since the zero flag is already reset at this point}
  35444 RET           ;
 
-; Draw the current cavern to the screen buffer at 28672
+; Draw the current cavern to the screen buffer at #N28672
 ;
 ; Used by the routine at #R34436.
 @label=DRAWSHEET
@@ -1465,16 +1465,16 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; at #R24064
  35449 LD A,112      ; {Set the operand of the 'LD D,n' instruction at #R35483
 @ssub=LD (35483+1),A
- 35451 LD (35484),A  ; (below) to 112}
+ 35451 LD (35484),A  ; (below) to #n112}
  35454 CALL 35466    ; Draw the tiles for the top half of the cavern to the
                      ; screen buffer at #R28672
  35457 LD IX,24320   ; Point #REGix at the 256th byte of the attribute buffer
                      ; at #R24064 in preparation for drawing the bottom half of
                      ; the cavern; this instruction is redundant, since #REGix
-                     ; already holds 24320
+                     ; already holds #N24320
  35461 LD A,120      ; {Set the operand of the 'LD D,n' instruction at #R35483
 @ssub=LD (35483+1),A
- 35463 LD (35484),A  ; (below) to 120}
+ 35463 LD (35484),A  ; (below) to #n120}
 *35466 LD C,0        ; #REGc will count 256 tiles
 ; The following loop draws 256 tiles (for either the top half or the bottom
 ; half of the cavern) to the screen buffer at #R28672.
@@ -1489,8 +1489,8 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
  35480 LD C,E        ; Restore the value of the tile counter in #REGc
  35481 LD B,8        ; There are eight bytes in the tile
 @label=SBMSB
- 35483 LD D,0        ; This instruction is set to either 'LD D,112' or 'LD
-                     ; D,120' above; now #REGde holds the appropriate address
+ 35483 LD D,0        ; This instruction is set to either 'LD D,#n112' or 'LD
+                     ; D,#n120' above; now #REGde holds the appropriate address
                      ; in the screen buffer at #R28672
 *35485 LD A,(HL)     ; {Copy the tile graphic data to the screen buffer at
  35486 LD (DE),A     ; #R28672
@@ -2417,7 +2417,7 @@ c36805 LD HL,(32944) ; Pick up the address of the portal's location in the
  36812 JR NZ,36831   ; Jump if not
 @ssub=LD A,(32876+1)
  36814 LD A,(32877)  ; Pick up the MSB of the address of Willy's location in
-                     ; the attribute buffer at #R23552 from #R32876(32877)
+                     ; the attribute buffer at #R23552 from #R32876(#N32877)
  36817 CP H          ; Does it match that of the portal?
  36818 JR NZ,36831   ; Jump if not
  36820 LD A,(32911)  ; Pick up the portal's attribute byte from #R32911
@@ -2839,14 +2839,14 @@ c37403 LD A,(32876)  ; Pick up the LSB of the address of Willy's location in
  37410 RET NZ        ; Return (with the zero flag reset) if not
 @ssub=LD A,(32876+1)
  37411 LD A,(32877)  ; Pick up the MSB of the address of Willy's location in
-                     ; the attribute buffer at #R23552 from #R32876(32877)
+                     ; the attribute buffer at #R23552 from #R32876(#N32877)
  37414 CP H          ; Does it match the MSB of the address of the switch's
                      ; location?
  37415 RET NZ        ; Return (with the zero flag reset) if not
 @ignoreua
 @ssub=LD A,(32863+6)
  37416 LD A,(32869)  ; Pick up the sixth byte of the graphic data for the
-                     ; switch tile from #R32863(32869)
+                     ; switch tile from #R32863(#N32869)
  37419 LD H,117      ; Point #REGhl at the sixth row of pixels of the switch
                      ; tile in the screen buffer at #R28672
  37421 CP (HL)       ; Has the switch already been flipped?
@@ -2861,7 +2861,7 @@ c37403 LD A,(32876)  ; Pick up the LSB of the address of Willy's location in
  37432 OR A          ; This instruction is redundant
  37433 RET           ;
 
-; Check and set the attribute bytes for Willy's sprite in the buffer at 23552
+; Check and set the attribute bytes for Willy's sprite in the buffer at #N23552
 ;
 ; Used by the routine at #R34574.
 @label=WILLYATTRS
@@ -2919,7 +2919,7 @@ c37471 LD A,(32800)  ; Pick up the attribute byte of the background tile for
  37499 JP Z,36101    ; Kill Willy if so
  37502 RET           ;
 
-; Draw Willy to the screen buffer at 24576
+; Draw Willy to the screen buffer at #N24576
 ;
 ; Used by the routine at #R37434.
 @label=DRAWWILLY
