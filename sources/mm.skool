@@ -2933,9 +2933,9 @@ c37503 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
  37514 AND 1         ; {Now #REGe=0 if Willy is facing right, or 128 if he's
  37516 RRCA          ; facing left
  37517 LD E,A        ; }
- 37518 LD A,(32873)  ; Pick up Willy's animation frame from #R32873
+ 37518 LD A,(32873)  ; Pick up Willy's animation frame (0-3) from #R32873
  37521 AND 3         ; {Point #REGde at the sprite graphic data for Willy's
- 37523 RRCA          ; current animation frame (#R33280+32*#REGa)
+ 37523 RRCA          ; current animation frame (see #R33280)
  37524 RRCA          ;
  37525 RRCA          ;
  37526 OR E          ;
