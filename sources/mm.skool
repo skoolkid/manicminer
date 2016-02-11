@@ -653,7 +653,10 @@ g33885 DEFB 0
 
 ; 6031769
 ;
-; Used by the routine at #R34574.
+; Used by the routine at #R34574. In each pair of bytes here, bits 0-4 of the
+; first byte correspond to keys 1-2-3-4-5, and bits 0-4 of the second byte
+; correspond to keys 0-9-8-7-6; among those bits, a zero indicates a key being
+; pressed.
 b33886 DEFB %00011111,%00011111 ; (no keys pressed)
 @label=CHEATDT
  33888 DEFB %00011111,%00001111 ; 6
