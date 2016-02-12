@@ -73,7 +73,7 @@ Fixed the comments at #R40177-#N40191 so that they apply to a pristine snapshot 
 [Changelog:20121101]
 Included in SkoolKit 3.2.
 
-Annotated the source code remnants at #R32768 and #R37708
+Annotated the source code remnants at #FACT#sourceCodeRemnants(#N32768) and #R37708
 
 [Changelog:20120501]
 Included in SkoolKit 3.0.2.
