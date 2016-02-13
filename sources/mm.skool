@@ -1191,7 +1191,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
 @keep
  35002 LD BC,63486   ; {Read keys 1-2-3-4-5
  35005 IN A,(C)      ; }
- 35007 AND 31        ; Keep only bits 0-5
+ 35007 AND 31        ; Keep only bits 0-4
  35009 CP (IX+0)     ; Does this match the first byte of the entry in the
                      ; 6031769 table?
  35012 JR Z,35032    ; Jump if so
@@ -1206,7 +1206,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
 @label=CKNXCHT
 *35032 LD B,239      ; {Read keys 6-7-8-9-0
  35034 IN A,(C)      ; }
- 35036 AND 31        ; Keep only bits 0-5
+ 35036 AND 31        ; Keep only bits 0-4
  35038 CP (IX+1)     ; Does this match the second byte of the entry in the
                      ; 6031769 table?
  35041 JR Z,35061    ; If so, jump to increment the 6031769 key counter
@@ -1662,7 +1662,7 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35720 ADC A,92      ; {#REGh=92 or 93 (MSB of the address of Willy's location
  35722 LD H,A        ; in the attribute buffer)}
  35723 LD A,(32876)  ; {Pick up Willy's screen x-coordinate (1-29) from bits
- 35726 AND 31        ; 0-5 at #R32876}
+ 35726 AND 31        ; 0-4 at #R32876}
  35728 OR L          ; {Now #REGl holds the LSB of Willy's attribute buffer
  35729 LD L,A        ; address}
  35730 LD (32876),HL ; Store Willy's updated attribute buffer location at
