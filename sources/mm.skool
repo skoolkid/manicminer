@@ -1240,7 +1240,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  35090 LDIR          ; }
  35092 LD E,A        ; Save the attribute byte (64-71) in #REGe for later
                      ; retrieval
- 35093 CPL           ; {#REGd=7+8*(7-(#REGe AND 7)); this value determines the
+ 35093 CPL           ; {#REGd=63-8*(#REGe AND 7); this value determines the
  35094 AND 7         ; pitch of the short note that will be played
  35096 RLCA          ;
  35097 RLCA          ;
