@@ -98,8 +98,9 @@ g32872 DEFB 0
 
 ; Willy's animation frame
 ;
-; Initialised by the routine at #R34436, used by the routine at #R37503, and
-; updated by the routine at #R35805.
+; Initialised upon entry to a cavern or after losing a life by the routine at
+; #R34436, used by the routine at #R37503, and updated by the routine at
+; #R35805. Possible values are 0, 1, 2 and 3.
 @label=FRAME
 g32873 DEFB 0
 
