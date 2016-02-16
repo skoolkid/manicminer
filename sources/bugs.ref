@@ -1,4 +1,4 @@
-; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:animatedPlatform:The animated platform]
 There is a platform at (9,7) in #R62464(Amoebatrons' Revenge) whose third row of pixels is animated as if it were a conveyor. This is because there is a conveyor defined at that location (see #R63087), but the cavern layout places regular platform tiles there instead of conveyor tiles.
@@ -32,7 +32,7 @@ Places where this can happen are:
 
 #UDGTABLE(gallery)
 { #CALL:ttwa_img(4,17,12,6,ttwa_el) | #CALL:ttwa_img(15,17,7,6,ttwa_sc1) | #CALL:ttwa_img(18,2,13,6,ttwa_spg) }
-{ Eugene's Lair                     | The Sixteenth Cavern               | Solar Power Generator }
+{ #R49152(Eugene's Lair)            | #R60416(The Sixteenth Cavern)      | #R63488(Solar Power Generator) }
 TABLE#
 
 Similarly, if Willy's animation frame is 3 at step 16 of the animation while Willy is jumping right, the code at #R36054 checks whether Willy is free to move right across a cell boundary. However, the part of that code that checks whether there is a wall tile below Willy to the right is skipped when Willy's sprite is cell-aligned, which is always the case at step 16; so Willy moves right across the cell boundary and down into the wall block below, eventually landing with animation frame 1.
@@ -41,7 +41,7 @@ Places where this can happen are:
 
 #UDGTABLE(gallery)
 { #CALL:ttwa_img(1,27,4,1,ttwa_tcr) | #CALL:ttwa_img(15,9,10,1,ttwa_sc2) }
-{ The Cold Room                     | The Sixteenth Cavern }
+{ #R46080(The Cold Room)            | #R60416(The Sixteenth Cavern) }
 TABLE#
 
 When Willy lands inside a wall block, he can walk straight through it unless another wall block is in the way.
