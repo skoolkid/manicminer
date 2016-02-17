@@ -55,6 +55,17 @@ The item below the portal in #R60416(The Sixteenth Cavern) does not disappear if
 
 #UDGTABLE { #CALL:cavern(60416,2,persistent_item,10,4,9,6,0) } TABLE#
 
+[Fact:lightLogic:Light logic]
+At times it might seem as if the light beam in #R63488(Solar Power Generator) moves around at random, but in fact its movements are predictable and always follow these simple rules (see #R36211):
+
+<ul>
+<li>start travelling vertically downwards from the top of the cavern</li>
+<li>stop if a floor or wall is in the way</li>
+<li>change direction between vertically downwards and horizontally to the left if a guardian is in the way</li>
+</ul>
+
+In addition, for every frame that the light beam is in contact with Willy, the air supply is reduced by an extra four units (making five in total). For every eight units of air consumed, one vertical line of pixels is removed from the right end of the air bar (see #R35388).
+
 [Fact:itemGraphics:Item graphics]
 The commonest item graphic is the key, which appears in #R45056(Central Cavern), #R47104(The Menagerie), #R48128(Abandoned Uranium Workings), #R50176(Processing Plant), #R51200(The Vat), #R53248(Wacky Amoebatrons), #R61440(The Warehouse), #R62464(Amoebatrons' Revenge), #R63488(Solar Power Generator) and #R64512(The Final Barrier).
 

@@ -10,7 +10,7 @@ Game=Manic Miner
 Logo=#SCR2,0,1,19,2,43008,40448{10,,292}(/images/logo|Manic Miner)
 StyleSheet=skoolkit.css;mm.css
 Copyright=&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).
-Release=The complete Manic Miner RAM disassembly 20160116
+Release=The complete Manic Miner RAM disassembly YYYYMMDD
 LinkInternalOperands=1
 
 [Font]

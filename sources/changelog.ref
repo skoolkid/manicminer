@@ -1,5 +1,11 @@
 ; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
 
+[Changelog:YYYYMMDD]
+-
+
+Added a trivia entry: #FACT#lightLogic()
+Made various improvements to the hexadecimal version of the disassembly
+
 [Changelog:20160116]
 -
 
