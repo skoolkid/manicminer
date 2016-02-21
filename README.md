@@ -8,7 +8,7 @@ using [SkoolKit](http://skoolkit.ca/).
 Decide which number base you prefer and then click the corresponding link below
 to browse the latest release:
 
-* [Manic Miner disassembly](http://skoolkid.github.io/manicminer/) (hexadecimal)
+* [Manic Miner disassembly](http://skoolkid.github.io/manicminer/) (hexadecimal; mirror [here](https://skoolkid.gitlab.io/manicminer/))
 * [Manic Miner disassembly](http://skoolkit.ca/disassemblies/manic_miner/) (decimal)
 
 To build the current development version, first either install SkoolKit, or
