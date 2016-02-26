@@ -320,7 +320,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
 class ManicMinerAsmWriter(AsmWriter):
     def expand_gbuf(self, text, index):
         end, addr_from, addr_to = parse_gbuf(text, index)
-        output = self.parser.get_instruction_addr_str(addr_from)
+        output = '#N{}'.format(addr_from)
         if addr_to is not None:
-            output += '-' + self.parser.get_instruction_addr_str(addr_to)
+            output += '-#N{}'.format(addr_to)
         return end, output
