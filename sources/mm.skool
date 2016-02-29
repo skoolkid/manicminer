@@ -7260,6 +7260,14 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; #UDGTABLE
 ; { #tiles13 }
 ; TABLE#
+; .
+; #HTML(The patterns of the two unused nasty tiles are hidden in these images
+; because they have black INK and PAPER. Here are the patterns revealed using
+; green INK:)
+; .
+; #UDGTABLE
+; { #UDG58958,4(nasty1_13_green) | #UDG58967,4(nasty2_13_green) }
+; TABLE#
  58912 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  58921 DEFB 76,255,255,98,100,120,112,96,96    ; Floor
  58930 DEFB 2,252,255,255,135,255,8,8,0        ; Crumbling floor (unused)

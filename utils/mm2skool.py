@@ -129,6 +129,10 @@ def get_caverns(snapshot):
         udg_table = '#UDGTABLE {{ #tiles{} }} TABLE#'.format(cavern_num)
         lines.append('N {} The next 72 bytes are copied to #R32800 and contain the attributes and graphic data for the tiles used to build the cavern.'.format(a + 544))
         lines.append('N {} {}'.format(a + 544, udg_table))
+        if cavern_num == 13:
+            # Skylab Landing Bay
+            lines.append('N {} #HTML(The patterns of the two unused nasty tiles are hidden in these images because they have black INK and PAPER. Here are the patterns revealed using green INK:)'.format(a + 544))
+            lines.append('N {} #UDGTABLE {{ #UDG58958,4(nasty1_13_green) | #UDG58967,4(nasty2_13_green) }} TABLE#'.format(a + 544))
         lines.append('B {},9,9 Background{}'.format(a + 544, tile_usage[0]))
         lines.append('B {},9,9 Floor{}'.format(a + 553, tile_usage[1]))
         lines.append('B {},9,9 Crumbling floor{}'.format(a + 562, tile_usage[2]))
