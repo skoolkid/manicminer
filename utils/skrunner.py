@@ -22,10 +22,8 @@ else:
 sys.stderr.write("Found SkoolKit in {}\n".format(skool2html.PACKAGE_DIR))
 
 def run_skool2asm():
-    options = '-W {}/sources:manicminer.ManicMinerAsmWriter'.format(MANICMINER_HOME)
-    skool2asm.main(options.split() + sys.argv[1:] + [MM_SKOOL])
+    skool2asm.main(sys.argv[1:] + [MM_SKOOL])
 
 def run_skool2html():
     options = '-d {}/build/html'.format(MANICMINER_HOME)
-    options += ' -W {}/sources:manicminer.ManicMinerHtmlWriter'.format(MANICMINER_HOME)
     skool2html.main(options.split() + sys.argv[1:] + [MM_SKOOL])
