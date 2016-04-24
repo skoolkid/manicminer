@@ -5,6 +5,7 @@
 
 Added a trivia entry: #FACT#lightLogic()
 Revealed the patterns of the #R58912(unused nasty tiles in Skylab Landing Bay)
+In #BUG#throughTheWall(), fixed the images and description to reflect where Willy is actually drawn (thanks IRF)
 Made various improvements to the hexadecimal version of the disassembly
 
 [Changelog:20160116]

@@ -106,9 +106,9 @@ class ManicMinerHtmlWriter(HtmlWriter):
         if self.need_image(img_path):
             cavern = self._get_cavern_udgs(49152)
             x, y, sprite_index, y_delta = (
-                (23, 11, 1, 5),
-                (23, 12, 0, 0),
-                (22, 12, 3, 4),
+                (23, 11, 0, 5),
+                (22, 12, 3, 0),
+                (22, 12, 2, 4),
                 (22, 13, 2, 0),
             )[index - 1]
             willy = self._get_graphic(33408 + 32 * sprite_index, 23)
