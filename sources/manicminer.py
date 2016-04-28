@@ -115,23 +115,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
         lines.append('TABLE#')
         return ''.join(lines)
 
-    def wall_bug_img(self, cwd, index):
-        fname = 'through_the_wall{}'.format(index)
-        img_path = self.image_path(fname, 'ScreenshotImagePath')
-        if self.need_image(img_path):
-            cavern = self._get_cavern_udgs(49152)
-            x, y, sprite_index, y_delta = (
-                (23, 11, 0, 5),
-                (22, 12, 3, 0),
-                (22, 12, 2, 4),
-                (22, 13, 2, 0),
-            )[index - 1]
-            willy = self._get_graphic(33408 + 32 * sprite_index, 23)
-            self._place_graphic(cavern, willy, x, y, y_delta, 16)
-            udg_array = [row[20:28] for row in cavern[11:16]]
-            self.write_image(img_path, udg_array, scale=2)
-        return self.img_element(cwd, img_path)
-
     def ttwa_img(self, cwd, cavern, x, y, frame, fname):
         img_path = self.image_path(fname, 'ScreenshotImagePath')
         if self.need_image(img_path):
