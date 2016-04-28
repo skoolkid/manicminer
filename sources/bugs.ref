@@ -34,8 +34,8 @@ If Willy's animation frame is 0 at step 16 of the animation while Willy is jumpi
 Places where this can happen are:
 
 #UDGTABLE(gallery)
-{ #CALL:ttwa_img(4,17,12,6,ttwa_el) | #CALL:ttwa_img(15,17,7,6,ttwa_sc1) | #CALL:ttwa_img(18,2,13,6,ttwa_spg) }
-{ #R49152(Eugene's Lair)            | #R60416(The Sixteenth Cavern)      | #R63488(Solar Power Generator) }
+{ #WILLY4,17,96,6,13,10,10,6(ttwa_el) | #WILLY15,17,56,6,13,5,10,6(ttwa_sc1) | #WILLY18,2,104,6,0,10,10,6(ttwa_spg) }
+{ #R49152(Eugene's Lair)              | #R60416(The Sixteenth Cavern)        | #R63488(Solar Power Generator) }
 TABLE#
 
 Similarly, if Willy's animation frame is 3 at step 16 of the animation while Willy is jumping right, the code at #R36054 checks whether Willy is free to move right across a cell boundary. However, the part of that code that checks whether there is a wall tile below Willy to the right is skipped when Willy's sprite is cell-aligned, which is always the case at step 16; so Willy moves right across the cell boundary and down into the wall block below, eventually landing with animation frame 1.
@@ -43,8 +43,8 @@ Similarly, if Willy's animation frame is 3 at step 16 of the animation while Wil
 Places where this can happen are:
 
 #UDGTABLE(gallery)
-{ #CALL:ttwa_img(1,27,4,1,ttwa_tcr) | #CALL:ttwa_img(15,9,10,1,ttwa_sc2) }
-{ #R46080(The Cold Room)            | #R60416(The Sixteenth Cavern) }
+{ #WILLY1,27,32,1,22,2,10,6(ttwa_tcr) | #WILLY15,9,80,1,5,8,10,6(ttwa_sc2) }
+{ #R46080(The Cold Room)              | #R60416(The Sixteenth Cavern) }
 TABLE#
 
 When Willy lands inside a wall block, he can walk straight through it unless another wall block is in the way.

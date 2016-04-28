@@ -64,7 +64,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
         end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
         cavern, x, y, sprite, left, top, width, height, scale = params
         cavern_addr = 45056 + 1024 * cavern
-        cavern_udgs = self._get_cavern_udgs(cavern_addr)
+        cavern_udgs = self._get_cavern_udgs(cavern_addr, 0)
         willy = self._get_graphic(33280 + 32 * sprite, 7)
         cavern_bg = self.snapshot[cavern_addr + 544]
         self._place_graphic(cavern_udgs, willy, x, y // 8, y % 8, cavern_bg)
@@ -114,21 +114,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
             lines.append('{{ #N{0} | #N{1} | #R{1}({2}) | {3} }}'.format(cavern_num, address, cavern_name, teleport_code))
         lines.append('TABLE#')
         return ''.join(lines)
-
-    def ttwa_img(self, cwd, cavern, x, y, frame, fname):
-        img_path = self.image_path(fname, 'ScreenshotImagePath')
-        if self.need_image(img_path):
-            cavern_addr = 45056 + 1024 * cavern
-            cavern_udgs = self._get_cavern_udgs(cavern_addr, 0)
-            willy = self._get_graphic(33280 + 32 * frame, 23)
-            bg_attr = self.snapshot[cavern_addr + 544]
-            self._place_graphic(cavern_udgs, willy, x, y, 0, bg_attr)
-            width, height = 10, 6
-            cavern_x = min(max(x - width // 2 + 1, 0), 32 - width)
-            cavern_y = min(max(y - height // 2 + 1, 0), 16 - height)
-            udg_array = [row[cavern_x:cavern_x + width] for row in cavern_udgs[cavern_y:cavern_y + height]]
-            self.write_image(img_path, udg_array, scale=2)
-        return self.img_element(cwd, img_path)
 
     def attribute_crash_img(self, cwd):
         img_path = self.image_path('attribute_crash', 'ScreenshotImagePath')
