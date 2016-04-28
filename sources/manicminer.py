@@ -17,7 +17,7 @@
 
 from skoolkit.skoolasm import AsmWriter
 from skoolkit.skoolhtml import HtmlWriter, Frame, Udg
-from skoolkit.skoolmacro import parse_ints
+from skoolkit.skoolmacro import parse_ints, parse_image_macro
 
 def parse_gbuf(text, index):
     # #GBUFfrom[,to]
@@ -56,6 +56,21 @@ class ManicMinerHtmlWriter(HtmlWriter):
         if addr_to is not None:
             link_text += '-' + '#N{}'.format(addr_to)
         return end, '#LINK:GameStatusBuffer#{}({})'.format(addr_from, link_text)
+
+    def expand_willy(self, text, index, cwd):
+        # #WILLYcavern,x,y,sprite[,left,top,width,height,scale](fname)
+        names = ('cavern', 'x', 'y', 'sprite', 'left', 'top', 'width', 'height', 'scale')
+        defaults = (0, 0, 32, 17, 2)
+        end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
+        cavern, x, y, sprite, left, top, width, height, scale = params
+        cavern_addr = 45056 + 1024 * cavern
+        cavern_udgs = self._get_cavern_udgs(cavern_addr)
+        willy = self._get_graphic(33280 + 32 * sprite, 7)
+        cavern_bg = self.snapshot[cavern_addr + 544]
+        self._place_graphic(cavern_udgs, willy, x, y // 8, y % 8, cavern_bg)
+        img_udgs = [cavern_udgs[i][left:left + width] for i in range(top, top + min(height, 17 - top))]
+        frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
+        return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
 
     def _animate_conveyor(self, udgs, direction, x, y, length, scale):
         mask = 0
@@ -124,7 +139,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
             cavern_udgs = self._get_cavern_udgs(cavern_addr, 0)
             willy = self._get_graphic(33280 + 32 * frame, 23)
             bg_attr = self.snapshot[cavern_addr + 544]
-            self._blend_graphic(cavern_udgs, x, y, willy, bg_attr)
+            self._place_graphic(cavern_udgs, willy, x, y, 0, bg_attr)
             width, height = 10, 6
             cavern_x = min(max(x - width // 2 + 1, 0), 32 - width)
             cavern_y = min(max(y - height // 2 + 1, 0), 16 - height)
@@ -259,7 +274,8 @@ class ManicMinerHtmlWriter(HtmlWriter):
         attr = self.snapshot[addr + 655]
         portal_udgs = self._get_graphic(addr + 656, attr)
         x, y = self._get_coords(addr + 688)
-        self._place_graphic(udg_array, portal_udgs, x, y)
+        udg_array[y][x:x + 2] = portal_udgs[0]
+        udg_array[y + 1][x:x + 2] = portal_udgs[1]
 
         return udg_array
 
@@ -279,43 +295,32 @@ class ManicMinerHtmlWriter(HtmlWriter):
         y = 8 * (p2 & 1) + (p1 & 224) // 32
         return x, y
 
-    def _place_graphic(self, udg_array, graphic, x, y, y_delta=0, bg_attr=0):
-        if y_delta == 0:
-            if bg_attr == 0:
-                udg_array[y][x:x + 2] = graphic[0]
-                udg_array[y + 1][x:x + 2] = graphic[1]
-            else:
-                self._blend_graphic(udg_array, x, y, graphic, bg_attr)
-            return
-
-        udg1, udg2 = graphic[0]
-        udg3, udg4 = graphic[1]
-        attr = udg1.attr
-        new_udg1 = Udg(attr, [0] * y_delta + udg1.data[:-y_delta])
-        new_udg2 = Udg(attr, [0] * y_delta + udg2.data[:-y_delta])
-        new_udg3 = Udg(attr, udg1.data[-y_delta:] + udg3.data[:-y_delta])
-        new_udg4 = Udg(attr, udg2.data[-y_delta:] + udg4.data[:-y_delta])
-        new_udg5 = Udg(attr, udg3.data[-y_delta:] + [0] * (8 - y_delta))
-        new_udg6 = Udg(attr, udg4.data[-y_delta:] + [0] * (8 - y_delta))
-
-        if bg_attr == 0:
-            udg_array[y][x:x + 2] = [new_udg1, new_udg2]
-            udg_array[y + 1][x:x + 2] = [new_udg3, new_udg4]
-            udg_array[y + 2][x:x + 2] = [new_udg5, new_udg6]
-        else:
-            new_graphic = [[new_udg1, new_udg2], [new_udg3, new_udg4], [new_udg5, new_udg6]]
-            self._blend_graphic(udg_array, x, y, new_graphic, bg_attr)
-
-    def _blend_graphic(self, udg_array, x, y, graphic, bg_attr):
+    def _place_graphic(self, udg_array, graphic, x, y, y_delta=0, bg_attr=None):
+        if y_delta > 0:
+            graphic = self._shift_graphic(graphic, y_delta)
         for i, row in enumerate(graphic):
             for j, udg in enumerate(row):
                 old_udg = udg_array[y + i][x + j]
-                if old_udg.attr == bg_attr:
-                    new_attr = (bg_attr & 248) + (udg.attr & 7)
+                if bg_attr is None or old_udg.attr == bg_attr:
+                    new_attr = (old_udg.attr & 56) | (udg.attr & 71)
                 else:
                     new_attr = old_udg.attr
                 new_data = [old_udg.data[k] | udg.data[k] for k in range(8)]
                 udg_array[y + i][x + j] = Udg(new_attr, new_data)
+
+    def _shift_graphic(self, graphic, y_delta):
+        attr = graphic[0][0].attr
+        blank_udg = Udg(attr, [0] * 8)
+        width = len(graphic[0])
+        prev_row = [blank_udg] * width
+        shifted_graphic = []
+        for row in graphic + [[blank_udg] * width]:
+            shifted_graphic.append([])
+            for i, udg in enumerate(row):
+                shifted_udg_data = prev_row[i].data[-y_delta:] + udg.data[:-y_delta]
+                shifted_graphic[-1].append(Udg(attr, shifted_udg_data))
+                prev_row[i] = udg
+        return shifted_graphic
 
 class ManicMinerAsmWriter(AsmWriter):
     def expand_gbuf(self, text, index):
