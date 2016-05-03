@@ -29,7 +29,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
         for b, h in self.get_dictionary('Font').items():
             self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
         self.cavern_names = self._get_cavern_names()
-        self.addr_anchor_fmt = self.get_dictionary('Game')['AddressAnchor']
 
     def cavern(self, cwd, address, scale=2, fname=None, x=0, y=0, w=32, h=17, guardians=1, animate=0):
         if fname is None:
