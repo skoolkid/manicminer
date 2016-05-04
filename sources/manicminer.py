@@ -211,7 +211,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
         x, y = self._get_coords(addr + 620)
         self._place_graphic(udg_array, willy, x, y)
 
-    def _get_cavern_udgs(self, addr, guardians=1):
+    def _get_cavern_udgs(self, addr, guardians=1, willy=1):
         # Collect block graphics
         block_graphics = {}
         bg_udg = Udg(self.snapshot[addr + 544], self.snapshot[addr + 545:addr + 553])
@@ -235,7 +235,8 @@ class ManicMinerHtmlWriter(HtmlWriter):
         self._place_items(udg_array, addr)
         if guardians:
             self._place_guardians(udg_array, addr)
-        self._place_willy(udg_array, addr)
+        if willy:
+            self._place_willy(udg_array, addr)
 
         # Portal
         attr = self.snapshot[addr + 655]

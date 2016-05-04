@@ -54,7 +54,9 @@ def _do_pokes(specs, snapshot):
         for a in range(addr1, addr2, step):
             snapshot[a] = value
 
-def _place_willy(spec, cavern_addr, snapshot):
+def _place_willy(mm, cavern, spec):
+    cavern_addr = 45056 + 1024 * cavern
+    udg_array = mm._get_cavern_udgs(cavern_addr, 1, 0)
     if spec:
         values = []
         for n in spec.split(','):
@@ -65,18 +67,16 @@ def _place_willy(spec, cavern_addr, snapshot):
         values += [None] * (3 - len(values))
         x, y, frame = values
         if x is not None and y is not None:
-            snapshot[cavern_addr + 620] = 32 * (y % 8) + x
-            snapshot[cavern_addr + 621] = 92 + (y // 8)
-        if frame is not None:
-            snapshot[cavern_addr + 617] = frame & 3
-            snapshot[cavern_addr + 618] = frame // 4
+            willy = mm._get_graphic(33280 + 32 * (frame or 0), 7)
+            bg_attr = mm.snapshot[cavern_addr + 544]
+            mm._place_graphic(udg_array, willy, x, y, 0, bg_attr)
+    return udg_array
 
 def run(imgfname, options):
     snapshot = get_snapshot('{}/build/manic_miner.z80'.format(MANICMINER_HOME))
-    cavern_addr = 45056 + 1024 * options.cavern
     _do_pokes(options.pokes, snapshot)
-    _place_willy(options.willy, cavern_addr, snapshot)
-    udg_array = ManicMiner(snapshot)._get_cavern_udgs(cavern_addr)
+    mm = ManicMiner(snapshot)
+    udg_array = _place_willy(mm, options.cavern, options.willy)
     if options.geometry:
         wh, xy = options.geometry.split('+', 1)
         width, height = [int(n) for n in wh.split('x')]
