@@ -61,12 +61,12 @@ class ManicMinerHtmlWriter(HtmlWriter):
         names = ('cavern', 'x', 'y', 'sprite', 'left', 'top', 'width', 'height', 'scale')
         defaults = (0, 0, 32, 17, 2)
         end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
-        cavern, x, y, sprite, left, top, width, height, scale = params
+        cavern, x, pixel_y, sprite, left, top, width, height, scale = params
         cavern_addr = 45056 + 1024 * cavern
         cavern_udgs = self._get_cavern_udgs(cavern_addr, 0)
         willy = self._get_graphic(33280 + 32 * sprite, 7)
         cavern_bg = self.snapshot[cavern_addr + 544]
-        self._place_graphic(cavern_udgs, willy, x, y // 8, y % 8, cavern_bg)
+        self._place_graphic(cavern_udgs, willy, x, pixel_y, cavern_bg)
         img_udgs = [cavern_udgs[i][left:left + width] for i in range(top, top + min(height, 17 - top))]
         frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
         return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
@@ -172,7 +172,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
                 sprite_index |= 4
             sprite = self._get_graphic(addr + 768 + 32 * sprite_index, attr & 127)
             x, y = self._get_coords(a + 1)
-            self._place_graphic(udg_array, sprite, x, y)
+            self._place_graphic(udg_array, sprite, x, y * 8)
 
         if cavern_no == 4:
             # Eugene
@@ -192,10 +192,9 @@ class ManicMinerHtmlWriter(HtmlWriter):
                     break
                 sprite_index = self.snapshot[a + 1]
                 sprite = self._get_graphic(addr + 768 + 32 * sprite_index, attr)
-                y = (self.snapshot[a + 2] & 120) // 8
-                y_delta = self.snapshot[a + 2] & 7
+                pixel_y = self.snapshot[a + 2] & 127
                 x = self.snapshot[a + 3]
-                self._place_graphic(udg_array, sprite, x, y, y_delta)
+                self._place_graphic(udg_array, sprite, x, pixel_y)
 
         # Light beam in Solar Power Generator
         if cavern_no == 18:
@@ -209,7 +208,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
         direction = self.snapshot[addr + 618]
         willy = self._get_graphic(33280 + 128 * direction + 32 * sprite_index, attr)
         x, y = self._get_coords(addr + 620)
-        self._place_graphic(udg_array, willy, x, y)
+        self._place_graphic(udg_array, willy, x, y * 8)
 
     def _get_cavern_udgs(self, addr, guardians=1, willy=1):
         # Collect block graphics
@@ -263,9 +262,10 @@ class ManicMinerHtmlWriter(HtmlWriter):
         y = 8 * (p2 & 1) + (p1 & 224) // 32
         return x, y
 
-    def _place_graphic(self, udg_array, graphic, x, y, y_delta=0, bg_attr=None):
-        if y_delta > 0:
-            graphic = self._shift_graphic(graphic, y_delta)
+    def _place_graphic(self, udg_array, graphic, x, pixel_y, bg_attr=None):
+        if pixel_y & 7:
+            graphic = self._shift_graphic(graphic, pixel_y & 7)
+        y = pixel_y // 8
         for i, row in enumerate(graphic):
             for j, udg in enumerate(row):
                 old_udg = udg_array[y + i][x + j]

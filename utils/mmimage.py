@@ -69,7 +69,7 @@ def _place_willy(mm, cavern, spec):
         if x is not None and y is not None:
             willy = mm._get_graphic(33280 + 32 * (frame or 0), 7)
             bg_attr = mm.snapshot[cavern_addr + 544]
-            mm._place_graphic(udg_array, willy, x, y, 0, bg_attr)
+            mm._place_graphic(udg_array, willy, x, y * 8, bg_attr)
     return udg_array
 
 def run(imgfname, options):
