@@ -21,6 +21,7 @@
 <li><a href="#unusedCrumblingFloor">Unused crumbling floor</a></li>
 <li><a href="#unusedConveyors">Unused conveyors</a></li>
 <li><a href="#thePersistentItem">The persistent item</a></li>
+<li><a href="#lightLogic">Light logic</a></li>
 <li><a href="#itemGraphics">Item graphics</a></li>
 <li><a href="#itemCounts">Item counts</a></li>
 <li><a href="#extraItems">Extra items</a></li>
@@ -149,8 +150,25 @@ The item below the portal in <a href="../asm/EC00.html">The Sixteenth Cavern</a>
 </table>
 </div>
 </div>
-<div><span id="itemGraphics"></span></div>
+<div><span id="lightLogic"></span></div>
 <div class="box box-2">
+<div class="box-title">Light logic</div>
+<div class="paragraph">
+At times it might seem as if the light beam in <a href="../asm/F800.html">Solar Power Generator</a> moves around at random, but in fact its movements are predictable and always follow these simple rules (see <a href="../asm/8D73.html">8D73</a>):
+</div>
+<div class="paragraph">
+<ul>
+<li>start travelling vertically downwards from the top of the cavern</li>
+<li>stop if a floor or wall is in the way</li>
+<li>change direction between vertically downwards and horizontally to the left if a guardian is in the way</li>
+</ul>
+</div>
+<div class="paragraph">
+In addition, for every frame that the light beam is in contact with Willy, the air supply is reduced by an extra four units (making five in total). For every eight units of air consumed, one vertical line of pixels is removed from the right end of the air bar (see <a href="../asm/8A3C.html">8A3C</a>).
+</div>
+</div>
+<div><span id="itemGraphics"></span></div>
+<div class="box box-1">
 <div class="box-title">Item graphics</div>
 <div class="paragraph">
 The commonest item graphic is the key, which appears in <a href="../asm/B000.html">Central Cavern</a>, <a href="../asm/B800.html">The Menagerie</a>, <a href="../asm/BC00.html">Abandoned Uranium Workings</a>, <a href="../asm/C400.html">Processing Plant</a>, <a href="../asm/C800.html">The Vat</a>, <a href="../asm/D000.html">Wacky Amoebatrons</a>, <a href="../asm/F000.html">The Warehouse</a>, <a href="../asm/F400.html">Amoebatrons' Revenge</a>, <a href="../asm/F800.html">Solar Power Generator</a> and <a href="../asm/FC00.html">The Final Barrier</a>.
@@ -213,7 +231,7 @@ The other eight caverns have their own unique item graphics:
 </div>
 </div>
 <div><span id="itemCounts"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Item counts</div>
 <div class="paragraph">
 Fourteen of the twenty caverns have a full set of five items.
@@ -232,7 +250,7 @@ There are no caverns that have exactly two items.
 </div>
 </div>
 <div><span id="extraItems"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Extra items</div>
 <div class="paragraph">
 <a href="../asm/E800.html">The Bank</a> has five items defined, but only three of them are used; <a href="../asm/EC00.html">The Sixteenth Cavern</a> also has five items defined, but only four of them are used.
@@ -259,7 +277,7 @@ The extra item in <a href="../asm/EC00.html">The Sixteenth Cavern</a> is at (5,2
 </div>
 </div>
 <div><span id="guardianColours"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Guardian colours</div>
 <div class="paragraph">
 The most common guardian colour is yellow (21 instances), and the least common colour is black (only one instance, in <a href="../asm/C000.html">Eugene's Lair</a>).
@@ -269,7 +287,7 @@ As for the other colours, there are 3 blue guardians, 10 red guardians, 12 magen
 </div>
 </div>
 <div><span id="guardianCounts"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Guardian counts</div>
 <div class="paragraph">
 The cavern with the most guardians is <a href="../asm/F400.html">Amoebatrons' Revenge</a>, which has eight (the maximum).
@@ -279,7 +297,7 @@ The cavern with the least guardians is <a href="../asm/B000.html">Central Cavern
 </div>
 </div>
 <div><span id="guardiansNeedAClearPath"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Guardians need a clear path</div>
 <div class="paragraph">
 The guardian-drawing code kills Willy if a guardian collides with anything that's already been drawn in the cavern. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
@@ -292,7 +310,7 @@ POKE 45327,22
 </div>
 </div>
 <div><span id="variableAirSupply"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Variable air supply</div>
 <div class="paragraph">
 The initial air supply varies from cavern to cavern by small amounts, because of differences in the initial value of the game clock at <a href="../asm/80BD.html">80BD</a> - 128, 240, 248 or 252 - which is copied from byte 701 of the cavern definition.
@@ -311,21 +329,21 @@ The other 11 caverns initialise the game clock to 128, which means the cell at t
 </div>
 </div>
 <div><span id="theUnreachableMillion"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">The unreachable million</div>
 <div class="paragraph">
 The score (at least, the part of it that is printed - see <a href="../asm/8425.html">8425</a>) rolls around to zero when it hits a million.
 </div>
 </div>
 <div><span id="horizontalSkylabs"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Horizontal Skylabs?</div>
 <div class="paragraph">
 There are three horizontal guardians defined in <a href="../asm/E400.html">Skylab Landing Bay</a>, but they're not used. We can only wonder what they might have looked like before being replaced by the Skylabs.
 </div>
 </div>
 <div><span id="sourceCodeRemnants"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Source code remnants</div>
 <div class="paragraph">
 Before the game starts for the first time, the 512-byte cavern buffer at <a href="../buffers/gbuffer.html#8000">8000</a> contains source code remnants (shown below). The DB directives define part of the title screen tune data at <a href="../asm/846E.html">846E</a>. There are more source code remnants at <a href="../asm/934C.html">934C</a>.
@@ -333,243 +351,243 @@ Before the game starts for the first time, the 512-byte cavern buffer at <a href
 <div class="paragraph">
 <table class="asm">
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32768</td>
+<td class="address-1" colspan="1" rowspan="1">8000</td>
 <td class="instruction" colspan="1" rowspan="1">DEFM "50,171,192,50,48,68"</td>
 <td class="comment-11" colspan="1" rowspan="1"></td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32787</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 790</td>
+<td class="address-1" colspan="1" rowspan="1">8013</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $0316</td>
 <td class="comment-11" colspan="1" rowspan="3">790 DB "50,48,68,50,171,192,50,136,137"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32789</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+<td class="address-1" colspan="1" rowspan="1">8015</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $22</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32790</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,48,68,50,171,192,50,136,137"</td>
+<td class="address-1" colspan="1" rowspan="1">8016</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,48,68,50,171,192,50,136,137"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32824</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 800</td>
+<td class="address-1" colspan="1" rowspan="1">8038</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $0320</td>
 <td class="comment-11" colspan="1" rowspan="3">800 DB "50,136,137,50,114,115,50,76,77"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32826</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+<td class="address-1" colspan="1" rowspan="1">803A</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $22</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32827</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,136,137,50,114,115,50,76,77"</td>
+<td class="address-1" colspan="1" rowspan="1">803B</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,136,137,50,114,115,50,76,77"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32861</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 810</td>
+<td class="address-1" colspan="1" rowspan="1">805D</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $032A</td>
 <td class="comment-11" colspan="1" rowspan="5">810 DB "50,7?????????????92,50,38,48"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32863</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+<td class="address-1" colspan="1" rowspan="1">805F</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $20</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32864</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,7"</td>
+<td class="address-1" colspan="1" rowspan="1">8060</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,7"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32872</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0</td>
+<td class="address-1" colspan="1" rowspan="1">8068</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32885</td>
+<td class="address-1" colspan="1" rowspan="1">8075</td>
 <td class="instruction" colspan="1" rowspan="1">DEFM "92,50,38,48"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32896</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 820</td>
+<td class="address-1" colspan="1" rowspan="1">8080</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $0334</td>
 <td class="comment-11" colspan="1" rowspan="5">820 DB "50,38,4??50,171,192,50,48,68"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32898</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+<td class="address-1" colspan="1" rowspan="1">8082</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $20</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32899</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,38,4"</td>
+<td class="address-1" colspan="1" rowspan="1">8083</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,38,4"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32910</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 255,0</td>
+<td class="address-1" colspan="1" rowspan="1">808E</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $FF,$00</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32912</td>
+<td class="address-1" colspan="1" rowspan="1">8090</td>
 <td class="instruction" colspan="1" rowspan="1">DEFM "50,171,192,50,48,68"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32931</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 830</td>
+<td class="address-1" colspan="1" rowspan="1">80A3</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $033E</td>
 <td class="comment-11" colspan="1" rowspan="7">830 DB "50,48,????0,171,19??50,136,137"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32933</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+<td class="address-1" colspan="1" rowspan="1">80A5</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $22</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32934</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,48,"</td>
+<td class="address-1" colspan="1" rowspan="1">80A6</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,48,"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32944</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 0,0,0,0</td>
+<td class="address-1" colspan="1" rowspan="1">80B0</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $00,$00,$00,$00</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32948</td>
+<td class="address-1" colspan="1" rowspan="1">80B4</td>
 <td class="instruction" colspan="1" rowspan="1">DEFM "0,171,19"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32956</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 0,0</td>
+<td class="address-1" colspan="1" rowspan="1">80BC</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $00,$00</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32958</td>
+<td class="address-1" colspan="1" rowspan="1">80BE</td>
 <td class="instruction" colspan="1" rowspan="1">DEFM "50,136,137"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32968</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 840</td>
+<td class="address-1" colspan="1" rowspan="1">80C8</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $0348</td>
 <td class="comment-11" colspan="1" rowspan="5">840 DB "50,136,137,???114,115,50,76,77"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32970</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+<td class="address-1" colspan="1" rowspan="1">80CA</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $22</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32971</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,136,137,"</td>
+<td class="address-1" colspan="1" rowspan="1">80CB</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,136,137,"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32986</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 255,0,0</td>
+<td class="address-1" colspan="1" rowspan="1">80DA</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $FF,$00,$00</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">32989</td>
+<td class="address-1" colspan="1" rowspan="1">80DD</td>
 <td class="instruction" colspan="1" rowspan="1">DEFM "114,115,50,76,77"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33005</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 850</td>
+<td class="address-1" colspan="1" rowspan="1">80ED</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $0352</td>
 <td class="comment-11" colspan="1" rowspan="3">850 ?B "50,76,77,50,171,203,50,38,51"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33007</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+<td class="address-1" colspan="1" rowspan="1">80EF</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $20</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33008</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,255,"B",9,"50,76,77,50,171,203,50,38,51"</td>
+<td class="address-1" colspan="1" rowspan="1">80F0</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,$FF,"B",$09,"50,76,77,50,171,203,50,38,51"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33040</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 860</td>
+<td class="address-1" colspan="1" rowspan="1">8110</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $035C</td>
 <td class="comment-11" colspan="1" rowspan="4">860 DB "50,38,51,50,171,203,50,51,64"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33042</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+<td class="address-1" colspan="1" rowspan="1">8112</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $20</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33043</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9</td>
+<td class="address-1" colspan="1" rowspan="1">8113</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33047</td>
+<td class="address-1" colspan="1" rowspan="1">8117</td>
 <td class="instruction" colspan="1" rowspan="1">DEFM "50,38,51,50,171,203,50,51,64"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33075</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 870</td>
+<td class="address-1" colspan="1" rowspan="1">8133</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $0366</td>
 <td class="comment-11" colspan="1" rowspan="3">870 DB "50,51,64,50,171,203,50,128,129"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33077</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+<td class="address-1" colspan="1" rowspan="1">8135</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $22</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33078</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,51,64,50,171,203,50,128,129"</td>
+<td class="address-1" colspan="1" rowspan="1">8136</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,51,64,50,171,203,50,128,129"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33112</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 880</td>
+<td class="address-1" colspan="1" rowspan="1">8158</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $0370</td>
 <td class="comment-11" colspan="1" rowspan="3">880 DB "50,128,129,50,102,103,50,86,87"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33114</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+<td class="address-1" colspan="1" rowspan="1">815A</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $22</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33115</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,128,129,50,102,103,50,86,87"</td>
+<td class="address-1" colspan="1" rowspan="1">815B</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,128,129,50,102,103,50,86,87"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33149</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 890</td>
+<td class="address-1" colspan="1" rowspan="1">817D</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $037A</td>
 <td class="comment-11" colspan="1" rowspan="3">890 DB "50,64,65,50,128,171,50,32,43"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33151</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+<td class="address-1" colspan="1" rowspan="1">817F</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $20</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33152</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,64,65,50,128,171,50,32,43"</td>
+<td class="address-1" colspan="1" rowspan="1">8180</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,64,65,50,128,171,50,32,43"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33184</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 900</td>
+<td class="address-1" colspan="1" rowspan="1">81A0</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $0384</td>
 <td class="comment-11" colspan="1" rowspan="3">900 DB "50,32,43,50,128,171,50,43,51"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33186</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+<td class="address-1" colspan="1" rowspan="1">81A2</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $20</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33187</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,32,43,50,128,171,50,43,51"</td>
+<td class="address-1" colspan="1" rowspan="1">81A3</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,32,43,50,128,171,50,43,51"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33219</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 910</td>
+<td class="address-1" colspan="1" rowspan="1">81C3</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $038E</td>
 <td class="comment-11" colspan="1" rowspan="3">910 DB "50,43,51,50,128,171,50,128,129"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33221</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+<td class="address-1" colspan="1" rowspan="1">81C5</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $22</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33222</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,43,51,50,128,171,50,128,129"</td>
+<td class="address-1" colspan="1" rowspan="1">81C6</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,43,51,50,128,171,50,128,129"</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33256</td>
-<td class="instruction" colspan="1" rowspan="1">DEFW 920</td>
+<td class="address-1" colspan="1" rowspan="1">81E8</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW $0398</td>
 <td class="comment-11" colspan="1" rowspan="3">920 DB "50,128,129,50,102............."</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33258</td>
-<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+<td class="address-1" colspan="1" rowspan="1">81EA</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB $22</td>
 </tr>
 <tr>
-<td class="address-1" colspan="1" rowspan="1">33259</td>
-<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,128,129,50,102"</td>
+<td class="address-1" colspan="1" rowspan="1">81EB</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM $09,"DB",$09,"50,128,129,50,102"</td>
 </tr>
 </table>
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="release">The complete Manic Miner RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

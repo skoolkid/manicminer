@@ -20,7 +20,7 @@
 <td class="next"><span class="next-1">Next: <a href="8ABB.html">8ABB</a></span></td>
 </tr>
 </table>
-<div class="description">8A75: Draw the current cavern to the screen buffer at 28672</div>
+<div class="description">8A75: Draw the current cavern to the screen buffer at 7000</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
@@ -53,7 +53,7 @@ Used by the routine at <a href="8684.html">8684</a>.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8a79"></span>8A79</td>
 <td class="instruction">LD A,$70</td>
-<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8A75.html#8a9b">8A9B</a> (below) to 112</td>
+<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8A75.html#8a9b">8A9B</a> (below) to $70</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -71,13 +71,13 @@ Used by the routine at <a href="8684.html">8684</a>.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8a81"></span>8A81</td>
 <td class="instruction">LD IX,$5F00</td>
-<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the 256th byte of the attribute buffer at <a href="5E00.html">5E00</a> in preparation for drawing the bottom half of the cavern; this instruction is redundant, since <span class="register">IX</span> already holds 24320</td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the 256th byte of the attribute buffer at <a href="5E00.html">5E00</a> in preparation for drawing the bottom half of the cavern; this instruction is redundant, since <span class="register">IX</span> already holds 5F00</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8a85"></span>8A85</td>
 <td class="instruction">LD A,$78</td>
-<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8A75.html#8a9b">8A9B</a> (below) to 120</td>
+<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8A75.html#8a9b">8A9B</a> (below) to $78</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -147,7 +147,7 @@ The following loop draws 256 tiles (for either the top half or the bottom half o
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8a9b"></span>8A9B</td>
 <td class="instruction">LD D,$00</td>
-<td class="comment-11" rowspan="1">This instruction is set to either 'LD D,112' or 'LD D,120' above; now <span class="register">DE</span> holds the appropriate address in the screen buffer at <a href="7000.html">7000</a></td>
+<td class="comment-11" rowspan="1">This instruction is set to either 'LD D,$70' or 'LD D,$78' above; now <span class="register">DE</span> holds the appropriate address in the screen buffer at <a href="7000.html">7000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -264,9 +264,9 @@ The empty cavern has been drawn to the screen buffer at <a href="7000.html">7000
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="release">The complete Manic Miner RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

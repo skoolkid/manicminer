@@ -46,7 +46,7 @@ See <a href="facts.html#unusedConveyors">Unused conveyors</a> for more informati
 <div class="box box-2">
 <div class="box-title">Through the wall</div>
 <div class="paragraph">
-If Willy jumps left over the two nasties at the bottom right of <a href="../asm/C000.html">Eugene's Lair</a> such that he lands on the top layer of bricks with animation frame 0 at step 16 of the jumping animation, he will then fall through them to the bottom layer of bricks:
+If Willy jumps left over the two nasties at the bottom right of <a href="../asm/C000.html">Eugene's Lair</a> such that he lands on the top layer of bricks with animation frame 3 at step 16 of the jumping animation, he will then fall through them to the bottom layer of bricks:
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -65,10 +65,10 @@ If Willy jumps left over the two nasties at the bottom right of <a href="../asm/
 </table>
 </div>
 <div class="paragraph">
-This happens because the section of code at <a href="../asm/8ABB.html#8b10">8B10</a> - which is executed during jumping animation step 16, when Willy is exactly one cell height above the place he jumped from - checks whether there are any nasty tiles in the cells below Willy's sprite; if there are, the code jumps forward to <a href="../asm/8ABB.html#8b51">8B51</a>, which makes Willy proceed to the next jumping animation step (as if the bricks and the nasty were not there), instead of landing on the bricks (and being killed by the nasty).
+This happens because the section of code at <a href="../asm/8ABB.html#8b10">8B10</a> - which is executed during jumping animation step 16, after Willy's y-coordinate has been updated so that he's exactly one cell height above the place he jumped from, but before his x-coordinate has been updated - checks whether there are any nasty tiles in the cells below Willy's sprite. If there are (as is the case here), the code jumps forward to <a href="../asm/8ABB.html#8b51">8B51</a>, which makes Willy proceed to the next jumping animation step (as if the bricks were not there), instead of landing on the bricks.
 </div>
 <div class="paragraph">
-Perhaps the assumption in this code is that if there is a nasty tile below Willy's sprite in step 16, then he will be killed by the nasty in step 17; however, in this particular case Willy's x-coordinate decreases by one from step 16 to step 17, which moves him out of the nasty's range.
+Perhaps the assumption in this code is that if there is a nasty tile below Willy's sprite in step 16, then he will be killed by the nasty before reaching step 17; however, in this particular case Willy's x-coordinate decreases by one during step 16 (as he transitions from animation frame 0 to frame 3), which moves him out of the nasty's range.
 </div>
 </div>
 <div><span id="throughTheWallAgain"></span></div>
@@ -91,9 +91,9 @@ Places where this can happen are:
 <td class="" colspan="1" rowspan="1"><img alt="ttwa_spg" src="../images/scr/ttwa_spg.png" /></td>
 </tr>
 <tr>
-<td class="" colspan="1" rowspan="1">Eugene's Lair</td>
-<td class="" colspan="1" rowspan="1">The Sixteenth Cavern</td>
-<td class="" colspan="1" rowspan="1">Solar Power Generator</td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/C000.html">Eugene's Lair</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/EC00.html">The Sixteenth Cavern</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/F800.html">Solar Power Generator</a></td>
 </tr>
 </table>
 </div>
@@ -110,8 +110,8 @@ Places where this can happen are:
 <td class="" colspan="1" rowspan="1"><img alt="ttwa_sc2" src="../images/scr/ttwa_sc2.png" /></td>
 </tr>
 <tr>
-<td class="" colspan="1" rowspan="1">The Cold Room</td>
-<td class="" colspan="1" rowspan="1">The Sixteenth Cavern</td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/B400.html">The Cold Room</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/EC00.html">The Sixteenth Cavern</a></td>
 </tr>
 </table>
 </div>
@@ -137,9 +137,9 @@ The reason for this is that the code at <a href="../asm/8DF8.html#8e5f">8E5F</a>
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="release">The complete Manic Miner RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

@@ -1344,7 +1344,7 @@ Now check the 6031769 keys.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88bf"></span>88BF</td>
 <td class="instruction">AND $1F</td>
-<td class="comment-11" rowspan="1">Keep only bits 0-5</td>
+<td class="comment-11" rowspan="1">Keep only bits 0-4</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1416,7 +1416,7 @@ Now check the 6031769 keys.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88dc"></span>88DC</td>
 <td class="instruction">AND $1F</td>
-<td class="comment-11" rowspan="1">Keep only bits 0-5</td>
+<td class="comment-11" rowspan="1">Keep only bits 0-4</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1580,7 +1580,7 @@ The following loop fills the top two thirds of the attribute file with a single 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8915"></span>8915</td>
 <td class="instruction">CPL</td>
-<td class="comment-11" rowspan="7"><span class="register">D</span>=7+8*(7-(<span class="register">E</span> AND 7)); this value determines the pitch of the short note that will be played</td>
+<td class="comment-11" rowspan="7"><span class="register">D</span>=63-8*(<span class="register">E</span> AND 7); this value determines the pitch of the short note that will be played</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1769,9 +1769,9 @@ Finally, check whether any lives remain.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="release">The complete Manic Miner RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

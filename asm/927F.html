@@ -20,7 +20,7 @@
 <td class="next"><span class="next-1">Next: <a href="92BA.html">92BA</a></span></td>
 </tr>
 </table>
-<div class="description">927F: Draw Willy to the screen buffer at 24576</div>
+<div class="description">927F: Draw Willy to the screen buffer at 6000</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
@@ -89,13 +89,13 @@ Used by the routine at <a href="923A.html">923A</a>.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928e"></span>928E</td>
 <td class="instruction">LD A,($8069)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's animation frame from <a href="8069.html">8069</a></td>
+<td class="comment-11" rowspan="1">Pick up Willy's animation frame (0-3) from <a href="8069.html">8069</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9291"></span>9291</td>
 <td class="instruction">AND $03</td>
-<td class="comment-11" rowspan="7">Point <span class="register">DE</span> at the sprite graphic data for Willy's current animation frame (<a href="8200.html">8200</a>+32*<span class="register">A</span>)</td>
+<td class="comment-11" rowspan="7">Point <span class="register">DE</span> at the sprite graphic data for Willy's current animation frame (see <a href="8200.html">8200</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -268,9 +268,9 @@ Used by the routine at <a href="923A.html">923A</a>.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20160116</div>
+<div class="release">The complete Manic Miner RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>
