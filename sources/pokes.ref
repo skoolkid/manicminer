@@ -1,4 +1,4 @@
-; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:gentleGuardians:Gentle guardians]
 To enable Willy to walk through guardians with impunity:
@@ -31,6 +31,18 @@ To activate the #FACT#6031769(6031769 cheat mode) immediately (without having to
 POKE #R33885(33885),7
 
 For a list of all the caverns and their teleport codes, see the #LINK:Caverns(Caverns page).
+
+[Poke:morePointsPerItem:More points per item]
+To give Willy more than 100 points for collecting an item:
+
+<div>POKE #R36738(36739),43 - 1,000 points</div>
+<div>POKE 36739,42 - 10,000 points</div>
+<div>POKE 36739,41 - 100,000 points</div>
+
+Note that giving Willy 10,000 points or more per item means he won't be able to
+gain extra lives (normally granted every 10,000 points) by collecting items:
+Willy gains an extra life only when the <em>thousands</em> digit rolls over
+from 9 to 0 (see #R37098).
 
 [Poke:alwaysOpen:Always open]
 To enable Willy to walk through the portal to the next cavern without collecting all the items first:
