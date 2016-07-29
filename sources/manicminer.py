@@ -165,8 +165,10 @@ class ManicMinerHtmlWriter(HtmlWriter):
         # Horizontal guardians
         for a in range(addr + 702, addr + 730, 7):
             attr = self.snapshot[a]
-            if attr in (0, 255):
+            if attr == 255:
                 break
+            if not attr:
+                continue
             sprite_index = self.snapshot[a + 4]
             if cavern_no >= 7 and cavern_no not in (9, 15):
                 sprite_index |= 4
