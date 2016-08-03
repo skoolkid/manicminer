@@ -3,6 +3,7 @@
 [Changelog:YYYYMMDD]
 -
 
+Documented a bug: #BUG#nineLivesInTheLight() (thanks Tezz)
 Added a POKE: #POKE#morePointsPerItem()
 In #FACT#lightLogic(), fixed the description of how the light beam reduces the air supply
 The images of the Kong Beast caverns now show the cyan horizontal guardians (see #R52224 and #R56320)

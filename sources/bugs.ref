@@ -11,6 +11,24 @@ POKE #R63087(63088),7
 
 See #FACT#unusedConveyors() for more information.
 
+[Bug:nineLivesInTheLight:Nine lives in the light]
+The code that decreases the air supply when Willy is in the light beam in
+#R63488(Solar Power Generator) doesn't check whether the air has run out, and
+so depending on the remaining air supply at #R32956 and the game clock at
+#R32957 when Willy enters the beam, he will not necessarily die when the air
+runs out; instead the air supply is replenished a little and then depleted,
+repeatedly up to eight times - until the game clock hits zero upon exiting the
+beam-controlling routine at #R36211.
+
+To see Willy survive eight air supply depletions, use the following POKEs:
+
+<div>POKE #R33885(33885),7 - press keys 256 to teleport to the cavern</div>
+<div>POKE #R36252(36252),24 - make the light beam pass through guardians</div>
+<div>POKE #R64104(64104),208 - Willy's initial pixel y-coordinate * 2</div>
+<div>POKE #R64108(64108),183: POKE 64109,93 - Willy's initial position</div>
+<div>POKE #R64188(64188),39 - initial air supply</div>
+<div>POKE #R64211(64211),255 - remove the yellow guardian at ground level</div>
+
 [Bug:throughTheWall:Through the wall]
 If Willy jumps left over the two nasties at the bottom right of #R49152(Eugene's Lair) such that he lands on the top layer of bricks with animation frame 3 at step 16 of the jumping animation, he will then fall through them to the bottom layer of bricks:
 
