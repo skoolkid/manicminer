@@ -64,7 +64,7 @@ At times it might seem as if the light beam in #R63488(Solar Power Generator) mo
 <li>change direction between vertically downwards and horizontally to the left if a guardian is in the way</li>
 </ul>
 
-In addition, for every frame that the light beam is in contact with Willy, the air supply is reduced by an extra four units (making five in total). For every eight units of air consumed, one vertical line of pixels is removed from the right end of the air bar (see #R35388).
+In addition, for every frame that the light beam is in contact with Willy, the air supply is reduced by an extra eight units - four for each of the two cells of Willy's sprite that the beam touches - making nine units in total. For every eight units of air consumed, one vertical line of pixels is removed from the right end of the air bar (see #R35388).
 
 [Fact:itemGraphics:Item graphics]
 The commonest item graphic is the key, which appears in #R45056(Central Cavern), #R47104(The Menagerie), #R48128(Abandoned Uranium Workings), #R50176(Processing Plant), #R51200(The Vat), #R53248(Wacky Amoebatrons), #R61440(The Warehouse), #R62464(Amoebatrons' Revenge), #R63488(Solar Power Generator) and #R64512(The Final Barrier).
