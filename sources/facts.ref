@@ -1,23 +1,35 @@
 ; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:tunes:Tunes]
-The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss II. The tune played during gameplay is <i>In the Hall of the Mountain King</i> by Edvard Grieg.
+The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss
+II. The tune played during gameplay is <i>In the Hall of the Mountain King</i>
+by Edvard Grieg.
 
 [Fact:takingABreak:Taking a BREAK]
-The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see #R34801).
+The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see
+#R34801).
 
 [Fact:6031769:6031769]
-If you type the digits 6031769 at any point during the game, a cheat mode is activated that enables Willy to teleport to any cavern; a boot appears next to Willy's remaining lives to show that the cheat mode has been activated.
+If you type the digits 6031769 at any point during the game, a cheat mode is
+activated that enables Willy to teleport to any cavern; a boot appears next to
+Willy's remaining lives to show that the cheat mode has been activated.
 
-For example, to teleport to #R51200(The Vat), hold down keys '2' and '3', and then press '6' to activate the teleporter. For a list of all the caverns and their teleport codes, see the #LINK:Caverns(Caverns page).
+For example, to teleport to #R51200(The Vat), hold down keys '2' and '3', and
+then press '6' to activate the teleporter. For a list of all the caverns and
+their teleport codes, see the #LINK:Caverns(Caverns page).
 
-The number 6031769 comes from Matthew Smith's driving licence, "with an error in it and twisted round a bit" (as he put it in an interview for issue 48 of <i>Retro Gamer</i> magazine).
+The number 6031769 comes from Matthew Smith's driving licence, "with an error
+in it and twisted round a bit" (as he put it in an interview for issue 48 of
+<i>Retro Gamer</i> magazine).
 
 [Fact:noSwordfishForCheats:No swordfish for cheats]
-The game ending - with Willy above ground and the portal in #R64512(The Final Barrier) changed to the #R45792(swordfish) graphic - is not shown if #LINK:Facts#6031769(cheat mode) is activated (see #R36919).
+The game ending - with Willy above ground and the portal in #R64512(The Final
+Barrier) changed to the #R45792(swordfish) graphic - is not shown if
+#LINK:Facts#6031769(cheat mode) is activated (see #R36919).
 
 [Fact:unusedCrumblingFloor:Unused crumbling floor]
-The crumbling floor tile in #R58368(Skylab Landing Bay) is unique to that cavern, and also not used.
+The crumbling floor tile in #R58368(Skylab Landing Bay) is unique to that
+cavern, and also not used.
 
 #UDGTABLE { #UDG58931,2(crumbling_floor_13) } TABLE#
 
@@ -26,52 +38,82 @@ To place a couple of these tiles in the cavern in order to see them crumble:
 POKE 58811,10: POKE 58812,10: POKE 58930,10
 
 [Fact:unusedConveyors:Unused conveyors]
-Every cavern definition contains a conveyor definition, and every conveyor has non-zero length and is animated by the routine at #R37125. But there are two caverns in which the conveyor is hidden or otherwise unusable.
+Every cavern definition contains a conveyor definition, and every conveyor has
+non-zero length and is animated by the routine at #R37125. But there are two
+caverns in which the conveyor is hidden or otherwise unusable.
 
-The first unused conveyor is of length 1, defined at (0,19) in #R54272(The Endorian Forest) (see #R54895). Instead of a conveyor, the space is occupied by a background tile.
+The first unused conveyor is of length 1, defined at (0,19) in #R54272(The
+Endorian Forest) (see #R54895). Instead of a conveyor, the space is occupied by
+a background tile.
 
 To show the conveyor:
 
 POKE 54291,67
 
 #UDGTABLE(gallery)
-{ #CALL:cavern(54272,2,uc1_before,11,0,16,8,0,1) | #PUSHS #POKES54291,67 #CALL:cavern(54272,2,uc1_after.gif,11,0,16,8,0,1) #POPS }
+{ #CALL:cavern(54272,2,uc1_before,11,0,16,8,0,1) |
+  #PUSHS
+  #POKES54291,67
+  #CALL:cavern(54272,2,uc1_after.gif,11,0,16,8,0,1)
+  #POPS }
 { Before | After }
 TABLE#
 
-The other unused conveyor is of length 3, defined at (9,7) in #R62464(Amoebatrons' Revenge) (see #R63087). Instead of a conveyor, the space is occupied by a platform, whose third row of pixels is animated as if it were a conveyor (which is a #BUG#animatedPlatform).
+The other unused conveyor is of length 3, defined at (9,7) in
+#R62464(Amoebatrons' Revenge) (see #R63087). Instead of a conveyor, the space
+is occupied by a platform, whose third row of pixels is animated as if it were
+a conveyor (which is a #BUG#animatedPlatform).
 
 To replace the platform with conveyor tiles:
 
 POKE 62759,4: POKE 62760,4: POKE 62761,4
 
 #UDGTABLE(gallery)
-{ #CALL:cavern(62464,2,uc2_before.gif,0,5,16,8,0,1)  | #PUSHS #POKES62759,4,3  #CALL:cavern(62464,2,uc2_after.gif,0,5,16,8,0,1) #POPS }
+{ #CALL:cavern(62464,2,uc2_before.gif,0,5,16,8,0,1) |
+  #PUSHS
+  #POKES62759,4,3
+  #CALL:cavern(62464,2,uc2_after.gif,0,5,16,8,0,1)
+  #POPS }
 { Before | After }
 TABLE#
 
 [Fact:thePersistentItem:The persistent item]
-The item below the portal in #R60416(The Sixteenth Cavern) does not disappear if Willy leaves it till last and collects it by falling on it from above. The reason for this is that the portal is opened as soon as Willy collects the item, and the screen is not refreshed before he moves on to the next cavern.
+The item below the portal in #R60416(The Sixteenth Cavern) does not disappear
+if Willy leaves it till last and collects it by falling on it from above. The
+reason for this is that the portal is opened as soon as Willy collects the
+item, and the screen is not refreshed before he moves on to the next cavern.
 
 #UDGTABLE { #CALL:cavern(60416,2,persistent_item,10,4,9,6,0) } TABLE#
 
 [Fact:lightLogic:Light logic]
-At times it might seem as if the light beam in #R63488(Solar Power Generator) moves around at random, but in fact its movements are predictable and always follow these simple rules (see #R36211):
+At times it might seem as if the light beam in #R63488(Solar Power Generator)
+moves around at random, but in fact its movements are predictable and always
+follow these simple rules (see #R36211):
 
-<ul>
-<li>start travelling vertically downwards from the top of the cavern</li>
-<li>stop if a floor or wall is in the way</li>
-<li>change direction between vertically downwards and horizontally to the left if a guardian is in the way</li>
-</ul>
+#LIST
+{ start travelling vertically downwards from the top of the cavern }
+{ stop if a floor or wall is in the way }
+{ change direction between vertically downwards and horizontally to the left if
+  a guardian is in the way }
+LIST#
 
-In addition, for every frame that the light beam is in contact with Willy, the air supply is reduced by an extra eight units - four for each of the two cells of Willy's sprite that the beam touches - making nine units in total. For every eight units of air consumed, one vertical line of pixels is removed from the right end of the air bar (see #R35388).
+In addition, for every frame that the light beam is in contact with Willy, the
+air supply is reduced by an extra eight units - four for each of the two cells
+of Willy's sprite that the beam touches - making nine units in total. For every
+eight units of air consumed, one vertical line of pixels is removed from the
+right end of the air bar (see #R35388).
 
 [Fact:itemGraphics:Item graphics]
-The commonest item graphic is the key, which appears in #R45056(Central Cavern), #R47104(The Menagerie), #R48128(Abandoned Uranium Workings), #R50176(Processing Plant), #R51200(The Vat), #R53248(Wacky Amoebatrons), #R61440(The Warehouse), #R62464(Amoebatrons' Revenge), #R63488(Solar Power Generator) and #R64512(The Final Barrier).
+The commonest item graphic is the key, which appears in #R45056(Central
+Cavern), #R47104(The Menagerie), #R48128(Abandoned Uranium Workings),
+#R50176(Processing Plant), #R51200(The Vat), #R53248(Wacky Amoebatrons),
+#R61440(The Warehouse), #R62464(Amoebatrons' Revenge), #R63488(Solar Power
+Generator) and #R64512(The Final Barrier).
 
 #UDGTABLE { #UDG45748,3(item00) } TABLE#
 
-Next is the banana, which appears in #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien Kong Beast):
+Next is the banana, which appears in #R52224(Miner Willy meets the Kong Beast)
+and #R56320(Return of the Alien Kong Beast):
 
 #UDGTABLE { #UDG52916,3(item07) } TABLE#
 
@@ -91,25 +133,31 @@ TABLE#
 [Fact:itemCounts:Item counts]
 Fourteen of the twenty caverns have a full set of five items.
 
-#R52224(Miner Willy meets the Kong Beast) and #R60416(The Sixteenth Cavern) both have four items.
+#R52224(Miner Willy meets the Kong Beast) and #R60416(The Sixteenth Cavern)
+both have four items.
 
 #R59392(The Bank) and #R63488(Solar Power Generator) both have three items.
 
 There are no caverns that have exactly two items.
 
-#R53248(Wacky Amoebatrons) and #R62464(Amoebatrons' Revenge) both have only one item.
+#R53248(Wacky Amoebatrons) and #R62464(Amoebatrons' Revenge) both have only one
+item.
 
 [Fact:extraItems:Extra items]
-#R59392(The Bank) has five items defined, but only three of them are used; #R60416(The Sixteenth Cavern) also has five items defined, but only four of them are used.
+#R59392(The Bank) has five items defined, but only three of them are used;
+#R60416(The Sixteenth Cavern) also has five items defined, but only four of
+them are used.
 
-The two extra items in #R59392(The Bank) are at (6,19) and (13,30), shown here in bright white:
+The two extra items in #R59392(The Bank) are at (6,19) and (13,30), shown here
+in bright white:
 
 #PUSHS
 #POKES60036,71;60041,71
 #UDGTABLE { #CALL:cavern(59392,2,the_bank_extra_items) } TABLE#
 #POPS
 
-The extra item in #R60416(The Sixteenth Cavern) is at (5,26) - in the path of the cyan guardian - shown here in bright white:
+The extra item in #R60416(The Sixteenth Cavern) is at (5,26) - in the path of
+the cyan guardian - shown here in bright white:
 
 #PUSHS
 #POKES61065,71;61140,188
@@ -117,41 +165,63 @@ The extra item in #R60416(The Sixteenth Cavern) is at (5,26) - in the path of th
 #POPS
 
 [Fact:guardianColours:Guardian colours]
-The most common guardian colour is yellow (21 instances), and the least common colour is black (only one instance, in #R49152(Eugene's Lair)).
+The most common guardian colour is yellow (21 instances), and the least common
+colour is black (only one instance, in #R49152(Eugene's Lair)).
 
-As for the other colours, there are 3 blue guardians, 10 red guardians, 12 magenta guardians, 13 green guardians, 14 cyan guardians, and 5 white guardians.
+As for the other colours, there are 3 blue guardians, 10 red guardians, 12
+magenta guardians, 13 green guardians, 14 cyan guardians, and 5 white
+guardians.
 
 [Fact:guardianCounts:Guardian counts]
-The cavern with the most guardians is #R62464(Amoebatrons' Revenge), which has eight (the maximum).
+The cavern with the most guardians is #R62464(Amoebatrons' Revenge), which has
+eight (the maximum).
 
-The cavern with the least guardians is #R45056(Central Cavern), which has only one.
+The cavern with the least guardians is #R45056(Central Cavern), which has only
+one.
 
 [Fact:guardiansNeedAClearPath:Guardians need a clear path]
-The guardian-drawing code kills Willy if a guardian collides with anything that's already been drawn in the cavern. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
+The guardian-drawing code kills Willy if a guardian collides with anything
+that's already been drawn in the cavern. This means, for example, that Willy is
+killed if a guardian hits a nasty, a wall or the floor.
 
-See this happen by placing a wall block in the path of the guardian in #R45056(Central Cavern):
+See this happen by placing a wall block in the path of the guardian in
+#R45056(Central Cavern):
 
 POKE 45327,22
 
 [Fact:variableAirSupply:Variable air supply]
-The initial air supply varies from cavern to cavern by small amounts, because of differences in the initial value of the game clock at #R32957 - 128, 240, 248 or 252 - which is copied from byte 701 of the cavern definition.
+The initial air supply varies from cavern to cavern by small amounts, because
+of differences in the initial value of the game clock at #R32957 - 128, 240,
+248 or 252 - which is copied from byte 701 of the cavern definition.
 
-The caverns with the greatest initial air supply are #R45056(Central Cavern), #R46080(The Cold Room), #R57344(Ore Refinery), #R59392(The Bank) and #R64512(The Final Barrier), which initialise the game clock to 252.
+The caverns with the greatest initial air supply are #R45056(Central Cavern),
+#R46080(The Cold Room), #R57344(Ore Refinery), #R59392(The Bank) and
+#R64512(The Final Barrier), which initialise the game clock to 252.
 
-Next are #R54272(The Endorian Forest), #R58368(Skylab Landing Bay) and #R60416(The Sixteenth Cavern), which initialise the game clock to 248.
+Next are #R54272(The Endorian Forest), #R58368(Skylab Landing Bay) and
+#R60416(The Sixteenth Cavern), which initialise the game clock to 248.
 
-Then it's #R63488(Solar Power Generator), which initialises the game clock to 240.
+Then it's #R63488(Solar Power Generator), which initialises the game clock to
+240.
 
-The other 11 caverns initialise the game clock to 128, which means the cell at the right end of the air bar in those caverns starts off with only three white pixel columns instead of seven.
+The other 11 caverns initialise the game clock to 128, which means the cell at
+the right end of the air bar in those caverns starts off with only three white
+pixel columns instead of seven.
 
 [Fact:theUnreachableMillion:The unreachable million]
-The score (at least, the part of it that is printed - see #R33829) rolls around to zero when it hits a million.
+The score (at least, the part of it that is printed - see #R33829) rolls around
+to zero when it hits a million.
 
 [Fact:horizontalSkylabs:Horizontal Skylabs?]
-There are three horizontal guardians defined in #R58368(Skylab Landing Bay), but they're not used. We can only wonder what they might have looked like before being replaced by the Skylabs.
+There are three horizontal guardians defined in #R58368(Skylab Landing Bay),
+but they're not used. We can only wonder what they might have looked like
+before being replaced by the Skylabs.
 
 [Fact:sourceCodeRemnants:Source code remnants]
-Before the game starts for the first time, the 512-byte cavern buffer at #GBUF32768 contains source code remnants (shown below). The DB directives define part of the title screen tune data at #R33902. There are more source code remnants at #R37708.
+Before the game starts for the first time, the 512-byte cavern buffer at
+#GBUF32768 contains source code remnants (shown below). The DB directives
+define part of the title screen tune data at #R33902. There are more source
+code remnants at #R37708.
 
 #TABLE(asm,address-1,instruction,comment-11)
 { #N32768 | DEFM "50,171,192,50,48,68" | }
