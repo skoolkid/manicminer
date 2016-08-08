@@ -16,7 +16,8 @@ To enable Willy to survive a fall from any height:
 POKE #R35808(35809),255
 
 [Poke:infiniteTime:Infinite time]
-To make the game continue without loss of life after all the air has run out of the cavern:
+To make the game continue without loss of life after all the air has run out of
+the cavern:
 
 POKE #R34798(34798),1
 
@@ -26,11 +27,13 @@ To enable Willy to walk freely in any direction on conveyors:
 POKE #R35834(35834),0
 
 [Poke:cheatModeCheat:Cheat mode cheat]
-To activate the #FACT#6031769(6031769 cheat mode) immediately (without having to type 6031769):
+To activate the #FACT#6031769(6031769 cheat mode) immediately (without having
+to type 6031769):
 
 POKE #R33885(33885),7
 
-For a list of all the caverns and their teleport codes, see the #LINK:Caverns(Caverns page).
+For a list of all the caverns and their teleport codes, see the
+#LINK:Caverns(Caverns page).
 
 [Poke:morePointsPerItem:More points per item]
 To give Willy more than 100 points for collecting an item:
@@ -45,7 +48,8 @@ Willy gains an extra life only when the <em>thousands</em> digit rolls over
 from 9 to 0 (see #R37098).
 
 [Poke:alwaysOpen:Always open]
-To enable Willy to walk through the portal to the next cavern without collecting all the items first:
+To enable Willy to walk through the portal to the next cavern without
+collecting all the items first:
 
 POKE #R36825(36826),0
 
@@ -55,7 +59,8 @@ To remove the Skylabs from #R58368(Skylab Landing Bay):
 POKE #R36478(36478),195
 
 [Poke:likeableLightBeam:Likeable light beam]
-To prevent the light beam in #R63488(Solar Power Generator) from decreasing the air supply:
+To prevent the light beam in #R63488(Solar Power Generator) from decreasing the
+air supply:
 
 POKE #R36230(36230),24
 
@@ -64,7 +69,10 @@ To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=2):
 
 POKE #R34268(34269),N
 
-Note that the routine at #R34574 tries to draw all remaining lives at the bottom of the screen, which means that for large N, there is screen corruption and the game slows down considerably; to avoid this, disable the drawing of more than one remaining life:
+Note that the routine at #R34574 tries to draw all remaining lives at the
+bottom of the screen, which means that for large N, there is screen corruption
+and the game slows down considerably; to avoid this, disable the drawing of
+more than one remaining life:
 
 POKE #R34606(34607),0
 
