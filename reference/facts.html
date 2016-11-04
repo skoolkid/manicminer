@@ -37,41 +37,53 @@
 <div class="box box-1">
 <div class="box-title">Tunes</div>
 <div class="paragraph">
-The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss II. The tune played during gameplay is <i>In the Hall of the Mountain King</i> by Edvard Grieg.
+The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss
+II. The tune played during gameplay is <i>In the Hall of the Mountain King</i>
+by Edvard Grieg.
 </div>
 </div>
 <div><span id="takingABreak"></span></div>
 <div class="box box-2">
 <div class="box-title">Taking a BREAK</div>
 <div class="paragraph">
-The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see <a href="../asm/870E.html#87f1">87F1</a>).
+The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see
+<a href="../asm/870E.html#87f1">87F1</a>).
 </div>
 </div>
 <div><span id="6031769"></span></div>
 <div class="box box-1">
 <div class="box-title">6031769</div>
 <div class="paragraph">
-If you type the digits 6031769 at any point during the game, a cheat mode is activated that enables Willy to teleport to any cavern; a boot appears next to Willy's remaining lives to show that the cheat mode has been activated.
+If you type the digits 6031769 at any point during the game, a cheat mode is
+activated that enables Willy to teleport to any cavern; a boot appears next to
+Willy's remaining lives to show that the cheat mode has been activated.
 </div>
 <div class="paragraph">
-For example, to teleport to <a href="../asm/C800.html">The Vat</a>, hold down keys '2' and '3', and then press '6' to activate the teleporter. For a list of all the caverns and their teleport codes, see the <a href="../tables/caverns.html">Caverns page</a>.
+For example, to teleport to <a href="../asm/C800.html">The Vat</a>, hold down keys '2' and '3', and
+then press '6' to activate the teleporter. For a list of all the caverns and
+their teleport codes, see the <a href="../tables/caverns.html">Caverns page</a>.
 </div>
 <div class="paragraph">
-The number 6031769 comes from Matthew Smith's driving licence, "with an error in it and twisted round a bit" (as he put it in an interview for issue 48 of <i>Retro Gamer</i> magazine).
+The number 6031769 comes from Matthew Smith's driving licence, "with an error
+in it and twisted round a bit" (as he put it in an interview for issue 48 of
+<i>Retro Gamer</i> magazine).
 </div>
 </div>
 <div><span id="noSwordfishForCheats"></span></div>
 <div class="box box-2">
 <div class="box-title">No swordfish for cheats</div>
 <div class="paragraph">
-The game ending - with Willy above ground and the portal in <a href="../asm/FC00.html">The Final Barrier</a> changed to the <a href="../asm/B000.html#b2e0">swordfish</a> graphic - is not shown if <a href="facts.html#6031769">cheat mode</a> is activated (see <a href="../asm/9028.html#9037">9037</a>).
+The game ending - with Willy above ground and the portal in <a href="../asm/FC00.html">The Final
+Barrier</a> changed to the <a href="../asm/B000.html#b2e0">swordfish</a> graphic - is not shown if
+<a href="facts.html#6031769">cheat mode</a> is activated (see <a href="../asm/9028.html#9037">9037</a>).
 </div>
 </div>
 <div><span id="unusedCrumblingFloor"></span></div>
 <div class="box box-1">
 <div class="box-title">Unused crumbling floor</div>
 <div class="paragraph">
-The crumbling floor tile in <a href="../asm/E400.html">Skylab Landing Bay</a> is unique to that cavern, and also not used.
+The crumbling floor tile in <a href="../asm/E400.html">Skylab Landing Bay</a> is unique to that
+cavern, and also not used.
 </div>
 <div class="paragraph">
 <table class="">
@@ -91,10 +103,14 @@ POKE 58811,10: POKE 58812,10: POKE 58930,10
 <div class="box box-2">
 <div class="box-title">Unused conveyors</div>
 <div class="paragraph">
-Every cavern definition contains a conveyor definition, and every conveyor has non-zero length and is animated by the routine at <a href="../asm/9105.html">9105</a>. But there are two caverns in which the conveyor is hidden or otherwise unusable.
+Every cavern definition contains a conveyor definition, and every conveyor has
+non-zero length and is animated by the routine at <a href="../asm/9105.html">9105</a>. But there are two
+caverns in which the conveyor is hidden or otherwise unusable.
 </div>
 <div class="paragraph">
-The first unused conveyor is of length 1, defined at (0,19) in <a href="../asm/D400.html">The Endorian Forest</a> (see <a href="../asm/D400.html#d66f">D66F</a>). Instead of a conveyor, the space is occupied by a background tile.
+The first unused conveyor is of length 1, defined at (0,19) in <a href="../asm/D400.html">The
+Endorian Forest</a> (see <a href="../asm/D400.html#d66f">D66F</a>). Instead of a conveyor, the space is occupied by
+a background tile.
 </div>
 <div class="paragraph">
 To show the conveyor:
@@ -115,7 +131,10 @@ POKE 54291,67
 </table>
 </div>
 <div class="paragraph">
-The other unused conveyor is of length 3, defined at (9,7) in <a href="../asm/F400.html">Amoebatrons' Revenge</a> (see <a href="../asm/F400.html#f66f">F66F</a>). Instead of a conveyor, the space is occupied by a platform, whose third row of pixels is animated as if it were a conveyor (which is a <a href="bugs.html#animatedPlatform">bug</a>).
+The other unused conveyor is of length 3, defined at (9,7) in
+<a href="../asm/F400.html">Amoebatrons' Revenge</a> (see <a href="../asm/F400.html#f66f">F66F</a>). Instead of a conveyor, the space
+is occupied by a platform, whose third row of pixels is animated as if it were
+a conveyor (which is a <a href="bugs.html#animatedPlatform">bug</a>).
 </div>
 <div class="paragraph">
 To replace the platform with conveyor tiles:
@@ -140,7 +159,10 @@ POKE 62759,4: POKE 62760,4: POKE 62761,4
 <div class="box box-1">
 <div class="box-title">The persistent item</div>
 <div class="paragraph">
-The item below the portal in <a href="../asm/EC00.html">The Sixteenth Cavern</a> does not disappear if Willy leaves it till last and collects it by falling on it from above. The reason for this is that the portal is opened as soon as Willy collects the item, and the screen is not refreshed before he moves on to the next cavern.
+The item below the portal in <a href="../asm/EC00.html">The Sixteenth Cavern</a> does not disappear
+if Willy leaves it till last and collects it by falling on it from above. The
+reason for this is that the portal is opened as soon as Willy collects the
+item, and the screen is not refreshed before he moves on to the next cavern.
 </div>
 <div class="paragraph">
 <table class="">
@@ -154,24 +176,34 @@ The item below the portal in <a href="../asm/EC00.html">The Sixteenth Cavern</a>
 <div class="box box-2">
 <div class="box-title">Light logic</div>
 <div class="paragraph">
-At times it might seem as if the light beam in <a href="../asm/F800.html">Solar Power Generator</a> moves around at random, but in fact its movements are predictable and always follow these simple rules (see <a href="../asm/8D73.html">8D73</a>):
+At times it might seem as if the light beam in <a href="../asm/F800.html">Solar Power Generator</a>
+moves around at random, but in fact its movements are predictable and always
+follow these simple rules (see <a href="../asm/8D73.html">8D73</a>):
 </div>
 <div class="paragraph">
-<ul>
+<ul class="">
 <li>start travelling vertically downwards from the top of the cavern</li>
 <li>stop if a floor or wall is in the way</li>
 <li>change direction between vertically downwards and horizontally to the left if a guardian is in the way</li>
 </ul>
 </div>
 <div class="paragraph">
-In addition, for every frame that the light beam is in contact with Willy, the air supply is reduced by an extra four units (making five in total). For every eight units of air consumed, one vertical line of pixels is removed from the right end of the air bar (see <a href="../asm/8A3C.html">8A3C</a>).
+In addition, for every frame that the light beam is in contact with Willy, the
+air supply is reduced by an extra eight units - four for each of the two cells
+of Willy's sprite that the beam touches - making nine units in total. For every
+eight units of air consumed, one vertical line of pixels is removed from the
+right end of the air bar (see <a href="../asm/8A3C.html">8A3C</a>).
 </div>
 </div>
 <div><span id="itemGraphics"></span></div>
 <div class="box box-1">
 <div class="box-title">Item graphics</div>
 <div class="paragraph">
-The commonest item graphic is the key, which appears in <a href="../asm/B000.html">Central Cavern</a>, <a href="../asm/B800.html">The Menagerie</a>, <a href="../asm/BC00.html">Abandoned Uranium Workings</a>, <a href="../asm/C400.html">Processing Plant</a>, <a href="../asm/C800.html">The Vat</a>, <a href="../asm/D000.html">Wacky Amoebatrons</a>, <a href="../asm/F000.html">The Warehouse</a>, <a href="../asm/F400.html">Amoebatrons' Revenge</a>, <a href="../asm/F800.html">Solar Power Generator</a> and <a href="../asm/FC00.html">The Final Barrier</a>.
+The commonest item graphic is the key, which appears in <a href="../asm/B000.html">Central
+Cavern</a>, <a href="../asm/B800.html">The Menagerie</a>, <a href="../asm/BC00.html">Abandoned Uranium Workings</a>,
+<a href="../asm/C400.html">Processing Plant</a>, <a href="../asm/C800.html">The Vat</a>, <a href="../asm/D000.html">Wacky Amoebatrons</a>,
+<a href="../asm/F000.html">The Warehouse</a>, <a href="../asm/F400.html">Amoebatrons' Revenge</a>, <a href="../asm/F800.html">Solar Power
+Generator</a> and <a href="../asm/FC00.html">The Final Barrier</a>.
 </div>
 <div class="paragraph">
 <table class="">
@@ -181,7 +213,8 @@ The commonest item graphic is the key, which appears in <a href="../asm/B000.htm
 </table>
 </div>
 <div class="paragraph">
-Next is the banana, which appears in <a href="../asm/CC00.html">Miner Willy meets the Kong Beast</a> and <a href="../asm/DC00.html">Return of the Alien Kong Beast</a>:
+Next is the banana, which appears in <a href="../asm/CC00.html">Miner Willy meets the Kong Beast</a>
+and <a href="../asm/DC00.html">Return of the Alien Kong Beast</a>:
 </div>
 <div class="paragraph">
 <table class="">
@@ -237,7 +270,8 @@ The other eight caverns have their own unique item graphics:
 Fourteen of the twenty caverns have a full set of five items.
 </div>
 <div class="paragraph">
-<a href="../asm/CC00.html">Miner Willy meets the Kong Beast</a> and <a href="../asm/EC00.html">The Sixteenth Cavern</a> both have four items.
+<a href="../asm/CC00.html">Miner Willy meets the Kong Beast</a> and <a href="../asm/EC00.html">The Sixteenth Cavern</a>
+both have four items.
 </div>
 <div class="paragraph">
 <a href="../asm/E800.html">The Bank</a> and <a href="../asm/F800.html">Solar Power Generator</a> both have three items.
@@ -246,17 +280,21 @@ Fourteen of the twenty caverns have a full set of five items.
 There are no caverns that have exactly two items.
 </div>
 <div class="paragraph">
-<a href="../asm/D000.html">Wacky Amoebatrons</a> and <a href="../asm/F400.html">Amoebatrons' Revenge</a> both have only one item.
+<a href="../asm/D000.html">Wacky Amoebatrons</a> and <a href="../asm/F400.html">Amoebatrons' Revenge</a> both have only one
+item.
 </div>
 </div>
 <div><span id="extraItems"></span></div>
 <div class="box box-1">
 <div class="box-title">Extra items</div>
 <div class="paragraph">
-<a href="../asm/E800.html">The Bank</a> has five items defined, but only three of them are used; <a href="../asm/EC00.html">The Sixteenth Cavern</a> also has five items defined, but only four of them are used.
+<a href="../asm/E800.html">The Bank</a> has five items defined, but only three of them are used;
+<a href="../asm/EC00.html">The Sixteenth Cavern</a> also has five items defined, but only four of
+them are used.
 </div>
 <div class="paragraph">
-The two extra items in <a href="../asm/E800.html">The Bank</a> are at (6,19) and (13,30), shown here in bright white:
+The two extra items in <a href="../asm/E800.html">The Bank</a> are at (6,19) and (13,30), shown here
+in bright white:
 </div>
 <div class="paragraph">
 <table class="">
@@ -266,7 +304,8 @@ The two extra items in <a href="../asm/E800.html">The Bank</a> are at (6,19) and
 </table>
 </div>
 <div class="paragraph">
-The extra item in <a href="../asm/EC00.html">The Sixteenth Cavern</a> is at (5,26) - in the path of the cyan guardian - shown here in bright white:
+The extra item in <a href="../asm/EC00.html">The Sixteenth Cavern</a> is at (5,26) - in the path of
+the cyan guardian - shown here in bright white:
 </div>
 <div class="paragraph">
 <table class="">
@@ -280,30 +319,38 @@ The extra item in <a href="../asm/EC00.html">The Sixteenth Cavern</a> is at (5,2
 <div class="box box-2">
 <div class="box-title">Guardian colours</div>
 <div class="paragraph">
-The most common guardian colour is yellow (21 instances), and the least common colour is black (only one instance, in <a href="../asm/C000.html">Eugene's Lair</a>).
+The most common guardian colour is yellow (21 instances), and the least common
+colour is black (only one instance, in <a href="../asm/C000.html">Eugene's Lair</a>).
 </div>
 <div class="paragraph">
-As for the other colours, there are 3 blue guardians, 10 red guardians, 12 magenta guardians, 13 green guardians, 14 cyan guardians, and 5 white guardians.
+As for the other colours, there are 3 blue guardians, 10 red guardians, 12
+magenta guardians, 13 green guardians, 14 cyan guardians, and 5 white
+guardians.
 </div>
 </div>
 <div><span id="guardianCounts"></span></div>
 <div class="box box-1">
 <div class="box-title">Guardian counts</div>
 <div class="paragraph">
-The cavern with the most guardians is <a href="../asm/F400.html">Amoebatrons' Revenge</a>, which has eight (the maximum).
+The cavern with the most guardians is <a href="../asm/F400.html">Amoebatrons' Revenge</a>, which has
+eight (the maximum).
 </div>
 <div class="paragraph">
-The cavern with the least guardians is <a href="../asm/B000.html">Central Cavern</a>, which has only one.
+The cavern with the least guardians is <a href="../asm/B000.html">Central Cavern</a>, which has only
+one.
 </div>
 </div>
 <div><span id="guardiansNeedAClearPath"></span></div>
 <div class="box box-2">
 <div class="box-title">Guardians need a clear path</div>
 <div class="paragraph">
-The guardian-drawing code kills Willy if a guardian collides with anything that's already been drawn in the cavern. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
+The guardian-drawing code kills Willy if a guardian collides with anything
+that's already been drawn in the cavern. This means, for example, that Willy is
+killed if a guardian hits a nasty, a wall or the floor.
 </div>
 <div class="paragraph">
-See this happen by placing a wall block in the path of the guardian in <a href="../asm/B000.html">Central Cavern</a>:
+See this happen by placing a wall block in the path of the guardian in
+<a href="../asm/B000.html">Central Cavern</a>:
 </div>
 <div class="paragraph">
 POKE 45327,22
@@ -313,40 +360,54 @@ POKE 45327,22
 <div class="box box-1">
 <div class="box-title">Variable air supply</div>
 <div class="paragraph">
-The initial air supply varies from cavern to cavern by small amounts, because of differences in the initial value of the game clock at <a href="../asm/80BD.html">80BD</a> - 128, 240, 248 or 252 - which is copied from byte 701 of the cavern definition.
+The initial air supply varies from cavern to cavern by small amounts, because
+of differences in the initial value of the game clock at <a href="../asm/80BD.html">80BD</a> - 128, 240,
+248 or 252 - which is copied from byte 701 of the cavern definition.
 </div>
 <div class="paragraph">
-The caverns with the greatest initial air supply are <a href="../asm/B000.html">Central Cavern</a>, <a href="../asm/B400.html">The Cold Room</a>, <a href="../asm/E000.html">Ore Refinery</a>, <a href="../asm/E800.html">The Bank</a> and <a href="../asm/FC00.html">The Final Barrier</a>, which initialise the game clock to 252.
+The caverns with the greatest initial air supply are <a href="../asm/B000.html">Central Cavern</a>,
+<a href="../asm/B400.html">The Cold Room</a>, <a href="../asm/E000.html">Ore Refinery</a>, <a href="../asm/E800.html">The Bank</a> and
+<a href="../asm/FC00.html">The Final Barrier</a>, which initialise the game clock to 252.
 </div>
 <div class="paragraph">
-Next are <a href="../asm/D400.html">The Endorian Forest</a>, <a href="../asm/E400.html">Skylab Landing Bay</a> and <a href="../asm/EC00.html">The Sixteenth Cavern</a>, which initialise the game clock to 248.
+Next are <a href="../asm/D400.html">The Endorian Forest</a>, <a href="../asm/E400.html">Skylab Landing Bay</a> and
+<a href="../asm/EC00.html">The Sixteenth Cavern</a>, which initialise the game clock to 248.
 </div>
 <div class="paragraph">
-Then it's <a href="../asm/F800.html">Solar Power Generator</a>, which initialises the game clock to 240.
+Then it's <a href="../asm/F800.html">Solar Power Generator</a>, which initialises the game clock to
+240.
 </div>
 <div class="paragraph">
-The other 11 caverns initialise the game clock to 128, which means the cell at the right end of the air bar in those caverns starts off with only three white pixel columns instead of seven.
+The other 11 caverns initialise the game clock to 128, which means the cell at
+the right end of the air bar in those caverns starts off with only three white
+pixel columns instead of seven.
 </div>
 </div>
 <div><span id="theUnreachableMillion"></span></div>
 <div class="box box-2">
 <div class="box-title">The unreachable million</div>
 <div class="paragraph">
-The score (at least, the part of it that is printed - see <a href="../asm/8425.html">8425</a>) rolls around to zero when it hits a million.
+The score (at least, the part of it that is printed - see <a href="../asm/8425.html">8425</a>) rolls around
+to zero when it hits a million.
 </div>
 </div>
 <div><span id="horizontalSkylabs"></span></div>
 <div class="box box-1">
 <div class="box-title">Horizontal Skylabs?</div>
 <div class="paragraph">
-There are three horizontal guardians defined in <a href="../asm/E400.html">Skylab Landing Bay</a>, but they're not used. We can only wonder what they might have looked like before being replaced by the Skylabs.
+There are three horizontal guardians defined in <a href="../asm/E400.html">Skylab Landing Bay</a>,
+but they're not used. We can only wonder what they might have looked like
+before being replaced by the Skylabs.
 </div>
 </div>
 <div><span id="sourceCodeRemnants"></span></div>
 <div class="box box-2">
 <div class="box-title">Source code remnants</div>
 <div class="paragraph">
-Before the game starts for the first time, the 512-byte cavern buffer at <a href="../buffers/gbuffer.html#8000">8000</a> contains source code remnants (shown below). The DB directives define part of the title screen tune data at <a href="../asm/846E.html">846E</a>. There are more source code remnants at <a href="../asm/934C.html">934C</a>.
+Before the game starts for the first time, the 512-byte cavern buffer at
+<a href="../buffers/gbuffer.html#8000">8000</a> contains source code remnants (shown below). The DB directives
+define part of the title screen tune data at <a href="../asm/846E.html">846E</a>. There are more source
+code remnants at <a href="../asm/934C.html">934C</a>.
 </div>
 <div class="paragraph">
 <table class="asm">
@@ -585,9 +646,9 @@ Before the game starts for the first time, the 512-byte cavern buffer at <a href
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>

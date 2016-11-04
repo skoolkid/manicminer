@@ -20,6 +20,7 @@
 <li><a href="#infiniteTime">Infinite time</a></li>
 <li><a href="#noConveyors">No conveyors</a></li>
 <li><a href="#cheatModeCheat">Cheat mode cheat</a></li>
+<li><a href="#morePointsPerItem">More points per item</a></li>
 <li><a href="#alwaysOpen">Always open</a></li>
 <li><a href="#noSkylabs">No Skylabs</a></li>
 <li><a href="#likeableLightBeam">Likeable light beam</a></li>
@@ -60,7 +61,8 @@ POKE <a href="../asm/8BDD.html#8be0">35809</a>,255
 <div class="box box-2">
 <div class="box-title">Infinite time</div>
 <div class="paragraph">
-To make the game continue without loss of life after all the air has run out of the cavern:
+To make the game continue without loss of life after all the air has run out of
+the cavern:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/870E.html#87ee">34798</a>,1
@@ -80,27 +82,48 @@ POKE <a href="../asm/8BDD.html#8bfa">35834</a>,0
 <div class="box box-2">
 <div class="box-title">Cheat mode cheat</div>
 <div class="paragraph">
-To activate the <a href="facts.html#6031769">6031769 cheat mode</a> immediately (without having to type 6031769):
+To activate the <a href="facts.html#6031769">6031769 cheat mode</a> immediately (without having
+to type 6031769):
 </div>
 <div class="paragraph">
 POKE <a href="../asm/845D.html">33885</a>,7
 </div>
 <div class="paragraph">
-For a list of all the caverns and their teleport codes, see the <a href="../tables/caverns.html">Caverns page</a>.
+For a list of all the caverns and their teleport codes, see the
+<a href="../tables/caverns.html">Caverns page</a>.
+</div>
+</div>
+<div><span id="morePointsPerItem"></span></div>
+<div class="box box-1">
+<div class="box-title">More points per item</div>
+<div class="paragraph">
+To give Willy more than 100 points for collecting an item:
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/8F63.html#8f82">36739</a>,43 - 1,000 points</div>
+<div>POKE 36739,42 - 10,000 points</div>
+<div>POKE 36739,41 - 100,000 points</div>
+</div>
+<div class="paragraph">
+Note that giving Willy 10,000 points or more per item means he won't be able to
+gain extra lives (normally granted every 10,000 points) by collecting items:
+Willy gains an extra life only when the <em>thousands</em> digit rolls over
+from 9 to 0 (see <a href="../asm/90EA.html">90EA</a>).
 </div>
 </div>
 <div><span id="alwaysOpen"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Always open</div>
 <div class="paragraph">
-To enable Willy to walk through the portal to the next cavern without collecting all the items first:
+To enable Willy to walk through the portal to the next cavern without
+collecting all the items first:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/8FC5.html#8fd9">36826</a>,0
 </div>
 </div>
 <div><span id="noSkylabs"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">No Skylabs</div>
 <div class="paragraph">
 To remove the Skylabs from <a href="../asm/E400.html">Skylab Landing Bay</a>:
@@ -110,17 +133,18 @@ POKE <a href="../asm/8E75.html#8e7e">36478</a>,195
 </div>
 </div>
 <div><span id="likeableLightBeam"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Likeable light beam</div>
 <div class="paragraph">
-To prevent the light beam in <a href="../asm/F800.html">Solar Power Generator</a> from decreasing the air supply:
+To prevent the light beam in <a href="../asm/F800.html">Solar Power Generator</a> from decreasing the
+air supply:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/8D73.html#8d86">36230</a>,24
 </div>
 </div>
 <div><span id="moreLives"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">More lives</div>
 <div class="paragraph">
 To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=2):
@@ -129,14 +153,17 @@ To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=2):
 POKE <a href="../asm/85CC.html#85dc">34269</a>,N
 </div>
 <div class="paragraph">
-Note that the routine at <a href="../asm/870E.html">870E</a> tries to draw all remaining lives at the bottom of the screen, which means that for large N, there is screen corruption and the game slows down considerably; to avoid this, disable the drawing of more than one remaining life:
+Note that the routine at <a href="../asm/870E.html">870E</a> tries to draw all remaining lives at the
+bottom of the screen, which means that for large N, there is screen corruption
+and the game slows down considerably; to avoid this, disable the drawing of
+more than one remaining life:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/870E.html#872e">34607</a>,0
 </div>
 </div>
 <div><span id="infiniteLives"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Infinite lives</div>
 <div class="paragraph">
 To give Willy infinite lives:
@@ -146,9 +173,9 @@ POKE <a href="../asm/870E.html#8940">35136</a>,0
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd (Manic Miner). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>
