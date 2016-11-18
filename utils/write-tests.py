@@ -31,8 +31,8 @@ Copying ../sources/mm.css to {odir}/manic_miner/mm.css
   Writing manic_miner/buffers/gbuffer.html
   Writing manic_miner/tables/caverns.html
   Writing manic_miner/reference/credits.html
-  Writing manic_miner/reference/changelog.html
   Writing manic_miner/reference/bugs.html
+  Writing manic_miner/reference/changelog.html
   Writing manic_miner/reference/facts.html
   Writing manic_miner/reference/glossary.html
   Writing manic_miner/reference/pokes.html
