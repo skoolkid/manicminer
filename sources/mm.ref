@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2016 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2017 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
 HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
@@ -76,8 +76,8 @@ Credits
 Caverns=tables/caverns.html
 Credits=reference/credits.html
 
-[PageContent:Caverns]
-#CALL:caverns()
+[Page:Caverns]
+PageContent=#CALL:caverns()
 
 [PageContent:Credits]
 <div class="box box-1">
