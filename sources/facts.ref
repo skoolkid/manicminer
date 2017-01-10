@@ -1,4 +1,4 @@
-; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:tunes:Tunes]
 The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss
@@ -62,7 +62,7 @@ TABLE#
 The other unused conveyor is of length 3, defined at (9,7) in
 #R62464(Amoebatrons' Revenge) (see #R63087). Instead of a conveyor, the space
 is occupied by a platform, whose third row of pixels is animated as if it were
-a conveyor (which is a #BUG#animatedPlatform).
+a conveyor (which is a #BUG#animatedPlatform(bug)).
 
 To replace the platform with conveyor tiles:
 
