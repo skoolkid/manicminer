@@ -79,7 +79,10 @@ Credits=reference/credits.html
 [Page:Caverns]
 PageContent=#CALL:caverns()
 
-[PageContent:Credits]
+[Page:Credits]
+PageContent=#INCLUDE(Credits)
+
+[Credits]
 <div class="box box-1">
 This disassembly would have taken a lot longer to finish if it weren't for the
 research and documentation already done and made available by Andrew Broad. In
