@@ -32,7 +32,7 @@ b28672 DEFS 4096
 @replace=/<tmap>/#MAP($n%1024)(,544:background,553:floor,562:crumbling_floor,571:wall,580:conveyor,589:nasty1,598:nasty2,607:extra)
 @replace=/#item\i/#UDG(45748+1024*\1,#PEEK(45685+1024*\1))(item#EVAL\1,,2)
 @replace=/#portal\i/#UDGARRAY(2,#PEEK(45711+1024*\1),4,2);(45712+1024*\1)-(45729+1024*\1)-1-16(portal#EVAL\1,,2)
-@replace=/#sprite\i,\i/#UDGARRAY(2,#IF(\2<256)(\2,#PEEK\2),4,2);\1-(\1+17)-1-16
+@replace=/#sprite\i,\i/#UDGARRAY(2,#IF(\2<256)(\2,127&#PEEK\2),4,2);\1-(\1+17)-1-16
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#BUG(?![A-Z])/#LINK:Bugs
 @replace=/#FACT(?![A-Z])/#LINK:Facts
