@@ -1,110 +1,121 @@
-; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
+
+[Page:Changelog]
+SectionType=BulletPoints
 
 [Changelog:20161104]
 -
 
-Documented a bug: #BUG#nineLivesInTheLight() (thanks Tezz)
-Added a POKE: #POKE#morePointsPerItem()
-In #FACT#lightLogic(), fixed the description of how the light beam reduces the air supply
-The images of the Kong Beast caverns now show the cyan horizontal guardians (see #R52224 and #R56320)
+- Documented a bug: #BUG#nineLivesInTheLight() (thanks Tezz)
+- Added a POKE: #POKE#morePointsPerItem()
+- In #FACT#lightLogic(), fixed the description of how the light beam reduces
+  the air supply
+- The images of the Kong Beast caverns now show the cyan horizontal guardians
+  (see #R52224 and #R56320)
 
 [Changelog:20160511]
 -
 
-Added a trivia entry: #FACT#lightLogic()
-Revealed the patterns of the #R58912(unused nasty tiles in Skylab Landing Bay)
-In #BUG#throughTheWall(), fixed the images and description to reflect where Willy is actually drawn (thanks IRF)
-Made various improvements to the hexadecimal version of the disassembly
+- Added a trivia entry: #FACT#lightLogic()
+- Revealed the patterns of the #R58912(unused nasty tiles in Skylab Landing
+  Bay)
+- In #BUG#throughTheWall(), fixed the images and description to reflect where
+  Willy is actually drawn (thanks IRF)
+- Made various improvements to the hexadecimal version of the disassembly
 
 [Changelog:20160116]
 -
 
-Documented a bug: #BUG#throughTheWallAgain()
+- Documented a bug: #BUG#throughTheWallAgain()
 
 [Changelog:20150328]
 -
 
-Documented a bug: #BUG#animatedPlatform()
-Added a trivia entry: #FACT#unusedConveyors()
-Added a POKE: #POKE#infiniteTime()
+- Documented a bug: #BUG#animatedPlatform()
+- Added a trivia entry: #FACT#unusedConveyors()
+- Added a POKE: #POKE#infiniteTime()
 
 [Changelog:20141114]
 -
 
-Added trivia entries:
-  #FACT#tunes()
-  #FACT#thePersistentItem() (thanks Zaph0dd)
+- Added trivia entries:
+  - #FACT#tunes()
+  - #FACT#thePersistentItem() (thanks Zaph0dd)
 
 [Changelog:20141004]
 The disassembly is now 'complete'.
 
-Annotated all the #LINK:RoutinesMap(routines)
-Added a description to each #LINK:GameStatusBuffer(game status buffer entry), #LINK:MessagesMap(message entry) and #LINK:DataMap(data block)
-Added the #LINK:Caverns(Caverns page)
-Added trivia entries:
-  #FACT#takingABreak()
-  #FACT#6031769()
-  #FACT#noSwordfishForCheats()
-  #FACT#unusedCrumblingFloor()
-  #FACT#itemGraphics()
-  #FACT#itemCounts()
-  #FACT#extraItems()
-  #FACT#guardianColours()
-  #FACT#guardianCounts()
-  #FACT#guardiansNeedAClearPath()
-  #FACT#variableAirSupply()
-  #FACT#theUnreachableMillion()
-  #FACT#horizontalSkylabs()
-  #FACT#sourceCodeRemnants()
-Documented bugs:
-  #BUG#throughTheWall()
-  #BUG#attributeCrash()
-Added POKEs:
-  #POKE#gentleGuardians()
-  #POKE#niceNasties()
-  #POKE#harmlessHeights()
-  #POKE#noConveyors()
-  #POKE#cheatModeCheat()
-  #POKE#alwaysOpen()
-  #POKE#noSkylabs()
-  #POKE#likeableLightBeam()
-  #POKE#moreLives()
-  #POKE#infiniteLives()
+- Annotated all the #LINK:RoutinesMap(routines)
+- Added a description to each #LINK:GameStatusBuffer(game status buffer entry),
+  #LINK:MessagesMap(message entry) and #LINK:DataMap(data block)
+- Added the #LINK:Caverns(Caverns page)
+- Added trivia entries:
+  - #FACT#takingABreak()
+  - #FACT#6031769()
+  - #FACT#noSwordfishForCheats()
+  - #FACT#unusedCrumblingFloor()
+  - #FACT#itemGraphics()
+  - #FACT#itemCounts()
+  - #FACT#extraItems()
+  - #FACT#guardianColours()
+  - #FACT#guardianCounts()
+  - #FACT#guardiansNeedAClearPath()
+  - #FACT#variableAirSupply()
+  - #FACT#theUnreachableMillion()
+  - #FACT#horizontalSkylabs()
+  - #FACT#sourceCodeRemnants()
+- Documented bugs:
+  - #BUG#throughTheWall()
+  - #BUG#attributeCrash()
+- Added POKEs:
+  - #POKE#gentleGuardians()
+  - #POKE#niceNasties()
+  - #POKE#harmlessHeights()
+  - #POKE#noConveyors()
+  - #POKE#cheatModeCheat()
+  - #POKE#alwaysOpen()
+  - #POKE#noSkylabs()
+  - #POKE#likeableLightBeam()
+  - #POKE#moreLives()
+  - #POKE#infiniteLives()
 
 [Changelog:20140308]
 Included in SkoolKit 3.7.
 
-Added images of the top third and middle third of the title screen to the entry at #R40960
+- Added images of the top third and middle third of the title screen to the
+  entry at #R40960
 
 [Changelog:20131102]
 Included in SkoolKit 3.6.
 
-Added animated images of Miner Willy to the entry at #R33280
+- Added animated images of Miner Willy to the entry at #R33280
 
 [Changelog:20130513]
 Included in SkoolKit 3.3.2.
 
-Fixed the comments at #R40177-#N40191 so that they apply to a pristine snapshot (before stack operations have corrupted those addresses)
+- Fixed the comments at #R40177-#N40191 so that they apply to a pristine
+  snapshot (before stack operations have corrupted those addresses)
 
 [Changelog:20121101]
 Included in SkoolKit 3.2.
 
-Annotated the source code remnants at #FACT#sourceCodeRemnants(#N32768) and #R37708
+- Annotated the source code remnants at #FACT#sourceCodeRemnants(#N32768) and
+  #R37708
 
 [Changelog:20120501]
 Included in SkoolKit 3.0.2.
 
-Added cavern images and descriptions
+- Added cavern images and descriptions
 
 [Changelog:20120320]
 Included in SkoolKit 3.0.
 
-Added a logo image
+- Added a logo image
 
 [Changelog:20120222]
 Included in SkoolKit 2.5.
 
-Fixed the spacing in the title of the entry at #R33839
+- Fixed the spacing in the title of the entry at #R33839
 
 [Changelog:20100212]
 Initial version, included in SkoolKit 1.0.7.
