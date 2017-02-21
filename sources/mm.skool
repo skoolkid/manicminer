@@ -34,6 +34,9 @@ b28672 DEFS 4096
 @replace=/#portal\i/#UDGARRAY(2,#PEEK(45711+1024*\1),4,2);(45712+1024*\1)-(45729+1024*\1)-1-16(portal#EVAL\1,,2)
 @replace=/#sprite\i,\i/#UDGARRAY(2,#IF(\2<256)(\2,127&#PEEK\2),4,2);\1-(\1+17)-1-16
 @replace=/#n\i/#N\1,,,1($)
+@replace=/#defb/#IF({case}==1)(defb,DEFB)
+@replace=/#defm/#IF({case}==1)(defm,DEFM)
+@replace=/#defw/#IF({case}==1)(defw,DEFW)
 @replace=/#BUG(?![A-Z])/#LINK:Bugs
 @replace=/#FACT(?![A-Z])/#LINK:Facts
 @replace=/#POKE(?![A-Z])/#LINK:Pokes
