@@ -37,6 +37,7 @@ b28672 DEFS 4096
 @replace=/#defb/#IF({case}==1)(defb,DEFB)
 @replace=/#defm/#IF({case}==1)(defm,DEFM)
 @replace=/#defw/#IF({case}==1)(defw,DEFW)
+@replace=/#ld_d/#IF({case}==1)(ld d,LD D)
 @replace=/#BUG(?![A-Z])/#LINK:Bugs
 @replace=/#FACT(?![A-Z])/#LINK:Facts
 @replace=/#POKE(?![A-Z])/#LINK:Pokes
@@ -1473,7 +1474,7 @@ c35388 LD A,(32957)  ; {Update the game clock at #R32957
 @label=DRAWSHEET
 c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; at #R24064
- 35449 LD A,112      ; {Set the operand of the 'LD D,n' instruction at #R35483
+ 35449 LD A,112      ; {Set the operand of the '#ld_d,n' instruction at #R35483
 @ssub=LD (35483+1),A
  35451 LD (35484),A  ; (below) to #n112}
  35454 CALL 35466    ; Draw the tiles for the top half of the cavern to the
@@ -1482,7 +1483,7 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; at #R24064 in preparation for drawing the bottom half of
                      ; the cavern; this instruction is redundant, since #REGix
                      ; already holds #N24320
- 35461 LD A,120      ; {Set the operand of the 'LD D,n' instruction at #R35483
+ 35461 LD A,120      ; {Set the operand of the '#ld_d,n' instruction at #R35483
 @ssub=LD (35483+1),A
  35463 LD (35484),A  ; (below) to #n120}
 *35466 LD C,0        ; #REGc will count 256 tiles
@@ -1499,9 +1500,9 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
  35480 LD C,E        ; Restore the value of the tile counter in #REGc
  35481 LD B,8        ; There are eight bytes in the tile
 @label=SBMSB
- 35483 LD D,0        ; This instruction is set to either 'LD D,#n112' or 'LD
-                     ; D,#n120' above; now #REGde holds the appropriate address
-                     ; in the screen buffer at #R28672
+ 35483 LD D,0        ; This instruction is set to either '#ld_d,#n112' or
+                     ; '#ld_d,#n120' above; now #REGde holds the appropriate
+                     ; address in the screen buffer at #R28672
 *35485 LD A,(HL)     ; {Copy the tile graphic data to the screen buffer at
  35486 LD (DE),A     ; #R28672
  35487 INC HL        ;
