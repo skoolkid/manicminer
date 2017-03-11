@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-
-# Copyright 2012, 2014-2016 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014-2017 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -15,8 +13,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
+from skoolkit.graphics import Frame, Udg
 from skoolkit.skoolasm import AsmWriter
-from skoolkit.skoolhtml import HtmlWriter, Frame, Udg
+from skoolkit.skoolhtml import HtmlWriter
 from skoolkit.skoolmacro import parse_ints, parse_image_macro
 
 def parse_gbuf(text, index):
