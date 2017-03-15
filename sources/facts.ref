@@ -98,10 +98,10 @@ follow these simple rules (see #R36211):
 LIST#
 
 In addition, for every frame that the light beam is in contact with Willy, the
-air supply is reduced by an extra eight units - four for each of the two cells
-of Willy's sprite that the beam touches - making nine units in total. For every
-eight units of air consumed, one vertical line of pixels is removed from the
-right end of the air bar (see #R35388).
+air supply is reduced by an extra eight or twelve units - four for each of the
+two or three cells of Willy's sprite that the beam touches - making nine or
+thirteen units in total. For every eight units of air consumed, one vertical
+line of pixels is removed from the right end of the air bar (see #R35388).
 
 [Fact:itemGraphics:Item graphics]
 The commonest item graphic is the key, which appears in #R45056(Central

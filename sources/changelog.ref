@@ -3,6 +3,12 @@
 [Page:Changelog]
 SectionType=BulletPoints
 
+[Changelog:YYYYMMDD]
+-
+
+- In #FACT#lightLogic(), updated the description of how the light beam reduces
+  the air supply
+
 [Changelog:20161104]
 -
 
