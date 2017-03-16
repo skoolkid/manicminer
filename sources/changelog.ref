@@ -8,6 +8,8 @@ SectionType=BulletPoints
 
 - In #FACT#lightLogic(), updated the description of how the light beam reduces
   the air supply
+- In #BUG#throughTheWallAgain(), updated the description of how Willy falls
+  into a wall block
 
 [Changelog:20161104]
 -
