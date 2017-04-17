@@ -12,6 +12,7 @@ StyleSheet=skoolkit.css;mm.css
 Copyright=&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.
 Release=The complete Manic Miner RAM disassembly 20161104
 LinkInternalOperands=1
+AddressAnchor={address#IF({base}==16)(:04x)}
 
 [Font]
 32=0000000000000000
@@ -75,6 +76,7 @@ Credits
 [Paths]
 Caverns=tables/caverns.html
 Credits=reference/credits.html
+CodeFiles={address#IF({base}==16)(:04#IF({case}==1)//x/X//)}.html
 
 [Page:Caverns]
 PageContent=#CALL:caverns()
@@ -107,3 +109,12 @@ examples are:
 { #R51200(The Vat)             | #UDG51799,22(nasty2_6) }
 { #R54272(The Endorian Forest) | #UDG54871,4(nasty2_9) }
 TABLE#
+
+[MemoryMap:MemoryMap]
+PageByteColumns=#IF({base}==16)(0,1)
+
+[MemoryMap:DataMap]
+PageByteColumns=#IF({base}==16)(0,1)
+
+[MemoryMap:UnusedMap]
+PageByteColumns=#IF({base}==16)(0,1)
