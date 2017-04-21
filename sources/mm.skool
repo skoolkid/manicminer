@@ -34,10 +34,6 @@ b28672 DEFS 4096
 @replace=/#portal\i/#UDGARRAY(2,#PEEK(45711+1024*\1),4,2);(45712+1024*\1)-(45729+1024*\1)-1-16(portal#EVAL\1,,2)
 @replace=/#sprite\i,\i/#UDGARRAY(2,#IF(\2<256)(\2,127&#PEEK\2),4,2);\1-(\1+17)-1-16
 @replace=/#n\i/#N\1,,,1($)
-@replace=/#defb/#IF({case}==1)(defb,DEFB)
-@replace=/#defm/#IF({case}==1)(defm,DEFM)
-@replace=/#defw/#IF({case}==1)(defw,DEFW)
-@replace=/#ld_d/#IF({case}==1)(ld d,LD D)
 @replace=/#BUG(?![A-Z])/#LINK:Bugs
 @replace=/#FACT(?![A-Z])/#LINK:Facts
 @replace=/#POKE(?![A-Z])/#LINK:Pokes
@@ -1248,14 +1244,14 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  35090 LDIR          ; }
  35092 LD E,A        ; Save the attribute byte (64-71) in #REGe for later
                      ; retrieval
- 35093 CPL           ; {#REGd=63-8*(#REGe AND 7); this value determines the
+ 35093 CPL           ; {#REGd=63-8*(#REGe #S/AND/ 7); this value determines the
  35094 AND 7         ; pitch of the short note that will be played
  35096 RLCA          ;
  35097 RLCA          ;
  35098 RLCA          ;
  35099 OR 7          ;
  35101 LD D,A        ; }
- 35102 LD C,E        ; {#REGc=8+32*(#REGe AND 7); this value determines the
+ 35102 LD C,E        ; {#REGc=8+32*(#REGe #S/AND/ 7); this value determines the
  35103 RRC C         ; duration of the short note that will be played
  35105 RRC C         ;
  35107 RRC C         ; }
@@ -1474,18 +1470,18 @@ c35388 LD A,(32957)  ; {Update the game clock at #R32957
 @label=DRAWSHEET
 c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; at #R24064
- 35449 LD A,112      ; {Set the operand of the '#ld_d,n' instruction at #R35483
+ 35449 LD A,112      ; {Set the operand of the '#S/LD D/,n' instruction at
 @ssub=LD (35483+1),A
- 35451 LD (35484),A  ; (below) to #n112}
+ 35451 LD (35484),A  ; #R35483 (below) to #n112}
  35454 CALL 35466    ; Draw the tiles for the top half of the cavern to the
                      ; screen buffer at #R28672
  35457 LD IX,24320   ; Point #REGix at the 256th byte of the attribute buffer
                      ; at #R24064 in preparation for drawing the bottom half of
                      ; the cavern; this instruction is redundant, since #REGix
                      ; already holds #N24320
- 35461 LD A,120      ; {Set the operand of the '#ld_d,n' instruction at #R35483
+ 35461 LD A,120      ; {Set the operand of the '#S/LD D/,n' instruction at
 @ssub=LD (35483+1),A
- 35463 LD (35484),A  ; (below) to #n120}
+ 35463 LD (35484),A  ; #R35483 (below) to #n120}
 *35466 LD C,0        ; #REGc will count 256 tiles
 ; The following loop draws 256 tiles (for either the top half or the bottom
 ; half of the cavern) to the screen buffer at #R28672.
@@ -1500,8 +1496,8 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
  35480 LD C,E        ; Restore the value of the tile counter in #REGc
  35481 LD B,8        ; There are eight bytes in the tile
 @label=SBMSB
- 35483 LD D,0        ; This instruction is set to either '#ld_d,#n112' or
-                     ; '#ld_d,#n120' above; now #REGde holds the appropriate
+ 35483 LD D,0        ; This instruction is set to either '#S/LD D/,#n112' or
+                     ; '#S/LD D/,#n120' above; now #REGde holds the appropriate
                      ; address in the screen buffer at #R28672
 *35485 LD A,(HL)     ; {Copy the tile graphic data to the screen buffer at
  35486 LD (DE),A     ; #R28672

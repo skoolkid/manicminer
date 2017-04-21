@@ -76,7 +76,7 @@ Credits
 [Paths]
 Caverns=tables/caverns.html
 Credits=reference/credits.html
-CodeFiles={address#IF({base}==16)(:04#IF({case}==1)//x/X//)}.html
+CodeFiles={address#IF({base}==16)(:04#S/X/)}.html
 
 [Page:Caverns]
 PageContent=#CALL:caverns()
