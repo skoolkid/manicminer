@@ -191,22 +191,23 @@ POKE 45327,22
 
 [Fact:variableAirSupply:Variable air supply]
 The initial air supply varies from cavern to cavern by small amounts, because
-of differences in the initial value of the game clock at #R32957 - 128, 240,
-248 or 252 - which is copied from byte 701 of the cavern definition.
+of differences in the initial value of the game clock at #R32957 - #b128,
+#b240, #b248 or #b252 - which is copied from byte #N701,,,1(0x) of the cavern
+definition.
 
 The caverns with the greatest initial air supply are #R45056(Central Cavern),
 #R46080(The Cold Room), #R57344(Ore Refinery), #R59392(The Bank) and
-#R64512(The Final Barrier), which initialise the game clock to 252.
+#R64512(The Final Barrier), which initialise the game clock to #b252.
 
 Next are #R54272(The Endorian Forest), #R58368(Skylab Landing Bay) and
-#R60416(The Sixteenth Cavern), which initialise the game clock to 248.
+#R60416(The Sixteenth Cavern), which initialise the game clock to #b248.
 
 Then it's #R63488(Solar Power Generator), which initialises the game clock to
-240.
+#b240.
 
-The other 11 caverns initialise the game clock to 128, which means the cell at
-the right end of the air bar in those caverns starts off with only three white
-pixel columns instead of seven.
+The other 11 caverns initialise the game clock to #b128, which means the cell
+at the right end of the air bar in those caverns starts off with only three
+white pixel columns instead of seven.
 
 [Fact:theUnreachableMillion:The unreachable million]
 The score (at least, the part of it that is printed - see #R33829) rolls around
