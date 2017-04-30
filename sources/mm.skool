@@ -128,12 +128,12 @@ g32874 DEFB 0
 ; .
 ; #TABLE(default,centre,:w)
 ; { =h Value | =h Meaning }
-; { 0 | Willy is neither falling nor jumping }
-; { 1 | Willy is jumping }
-; { 2-11 | Willy is falling, and can land safely }
-; { 12+ | Willy is falling, and has fallen too far to land safely (see
+; { #b0      | Willy is neither falling nor jumping }
+; { #b1      | Willy is jumping }
+; { #b2-#b11 | Willy is falling, and can land safely }
+; { #b12+    | Willy is falling, and has fallen too far to land safely (see
 ; #R35805#35805) }
-; { 255 | Willy has collided with a nasty or a guardian (see #R36101) }
+; { #b255    | Willy has collided with a nasty or a guardian (see #R36101) }
 ; TABLE#
 @label=AIRBORNE
 g32875 DEFB 0
@@ -174,7 +174,7 @@ g32883 DEFB 0
 ; Attribute of the last item drawn
 ;
 ; Used by the routines at #R36344 and #R36707. Holds the attribute byte of the
-; last item drawn, or 0 if all the items have been collected.
+; last item drawn, or #b0 if all the items have been collected.
 @label=ITEMATTR
 g32884 DEFB 0
 
@@ -190,7 +190,7 @@ g32884 DEFB 0
 ; { 1,2 | Address of the item's location in the attribute buffer at #R23552 }
 ; { 3 | MSB of the address of the item's location in the screen buffer at
 ; #R24576 }
-; { 4 | Unused (always 255) }
+; { 4 | Unused (always #b255) }
 ; TABLE#
 @label=ITEMS
 g32885 DEFS 5        ; Item 1
@@ -198,7 +198,7 @@ g32885 DEFS 5        ; Item 1
  32895 DEFS 5        ; Item 3
  32900 DEFS 5        ; Item 4
  32905 DEFS 5        ; Item 5
- 32910 DEFB 0        ; Terminator (set to 255)
+ 32910 DEFB 0        ; Terminator (set to #b255)
 
 ; Portal definition
 ;
@@ -224,11 +224,11 @@ g32948 DEFS 8
 
 ; Remaining air supply
 ;
-; Initialised (always to 63 in practice) and used by the routine at #R34436,
+; Initialised (always to #b63 in practice) and used by the routine at #R34436,
 ; updated by the routine at #R35388, and also used by the routine at #R36904.
-; Its value ranges from 36 to 63 and is actually the LSB of the display file
-; address for the cell at the right end of the air bar. The amount of air to
-; draw in this cell is determined by the value of the game clock at #R32957.
+; Its value ranges from #b36 to #b63 and is actually the LSB of the display
+; file address for the cell at the right end of the air bar. The amount of air
+; to draw in this cell is determined by the value of the game clock at #R32957.
 @label=AIR
 g32956 DEFB 0
 
@@ -271,7 +271,7 @@ g32958 DEFS 7        ; Horizontal guardian 1
  32965 DEFS 7        ; Horizontal guardian 2
  32972 DEFS 7        ; Horizontal guardian 3
  32979 DEFS 7        ; Horizontal guardian 4
- 32986 DEFB 0        ; Terminator (set to 255)
+ 32986 DEFB 0        ; Terminator (set to #b255)
 
 ; Eugene's direction or the Kong Beast's status
 ;
@@ -322,7 +322,7 @@ g32989 DEFS 7        ; Vertical guardian 1
  32996 DEFS 7        ; Vertical guardian 2
  33003 DEFS 7        ; Vertical guardian 3
  33010 DEFS 7        ; Vertical guardian 4
- 33017 DEFB 0        ; Terminator (set to 255 in caverns that have four
+ 33017 DEFB 0        ; Terminator (set to #b255 in caverns that have four
                      ; vertical guardians)
  33018 DEFS 6        ; Spare
 
@@ -624,8 +624,8 @@ g33881 DEFB 0
 ; Game mode indicator
 ;
 ; Initialised by the routine at #R34252, and used by the routines at #R34436,
-; #R34574 and #R36904. Holds 0 when a game is in progress, or a value from 1 to
-; 64 when in demo mode.
+; #R34574 and #R36904. Holds #b0 when a game is in progress, or a value from
+; #b1 to #b64 when in demo mode.
 @label=DEMO
 g33882 DEFB 0
 
@@ -824,7 +824,7 @@ c34252 XOR A         ; #REGa=0
  34327 LD BC,512     ; two-thirds of the attribute file
  34330 LDIR          ; }
 ; Now check whether there is a joystick connected.
- 34332 LD BC,31      ; #REGb=0, #REGc=31 (joystick port)
+ 34332 LD BC,31      ; This is the joystick port
  34335 DI            ; Disable interrupts (which are already disabled)
  34336 XOR A         ; #REGa=0
 *34337 IN E,(C)      ; {Combine 256 readings of the joystick port in #REGa; if
@@ -849,8 +849,8 @@ c34252 XOR A         ; #REGa=0
  34379 CALL 37562    ; }
  34382 LD A,(32988)  ; Pick up the message index from #R32988
  34385 AND 6         ; {Keep only bits 1 and 2, and move them into bits 6 and
- 34387 RRCA          ; 7, so that #REGa holds 0, 64, 128 or 192; this value
- 34388 RRCA          ; determines the animation frame to use for Willy
+ 34387 RRCA          ; 7, so that #REGa holds #b0, #b64, #b128 or #b192; this
+ 34388 RRCA          ; value determines the animation frame to use for Willy
  34389 RRCA          ; }
  34390 LD E,A        ; {Point #REGde at the graphic data for Willy's sprite
 @ssub=LD D,33280/256
@@ -875,7 +875,7 @@ c34252 XOR A         ; #REGa=0
  34426 LD (32988),A  ; Store the new message index at #R32988
  34429 JR NZ,34365   ; Jump back unless we've finished scrolling the message
                      ; across the screen
- 34431 LD A,64       ; {Initialise the game mode indicator at #R33882 to 64:
+ 34431 LD A,64       ; {Initialise the game mode indicator at #R33882 to #b64:
  34433 LD (33882),A  ; demo mode}
 ; This routine continues into the one at #R34436.
 
@@ -921,7 +921,7 @@ c34436 LD HL,33829   ; {Initialise the score at #R33829
  34509 LD C,3        ;
  34511 LD DE,20512   ;
  34514 CALL 37562    ; }
- 34517 LD A,82       ; Initialise #REGa to 82; this is the MSB of the display
+ 34517 LD A,82       ; Initialise #REGa to #b82; this is the MSB of the display
                      ; file address at which to start drawing the bar that
                      ; represents the air supply
 *34519 LD H,A        ; {Prepare #REGhl and #REGde for drawing a row of pixels
@@ -953,7 +953,7 @@ c34436 LD HL,33829   ; {Initialise the score at #R33829
  34563 LD A,(33882)  ; Pick up the game mode indicator from #R33882
  34566 OR A          ; Are we in demo mode?
  34567 JR Z,34574    ; If not, enter the main loop now
- 34569 LD A,64       ; {Reset the game mode indicator at #R33882 to 64 (we're
+ 34569 LD A,64       ; {Reset the game mode indicator at #R33882 to #b64 (we're
  34571 LD (33882),A  ; in demo mode)}
 ; This routine continues into the main loop at #R34574.
 
@@ -977,8 +977,8 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34587 PUSH BC       ; }
  34588 LD A,(33883)  ; Pick up the in-game music note index from #R33883; this
                      ; will determine the animation frame for the Willy sprites
- 34591 RLCA          ; {Now #REGa=0 (frame 0), 32 (frame 1), 64 (frame 2) or 96
- 34592 RLCA          ; (frame 3)
+ 34591 RLCA          ; {Now #REGa=#b0 (frame 0), #b32 (frame 1), #b64 (frame 2)
+ 34592 RLCA          ; or #b96 (frame 3)
  34593 RLCA          ;
  34594 AND 96        ; }
  34596 LD E,A        ; {Point #REGde at the corresponding Willy sprite (at
@@ -1179,7 +1179,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34968 IN A,(C)      ; }
  34970 CPL           ; {Keep only bits 0-4 and flip them
  34971 AND 31        ; }
- 34973 CP 20         ; Is the result 20 or greater?
+ 34973 CP 20         ; Is the result #b20 or greater?
  34975 JP NC,34984   ; Jump if so (this is not a cavern number)
  34978 LD (33799),A  ; Store the cavern number at #R33799
  34981 JP 34449      ; Teleport into the cavern
@@ -1234,16 +1234,17 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
 *35071 LD A,(33882)  ; Pick up the game mode indicator from #R33882
  35074 OR A          ; Is it demo mode?
  35075 JP NZ,36904   ; If so, move to the next cavern
- 35078 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
+ 35078 LD A,71       ; #REGa=#b71 (INK 7: PAPER 0: BRIGHT 1)
 ; The following loop fills the top two thirds of the attribute file with a
-; single value (71 TO 64 STEP -1) and makes a sound effect.
+; single value (#b71, #b70, #b69, #b68, #b67, #b66, #b65 or #b64) and makes a
+; sound effect.
 @label=LPDEAD1
 *35080 LD HL,22528   ; {Fill the top two thirds of the attribute file with the
  35083 LD DE,22529   ; value in #REGa
  35086 LD BC,511     ;
  35089 LD (HL),A     ;
  35090 LDIR          ; }
- 35092 LD E,A        ; Save the attribute byte (64-71) in #REGe for later
+ 35092 LD E,A        ; Save the attribute byte (#b64-#b71) in #REGe for later
                      ; retrieval
  35093 CPL           ; {#REGd=63-8*(#REGe #S/AND/ 7); this value determines the
  35094 AND 7         ; pitch of the short note that will be played
@@ -1266,9 +1267,9 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
 *35117 DJNZ 35117    ;
  35119 DEC C         ;
  35120 JR NZ,35112   ; }
- 35122 LD A,E        ; Restore the attribute byte (originally 71) to #REGa
+ 35122 LD A,E        ; Restore the attribute byte (originally #b71) to #REGa
  35123 DEC A         ; Decrement it (effectively decrementing the INK colour)
- 35124 CP 63         ; Have we used attribute value 64 (INK 0) yet?
+ 35124 CP 63         ; Have we used attribute value #b64 (INK 0) yet?
  35126 JR NZ,35080   ; If not, jump back to update the INK colour in the top
                      ; two thirds of the screen and make another sound effect
 ; Finally, check whether any lives remain.
@@ -1340,11 +1341,11 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
                      ; place, and makes the boot appear as if it's at the end
                      ; of a long, extending trouser leg}
  35233 LD A,(32988)  ; Pick up the distance variable from #R32988
- 35236 CPL           ; #REGa=255-#REGa
- 35237 LD E,A        ; Store this value (63-255) in #REGe; it determines the
-                     ; (rising) pitch of the sound effect that will be made
+ 35236 CPL           ; #REGa=#b255-#REGa
+ 35237 LD E,A        ; Store this value (#b63-#b255) in #REGe; it determines
+                     ; the (rising) pitch of the sound effect that will be made
  35238 XOR A         ; #REGa=0 (black border)
- 35239 LD BC,64      ; #REGc=64; this value determines the duration of the
+ 35239 LD BC,64      ; #REGc=#b64; this value determines the duration of the
                      ; sound effect
 @label=TM111
 *35242 OUT (254),A   ; {Produce a short note whose pitch is determined by
@@ -1560,8 +1561,8 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35565 RLCA          ; of the jumping sound effect (rising as Willy rises,
  35566 RLCA          ; falling as Willy falls)
  35567 LD D,A        ; }
- 35568 LD C,32       ; #REGc=32; this value determines the duration of the
-                     ; jumping sound effect
+ 35568 LD C,32       ; This value determines the duration of the jumping sound
+                     ; effect
  35570 LD A,(32883)  ; Pick up the border colour for the current cavern from
                      ; #R32883
 *35573 OUT (254),A   ; {Make a jumping sound effect
@@ -1646,8 +1647,8 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35688 RLCA          ;
  35689 RLCA          ;
  35690 LD D,A        ; }
- 35691 LD C,32       ; #REGc=32; this value determines the duration of the
-                     ; falling sound effect
+ 35691 LD C,32       ; This value determines the duration of the falling sound
+                     ; effect
  35693 LD A,(32883)  ; Pick up the border colour for the current cavern from
                      ; #R32883
 *35696 OUT (254),A   ; {Make a falling sound effect
@@ -1664,8 +1665,8 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35717 XOR A         ; Clear #REGa and the carry flag
  35718 RL L          ; Now #REGl=32*(Y-8*INT(Y/8)), and the carry flag is set
                      ; if Willy is in the lower half of the cavern (Y>=8)
- 35720 ADC A,92      ; {#REGh=92 or 93 (MSB of the address of Willy's location
- 35722 LD H,A        ; in the attribute buffer)}
+ 35720 ADC A,92      ; {#REGh=#b92 or #b93 (MSB of the address of Willy's
+ 35722 LD H,A        ; location in the attribute buffer)}
  35723 LD A,(32876)  ; {Pick up Willy's screen x-coordinate (1-29) from bits
  35726 AND 31        ; 0-4 at #R32876}
  35728 OR L          ; {Now #REGl holds the LSB of Willy's attribute buffer
@@ -1674,12 +1675,12 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
                      ; #R32876
  35733 RET           ;
 ; Willy has just finished a jump.
-*35734 LD A,6        ; {Set the airborne status indicator at #R32875 to 6:
+*35734 LD A,6        ; {Set the airborne status indicator at #R32875 to #b6:
  35736 LD (32875),A  ; Willy will continue to fall unless he's landed on a wall
                      ; or floor block}
  35739 RET           ;
 ; Willy has just started falling.
-*35740 LD A,2        ; {Set the airborne status indicator at #R32875 to 2
+*35740 LD A,2        ; {Set the airborne status indicator at #R32875 to #b2
  35742 LD (32875),A  ; }
  35745 RET           ;
 ; The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
@@ -1689,7 +1690,7 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35753 LD (32872),A  ; }
  35756 CALL 35714    ; Adjust Willy's attribute buffer location at #R32876 to
                      ; account for this new pixel y-coordinate
- 35759 LD A,2        ; {Set the airborne status indicator at #R32875 to 2:
+ 35759 LD A,2        ; {Set the airborne status indicator at #R32875 to #b2:
  35761 LD (32875),A  ; Willy has started falling}
  35764 LD HL,32874   ; {Reset bit 1 at #R32874: Willy is not moving left or
  35767 RES 1,(HL)    ; right}
@@ -1746,8 +1747,8 @@ c35805 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35808 CP 12         ; Has Willy just landed after falling from too great a
                      ; height?
  35810 JP NC,36102   ; If so, kill him
- 35813 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
-                     ; to hold keyboard and joystick readings
+ 35813 LD E,255      ; Initialise #REGe to #b255 (all bits set); it will be
+                     ; used to hold keyboard and joystick readings
  35815 XOR A         ; {Reset the airborne status indicator at #R32875 (Willy
  35816 LD (32875),A  ; has landed safely)}
  35819 LD A,(32836)  ; Pick up the attribute byte of the conveyor tile for the
@@ -1761,8 +1762,8 @@ c35805 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35827 JR NZ,35835   ; Jump if not
 *35829 LD A,(32879)  ; Pick up the direction byte of the conveyor definition
                      ; from #R32879 (0=left, 1=right)
- 35832 SUB 3         ; {Now #REGe=253 (bit 1 reset) if the conveyor is moving
- 35834 LD E,A        ; left, or 254 (bit 0 reset) if it's moving right}
+ 35832 SUB 3         ; {Now #REGe=#b253 (bit 1 reset) if the conveyor is moving
+ 35834 LD E,A        ; left, or #b254 (bit 0 reset) if it's moving right}
 @keep
 *35835 LD BC,57342   ; {Read keys P-O-I-U-Y (right, left, right, left, right)
  35838 IN A,(C)      ; into bits 0-4 of #REGa}
@@ -1956,7 +1957,7 @@ c36101 POP HL        ; Drop the return address from the stack
 *36102 POP HL        ; Drop the return address from the stack
 ; This entry point is used by the routine at #R36469 when a Skylab falls on
 ; Willy.
-*36103 LD A,255      ; {Set the airborne status indicator at #R32875 to 255
+*36103 LD A,255      ; {Set the airborne status indicator at #R32875 to #b255
  36105 LD (32875),A  ; (meaning Willy has had a fatal accident)}
  36108 JP 34722      ; Jump back into the main loop
 
@@ -2047,7 +2048,7 @@ c36211 LD HL,23575   ; Point #REGhl at the cell at (0,23) in the attribute
                      ; cavern from #R32827
  36225 CP (HL)       ; Does #REGhl point at a wall tile?
  36226 RET Z         ; Return if so (the light beam stops here)
- 36227 LD A,39       ; #REGa=39 (INK 7: PAPER 4)
+ 36227 LD A,39       ; #REGa=#b39 (INK 7: PAPER 4)
  36229 CP (HL)       ; Does #REGhl point at a tile with this attribute value?
  36230 JR NZ,36248   ; Jump if not (the light beam is not touching Willy)
  36232 EXX           ; Switch to the shadow registers briefly (to preserve
@@ -2071,7 +2072,7 @@ c36211 LD HL,23575   ; Point #REGhl at the cell at (0,23) in the attribute
  36259 CPL           ;
  36260 LD D,A        ; }
 *36261 LD (HL),119   ; Draw a portion of the light beam with attribute value
-                     ; 119 (INK 7: PAPER 6: BRIGHT 1)
+                     ; #b119 (INK 7: PAPER 6: BRIGHT 1)
  36263 ADD HL,DE     ; Point #REGhl at the cell where the next portion of the
                      ; light beam will be drawn
  36264 JR 36217      ; Jump back to draw the next portion of the light beam
@@ -2114,7 +2115,7 @@ c36266 LD IY,32958   ; Point #REGiy at the first byte of the first horizontal
  36315 JR Z,36323    ; Jump if so
  36317 CP 15         ; Are we in #R60416(The Sixteenth Cavern)?
  36319 JR Z,36323    ; Jump if so
- 36321 SET 7,E       ; Add 128 to #REGe (the horizontal guardians in this
+ 36321 SET 7,E       ; Add #b128 to #REGe (the horizontal guardians in this
                      ; cavern use frames 4-7 only)
 @ssub=LD D,33024/256
 *36323 LD D,129      ; Point #REGde at the graphic data for the appropriate
@@ -2355,7 +2356,8 @@ c36593 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
 ; Used by the routine at #R34574.
 @label=DRAWITEMS
 c36707 XOR A         ; {Initialise the attribute of the last item drawn at
- 36708 LD (32884),A  ; #R32884 to 0 (in case there are no items left to draw)}
+ 36708 LD (32884),A  ; #R32884 to #b0 (in case there are no items left to
+                     ; draw)}
  36711 LD IY,32885   ; Point #REGiy at the first byte of the first item
                      ; definition at #R32885
 ; The item-drawing loop begins here.
@@ -2375,7 +2377,7 @@ c36707 XOR A         ; {Initialise the attribute of the last item drawn at
 @ssub=LD HL,33829+7
  36738 LD HL,33836   ; {Add 100 to the score
  36741 CALL 37118    ; }
- 36744 LD (IY+0),0   ; Set the item's attribute byte to 0 so that it will be
+ 36744 LD (IY+0),0   ; Set the item's attribute byte to #b0 so that it will be
                      ; skipped the next time
  36748 JR 36782      ; Jump forward to consider the next item
 ; This item has not been collected yet.
@@ -2537,23 +2539,23 @@ c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
  36946 LD HL,22611   ; Point #REGhl at (2,19) in the attribute file
  36949 LD DE,31      ; Prepare #REGde for addition
  36952 LD (HL),47    ; {Set the attributes for the upper half of Willy's sprite
- 36954 INC HL        ; at (2,19) and (2,20) to 47 (INK 7: PAPER 5)
+ 36954 INC HL        ; at (2,19) and (2,20) to #b47 (INK 7: PAPER 5)
  36955 LD (HL),47    ; }
  36957 ADD HL,DE     ; {Set the attributes for the lower half of Willy's sprite
- 36958 LD (HL),39    ; at (3,19) and (3,20) to 39 (INK 7: PAPER 4)
+ 36958 LD (HL),39    ; at (3,19) and (3,20) to #b39 (INK 7: PAPER 4)
  36960 INC HL        ;
  36961 LD (HL),39    ; }
  36963 ADD HL,DE     ; {Point #REGhl at (5,19) in the attribute file
  36964 INC HL        ;
  36965 ADD HL,DE     ; }
  36966 LD (HL),69    ; {Set the attributes for the fish at (5,19) and (5,20) to
- 36968 INC HL        ; 69 (INK 5: PAPER 0: BRIGHT 1)
+ 36968 INC HL        ; #b69 (INK 5: PAPER 0: BRIGHT 1)
  36969 LD (HL),69    ; }
  36971 ADD HL,DE     ; {Set the attribute for the handle of the sword at (6,19)
- 36972 LD (HL),70    ; to 70 (INK 6: PAPER 0: BRIGHT 1)}
+ 36972 LD (HL),70    ; to #b70 (INK 6: PAPER 0: BRIGHT 1)}
  36974 INC HL        ; {Set the attribute for the blade of the sword at (6,20)
- 36975 LD (HL),71    ; to 71 (INK 7: PAPER 0: BRIGHT 1)}
- 36977 ADD HL,DE     ; {Set the attributes at (7,19) and (7,20) to 0 (to hide
+ 36975 LD (HL),71    ; to #b71 (INK 7: PAPER 0: BRIGHT 1)}
+ 36977 ADD HL,DE     ; {Set the attributes at (7,19) and (7,20) to #b0 (to hide
  36978 LD (HL),0     ; Willy's feet just below where the portal was)
  36980 INC HL        ;
  36981 LD (HL),0     ; }
@@ -2574,12 +2576,12 @@ c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
  37003 JR NZ,36989   ;
  37005 DEC D         ;
  37006 JR NZ,36989   ; }
-*37008 XOR A         ; #REGa=0 (the next cavern will be #R45056(Central
+*37008 XOR A         ; #REGa=#b0 (the next cavern will be #R45056(Central
                      ; Cavern))
 *37009 LD (33799),A  ; Update the cavern number at #R33799
 ; The next section of code cycles the INK and PAPER colours of the current
 ; cavern.
- 37012 LD A,63       ; Initialise #REGa to 63 (INK 7: PAPER 7)
+ 37012 LD A,63       ; Initialise #REGa to #b63 (INK 7: PAPER 7)
 *37014 LD HL,22528   ; {Set the attributes for the top two-thirds of the screen
  37017 LD DE,22529   ; to the value in #REGa
  37020 LD BC,511     ;
@@ -2591,7 +2593,7 @@ c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
  37032 JR NZ,37029   ; }
  37034 DEC A         ; Decrement the attribute value in #REGa
  37035 JR NZ,37014   ; Jump back until we've gone through all attribute values
-                     ; from 63 down to 1
+                     ; from #b63 down to #b1
  37037 LD A,(33882)  ; Pick up the game mode indicator from #R33882
  37040 OR A          ; Are we in demo mode?
  37041 JP NZ,34449   ; If so, demo the next cavern
@@ -2606,8 +2608,7 @@ c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
  37060 LD C,6        ;
  37062 LD DE,20602   ;
  37065 CALL 37562    ; }
- 37068 LD C,4        ; #REGc=4; this value determines the duration of the sound
-                     ; effect
+ 37068 LD C,4        ; This value determines the duration of the sound effect
  37070 LD A,(32956)  ; Pick up the remaining air supply (S) from #R32956
  37073 CPL           ; {#REGd=2*(63-S); this value determines the pitch of the
  37074 AND 63        ; sound effect (which decreases with the amount of air
@@ -2767,8 +2768,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37292 LD (32988),A  ; (moving him downwards)}
  37295 LD C,A        ; Copy the pixel y-coordinate to #REGc; this value
                      ; determines the pitch of the sound effect
- 37296 LD D,16       ; #REGd=16; this value determines the duration of the
-                     ; sound effect
+ 37296 LD D,16       ; This value determines the duration of the sound effect
  37298 LD A,(32883)  ; Pick up the border colour for the current cavern from
                      ; #R32883
 *37301 OUT (254),A   ; {Make a falling sound effect
@@ -2825,7 +2825,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37382 CALL 36852    ; }
  37385 JP NZ,36102   ; Kill Willy if he collided with the Kong Beast
 @assemble=1
- 37388 LD A,68       ; #REGa=68 (INK 4: PAPER 0: BRIGHT 1)
+ 37388 LD A,68       ; #REGa=#b68 (INK 4: PAPER 0: BRIGHT 1)
 @assemble=0
  37390 LD (23599),A  ; {Set the attribute bytes for the Kong Beast in the
  37393 LD (23600),A  ; buffer at #R23552
@@ -2878,8 +2878,8 @@ c37403 LD A,(32876)  ; Pick up the LSB of the address of Willy's location in
 c37434 LD HL,(32876) ; Pick up the address of Willy's location in the attribute
                      ; buffer at #R23552 from #R32876
  37437 LD DE,31      ; Prepare #REGde for addition
- 37440 LD C,15       ; Set #REGc=15 for the top two rows of cells (to make the
-                     ; routine at #R37471 force white INK)
+ 37440 LD C,15       ; Set #REGc=#b15 for the top two rows of cells (to make
+                     ; the routine at #R37471 force white INK)
  37442 CALL 37471    ; Check and set the attribute byte for the top-left cell
  37445 INC HL        ; Move #REGhl to the next cell to the right
  37446 CALL 37471    ; Check and set the attribute byte for the top-right cell
@@ -2901,7 +2901,7 @@ c37434 LD HL,(32876) ; Pick up the address of Willy's location in the attribute
 ;
 ; Used by the routine at #R37434.
 ;
-; C 15 or Willy's pixel y-coordinate
+; C #b15 or Willy's pixel y-coordinate
 ; HL Address of the cell in the attribute buffer at #R23552
 @label=WILLYATTR
 c37471 LD A,(32800)  ; Pick up the attribute byte of the background tile for
@@ -2940,8 +2940,8 @@ c37503 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
                      ; y-coordinate}
  37511 LD A,(32874)  ; Pick up Willy's direction and movement flags from
                      ; #R32874
- 37514 AND 1         ; {Now #REGe=0 if Willy is facing right, or 128 if he's
- 37516 RRCA          ; facing left
+ 37514 AND 1         ; {Now #REGe=#b0 if Willy is facing right, or #b128 if
+ 37516 RRCA          ; he's facing left
  37517 LD E,A        ; }
  37518 LD A,(32873)  ; Pick up Willy's animation frame (0-3) from #R32873
  37521 AND 3         ; {Point #REGde at the sprite graphic data for Willy's
@@ -3036,13 +3036,13 @@ c37596 LD A,(IY+0)   ; Pick up the next byte of tune data from the table at
  37609 LD A,D        ; Copy it to #REGa
  37610 CALL 37675    ; Calculate the attribute file address for the
                      ; corresponding piano key
- 37613 LD (HL),80    ; Set the attribute byte for the piano key to 80 (INK 0:
+ 37613 LD (HL),80    ; Set the attribute byte for the piano key to #b80 (INK 0:
                      ; PAPER 2: BRIGHT 1)
  37615 LD E,(IY+2)   ; Pick up the third byte of data for this note
  37618 LD A,E        ; Copy it to #REGa
  37619 CALL 37675    ; Calculate the attribute file address for the
                      ; corresponding piano key
- 37622 LD (HL),40    ; Set the attribute byte for the piano key to 40 (INK 0:
+ 37622 LD (HL),40    ; Set the attribute byte for the piano key to #b40 (INK 0:
                      ; PAPER 5: BRIGHT 0)
 *37624 OUT (254),A   ; {Produce a sound based on the frequency parameters in
  37626 DEC D         ; the second and third bytes of data for this note (copied
@@ -3061,13 +3061,13 @@ c37596 LD A,(IY+0)   ; Pick up the next byte of tune data from the table at
  37651 LD A,(IY+1)   ; Pick up the second byte of data for this note
  37654 CALL 37675    ; Calculate the attribute file address for the
                      ; corresponding piano key
- 37657 LD (HL),56    ; Set the attribute byte for the piano key back to 56 (INK
-                     ; 0: PAPER 7: BRIGHT 0)
+ 37657 LD (HL),56    ; Set the attribute byte for the piano key back to #b56
+                     ; (INK 0: PAPER 7: BRIGHT 0)
  37659 LD A,(IY+2)   ; Pick up the third byte of data for this note
  37662 CALL 37675    ; Calculate the attribute file address for the
                      ; corresponding piano key
- 37665 LD (HL),56    ; Set the attribute byte for the piano key back to 56 (INK
-                     ; 0: PAPER 7: BRIGHT 0)
+ 37665 LD (HL),56    ; Set the attribute byte for the piano key back to #b56
+                     ; (INK 0: PAPER 7: BRIGHT 0)
  37667 INC IY        ; {Move #REGiy along to the data for the next note in the
  37669 INC IY        ; tune
  37671 INC IY        ; }
@@ -3085,7 +3085,7 @@ c37675 SUB 8         ; {Compute the piano key index (K) based on the frequency
  37678 RRCA          ; K=31-INT((F-8)/8)
  37679 RRCA          ;
  37680 CPL           ; }
- 37681 OR 224        ; #REGa=224+K; this is the LSB
+ 37681 OR 224        ; #REGa=#b224+K; this is the LSB
  37683 LD L,A        ; {Set #REGhl to the attribute file address for the piano
  37684 LD H,89       ; key}
  37686 RET           ;
