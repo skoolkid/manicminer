@@ -6,10 +6,14 @@ SectionType=BulletPoints
 [Changelog:YYYYMMDD]
 -
 
+- Ported the disassembly to SkoolKit 6
 - In #FACT#lightLogic(), updated the description of how the light beam reduces
   the air supply
 - In #BUG#throughTheWallAgain(), updated the description of how Willy falls
   into a wall block
+- In #FACT#unusedConveyors(), added a note about the conveyor in
+  #R62464(Amoebatrons' Revenge) moving in the wrong direction
+- Made more improvements to the hexadecimal version of the disassembly
 
 [Changelog:20161104]
 -

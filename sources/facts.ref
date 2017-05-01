@@ -77,6 +77,9 @@ POKE 62759,4: POKE 62760,4: POKE 62761,4
 { Before | After }
 TABLE#
 
+Note that this conveyor moves left to right, and so if it were activated it
+would make the cavern unfinishable.
+
 [Fact:thePersistentItem:The persistent item]
 The item below the portal in #R60416(The Sixteenth Cavern) does not disappear
 if Willy leaves it till last and collects it by falling on it from above. The
