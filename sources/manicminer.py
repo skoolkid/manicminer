@@ -118,7 +118,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
             address = 45056 + 1024 * cavern_num
             cavern_name = self.cavern_names[address]
             teleport_code = self._get_teleport_code(cavern_num)
-            lines.append('{{ #N{0} | #N{1} | #R{1}({2}) | {3} }}'.format(cavern_num, address, cavern_name, teleport_code))
+            lines.append('{{ #N{0},,,1(0x) | #N{1} | #R{1}({2}) | {3} }}'.format(cavern_num, address, cavern_name, teleport_code))
         lines.append('TABLE#')
         return ''.join(lines)
 
