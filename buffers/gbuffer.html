@@ -137,23 +137,23 @@ Initialised by the routine at <a href="../asm/8684.html">8684</a>, and used by t
 <th colspan="1" rowspan="1">Meaning</th>
 </tr>
 <tr>
-<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="centre" colspan="1" rowspan="1">0x00</td>
 <td class="" colspan="1" rowspan="1">Willy is neither falling nor jumping</td>
 </tr>
 <tr>
-<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="centre" colspan="1" rowspan="1">0x01</td>
 <td class="" colspan="1" rowspan="1">Willy is jumping</td>
 </tr>
 <tr>
-<td class="centre" colspan="1" rowspan="1">2-11</td>
+<td class="centre" colspan="1" rowspan="1">0x02-0x0B</td>
 <td class="" colspan="1" rowspan="1">Willy is falling, and can land safely</td>
 </tr>
 <tr>
-<td class="centre" colspan="1" rowspan="1">12+</td>
+<td class="centre" colspan="1" rowspan="1">0x0C+</td>
 <td class="" colspan="1" rowspan="1">Willy is falling, and has fallen too far to land safely (see <a href="../asm/8BDD.html#8bdd">8BDD</a>)</td>
 </tr>
 <tr>
-<td class="centre" colspan="1" rowspan="1">255</td>
+<td class="centre" colspan="1" rowspan="1">0xFF</td>
 <td class="" colspan="1" rowspan="1">Willy has collided with a nasty or a guardian (see <a href="../asm/8D05.html">8D05</a>)</td>
 </tr>
 </table>
@@ -226,7 +226,7 @@ Initialised and used by the routine at <a href="../asm/8684.html">8684</a>, and 
 <div class="map-entry-title-11">Attribute of the last item drawn</div>
 <div class="map-entry-desc-1">
 <div class="paragraph">
-Used by the routines at <a href="../asm/8DF8.html">8DF8</a> and <a href="../asm/8F63.html">8F63</a>. Holds the attribute byte of the last item drawn, or 0 if all the items have been collected.
+Used by the routines at <a href="../asm/8DF8.html">8DF8</a> and <a href="../asm/8F63.html">8F63</a>. Holds the attribute byte of the last item drawn, or 0x00 if all the items have been collected.
 </div>
 </div>
 </td>
@@ -262,7 +262,7 @@ The item definitions are copied here by the routine at <a href="../asm/8684.html
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="1">4</td>
-<td class="" colspan="1" rowspan="1">Unused (always 255)</td>
+<td class="" colspan="1" rowspan="1">Unused (always 0xFF)</td>
 </tr>
 </table>
 </div>
@@ -306,7 +306,7 @@ The item graphic is copied here by the routine at <a href="../asm/8684.html">868
 <div class="map-entry-title-11">Remaining air supply</div>
 <div class="map-entry-desc-1">
 <div class="paragraph">
-Initialised (always to 63 in practice) and used by the routine at <a href="../asm/8684.html">8684</a>, updated by the routine at <a href="../asm/8A3C.html">8A3C</a>, and also used by the routine at <a href="../asm/9028.html">9028</a>. Its value ranges from 36 to 63 and is actually the LSB of the display file address for the cell at the right end of the air bar. The amount of air to draw in this cell is determined by the value of the game clock at <a href="../asm/80BD.html">80BD</a>.
+Initialised (always to 0x3F in practice) and used by the routine at <a href="../asm/8684.html">8684</a>, updated by the routine at <a href="../asm/8A3C.html">8A3C</a>, and also used by the routine at <a href="../asm/9028.html">9028</a>. Its value ranges from 0x24 to 0x3F and is actually the LSB of the display file address for the cell at the right end of the air bar. The amount of air to draw in this cell is determined by the value of the game clock at <a href="../asm/80BD.html">80BD</a>.
 </div>
 </div>
 </td>
@@ -568,7 +568,7 @@ Initialised by the routine at <a href="../asm/85CC.html">85CC</a>, and used by t
 <div class="map-entry-title-11">Game mode indicator</div>
 <div class="map-entry-desc-1">
 <div class="paragraph">
-Initialised by the routine at <a href="../asm/85CC.html">85CC</a>, and used by the routines at <a href="../asm/8684.html">8684</a>, <a href="../asm/870E.html">870E</a> and <a href="../asm/9028.html">9028</a>. Holds 0 when a game is in progress, or a value from 1 to 64 when in demo mode.
+Initialised by the routine at <a href="../asm/85CC.html">85CC</a>, and used by the routines at <a href="../asm/8684.html">8684</a>, <a href="../asm/870E.html">870E</a> and <a href="../asm/9028.html">9028</a>. Holds 0x00 when a game is in progress, or a value from 0x01 to 0x40 when in demo mode.
 </div>
 </div>
 </td>
@@ -637,9 +637,9 @@ Used by the routines at <a href="../asm/870E.html">870E</a> and <a href="../asm/
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

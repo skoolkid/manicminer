@@ -47,7 +47,7 @@ Used by the routine at <a href="870E.html">870E</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8f63"></span>8F63</td>
 <td class="instruction">XOR A</td>
-<td class="comment-11" rowspan="2">Initialise the attribute of the last item drawn at <a href="8074.html">8074</a> to 0 (in case there are no items left to draw)</td>
+<td class="comment-11" rowspan="2">Initialise the attribute of the last item drawn at <a href="8074.html">8074</a> to 0x00 (in case there are no items left to draw)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -163,7 +163,7 @@ Willy is touching this item, so add it to his collection.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f88"></span>8F88</td>
 <td class="instruction">LD (IY+$00),$00</td>
-<td class="comment-11" rowspan="1">Set the item's attribute byte to 0 so that it will be skipped the next time</td>
+<td class="comment-11" rowspan="1">Set the item's attribute byte to 0x00 so that it will be skipped the next time</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -366,9 +366,9 @@ All the items have been dealt with. Check whether there were any left.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

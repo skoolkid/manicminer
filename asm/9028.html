@@ -171,7 +171,7 @@ Willy has made it through <a href="FC00.html">The Final Barrier</a> without chea
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9058"></span>9058</td>
 <td class="instruction">LD (HL),$2F</td>
-<td class="comment-11" rowspan="3">Set the attributes for the upper half of Willy's sprite at (2,19) and (2,20) to 47 (INK 7: PAPER 5)</td>
+<td class="comment-11" rowspan="3">Set the attributes for the upper half of Willy's sprite at (2,19) and (2,20) to 0x2F (INK 7: PAPER 5)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -189,7 +189,7 @@ Willy has made it through <a href="FC00.html">The Final Barrier</a> without chea
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="905d"></span>905D</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="4">Set the attributes for the lower half of Willy's sprite at (3,19) and (3,20) to 39 (INK 7: PAPER 4)</td>
+<td class="comment-11" rowspan="4">Set the attributes for the lower half of Willy's sprite at (3,19) and (3,20) to 0x27 (INK 7: PAPER 4)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -231,7 +231,7 @@ Willy has made it through <a href="FC00.html">The Final Barrier</a> without chea
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9066"></span>9066</td>
 <td class="instruction">LD (HL),$45</td>
-<td class="comment-11" rowspan="3">Set the attributes for the fish at (5,19) and (5,20) to 69 (INK 5: PAPER 0: BRIGHT 1)</td>
+<td class="comment-11" rowspan="3">Set the attributes for the fish at (5,19) and (5,20) to 0x45 (INK 5: PAPER 0: BRIGHT 1)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -249,7 +249,7 @@ Willy has made it through <a href="FC00.html">The Final Barrier</a> without chea
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="906b"></span>906B</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="2">Set the attribute for the handle of the sword at (6,19) to 70 (INK 6: PAPER 0: BRIGHT 1)</td>
+<td class="comment-11" rowspan="2">Set the attribute for the handle of the sword at (6,19) to 0x46 (INK 6: PAPER 0: BRIGHT 1)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -261,7 +261,7 @@ Willy has made it through <a href="FC00.html">The Final Barrier</a> without chea
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="906e"></span>906E</td>
 <td class="instruction">INC HL</td>
-<td class="comment-11" rowspan="2">Set the attribute for the blade of the sword at (6,20) to 71 (INK 7: PAPER 0: BRIGHT 1)</td>
+<td class="comment-11" rowspan="2">Set the attribute for the blade of the sword at (6,20) to 0x47 (INK 7: PAPER 0: BRIGHT 1)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -273,7 +273,7 @@ Willy has made it through <a href="FC00.html">The Final Barrier</a> without chea
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9071"></span>9071</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="4">Set the attributes at (7,19) and (7,20) to 0 (to hide Willy's feet just below where the portal was)</td>
+<td class="comment-11" rowspan="4">Set the attributes at (7,19) and (7,20) to 0x00 (to hide Willy's feet just below where the portal was)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -399,7 +399,7 @@ Willy has made it through <a href="FC00.html">The Final Barrier</a> without chea
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9090"></span>9090</td>
 <td class="instruction">XOR A</td>
-<td class="comment-11" rowspan="1"><span class="register">A</span>=0 (the next cavern will be <a href="B000.html">Central Cavern</a>)</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=0x00 (the next cavern will be <a href="B000.html">Central Cavern</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -421,7 +421,7 @@ The next section of code cycles the INK and PAPER colours of the current cavern.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9094"></span>9094</td>
 <td class="instruction">LD A,$3F</td>
-<td class="comment-11" rowspan="1">Initialise <span class="register">A</span> to 63 (INK 7: PAPER 7)</td>
+<td class="comment-11" rowspan="1">Initialise <span class="register">A</span> to 0x3F (INK 7: PAPER 7)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -487,7 +487,7 @@ The next section of code cycles the INK and PAPER colours of the current cavern.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90ab"></span>90AB</td>
 <td class="instruction">JR NZ,<a href="9028.html#9096">$9096</a></td>
-<td class="comment-11" rowspan="1">Jump back until we've gone through all attribute values from 63 down to 1</td>
+<td class="comment-11" rowspan="1">Jump back until we've gone through all attribute values from 0x3F down to 0x01</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -569,7 +569,7 @@ The following loop increases the score and decreases the air supply until it run
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90cc"></span>90CC</td>
 <td class="instruction">LD C,$04</td>
-<td class="comment-11" rowspan="1"><span class="register">C</span>=4; this value determines the duration of the sound effect</td>
+<td class="comment-11" rowspan="1">This value determines the duration of the sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -676,9 +676,9 @@ The following loop increases the score and decreases the air supply until it run
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

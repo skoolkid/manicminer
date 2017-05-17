@@ -325,13 +325,13 @@ The following loop draws the boot's descent onto the plinth that supports Willy.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="89a4"></span>89A4</td>
 <td class="instruction">CPL</td>
-<td class="comment-11" rowspan="1"><span class="register">A</span>=255-<span class="register">A</span></td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=0xFF-<span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="89a5"></span>89A5</td>
 <td class="instruction">LD E,A</td>
-<td class="comment-11" rowspan="1">Store this value (63-255) in <span class="register">E</span>; it determines the (rising) pitch of the sound effect that will be made</td>
+<td class="comment-11" rowspan="1">Store this value (0x3F-0xFF) in <span class="register">E</span>; it determines the (rising) pitch of the sound effect that will be made</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -343,7 +343,7 @@ The following loop draws the boot's descent onto the plinth that supports Willy.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="89a7"></span>89A7</td>
 <td class="instruction">LD BC,$0040</td>
-<td class="comment-11" rowspan="1"><span class="register">C</span>=64; this value determines the duration of the sound effect</td>
+<td class="comment-11" rowspan="1"><span class="register">C</span>=0x40; this value determines the duration of the sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -782,9 +782,9 @@ The following loop makes the "Game Over" message glisten for about 1.57s.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

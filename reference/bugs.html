@@ -125,8 +125,10 @@ If Willy's animation frame is 0 at step 16 of the animation while Willy is
 jumping left, the code at <a href="../asm/8BDD.html#8c9c">8C9C</a> checks whether Willy is free to move left
 across a cell boundary. However, the part of that code that checks whether
 there is a wall tile below Willy to the left is skipped when Willy's sprite is
-cell-aligned, which is always the case at step 16; so Willy moves left across
-the cell boundary and down into the wall block below, eventually landing with
+cell-aligned (i.e. when his pixel y-coordinate at <a href="../asm/8068.html">8068</a> is a multiple of 16),
+which is always the case at step 16. Consequently, Willy moves left across the
+cell boundary and then, in step 17, he moves down into the wall block below
+before any check is made for wall blocks beneath him, eventually landing with
 animation frame 2.
 </div>
 <div class="paragraph">
@@ -151,9 +153,11 @@ Similarly, if Willy's animation frame is 3 at step 16 of the animation while
 Willy is jumping right, the code at <a href="../asm/8BDD.html#8cd6">8CD6</a> checks whether Willy is free to
 move right across a cell boundary. However, the part of that code that checks
 whether there is a wall tile below Willy to the right is skipped when Willy's
-sprite is cell-aligned, which is always the case at step 16; so Willy moves
-right across the cell boundary and down into the wall block below, eventually
-landing with animation frame 1.
+sprite is cell-aligned (i.e. when his pixel y-coordinate at <a href="../asm/8068.html">8068</a> is a
+multiple of 16), which is always the case at step 16. Consequently, Willy moves
+right across the cell boundary and then, in step 17, he moves down into the
+wall block below before any check is made for wall blocks beneath him,
+eventually landing with animation frame 1.
 </div>
 <div class="paragraph">
 Places where this can happen are:
@@ -201,9 +205,9 @@ below it.
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

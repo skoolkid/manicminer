@@ -114,7 +114,7 @@ The following loop draws the remaining lives at the bottom of the screen.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="871f"></span>871F</td>
 <td class="instruction">RLCA</td>
-<td class="comment-11" rowspan="4">Now <span class="register">A</span>=0 (frame 0), 32 (frame 1), 64 (frame 2) or 96 (frame 3)</td>
+<td class="comment-11" rowspan="4">Now <span class="register">A</span>=0x00 (frame 0), 0x20 (frame 1), 0x40 (frame 2) or 0x60 (frame 3)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1250,7 +1250,7 @@ Here we check the teleport keys.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="889d"></span>889D</td>
 <td class="instruction">CP $14</td>
-<td class="comment-11" rowspan="1">Is the result 20 or greater?</td>
+<td class="comment-11" rowspan="1">Is the result 0x14 or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1528,14 +1528,14 @@ The air in the cavern has run out, or Willy has had a fatal accident, or it's de
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8906"></span>8906</td>
 <td class="instruction">LD A,$47</td>
-<td class="comment-11" rowspan="1"><span class="register">A</span>=71 (INK 7: PAPER 0: BRIGHT 1)</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=0x47 (INK 7: PAPER 0: BRIGHT 1)</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
 <span id="8908"></span>
 <div class="comments">
 <div class="paragraph">
-The following loop fills the top two thirds of the attribute file with a single value (71 TO 64 STEP -1) and makes a sound effect.
+The following loop fills the top two thirds of the attribute file with a single value (0x47, 0x46, 0x45, 0x44, 0x43, 0x42, 0x41 or 0x40) and makes a sound effect.
 </div>
 </div>
 </td>
@@ -1574,7 +1574,7 @@ The following loop fills the top two thirds of the attribute file with a single 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8914"></span>8914</td>
 <td class="instruction">LD E,A</td>
-<td class="comment-11" rowspan="1">Save the attribute byte (64-71) in <span class="register">E</span> for later retrieval</td>
+<td class="comment-11" rowspan="1">Save the attribute byte (0x40-0x47) in <span class="register">E</span> for later retrieval</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1694,7 +1694,7 @@ The following loop fills the top two thirds of the attribute file with a single 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8932"></span>8932</td>
 <td class="instruction">LD A,E</td>
-<td class="comment-11" rowspan="1">Restore the attribute byte (originally 71) to <span class="register">A</span></td>
+<td class="comment-11" rowspan="1">Restore the attribute byte (originally 0x47) to <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1706,7 +1706,7 @@ The following loop fills the top two thirds of the attribute file with a single 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8934"></span>8934</td>
 <td class="instruction">CP $3F</td>
-<td class="comment-11" rowspan="1">Have we used attribute value 64 (INK 0) yet?</td>
+<td class="comment-11" rowspan="1">Have we used attribute value 0x40 (INK 0) yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1769,9 +1769,9 @@ Finally, check whether any lives remain.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

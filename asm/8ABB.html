@@ -219,7 +219,7 @@ Willy is currently jumping.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8af0"></span>8AF0</td>
 <td class="instruction">LD C,$20</td>
-<td class="comment-11" rowspan="1"><span class="register">C</span>=32; this value determines the duration of the jumping sound effect</td>
+<td class="comment-11" rowspan="1">This value determines the duration of the jumping sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -599,7 +599,7 @@ If we get here, then Willy is either in the process of falling or just about to 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8b6b"></span>8B6B</td>
 <td class="instruction">LD C,$20</td>
-<td class="comment-11" rowspan="1"><span class="register">C</span>=32; this value determines the duration of the falling sound effect</td>
+<td class="comment-11" rowspan="1">This value determines the duration of the falling sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -689,7 +689,7 @@ If we get here, then Willy is either in the process of falling or just about to 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8b88"></span>8B88</td>
 <td class="instruction">ADC A,$5C</td>
-<td class="comment-11" rowspan="2"><span class="register">H</span>=92 or 93 (MSB of the address of Willy's location in the attribute buffer)</td>
+<td class="comment-11" rowspan="2"><span class="register">H</span>=0x5C or 0x5D (MSB of the address of Willy's location in the attribute buffer)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -747,7 +747,7 @@ Willy has just finished a jump.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8b96"></span>8B96</td>
 <td class="instruction">LD A,$06</td>
-<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 6: Willy will continue to fall unless he's landed on a wall or floor block</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 0x06: Willy will continue to fall unless he's landed on a wall or floor block</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -775,7 +775,7 @@ Willy has just started falling.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8b9c"></span>8B9C</td>
 <td class="instruction">LD A,$02</td>
-<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 2</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 0x02</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -833,7 +833,7 @@ The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8baf"></span>8BAF</td>
 <td class="instruction">LD A,$02</td>
-<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 2: Willy has started falling</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="806B.html">806B</a> to 0x02: Willy has started falling</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -868,9 +868,9 @@ The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

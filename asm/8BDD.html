@@ -68,7 +68,7 @@ Used by the routine at <a href="8ABB.html">8ABB</a>. This routine checks the key
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8be5"></span>8BE5</td>
 <td class="instruction">LD E,$FF</td>
-<td class="comment-11" rowspan="1">Initialise <span class="register">E</span> to 255 (all bits set); it will be used to hold keyboard and joystick readings</td>
+<td class="comment-11" rowspan="1">Initialise <span class="register">E</span> to 0xFF (all bits set); it will be used to hold keyboard and joystick readings</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -128,7 +128,7 @@ Used by the routine at <a href="8ABB.html">8ABB</a>. This routine checks the key
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8bf8"></span>8BF8</td>
 <td class="instruction">SUB $03</td>
-<td class="comment-11" rowspan="2">Now <span class="register">E</span>=253 (bit 1 reset) if the conveyor is moving left, or 254 (bit 0 reset) if it's moving right</td>
+<td class="comment-11" rowspan="2">Now <span class="register">E</span>=0xFD (bit 1 reset) if the conveyor is moving left, or 0xFE (bit 0 reset) if it's moving right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1083,9 +1083,9 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

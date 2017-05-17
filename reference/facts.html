@@ -154,6 +154,10 @@ POKE 62759,4: POKE 62760,4: POKE 62761,4
 </tr>
 </table>
 </div>
+<div class="paragraph">
+Note that this conveyor moves left to right, and so if it were activated it
+would make the cavern unfinishable.
+</div>
 </div>
 <div><span id="thePersistentItem"></span></div>
 <div class="box box-1">
@@ -189,10 +193,10 @@ follow these simple rules (see <a href="../asm/8D73.html">8D73</a>):
 </div>
 <div class="paragraph">
 In addition, for every frame that the light beam is in contact with Willy, the
-air supply is reduced by an extra eight units - four for each of the two cells
-of Willy's sprite that the beam touches - making nine units in total. For every
-eight units of air consumed, one vertical line of pixels is removed from the
-right end of the air bar (see <a href="../asm/8A3C.html">8A3C</a>).
+air supply is reduced by an extra eight or twelve units - four for each of the
+two or three cells of Willy's sprite that the beam touches - making nine or
+thirteen units in total. For every eight units of air consumed, one vertical
+line of pixels is removed from the right end of the air bar (see <a href="../asm/8A3C.html">8A3C</a>).
 </div>
 </div>
 <div><span id="itemGraphics"></span></div>
@@ -361,26 +365,27 @@ POKE 45327,22
 <div class="box-title">Variable air supply</div>
 <div class="paragraph">
 The initial air supply varies from cavern to cavern by small amounts, because
-of differences in the initial value of the game clock at <a href="../asm/80BD.html">80BD</a> - 128, 240,
-248 or 252 - which is copied from byte 701 of the cavern definition.
+of differences in the initial value of the game clock at <a href="../asm/80BD.html">80BD</a> - 0x80,
+0xF0, 0xF8 or 0xFC - which is copied from byte 0x02BD of the cavern
+definition.
 </div>
 <div class="paragraph">
 The caverns with the greatest initial air supply are <a href="../asm/B000.html">Central Cavern</a>,
 <a href="../asm/B400.html">The Cold Room</a>, <a href="../asm/E000.html">Ore Refinery</a>, <a href="../asm/E800.html">The Bank</a> and
-<a href="../asm/FC00.html">The Final Barrier</a>, which initialise the game clock to 252.
+<a href="../asm/FC00.html">The Final Barrier</a>, which initialise the game clock to 0xFC.
 </div>
 <div class="paragraph">
 Next are <a href="../asm/D400.html">The Endorian Forest</a>, <a href="../asm/E400.html">Skylab Landing Bay</a> and
-<a href="../asm/EC00.html">The Sixteenth Cavern</a>, which initialise the game clock to 248.
+<a href="../asm/EC00.html">The Sixteenth Cavern</a>, which initialise the game clock to 0xF8.
 </div>
 <div class="paragraph">
 Then it's <a href="../asm/F800.html">Solar Power Generator</a>, which initialises the game clock to
-240.
+0xF0.
 </div>
 <div class="paragraph">
-The other 11 caverns initialise the game clock to 128, which means the cell at
-the right end of the air bar in those caverns starts off with only three white
-pixel columns instead of seven.
+The other 11 caverns initialise the game clock to 0x80, which means the cell
+at the right end of the air bar in those caverns starts off with only three
+white pixel columns instead of seven.
 </div>
 </div>
 <div><span id="theUnreachableMillion"></span></div>
@@ -646,9 +651,9 @@ code remnants at <a href="../asm/934C.html">934C</a>.
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20161104</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>
