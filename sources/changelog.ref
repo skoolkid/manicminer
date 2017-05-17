@@ -3,7 +3,7 @@
 [Page:Changelog]
 SectionType=BulletPoints
 
-[Changelog:YYYYMMDD]
+[Changelog:20170517]
 -
 
 - Ported the disassembly to SkoolKit 6
