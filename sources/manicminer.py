@@ -22,10 +22,10 @@ def parse_gbuf(text, index):
     # #GBUFfrom[,to]
     return parse_ints(text, index, 2, (None,))
 
-def parse_s(text, index):
+def parse_s(text, index, case):
     sep = text[index]
     end, s = parse_brackets(text, index, '', sep, sep)
-    return end, '#IF({{case}}==1){0}{0}{1}{0}{2}{0}{0}'.format(sep, s.lower(), s)
+    return end, s.lower() if case == 1 else s
 
 class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
@@ -62,7 +62,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
 
     def expand_s(self, text, index, cwd):
         # #S/text/
-        return parse_s(text, index)
+        return parse_s(text, index, self.case)
 
     def expand_willy(self, text, index, cwd):
         # #WILLYcavern,x,y,sprite[,left,top,width,height,scale](fname)
@@ -310,4 +310,4 @@ class ManicMinerAsmWriter(AsmWriter):
 
     def expand_s(self, text, index):
         # #S/text/
-        return parse_s(text, index)
+        return parse_s(text, index, self.case)
