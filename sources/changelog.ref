@@ -3,6 +3,11 @@
 [Page:Changelog]
 SectionType=BulletPoints
 
+[Changelog:YYYYMMDD]
+-
+
+- Added a trivia entry: #FACT#wrongFoot() (thanks Spider)
+
 [Changelog:20170517]
 -
 

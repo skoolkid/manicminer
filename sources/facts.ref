@@ -192,6 +192,31 @@ See this happen by placing a wall block in the path of the guardian in
 
 POKE 45327,22
 
+[Fact:wrongFoot:Off on the wrong foot]
+In some caverns, Willy starts off facing the wall, and so has to turn round
+before navigating his way out:
+
+#UDGTABLE(gallery)
+{ #CALL:cavern(57344,2,wrong_foot1,26,12,6,4) |
+  #CALL:cavern(58368,2,wrong_foot2,26,12,6,4) |
+  #CALL:cavern(61440,2,wrong_foot3,0,2,6,4) }
+{ #R57344(Ore Refinery) |
+  #R58368(Skylab Landing Bay) |
+  #R61440(The Warehouse) }
+TABLE#
+
+To make Willy start off facing the other way:
+
+#PUSHS
+#POKES57962,1;58986,1;62058,0
+#UDGTABLE(gallery)
+{ #CALL:cavern(57344,2,wrong_foot4,26,12,6,4) |
+  #CALL:cavern(58368,2,wrong_foot5,26,12,6,4) |
+  #CALL:cavern(61440,2,wrong_foot6,0,2,6,4) }
+{ POKE #R57960(57962),1 | POKE #R58984(58986),1 | POKE #R62056(62058),0 }
+TABLE#
+#POPS
+
 [Fact:variableAirSupply:Variable air supply]
 The initial air supply varies from cavern to cavern by small amounts, because
 of differences in the initial value of the game clock at #R32957 - #b128,
