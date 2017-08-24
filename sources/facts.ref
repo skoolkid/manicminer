@@ -22,6 +22,18 @@ The number 6031769 comes from Matthew Smith's driving licence, "with an error
 in it and twisted round a bit" (as he put it in an interview for issue 48 of
 <i>Retro Gamer</i> magazine).
 
+[Fact:stuckOn16:Stuck on 16]
+In #R60416(The Sixteenth Cavern), Willy can get stuck if he enters the area
+below the portal before collecting all the items outside that area:
+
+#PUSHS
+#POKES61045,255
+#UDGTABLE { #WILLY15,12,56,4,10,4,9,6(stuck_on_16) } TABLE#
+#POPS
+
+If that happens, he will have to wait until the air runs out before getting a
+second chance to escape from the cavern.
+
 [Fact:noSwordfishForCheats:No swordfish for cheats]
 The game ending - with Willy above ground and the portal in #R64512(The Final
 Barrier) changed to the #R45792(swordfish) graphic - is not shown if
