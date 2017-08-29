@@ -34,6 +34,8 @@ below the portal before collecting all the items outside that area:
 If that happens, he will have to wait until the air runs out before getting a
 second chance to escape from the cavern.
 
+See also #FACT#noWayOut().
+
 [Fact:noSwordfishForCheats:No swordfish for cheats]
 The game ending - with Willy above ground and the portal in #R64512(The Final
 Barrier) changed to the #R45792(swordfish) graphic - is not shown if
@@ -248,6 +250,20 @@ Then it's #R63488(Solar Power Generator), which initialises the game clock to
 The other 11 caverns initialise the game clock to #b128, which means the cell
 at the right end of the air bar in those caverns starts off with only three
 white pixel columns instead of seven.
+
+[Fact:noWayOut:No way out of The Warehouse]
+If too many of the crumbling floors have disappeared in #R61440(The Warehouse),
+Willy won't be able to reach the portal. For example:
+
+#PUSHS
+#POKES61814,0,9;61846,0,9;62089,255
+#UDGTABLE { #WILLY16,29,96,5,22,0,10,16(no_way_out) } TABLE#
+#POPS
+
+If that happens, he will have to wait until the air runs out before getting a
+second chance to escape from the cavern.
+
+See also #FACT#stuckOn16().
 
 [Fact:theUnreachableMillion:The unreachable million]
 The score (at least, the part of it that is printed - see #R33829) rolls around
