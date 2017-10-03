@@ -110,7 +110,11 @@ def get_caverns(snapshot):
         lines.append('@ {} label=CAVERN{}'.format(a, cavern_num))
         lines.append('D {} Used by the routine at #R34436.'.format(a))
         lines.append('D {0} #UDGTABLE {{ #CALL:cavern({0}) }} TABLE#'.format(a))
-        lines.append('D {} The first 512 bytes are the attributes that define the layout of the cavern.'.format(a))
+        desc = ['The first 512 bytes are the attributes that define the layout of the cavern.']
+        if cavern_num == 19:
+            # The Final Barrier
+            desc.append('The first 256 bytes here are also used by the routine at #R34252 when preparing the top third of the title screen.')
+        lines.append('D {} {}'.format(a, ' '.join(desc)))
         lines.append('B {},512,8 Attributes'.format(a))
 
         # Cavern name

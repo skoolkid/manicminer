@@ -8719,6 +8719,8 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
+; The first 256 bytes here are also used by the routine at #R34252 when
+; preparing the top third of the title screen.
 @label=CAVERN19
 b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
  64520 DEFB 40,40,40,40,47,47,47,47
