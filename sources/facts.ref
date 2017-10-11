@@ -276,6 +276,19 @@ There are three horizontal guardians defined in #R58368(Skylab Landing Bay),
 but they're not used. We can only wonder what they might have looked like
 before being replaced by the Skylabs.
 
+[Fact:outOfBounds:Out of bounds]
+There are two vertical guardians that start off in a location that they never
+return to.
+
+The first one is the bright magenta guardian in #R61440(The Warehouse). It
+starts off at pixel y-coordinate 0 - the very top of the cavern - but does not
+go above y=4 again after it has started moving (see #R62194).
+
+The second one is the blue vertical guardian in #R63488(Solar Power Generator).
+It starts off at pixel y-coordinate 80 - touching the platform that Willy is
+standing on initially - but does not go below y=79 again after it has started
+moving (see #R64235).
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at
 #GBUF32768 contains source code remnants (shown below). The DB directives

@@ -10,6 +10,7 @@ SectionType=BulletPoints
   - #FACT#wrongFoot() (thanks Spider)
   - #FACT#stuckOn16()
   - #FACT#noWayOut()
+  - #FACT#outOfBounds()
 - In #FACT#unusedConveyors(), added a POKE to make the conveyor in
   #R62464(Amoebatrons' Revenge) move right to left
 
