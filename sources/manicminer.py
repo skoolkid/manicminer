@@ -204,7 +204,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
                 sprite = self._get_graphic(addr + 768 + 32 * sprite_index, attr)
                 pixel_y = self.snapshot[a + 2] & 127
                 x = self.snapshot[a + 3]
-                self._place_graphic(udg_array, sprite, x, pixel_y)
+                self._place_graphic(udg_array, sprite, x, pixel_y, bleed=True)
 
         # Light beam in Solar Power Generator
         if cavern_no == 18:
@@ -272,9 +272,12 @@ class ManicMinerHtmlWriter(HtmlWriter):
         y = 8 * (p2 & 1) + (p1 & 224) // 32
         return x, y
 
-    def _place_graphic(self, udg_array, graphic, x, pixel_y, bg_attr=None):
+    def _place_graphic(self, udg_array, graphic, x, pixel_y, bg_attr=None, bleed=False):
         if pixel_y & 7:
             graphic = self._shift_graphic(graphic, pixel_y & 7)
+        elif bleed:
+            blank_udg = Udg(graphic[0][0].attr, [0] * 8)
+            graphic.append([blank_udg] * len(graphic[0]))
         y = pixel_y // 8
         for i, row in enumerate(graphic):
             for j, udg in enumerate(row):
