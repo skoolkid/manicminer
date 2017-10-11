@@ -83,8 +83,13 @@ def _write_vertical_guardians(lines, snapshot, start):
                 y_inc -= 256
             min_y = snapshot[a + 5]
             max_y = snapshot[a + 6]
-            y_inc_prefix = '' if start == 59101 else 'initial '
-            suffix += ': x={}, initial y={}, {}<=y<={}, {}y-increment={}'.format(x, y, min_y, max_y, y_inc_prefix, y_inc)
+            max_y_op = '<'
+            y_inc_prefix = 'initial '
+            if start == 59101:
+                # Skylab Landing Bay
+                max_y_op = '<='
+                y_inc_prefix = ''
+            suffix += ': x={}, initial y={}, {}<=y{}{}, {}y-increment={}'.format(x, y, min_y, max_y_op, max_y, y_inc_prefix, y_inc)
         lengths = '7' if unused else '7,1'
         lines.append('B {},{} Vertical guardian {}{}'.format(a, lengths, index, suffix))
         index += 1

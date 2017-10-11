@@ -6110,29 +6110,29 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
  53979 DEFB 0,0                                ; Unused
 ; The next 28 bytes are copied to #R32989 and define the vertical guardians.
  53981 DEFB 67                                 ; {Vertical guardian 1: x=5,
- 53982 DEFB 0                                  ; initial y=8, 5<=y<=100,
- 53983 DEFB 8                                  ; initial y-increment=1
+ 53982 DEFB 0                                  ; initial y=8, 5<=y<100, initial
+ 53983 DEFB 8                                  ; y-increment=1
  53984 DEFB 5
  53985 DEFB 1
  53986 DEFB 5
  53987 DEFB 100                                ; }
  53988 DEFB 4                                  ; {Vertical guardian 2: x=10,
- 53989 DEFB 1                                  ; initial y=8, 5<=y<=100,
- 53990 DEFB 8                                  ; initial y-increment=2
+ 53989 DEFB 1                                  ; initial y=8, 5<=y<100, initial
+ 53990 DEFB 8                                  ; y-increment=2
  53991 DEFB 10
  53992 DEFB 2
  53993 DEFB 5
  53994 DEFB 100                                ; }
  53995 DEFB 5                                  ; {Vertical guardian 3: x=20,
- 53996 DEFB 2                                  ; initial y=8, 5<=y<=100,
- 53997 DEFB 8                                  ; initial y-increment=1
+ 53996 DEFB 2                                  ; initial y=8, 5<=y<100, initial
+ 53997 DEFB 8                                  ; y-increment=1
  53998 DEFB 20
  53999 DEFB 1
  54000 DEFB 5
  54001 DEFB 100                                ; }
  54002 DEFB 66                                 ; {Vertical guardian 4: x=25,
- 54003 DEFB 3                                  ; initial y=8, 5<=y<=100,
- 54004 DEFB 8                                  ; initial y-increment=2
+ 54003 DEFB 3                                  ; initial y=8, 5<=y<100, initial
+ 54004 DEFB 8                                  ; y-increment=2
  54005 DEFB 25
  54006 DEFB 2
  54007 DEFB 5
@@ -6618,28 +6618,28 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
  56027 DEFB 0,0                                ; Unused
 ; The next 28 bytes are copied to #R32989 and define the vertical guardians.
  56029 DEFB 67                                 ; {Vertical guardian 1: x=12,
- 56030 DEFB 0                                  ; initial y=8, 2<=y<=56, initial
+ 56030 DEFB 0                                  ; initial y=8, 2<=y<56, initial
  56031 DEFB 8                                  ; y-increment=2
  56032 DEFB 12
  56033 DEFB 2
  56034 DEFB 2
  56035 DEFB 56                                 ; }
  56036 DEFB 4                                  ; {Vertical guardian 2: x=3,
- 56037 DEFB 1                                  ; initial y=32, 32<=y<=100,
+ 56037 DEFB 1                                  ; initial y=32, 32<=y<100,
  56038 DEFB 32                                 ; initial y-increment=1
  56039 DEFB 3
  56040 DEFB 1
  56041 DEFB 32
  56042 DEFB 100                                ; }
  56043 DEFB 6                                  ; {Vertical guardian 3: x=21,
- 56044 DEFB 2                                  ; initial y=48, 48<=y<=100,
+ 56044 DEFB 2                                  ; initial y=48, 48<=y<100,
  56045 DEFB 48                                 ; initial y-increment=1
  56046 DEFB 21
  56047 DEFB 1
  56048 DEFB 48
  56049 DEFB 100                                ; }
  56050 DEFB 66                                 ; {Vertical guardian 4: x=26,
- 56051 DEFB 3                                  ; initial y=48, 4<=y<=100,
+ 56051 DEFB 3                                  ; initial y=48, 4<=y<100,
  56052 DEFB 48                                 ; initial y-increment=-3
  56053 DEFB 26
  56054 DEFB 253
@@ -7128,8 +7128,8 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
  58075 DEFB 0,0                                ; Unused
 ; The next 28 bytes are copied to #R32989 and define the vertical guardians.
  58077 DEFB 71                                 ; {Vertical guardian 1: x=5,
- 58078 DEFB 0                                  ; initial y=8, 8<=y<=100,
- 58079 DEFB 8                                  ; initial y-increment=2
+ 58078 DEFB 0                                  ; initial y=8, 8<=y<100, initial
+ 58079 DEFB 8                                  ; y-increment=2
  58080 DEFB 5
  58081 DEFB 2
  58082 DEFB 8
@@ -7625,21 +7625,21 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
  60123 DEFB 0,0                                ; Unused
 ; The next 28 bytes are copied to #R32989 and define the vertical guardians.
  60125 DEFB 6                                  ; {Vertical guardian 1: x=9,
- 60126 DEFB 0                                  ; initial y=40, 36<=y<=102,
+ 60126 DEFB 0                                  ; initial y=40, 36<=y<102,
  60127 DEFB 40                                 ; initial y-increment=2
  60128 DEFB 9
  60129 DEFB 2
  60130 DEFB 36
  60131 DEFB 102                                ; }
  60132 DEFB 7                                  ; {Vertical guardian 2: x=15,
- 60133 DEFB 1                                  ; initial y=64, 36<=y<=102,
+ 60133 DEFB 1                                  ; initial y=64, 36<=y<102,
  60134 DEFB 64                                 ; initial y-increment=1
  60135 DEFB 15
  60136 DEFB 1
  60137 DEFB 36
  60138 DEFB 102                                ; }
  60139 DEFB 68                                 ; {Vertical guardian 3: x=21,
- 60140 DEFB 3                                  ; initial y=80, 32<=y<=104,
+ 60140 DEFB 3                                  ; initial y=80, 32<=y<104,
  60141 DEFB 80                                 ; initial y-increment=-3
  60142 DEFB 21
  60143 DEFB 253
@@ -8122,28 +8122,28 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  62171 DEFB 0,0                                ; Unused
 ; The next 28 bytes are copied to #R32989 and define the vertical guardians.
  62173 DEFB 65                                 ; {Vertical guardian 1: x=3,
- 62174 DEFB 0                                  ; initial y=64, 64<=y<=102,
+ 62174 DEFB 0                                  ; initial y=64, 64<=y<102,
  62175 DEFB 64                                 ; initial y-increment=2
  62176 DEFB 3
  62177 DEFB 2
  62178 DEFB 64
  62179 DEFB 102                                ; }
  62180 DEFB 6                                  ; {Vertical guardian 2: x=10,
- 62181 DEFB 1                                  ; initial y=64, 3<=y<=96,
- 62182 DEFB 64                                 ; initial y-increment=-3
+ 62181 DEFB 1                                  ; initial y=64, 3<=y<96, initial
+ 62182 DEFB 64                                 ; y-increment=-3
  62183 DEFB 10
  62184 DEFB 253
  62185 DEFB 3
  62186 DEFB 96                                 ; }
  62187 DEFB 71                                 ; {Vertical guardian 3: x=19,
- 62188 DEFB 2                                  ; initial y=48, 0<=y<=64,
- 62189 DEFB 48                                 ; initial y-increment=1
+ 62188 DEFB 2                                  ; initial y=48, 0<=y<64, initial
+ 62189 DEFB 48                                 ; y-increment=1
  62190 DEFB 19
  62191 DEFB 1
  62192 DEFB 0
  62193 DEFB 64                                 ; }
  62194 DEFB 67                                 ; {Vertical guardian 4: x=27,
- 62195 DEFB 3                                  ; initial y=0, 4<=y<=96, initial
+ 62195 DEFB 3                                  ; initial y=0, 4<=y<96, initial
  62196 DEFB 0                                  ; y-increment=4
  62197 DEFB 27
  62198 DEFB 4
@@ -8379,29 +8379,29 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
  63195 DEFB 0,0                                ; Unused
 ; The next 28 bytes are copied to #R32989 and define the vertical guardians.
  63197 DEFB 67                                 ; {Vertical guardian 1: x=5,
- 63198 DEFB 0                                  ; initial y=8, 5<=y<=104,
- 63199 DEFB 8                                  ; initial y-increment=3
+ 63198 DEFB 0                                  ; initial y=8, 5<=y<104, initial
+ 63199 DEFB 8                                  ; y-increment=3
  63200 DEFB 5
  63201 DEFB 3
  63202 DEFB 5
  63203 DEFB 104                                ; }
  63204 DEFB 4                                  ; {Vertical guardian 2: x=10,
- 63205 DEFB 1                                  ; initial y=8, 5<=y<=104,
- 63206 DEFB 8                                  ; initial y-increment=2
+ 63205 DEFB 1                                  ; initial y=8, 5<=y<104, initial
+ 63206 DEFB 8                                  ; y-increment=2
  63207 DEFB 10
  63208 DEFB 2
  63209 DEFB 5
  63210 DEFB 104                                ; }
  63211 DEFB 5                                  ; {Vertical guardian 3: x=20,
- 63212 DEFB 2                                  ; initial y=8, 5<=y<=104,
- 63213 DEFB 8                                  ; initial y-increment=4
+ 63212 DEFB 2                                  ; initial y=8, 5<=y<104, initial
+ 63213 DEFB 8                                  ; y-increment=4
  63214 DEFB 20
  63215 DEFB 4
  63216 DEFB 5
  63217 DEFB 104                                ; }
  63218 DEFB 6                                  ; {Vertical guardian 4: x=25,
- 63219 DEFB 3                                  ; initial y=8, 5<=y<=104,
- 63220 DEFB 8                                  ; initial y-increment=1
+ 63219 DEFB 3                                  ; initial y=8, 5<=y<104, initial
+ 63220 DEFB 8                                  ; y-increment=1
  63221 DEFB 25
  63222 DEFB 1
  63223 DEFB 5
@@ -8642,22 +8642,22 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
  64219 DEFB 0,0                                ; Unused
 ; The next 28 bytes are copied to #R32989 and define the vertical guardians.
  64221 DEFB 38                                 ; {Vertical guardian 1: x=5,
- 64222 DEFB 0                                  ; initial y=64, 2<=y<=102,
+ 64222 DEFB 0                                  ; initial y=64, 2<=y<102,
  64223 DEFB 64                                 ; initial y-increment=3
  64224 DEFB 5
  64225 DEFB 3
  64226 DEFB 2
  64227 DEFB 102                                ; }
  64228 DEFB 34                                 ; {Vertical guardian 2: x=11,
- 64229 DEFB 1                                  ; initial y=56, 48<=y<=102,
+ 64229 DEFB 1                                  ; initial y=56, 48<=y<102,
  64230 DEFB 56                                 ; initial y-increment=-2
  64231 DEFB 11
  64232 DEFB 254
  64233 DEFB 48
  64234 DEFB 102                                ; }
  64235 DEFB 33                                 ; {Vertical guardian 3: x=16,
- 64236 DEFB 2                                  ; initial y=80, 4<=y<=80,
- 64237 DEFB 80                                 ; initial y-increment=1
+ 64236 DEFB 2                                  ; initial y=80, 4<=y<80, initial
+ 64237 DEFB 80                                 ; y-increment=1
  64238 DEFB 16
  64239 DEFB 1
  64240 DEFB 4
@@ -8891,7 +8891,7 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
  65243 DEFB 0,0                                ; Unused
 ; The next 28 bytes are copied to #R32989 and define the vertical guardians.
  65245 DEFB 7                                  ; {Vertical guardian 1: x=24,
- 65246 DEFB 0                                  ; initial y=48, 40<=y<=103,
+ 65246 DEFB 0                                  ; initial y=48, 40<=y<103,
  65247 DEFB 48                                 ; initial y-increment=1
  65248 DEFB 24
  65249 DEFB 1
