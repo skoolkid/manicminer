@@ -183,6 +183,12 @@ the cyan guardian - shown here in bright white:
 #UDGTABLE { #CALL:cavern(60416,2,the_sixteenth_cavern_extra_items) } TABLE#
 #POPS
 
+[Fact:fastestGuardians:The fastest guardians]
+There are three guardians that move four pixels up or down every frame - faster
+than any other guardians in the game: the white skylab in #R58368(Skylab
+Landing Bay), the magenta guardian in #R61440(The Warehouse), and the cyan
+guardian in #R62464(Amoebatrons' Revenge).
+
 [Fact:guardianColours:Guardian colours]
 The most common guardian colour is yellow (21 instances), and the least common
 colour is black (only one instance, in #R49152(Eugene's Lair)).
