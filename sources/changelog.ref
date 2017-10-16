@@ -7,11 +7,12 @@ SectionType=BulletPoints
 -
 
 - Added trivia entries:
-  - #FACT#wrongFoot() (thanks Spider)
   - #FACT#stuckOn16()
+  - #FACT#fastestGuardians()
+  - #FACT#wrongFoot() (thanks Spider)
+  - #FACT#repeatingCaverns()
   - #FACT#noWayOut()
   - #FACT#outOfBounds()
-  - #FACT#fastestGuardians()
 - In #FACT#unusedConveyors(), added a POKE to make the conveyor in
   #R62464(Amoebatrons' Revenge) move right to left
 

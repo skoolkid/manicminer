@@ -259,6 +259,27 @@ The other 11 caverns initialise the game clock to #b128, which means the cell
 at the right end of the air bar in those caverns starts off with only three
 white pixel columns instead of seven.
 
+[Fact:repeatingCaverns:Repeating caverns]
+There are six caverns in which the guardians all return to their original
+locations at the same time at least once before the air runs out:
+
+<ul>
+<li>#R45056(Central Cavern) - 28 times (every 64 frames)</li>
+<li>#R46080(The Cold Room) - 12 times (every 144 frames)</li>
+<li>#R48128(Abandoned Uranium Workings) - 22 times (every 80 frames)</li>
+<li>#R52224(Miner Willy meets the Kong Beast) - once (after 1440 frames)</li>
+<li>#R56320(Return of the Alien Kong Beast) - once (after 1440 frames)</li>
+<li>#R59392(The Bank) - 3 times (every 528 frames)</li>
+</ul>
+
+Note that normal speed horizontal guardians are not drawn to the screen at
+their initial locations when Willy enters a cavern, because they are moved once
+before the cavern is first drawn; the same is true for each vertical guardian,
+unless its initial position is at the top of its path and it is initially
+moving up, or its initial position is at the bottom of its path and it is
+initially moving down - in these cases it remains stationary for one frame
+before changing direction.
+
 [Fact:noWayOut:No way out of The Warehouse]
 If too many of the crumbling floors have disappeared in #R61440(The Warehouse),
 Willy won't be able to reach the portal. For example:
