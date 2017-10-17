@@ -120,3 +120,15 @@ cells, to handle the case where a guardian's sprite is not cell-aligned.
 However, when a Skylab crashes, it <em>is</em> cell-aligned, and so its
 attributes needlessly bleed over to the floor or conveyor cells immediately
 below it.
+
+[Bug:blueShadow:Blue shadow]
+As Willy enters #R63488(Solar Power Generator), the blue vertical guardian can
+be seen casting a 'shadow' over the floor immediately below it.
+
+#UDGTABLE { #CALL:cavern(63488,2,blue_shadow,15,9,4,4) } TABLE#
+
+This happens for the same reason as a Skylab's colour bleeds over into the
+floor below when it crashes - see #BUG#attributeCrash(). This effect does not
+occur on subsequent occasions when the guardian approaches the floor, because
+it never actually touches the floor again - its maximum pixel y-coordinate is
+79, one less than its original y-coordinate of 80 (see #FACT#outOfBounds()).

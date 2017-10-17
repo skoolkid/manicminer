@@ -13,6 +13,7 @@ SectionType=BulletPoints
   - #FACT#repeatingCaverns()
   - #FACT#noWayOut()
   - #FACT#outOfBounds()
+- Documented a bug: #BUG#blueShadow() (thanks IRF)
 - In #FACT#unusedConveyors(), added a POKE to make the conveyor in
   #R62464(Amoebatrons' Revenge) move right to left
 
