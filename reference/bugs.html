@@ -19,6 +19,7 @@
 <li><a href="#throughTheWall">Through the wall</a></li>
 <li><a href="#throughTheWallAgain">Through the wall again</a></li>
 <li><a href="#attributeCrash">Attribute crash</a></li>
+<li><a href="#blueShadow">Blue shadow</a></li>
 </ul>
 <div><span id="animatedPlatform"></span></div>
 <div class="box box-1">
@@ -204,10 +205,32 @@ attributes needlessly bleed over to the floor or conveyor cells immediately
 below it.
 </div>
 </div>
+<div><span id="blueShadow"></span></div>
+<div class="box box-2">
+<div class="box-title">Blue shadow</div>
+<div class="paragraph">
+As Willy enters <a href="../asm/F800.html">Solar Power Generator</a>, the blue vertical guardian can
+be seen casting a 'shadow' over the floor immediately below it.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="blue_shadow" src="../images/scr/blue_shadow.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+This happens for the same reason as a Skylab's colour bleeds over into the
+floor below when it crashes - see <a href="bugs.html#attributeCrash">Attribute crash</a>. This effect does not
+occur on subsequent occasions when the guardian approaches the floor, because
+it never actually touches the floor again - its maximum pixel y-coordinate is
+79, one less than its original y-coordinate of 80 (see <a href="facts.html#outOfBounds">Out of bounds</a>).
+</div>
+</div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="release">The complete Manic Miner RAM disassembly 20171018</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.1.</div>
 </footer>
 </body>
 </html>

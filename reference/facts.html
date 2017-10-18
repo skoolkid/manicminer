@@ -17,6 +17,7 @@
 <li><a href="#tunes">Tunes</a></li>
 <li><a href="#takingABreak">Taking a BREAK</a></li>
 <li><a href="#6031769">6031769</a></li>
+<li><a href="#stuckOn16">Stuck on 16</a></li>
 <li><a href="#noSwordfishForCheats">No swordfish for cheats</a></li>
 <li><a href="#unusedCrumblingFloor">Unused crumbling floor</a></li>
 <li><a href="#unusedConveyors">Unused conveyors</a></li>
@@ -25,12 +26,17 @@
 <li><a href="#itemGraphics">Item graphics</a></li>
 <li><a href="#itemCounts">Item counts</a></li>
 <li><a href="#extraItems">Extra items</a></li>
+<li><a href="#fastestGuardians">The fastest guardians</a></li>
 <li><a href="#guardianColours">Guardian colours</a></li>
 <li><a href="#guardianCounts">Guardian counts</a></li>
 <li><a href="#guardiansNeedAClearPath">Guardians need a clear path</a></li>
+<li><a href="#wrongFoot">Off on the wrong foot</a></li>
 <li><a href="#variableAirSupply">Variable air supply</a></li>
+<li><a href="#repeatingCaverns">Repeating caverns</a></li>
+<li><a href="#noWayOut">No way out of The Warehouse</a></li>
 <li><a href="#theUnreachableMillion">The unreachable million</a></li>
 <li><a href="#horizontalSkylabs">Horizontal Skylabs?</a></li>
+<li><a href="#outOfBounds">Out of bounds</a></li>
 <li><a href="#sourceCodeRemnants">Source code remnants</a></li>
 </ul>
 <div><span id="tunes"></span></div>
@@ -69,8 +75,30 @@ in it and twisted round a bit" (as he put it in an interview for issue 48 of
 <i>Retro Gamer</i> magazine).
 </div>
 </div>
-<div><span id="noSwordfishForCheats"></span></div>
+<div><span id="stuckOn16"></span></div>
 <div class="box box-2">
+<div class="box-title">Stuck on 16</div>
+<div class="paragraph">
+In <a href="../asm/EC00.html">The Sixteenth Cavern</a>, Willy can get stuck if he enters the area
+below the portal before collecting all the items outside that area:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="stuck_on_16" src="../images/scr/stuck_on_16.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+If that happens, he will have to wait until the air runs out before getting a
+second chance to escape from the cavern.
+</div>
+<div class="paragraph">
+See also <a href="facts.html#noWayOut">No way out of The Warehouse</a>.
+</div>
+</div>
+<div><span id="noSwordfishForCheats"></span></div>
+<div class="box box-1">
 <div class="box-title">No swordfish for cheats</div>
 <div class="paragraph">
 The game ending - with Willy above ground and the portal in <a href="../asm/FC00.html">The Final
@@ -79,7 +107,7 @@ Barrier</a> changed to the <a href="../asm/B000.html#b2e0">swordfish</a> graphic
 </div>
 </div>
 <div><span id="unusedCrumblingFloor"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Unused crumbling floor</div>
 <div class="paragraph">
 The crumbling floor tile in <a href="../asm/E400.html">Skylab Landing Bay</a> is unique to that
@@ -100,7 +128,7 @@ POKE 58811,10: POKE 58812,10: POKE 58930,10
 </div>
 </div>
 <div><span id="unusedConveyors"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Unused conveyors</div>
 <div class="paragraph">
 Every cavern definition contains a conveyor definition, and every conveyor has
@@ -156,11 +184,14 @@ POKE 62759,4: POKE 62760,4: POKE 62761,4
 </div>
 <div class="paragraph">
 Note that this conveyor moves left to right, and so if it were activated it
-would make the cavern unfinishable.
+would make the cavern unfinishable. To make the conveyor move right to left:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/F400.html#f66f">63087</a>,0
 </div>
 </div>
 <div><span id="thePersistentItem"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">The persistent item</div>
 <div class="paragraph">
 The item below the portal in <a href="../asm/EC00.html">The Sixteenth Cavern</a> does not disappear
@@ -177,7 +208,7 @@ item, and the screen is not refreshed before he moves on to the next cavern.
 </div>
 </div>
 <div><span id="lightLogic"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Light logic</div>
 <div class="paragraph">
 At times it might seem as if the light beam in <a href="../asm/F800.html">Solar Power Generator</a>
@@ -200,7 +231,7 @@ line of pixels is removed from the right end of the air bar (see <a href="../asm
 </div>
 </div>
 <div><span id="itemGraphics"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Item graphics</div>
 <div class="paragraph">
 The commonest item graphic is the key, which appears in <a href="../asm/B000.html">Central
@@ -268,7 +299,7 @@ The other eight caverns have their own unique item graphics:
 </div>
 </div>
 <div><span id="itemCounts"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Item counts</div>
 <div class="paragraph">
 Fourteen of the twenty caverns have a full set of five items.
@@ -289,7 +320,7 @@ item.
 </div>
 </div>
 <div><span id="extraItems"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Extra items</div>
 <div class="paragraph">
 <a href="../asm/E800.html">The Bank</a> has five items defined, but only three of them are used;
@@ -317,6 +348,16 @@ the cyan guardian - shown here in bright white:
 <td class="" colspan="1" rowspan="1"><img alt="the_sixteenth_cavern_extra_items" src="../images/scr/the_sixteenth_cavern_extra_items.png" /></td>
 </tr>
 </table>
+</div>
+</div>
+<div><span id="fastestGuardians"></span></div>
+<div class="box box-1">
+<div class="box-title">The fastest guardians</div>
+<div class="paragraph">
+There are three guardians that move four pixels up or down every frame - faster
+than any other guardians in the game: the white Skylab in <a href="../asm/E400.html">Skylab
+Landing Bay</a>, the magenta guardian in <a href="../asm/F000.html">The Warehouse</a>, and the cyan
+guardian in <a href="../asm/F400.html">Amoebatrons' Revenge</a>.
 </div>
 </div>
 <div><span id="guardianColours"></span></div>
@@ -360,8 +401,47 @@ See this happen by placing a wall block in the path of the guardian in
 POKE 45327,22
 </div>
 </div>
-<div><span id="variableAirSupply"></span></div>
+<div><span id="wrongFoot"></span></div>
 <div class="box box-1">
+<div class="box-title">Off on the wrong foot</div>
+<div class="paragraph">
+In some caverns, Willy starts off facing the wall, and so has to turn round
+before navigating his way out:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot1" src="../images/scr/wrong_foot1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot2" src="../images/scr/wrong_foot2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot3" src="../images/scr/wrong_foot3.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/E000.html">Ore Refinery</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/E400.html">Skylab Landing Bay</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/F000.html">The Warehouse</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+To make Willy start off facing the other way:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot4" src="../images/scr/wrong_foot4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot5" src="../images/scr/wrong_foot5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot6" src="../images/scr/wrong_foot6.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">POKE <a href="../asm/E000.html#e268">57962</a>,1</td>
+<td class="" colspan="1" rowspan="1">POKE <a href="../asm/E400.html#e668">58986</a>,1</td>
+<td class="" colspan="1" rowspan="1">POKE <a href="../asm/F000.html#f268">62058</a>,0</td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="variableAirSupply"></span></div>
+<div class="box box-2">
 <div class="box-title">Variable air supply</div>
 <div class="paragraph">
 The initial air supply varies from cavern to cavern by small amounts, because
@@ -388,8 +468,57 @@ at the right end of the air bar in those caverns starts off with only three
 white pixel columns instead of seven.
 </div>
 </div>
-<div><span id="theUnreachableMillion"></span></div>
+<div><span id="repeatingCaverns"></span></div>
+<div class="box box-1">
+<div class="box-title">Repeating caverns</div>
+<div class="paragraph">
+There are six caverns in which the guardians all return to their original
+locations at the same time at least once before the air runs out:
+</div>
+<div class="paragraph">
+<ul>
+<li><a href="../asm/B000.html">Central Cavern</a> - 28 times (every 64 frames)</li>
+<li><a href="../asm/B400.html">The Cold Room</a> - 12 times (every 144 frames)</li>
+<li><a href="../asm/BC00.html">Abandoned Uranium Workings</a> - 22 times (every 80 frames)</li>
+<li><a href="../asm/CC00.html">Miner Willy meets the Kong Beast</a> - once (after 1440 frames)</li>
+<li><a href="../asm/DC00.html">Return of the Alien Kong Beast</a> - once (after 1440 frames)</li>
+<li><a href="../asm/E800.html">The Bank</a> - 3 times (every 528 frames)</li>
+</ul>
+</div>
+<div class="paragraph">
+Note that normal speed horizontal guardians are not drawn to the screen at
+their initial locations when Willy enters a cavern, because they are moved once
+before the cavern is first drawn; the same is true for each vertical guardian,
+unless its initial position is at the top of its path and it is initially
+moving up, or its initial position is at the bottom of its path and it is
+initially moving down - in these cases it remains stationary for one frame
+before changing direction.
+</div>
+</div>
+<div><span id="noWayOut"></span></div>
 <div class="box box-2">
+<div class="box-title">No way out of The Warehouse</div>
+<div class="paragraph">
+If too many of the crumbling floors have disappeared in <a href="../asm/F000.html">The Warehouse</a>,
+Willy won't be able to reach the portal. For example:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="no_way_out" src="../images/scr/no_way_out.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+If that happens, he will have to wait until the air runs out before getting a
+second chance to escape from the cavern.
+</div>
+<div class="paragraph">
+See also <a href="facts.html#stuckOn16">Stuck on 16</a>.
+</div>
+</div>
+<div><span id="theUnreachableMillion"></span></div>
+<div class="box box-1">
 <div class="box-title">The unreachable million</div>
 <div class="paragraph">
 The score (at least, the part of it that is printed - see <a href="../asm/8425.html">8425</a>) rolls around
@@ -397,12 +526,31 @@ to zero when it hits a million.
 </div>
 </div>
 <div><span id="horizontalSkylabs"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Horizontal Skylabs?</div>
 <div class="paragraph">
 There are three horizontal guardians defined in <a href="../asm/E400.html">Skylab Landing Bay</a>,
 but they're not used. We can only wonder what they might have looked like
 before being replaced by the Skylabs.
+</div>
+</div>
+<div><span id="outOfBounds"></span></div>
+<div class="box box-1">
+<div class="box-title">Out of bounds</div>
+<div class="paragraph">
+There are two vertical guardians that start off in a location that they never
+return to.
+</div>
+<div class="paragraph">
+The first one is the bright magenta guardian in <a href="../asm/F000.html">The Warehouse</a>. It
+starts off at pixel y-coordinate 0 - the very top of the cavern - but does not
+go above y=4 again after it has started moving (see <a href="../asm/F000.html#f2f2">F2F2</a>).
+</div>
+<div class="paragraph">
+The second one is the blue vertical guardian in <a href="../asm/F800.html">Solar Power Generator</a>.
+It starts off at pixel y-coordinate 80 - touching the platform that Willy is
+standing on initially - but does not go below y=79 again after it has started
+moving (see <a href="../asm/F800.html#faeb">FAEB</a>).
 </div>
 </div>
 <div><span id="sourceCodeRemnants"></span></div>
@@ -651,9 +799,9 @@ code remnants at <a href="../asm/934C.html">934C</a>.
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20170517</div>
+<div class="release">The complete Manic Miner RAM disassembly 20171018</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.1.</div>
 </footer>
 </body>
 </html>
