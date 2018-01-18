@@ -1,4 +1,4 @@
-; Copyright 2010, 2012-2017 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2010, 2012-2018 Richard Dymond (rjdymond@gmail.com)
 
 ; Attribute buffer (cavern + Willy + guardians + items)
 ;
@@ -43,10 +43,10 @@ b28672 DEFS 4096
 ; http://skoolkit.ca/
 ;
 ; Copyright 1983 Bug-Byte Ltd (Manic Miner)
-; Copyright 2010, 2012-2017 Richard Dymond (this disassembly)
+; Copyright 2010, 2012-2018 Richard Dymond (this disassembly)
 
 @isub+begin
-@org=32765
+@org
 c32765 JP 33792
 @isub+end
 
