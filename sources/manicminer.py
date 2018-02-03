@@ -1,4 +1,4 @@
-# Copyright 2012, 2014-2017 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014-2018 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -37,21 +37,18 @@ class ManicMinerHtmlWriter(HtmlWriter):
     def cavern(self, cwd, address, scale=2, fname=None, x=0, y=0, w=32, h=17, guardians=1, animate=0):
         if fname is None:
             fname = self.cavern_names[address].lower().replace(' ', '_')
-        img_path = self.image_path(fname, 'ScreenshotImagePath')
-        if self.need_image(img_path):
-            cavern_udgs = self._get_cavern_udgs(address, guardians)
-            img_udgs = [cavern_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
-            if animate:
-                direction = self.snapshot[address + 623]
-                sb_addr = self.snapshot[address + 624] + 256 * self.snapshot[address + 625]
-                conveyor_x = sb_addr % 32 - x
-                conveyor_y = 8 * ((sb_addr - 28672) // 2048) + (sb_addr % 256) // 32 - y
-                length = self.snapshot[address + 626]
-                frames = self._animate_conveyor(img_udgs, direction, conveyor_x, conveyor_y, length, scale)
-                self.write_animated_image(img_path, frames)
-            else:
-                self.write_image(img_path, img_udgs, scale=scale)
-        return self.img_element(cwd, img_path)
+        cavern_udgs = self._get_cavern_udgs(address, guardians)
+        img_udgs = [cavern_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
+        if animate:
+            direction = self.snapshot[address + 623]
+            sb_addr = self.snapshot[address + 624] + 256 * self.snapshot[address + 625]
+            conveyor_x = sb_addr % 32 - x
+            conveyor_y = 8 * ((sb_addr - 28672) // 2048) + (sb_addr % 256) // 32 - y
+            length = self.snapshot[address + 626]
+            frames = self._animate_conveyor(img_udgs, direction, conveyor_x, conveyor_y, length, scale)
+        else:
+            frames = [Frame(img_udgs, scale)]
+        return self.handle_image(frames, fname, cwd, path_id='ScreenshotImagePath')
 
     def expand_gbuf(self, text, index, cwd):
         end, addr_from, addr_to = parse_gbuf(text, index)
@@ -123,18 +120,13 @@ class ManicMinerHtmlWriter(HtmlWriter):
         return ''.join(lines)
 
     def attribute_crash_img(self, cwd):
-        img_path = self.image_path('attribute_crash', 'ScreenshotImagePath')
-        if self.need_image(img_path):
-            self.push_snapshot()
-            self.snapshot[59102] = 2
-            self.snapshot[59103] = 72
-            self.snapshot[59104] = 17
-            cavern = self._get_cavern_udgs(58368)
-            self.pop_snapshot()
-            cavern[11][17] = cavern[11][18] = Udg(15, cavern[11][15].data)
-            udg_array = [row[14:22] for row in cavern[8:13]]
-            self.write_image(img_path, udg_array, scale=2)
-        return self.img_element(cwd, img_path)
+        self.push_snapshot()
+        self.snapshot[59102:59105] = [2, 72, 17]
+        cavern = self._get_cavern_udgs(58368)
+        self.pop_snapshot()
+        cavern[11][17] = cavern[11][18] = Udg(15, cavern[11][15].data)
+        frame = Frame([row[14:22] for row in cavern[8:13]], 2)
+        return self.handle_image([frame], 'attribute_crash', cwd, path_id='ScreenshotImagePath')
 
     def _get_cavern_names(self):
         caverns = {}
