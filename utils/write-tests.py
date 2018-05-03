@@ -16,26 +16,25 @@ SKOOL = 'mm.skool'
 
 SNAPSHOT = 'build/manic_miner.z80'
 
-OUTPUT = """Using skool file: {skoolfile}
-Using ref files: mm.ref, bugs.ref, changelog.ref, facts.ref, pokes.ref
+OUTPUT = """Using ref files: mm.ref, bugs.ref, changelog.ref, facts.ref, pokes.ref
 Parsing {skoolfile}
-Creating directory {odir}/manic_miner
-Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/manic_miner/skoolkit.css
-Copying mm.css to {odir}/manic_miner/mm.css
-  Writing disassembly files in manic_miner/asm
-  Writing manic_miner/maps/all.html
-  Writing manic_miner/maps/routines.html
-  Writing manic_miner/maps/data.html
-  Writing manic_miner/maps/messages.html
-  Writing manic_miner/maps/unused.html
-  Writing manic_miner/buffers/gbuffer.html
-  Writing manic_miner/reference/bugs.html
-  Writing manic_miner/reference/changelog.html
-  Writing manic_miner/reference/facts.html
-  Writing manic_miner/reference/glossary.html
-  Writing manic_miner/reference/pokes.html
-  Writing manic_miner/tables/caverns.html
-  Writing manic_miner/reference/credits.html
-  Writing manic_miner/index.html"""
+Output directory: {odir}/manic_miner
+Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to skoolkit.css
+Copying mm.css to mm.css
+Writing disassembly files in asm
+Writing maps/all.html
+Writing maps/routines.html
+Writing maps/data.html
+Writing maps/messages.html
+Writing maps/unused.html
+Writing buffers/gbuffer.html
+Writing reference/bugs.html
+Writing reference/changelog.html
+Writing reference/facts.html
+Writing reference/glossary.html
+Writing reference/pokes.html
+Writing tables/caverns.html
+Writing reference/credits.html
+Writing index.html"""
 
 write_tests(SKOOL, SNAPSHOT, OUTPUT)
