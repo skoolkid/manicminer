@@ -2824,9 +2824,9 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37380 LD C,1        ; #R24576
  37382 CALL 36852    ; }
  37385 JP NZ,36102   ; Kill Willy if he collided with the Kong Beast
-@assemble=1
+@assemble=2
  37388 LD A,68       ; #REGa=#b68 (INK 4: PAPER 0: BRIGHT 1)
-@assemble=0
+@assemble=1
  37390 LD (23599),A  ; {Set the attribute bytes for the Kong Beast in the
  37393 LD (23600),A  ; buffer at #R23552
  37396 LD (23567),A  ;
