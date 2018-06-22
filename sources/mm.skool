@@ -2425,8 +2425,8 @@ c36805 LD HL,(32944) ; Pick up the address of the portal's location in the
                      ; the attribute buffer at #R23552 from #R32876
  36811 CP L          ; Does it match that of the portal?
  36812 JR NZ,36831   ; Jump if not
-@ignoreua
 @ssub=LD A,(32876+1)
+@ignoreua
  36814 LD A,(32877)  ; Pick up the MSB of the address of Willy's location in
                      ; the attribute buffer at #R23552 from #R32876(#N32877)
  36817 CP H          ; Does it match that of the portal?
@@ -2846,15 +2846,15 @@ c37403 LD A,(32876)  ; Pick up the LSB of the address of Willy's location in
  37407 AND 254       ; of the switch's location?
  37409 CP L          ; }
  37410 RET NZ        ; Return (with the zero flag reset) if not
-@ignoreua
 @ssub=LD A,(32876+1)
+@ignoreua
  37411 LD A,(32877)  ; Pick up the MSB of the address of Willy's location in
                      ; the attribute buffer at #R23552 from #R32876(#N32877)
  37414 CP H          ; Does it match the MSB of the address of the switch's
                      ; location?
  37415 RET NZ        ; Return (with the zero flag reset) if not
-@ignoreua
 @ssub=LD A,(32863+6)
+@ignoreua
  37416 LD A,(32869)  ; Pick up the sixth byte of the graphic data for the
                      ; switch tile from #R32863(#N32869)
  37419 LD H,117      ; Point #REGhl at the sixth row of pixels of the switch
