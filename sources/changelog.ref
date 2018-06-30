@@ -1,7 +1,14 @@
-; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2018 Richard Dymond (rjdymond@gmail.com)
 
 [Page:Changelog]
 SectionType=BulletPoints
+
+[Changelog:YYYYMMDD]
+-
+
+- Ported the disassembly to SkoolKit 7
+- In #BUG#throughTheWallAgain(), added #R45056(Central Cavern) and #R51200(The
+  Vat) to the list of places where Willy can jump into a wall (thanks IRF)
 
 [Changelog:20171018]
 -

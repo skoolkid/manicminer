@@ -1,4 +1,4 @@
-; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2018 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:animatedPlatform:The animated platform]
 There is a platform at (9,7) in #R62464(Amoebatrons' Revenge) whose third row
@@ -99,8 +99,14 @@ eventually landing with animation frame 1.
 Places where this can happen are:
 
 #UDGTABLE(gallery)
-{ #WILLY1,27,32,1,22,2,10,6(ttwa_tcr) | #WILLY15,9,80,1,5,8,10,6(ttwa_sc2) }
-{ #R46080(The Cold Room)              | #R60416(The Sixteenth Cavern) }
+{ #WILLY0,16,56,1,12,5,10,6(ttwa_cc) |
+  #WILLY1,27,32,1,22,2,10,6(ttwa_tcr) |
+  #WILLY6,13,88,1,9,9,10,6(ttwa_tv) |
+  #WILLY15,9,80,1,5,8,10,6(ttwa_sc2) }
+{ #R45056(Central Cavern) |
+  #R46080(The Cold Room) |
+  #R51200(The Vat) |
+  #R60416(The Sixteenth Cavern) }
 TABLE#
 
 When Willy lands inside a wall block, he can walk straight through it unless
