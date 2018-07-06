@@ -34,6 +34,17 @@ class ManicMinerHtmlWriter(HtmlWriter):
             self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
         self.cavern_names = self._get_cavern_names()
 
+    def init_page(self, skoolkit, game):
+        if 'alt_base' in game:
+            path = skoolkit['path']
+            if skoolkit['page_id'].startswith('Asm'):
+                addr_str = path.rsplit('/', 1)[-1][:-5]
+                if game['alt_base'] == 'decimal':
+                    path = path.replace(addr_str, str(int(addr_str, 16)))
+                else:
+                    path = path.replace(addr_str, '{:04X}'.format(int(addr_str)))
+            skoolkit['Path'] = path
+
     def cavern(self, cwd, address, scale=2, fname=None, x=0, y=0, w=32, h=17, guardians=1, animate=0):
         if fname is None:
             fname = self.cavern_names[address].lower().replace(' ', '_')
