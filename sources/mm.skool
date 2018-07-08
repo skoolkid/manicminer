@@ -894,8 +894,8 @@ c34436 LD HL,33829   ; {Initialise the score at #R33829
 ; #R36904.
 @label=NEWSHT
 *34449 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
- 34452 SLA A         ; {Point #REGhl at the first byte of the cavern
- 34454 SLA A         ; definition
+ 34452 SLA A         ; {Point #REGhl at the first byte of the cavern definition
+ 34454 SLA A         ;
 @ssub=ADD A,45056/256
  34456 ADD A,176     ;
  34458 LD H,A        ;
@@ -1348,8 +1348,8 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
  35239 LD BC,64      ; #REGc=#b64; this value determines the duration of the
                      ; sound effect
 @label=TM111
-*35242 OUT (254),A   ; {Produce a short note whose pitch is determined by
- 35244 XOR 24        ; #REGe
+*35242 OUT (254),A   ; {Produce a short note whose pitch is determined by #REGe
+ 35244 XOR 24        ;
  35246 LD B,E        ;
 @label=TM112
 *35247 DJNZ 35247    ;
@@ -1589,8 +1589,8 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35605 JR NZ,35665   ; Jump if so
  35607 LD HL,(32876) ; Pick up Willy's attribute buffer coordinates from
                      ; #R32876
- 35610 LD DE,64      ; {Point #REGhl at the left-hand cell below Willy's
- 35613 ADD HL,DE     ; sprite}
+ 35610 LD DE,64      ; {Point #REGhl at the left-hand cell below Willy's sprite
+ 35613 ADD HL,DE     ; }
  35614 LD A,(32818)  ; Pick up the attribute byte of the crumbling floor tile
                      ; for the current cavern from #R32818
  35617 CP (HL)       ; Does the left-hand cell below Willy's sprite contain a
@@ -1716,8 +1716,8 @@ c35770 LD C,L        ; {Point #REGbc at the bottom row of pixels of the
  35782 LD A,B        ; {Have we dealt with the bottom seven pixel rows of the
  35783 AND 7         ; crumbling floor tile yet?}
  35785 JR NZ,35777   ; If not, jump back to deal with the next one up
- 35787 XOR A         ; {Clear the top row of pixels in the crumbling floor
- 35788 LD (BC),A     ; tile}
+ 35787 XOR A         ; {Clear the top row of pixels in the crumbling floor tile
+ 35788 LD (BC),A     ; }
  35789 LD A,B        ; {Point #REGbc at the bottom row of pixels in the
  35790 ADD A,7       ; crumbling floor tile
  35792 LD B,A        ; }
@@ -2356,8 +2356,8 @@ c36593 LD IY,32989   ; Point #REGiy at the first byte of the first vertical
 ; Used by the routine at #R34574.
 @label=DRAWITEMS
 c36707 XOR A         ; {Initialise the attribute of the last item drawn at
- 36708 LD (32884),A  ; #R32884 to #b0 (in case there are no items left to
-                     ; draw)}
+ 36708 LD (32884),A  ; #R32884 to #b0 (in case there are no items left to draw)
+                     ; }
  36711 LD IY,32885   ; Point #REGiy at the first byte of the first item
                      ; definition at #R32885
 ; The item-drawing loop begins here.
@@ -2811,8 +2811,8 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37358 LD A,6        ; The Kong Beast is drawn with yellow INK
  37360 JP 36447      ; Set the attribute bytes for the Kong Beast
 ; The Kong Beast has fallen into the portal.
-*37363 LD A,2        ; {Set the Kong Beast's status at #R32987 to 2: he is
- 37365 LD (32987),A  ; dead}
+*37363 LD A,2        ; {Set the Kong Beast's status at #R32987 to 2: he is dead
+ 37365 LD (32987),A  ; }
  37368 RET           ;
 ; The Kong Beast is still on the ledge.
 *37369 LD A,(32957)  ; Pick up the value of the game clock at #R32957
@@ -2953,8 +2953,8 @@ c37503 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
 @ssub=LD D,33280/256
  37528 LD D,130      ; }
  37530 LD B,16       ; There are 16 rows of pixels to copy
- 37532 LD A,(32876)  ; {Pick up Willy's screen x-coordinate (0-31) from
- 37535 AND 31        ; #R32876}
+ 37532 LD A,(32876)  ; {Pick up Willy's screen x-coordinate (0-31) from #R32876
+ 37535 AND 31        ; }
  37537 LD C,A        ; Copy it to #REGc
 *37538 LD A,(IX+0)   ; {Set #REGhl to the address in the screen buffer at
  37541 LD H,(IX+1)   ; #R24576 that corresponds to where we are going to draw
