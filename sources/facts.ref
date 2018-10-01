@@ -1,4 +1,4 @@
-; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2018 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:tunes:Tunes]
 The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss
@@ -121,6 +121,12 @@ air supply is reduced by an extra eight or twelve units - four for each of the
 two or three cells of Willy's sprite that the beam touches - making nine or
 thirteen units in total. For every eight units of air consumed, one vertical
 line of pixels is removed from the right end of the air bar (see #R35388).
+
+[Fact:topHalfTwice:Top half twice]
+When #R64512(The Final Barrier) is drawn to the screen buffer at #R28672, the
+graphic data for the top half of the cavern (at #R40960) is copied twice: once
+after the first (pointless) run through the loop at #R35468, and again after
+the second run through the loop has drawn the bottom half of the cavern.
 
 [Fact:itemGraphics:Item graphics]
 The commonest item graphic is the key, which appears in #R45056(Central
