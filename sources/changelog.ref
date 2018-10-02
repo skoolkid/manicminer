@@ -7,7 +7,9 @@ SectionType=BulletPoints
 -
 
 - Ported the disassembly to SkoolKit 7
-- Added a trivia entry: #FACT#topHalfTwice() (thanks IRF)
+- Added trivia entries:
+  - #FACT#topHalfTwice() (thanks IRF)
+  - #FACT#bottomHalfTwice() (thanks IRF)
 - In #BUG#throughTheWallAgain(), added #R45056(Central Cavern) and #R51200(The
   Vat) to the list of places where Willy can jump into a wall (thanks IRF)
 

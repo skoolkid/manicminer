@@ -128,6 +128,21 @@ graphic data for the top half of the cavern (at #R40960) is copied twice: once
 after the first (pointless) run through the loop at #R35468, and again after
 the second run through the loop has drawn the bottom half of the cavern.
 
+[Fact:bottomHalfTwice:Bottom half twice]
+After Willy has jumped through the portal in #R64512(The Final Barrier) to the
+ground above, and the celebratory sound effect and colour-cycling effect have
+finished, the bottom half of Willy's sprite can be been dangling below the
+swordfish graphic (where the portal was) while the remaining air supply
+decreases to zero.
+
+#CALL:bottom_half_twice_img()
+
+This happens because the section of code at #R36926 draws Willy above ground,
+but does not remove him from the portal entrance. And although his residual
+bottom half is hidden briefly by setting the appropriate attribute values to 0
+(INK 0: PAPER 0), it is left on display with an attribute value of 1 (INK 1:
+PAPER 0) after the colour-cycling effect has finished.
+
 [Fact:itemGraphics:Item graphics]
 The commonest item graphic is the key, which appears in #R45056(Central
 Cavern), #R47104(The Menagerie), #R48128(Abandoned Uranium Workings),

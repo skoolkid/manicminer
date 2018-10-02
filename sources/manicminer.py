@@ -139,6 +139,19 @@ class ManicMinerHtmlWriter(HtmlWriter):
         frame = Frame([row[14:22] for row in cavern[8:13]], 2)
         return self.handle_image([frame], 'attribute_crash', cwd, path_id='ScreenshotImagePath')
 
+    def bottom_half_twice_img(self, cwd):
+        cavern = self._get_cavern_udgs(64512)
+        swordfish = self._get_graphic(45792, 1)
+        cavern[5][19:21], cavern[6][19:21] = swordfish
+        willy = self._get_graphic(33376, 1)
+        cavern[2][19:21], cavern[3][19:21] = willy
+        cavern[7][19:21] = willy[1]
+        udgs = [row[18:22] for row in cavern[1:9]]
+        for row in udgs:
+            for udg in row:
+                udg.attr = 1
+        return self.handle_image(Frame(udgs, 2), '{ScreenshotImagePath}/bottom_half_twice', cwd)
+
     def _get_cavern_names(self):
         caverns = {}
         for a in range(45056, 65536, 1024):
