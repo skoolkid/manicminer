@@ -23,6 +23,8 @@
 <li><a href="#unusedConveyors">Unused conveyors</a></li>
 <li><a href="#thePersistentItem">The persistent item</a></li>
 <li><a href="#lightLogic">Light logic</a></li>
+<li><a href="#topHalfTwice">Top half twice</a></li>
+<li><a href="#bottomHalfTwice">Bottom half twice</a></li>
 <li><a href="#itemGraphics">Item graphics</a></li>
 <li><a href="#itemCounts">Item counts</a></li>
 <li><a href="#extraItems">Extra items</a></li>
@@ -228,6 +230,37 @@ air supply is reduced by an extra eight or twelve units - four for each of the
 two or three cells of Willy's sprite that the beam touches - making nine or
 thirteen units in total. For every eight units of air consumed, one vertical
 line of pixels is removed from the right end of the air bar (see <a href="../asm/8A3C.html">8A3C</a>).
+</div>
+</div>
+<div><span id="topHalfTwice"></span></div>
+<div class="box box-2">
+<div class="box-title">Top half twice</div>
+<div class="paragraph">
+When <a href="../asm/FC00.html">The Final Barrier</a> is drawn to the screen buffer at <a href="../asm/7000.html">7000</a>, the
+graphic data for the top half of the cavern (at <a href="../asm/A000.html">A000</a>) is copied twice: once
+after the first (pointless) run through the loop at <a href="../asm/8A75.html#8a8c">8A8C</a>, and again after
+the second run through the loop has drawn the bottom half of the cavern.
+</div>
+</div>
+<div><span id="bottomHalfTwice"></span></div>
+<div class="box box-1">
+<div class="box-title">Bottom half twice</div>
+<div class="paragraph">
+After Willy has jumped through the portal in <a href="../asm/FC00.html">The Final Barrier</a> to the
+ground above, and the celebratory sound effect and colour-cycling effect have
+finished, the bottom half of Willy's sprite can be been dangling below the
+swordfish graphic (where the portal was) while the remaining air supply
+decreases to zero.
+</div>
+<div class="paragraph">
+<img alt="bottom_half_twice" src="../images/scr/bottom_half_twice.png" />
+</div>
+<div class="paragraph">
+This happens because the section of code at <a href="../asm/9028.html#903e">903E</a> draws Willy above ground,
+but does not remove him from the portal entrance. And although his residual
+bottom half is hidden briefly by setting the appropriate attribute values to 0
+(INK 0: PAPER 0), it is left on display with an attribute value of 1 (INK 1:
+PAPER 0) after the colour-cycling effect has finished.
 </div>
 </div>
 <div><span id="itemGraphics"></span></div>
@@ -799,9 +832,10 @@ code remnants at <a href="../asm/934C.html">934C</a>.
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20171018</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2017 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.1.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20181015</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2018 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
+<div><a href="http://skoolkit.ca/disassemblies/manic_miner/reference/facts.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>
