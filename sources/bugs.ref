@@ -1,4 +1,4 @@
-; Copyright 2014-2018 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2019 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:animatedPlatform:The animated platform]
 There is a platform at (9,7) in #R62464(Amoebatrons' Revenge) whose third row
@@ -6,7 +6,7 @@ of pixels is animated as if it were a conveyor. This is because there is a
 conveyor defined at that location (see #R63087), but the cavern layout places
 regular platform tiles there instead of conveyor tiles.
 
-#UDGTABLE { #CALL:cavern(62464,2,animated_platform.gif,0,5,16,8,0,1) } TABLE#
+#UDGTABLE { #CALL:cavern(62464,2,animated_platform,0,5,16,8,0,1) } TABLE#
 
 To disable the animation (by moving the conveyor up a row to (8,7), which is
 occupied by background tiles):

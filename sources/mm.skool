@@ -340,9 +340,9 @@ g33024 DEFS 256
 ; .
 ; #UDGTABLE
 ; { #FOR(0,3)//n/#UDGARRAY2,7,2,2;(33280+32*n)-(33297+32*n)-1-16(willyn*)/ | //
-; | #UDGARRAY*willy0;willy1;willy2;willy3(willy_r.gif) }
+; | #UDGARRAY*willy0;willy1;willy2;willy3(willy_r) }
 ; { #FOR(4,7)//n/#UDGARRAY2,7,2,2;(33280+32*n)-(33297+32*n)-1-16(willyn*)/ | //
-; | #UDGARRAY*willy7;willy6;willy5;willy4(willy_l.gif) }
+; | #UDGARRAY*willy7;willy6;willy5;willy4(willy_l) }
 ; TABLE#
 @label=MANDAT
 b33280 DEFB 6,0,62,0,124,0,52,0,62,0,60,0,24,0,60,0

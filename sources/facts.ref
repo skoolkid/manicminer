@@ -1,4 +1,4 @@
-; Copyright 2014-2018 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2019 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:tunes:Tunes]
 The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss
@@ -68,7 +68,7 @@ POKE 54291,67
 { #CALL:cavern(54272,2,uc1_before,11,0,16,8,0,1) |
   #PUSHS
   #POKES54291,67
-  #CALL:cavern(54272,2,uc1_after.gif,11,0,16,8,0,1)
+  #CALL:cavern(54272,2,uc1_after,11,0,16,8,0,1)
   #POPS }
 { Before | After }
 TABLE#
@@ -83,10 +83,10 @@ To replace the platform with conveyor tiles:
 POKE 62759,4: POKE 62760,4: POKE 62761,4
 
 #UDGTABLE(gallery)
-{ #CALL:cavern(62464,2,uc2_before.gif,0,5,16,8,0,1) |
+{ #CALL:cavern(62464,2,uc2_before,0,5,16,8,0,1) |
   #PUSHS
   #POKES62759,4,3
-  #CALL:cavern(62464,2,uc2_after.gif,0,5,16,8,0,1)
+  #CALL:cavern(62464,2,uc2_after,0,5,16,8,0,1)
   #POPS }
 { Before | After }
 TABLE#
