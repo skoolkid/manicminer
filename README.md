@@ -1,15 +1,15 @@
 Manic Miner disassembly
 =======================
 
-A disassembly of the [Spectrum](http://en.wikipedia.org/wiki/ZX_Spectrum)
-version of [Manic Miner](http://en.wikipedia.org/wiki/Manic_Miner), created
-using [SkoolKit](http://skoolkit.ca/).
+A disassembly of the [Spectrum](https://en.wikipedia.org/wiki/ZX_Spectrum)
+version of [Manic Miner](https://en.wikipedia.org/wiki/Manic_Miner), created
+using [SkoolKit](https://skoolkit.ca).
 
 Decide which number base you prefer and then click the corresponding link below
 to browse the latest release:
 
-* [Manic Miner disassembly](http://skoolkid.github.io/manicminer/) (hexadecimal; mirror [here](http://skoolkid.gitlab.io/manicminer/))
-* [Manic Miner disassembly](http://skoolkit.ca/disassemblies/manic_miner/) (decimal)
+* [Manic Miner disassembly](https://skoolkid.github.io/manicminer/) (hexadecimal; mirror [here](https://skoolkid.gitlab.io/manicminer/))
+* [Manic Miner disassembly](https://skoolkit.ca/disassemblies/manic_miner/) (decimal)
 
 To build the current development version, first either install SkoolKit, or
 make a clone of the [SkoolKit repository](https://github.com/skoolkid/skoolkit)

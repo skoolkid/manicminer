@@ -41,7 +41,7 @@ b28672 DEFS 4096
 @replace=/#POKE(?![A-Z])/#LINK:Pokes
 @writer=:manicminer.ManicMinerAsmWriter
 ; Manic Miner disassembly
-; http://skoolkit.ca/
+; https://skoolkit.ca
 ;
 ; Copyright 1983 Bug-Byte Ltd (Manic Miner)
 ; Copyright 2010, 2012-2019 Richard Dymond (this disassembly)

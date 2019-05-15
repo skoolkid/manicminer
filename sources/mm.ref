@@ -92,9 +92,9 @@ PageContent=#INCLUDE(Credits)
 This disassembly would have taken a lot longer to finish if it weren't for the
 research and documentation already done and made available by Andrew Broad. In
 particular, his comprehensive documentation on the
-<a href="http://webspace.webring.com/people/ja/andrewbroad/mm_format.html">
-Manic Miner room format</a>, which describes most of the important data
-structures used in the game, was of great help.
+<a href="https://www.icemark.com/dataformats/manic/mmformat.htm">Manic Miner
+room format</a>, which describes most of the important data structures used in
+the game, was of great help.
 </div>
 
 [Glossary:Guardian]
