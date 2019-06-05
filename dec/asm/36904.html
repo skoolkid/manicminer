@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 36904</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="36852.html">36852</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#36904">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="37098.html">37098</a></span></td>
+</tr>
+</table>
+<div class="description">36904: Move to the next cavern</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="34574.html">34574</a> and <a href="36805.html">36805</a>.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="36904"></span>36904</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(33799)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the current cavern from <a href="33799.html">33799</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36907"></span>36907</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="1">Increment the cavern number</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36908"></span>36908</td>
+<td class="bytes-0"></td>
+<td class="instruction">CP 20</td>
+<td class="comment-11" rowspan="1">Is the current cavern <a href="64512.html">The Final Barrier</a>?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36910"></span>36910</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="36904.html#37009">37009</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36912"></span>36912</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(33882)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="33882.html">33882</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36915"></span>36915</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Are we in demo mode?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36916"></span>36916</td>
+<td class="bytes-0"></td>
+<td class="instruction">JP NZ,<a href="36904.html#37008">37008</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36919"></span>36919</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(33885)</td>
+<td class="comment-11" rowspan="1">Pick up the 6031769 key counter from <a href="33885.html">33885</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36922"></span>36922</td>
+<td class="bytes-0"></td>
+<td class="instruction">CP 7</td>
+<td class="comment-11" rowspan="1">Is cheat mode activated?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36924"></span>36924</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR Z,<a href="36904.html#37008">37008</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="36926"></span>
+<div class="comments">
+<div class="paragraph">
+Willy has made it through <a href="64512.html">The Final Barrier</a> without cheating.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36926"></span>36926</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,0</td>
+<td class="comment-11" rowspan="4">Draw Willy at (2,19) on the ground above the portal</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36928"></span>36928</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,33376</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36931"></span>36931</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,16467</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36934"></span>36934</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="36852.html">36852</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36937"></span>36937</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,45792</td>
+<td class="comment-11" rowspan="3">Draw the swordfish graphic (see <a href="45056.html#45792">45792</a>) over the portal</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36940"></span>36940</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,16563</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36943"></span>36943</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="36852.html">36852</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36946"></span>36946</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,22611</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at (2,19) in the attribute file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36949"></span>36949</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,31</td>
+<td class="comment-11" rowspan="1">Prepare <span class="register">DE</span> for addition</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36952"></span>36952</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),47</td>
+<td class="comment-11" rowspan="3">Set the attributes for the upper half of Willy's sprite at (2,19) and (2,20) to 47 (INK 7: PAPER 5)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36954"></span>36954</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36955"></span>36955</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),47</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36957"></span>36957</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-11" rowspan="4">Set the attributes for the lower half of Willy's sprite at (3,19) and (3,20) to 39 (INK 7: PAPER 4)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36958"></span>36958</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),39</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36960"></span>36960</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36961"></span>36961</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),39</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36963"></span>36963</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-11" rowspan="3">Point <span class="register">HL</span> at (5,19) in the attribute file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36964"></span>36964</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36965"></span>36965</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36966"></span>36966</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),69</td>
+<td class="comment-11" rowspan="3">Set the attributes for the fish at (5,19) and (5,20) to 69 (INK 5: PAPER 0: BRIGHT 1)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36968"></span>36968</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36969"></span>36969</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),69</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36971"></span>36971</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-11" rowspan="2">Set the attribute for the handle of the sword at (6,19) to 70 (INK 6: PAPER 0: BRIGHT 1)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36972"></span>36972</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),70</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36974"></span>36974</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC HL</td>
+<td class="comment-11" rowspan="2">Set the attribute for the blade of the sword at (6,20) to 71 (INK 7: PAPER 0: BRIGHT 1)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36975"></span>36975</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),71</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36977"></span>36977</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-11" rowspan="4">Set the attributes at (7,19) and (7,20) to 0 (to hide Willy's feet just below where the portal was)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36978"></span>36978</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36980"></span>36980</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36981"></span>36981</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36983"></span>36983</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD BC,0</td>
+<td class="comment-11" rowspan="2">Prepare <span class="register">C</span> and <span class="register">D</span> for the celebratory sound effect</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36986"></span>36986</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD D,50</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36988"></span>36988</td>
+<td class="bytes-0"></td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=0 (black border)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="36989"></span>36989</td>
+<td class="bytes-0"></td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-11" rowspan="14">Produce the celebratory sound effect: Willy has escaped from the mine</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36991"></span>36991</td>
+<td class="bytes-0"></td>
+<td class="instruction">XOR 24</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36993"></span>36993</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD E,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36994"></span>36994</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36995"></span>36995</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD A,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36996"></span>36996</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD A,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36997"></span>36997</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD A,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36998"></span>36998</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD B,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36999"></span>36999</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,E</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="37000"></span>37000</td>
+<td class="bytes-0"></td>
+<td class="instruction">DJNZ <a href="36904.html#37000">37000</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37002"></span>37002</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37003"></span>37003</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="36904.html#36989">36989</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37005"></span>37005</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEC D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37006"></span>37006</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="36904.html#36989">36989</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="37008"></span>37008</td>
+<td class="bytes-0"></td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=0 (the next cavern will be <a href="45056.html">Central Cavern</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="37009"></span>37009</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (33799),A</td>
+<td class="comment-11" rowspan="1">Update the cavern number at <a href="33799.html">33799</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="37012"></span>
+<div class="comments">
+<div class="paragraph">
+The next section of code cycles the INK and PAPER colours of the current cavern.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37012"></span>37012</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,63</td>
+<td class="comment-11" rowspan="1">Initialise <span class="register">A</span> to 63 (INK 7: PAPER 7)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="37014"></span>37014</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,22528</td>
+<td class="comment-11" rowspan="5">Set the attributes for the top two-thirds of the screen to the value in <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37017"></span>37017</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,22529</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37020"></span>37020</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD BC,511</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37023"></span>37023</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37024"></span>37024</td>
+<td class="bytes-0"></td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37026"></span>37026</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD BC,4</td>
+<td class="comment-11" rowspan="4">Pause for about 0.004s</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="37029"></span>37029</td>
+<td class="bytes-0"></td>
+<td class="instruction">DJNZ <a href="36904.html#37029">37029</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37031"></span>37031</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37032"></span>37032</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="36904.html#37029">37029</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37034"></span>37034</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEC A</td>
+<td class="comment-11" rowspan="1">Decrement the attribute value in <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37035"></span>37035</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="36904.html#37014">37014</a></td>
+<td class="comment-11" rowspan="1">Jump back until we've gone through all attribute values from 63 down to 1</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37037"></span>37037</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(33882)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="33882.html">33882</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37040"></span>37040</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Are we in demo mode?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37041"></span>37041</td>
+<td class="bytes-0"></td>
+<td class="instruction">JP NZ,<a href="34436.html#34449">34449</a></td>
+<td class="comment-11" rowspan="1">If so, demo the next cavern</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="37044"></span>
+<div class="comments">
+<div class="paragraph">
+The following loop increases the score and decreases the air supply until it runs out.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="37044"></span>37044</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="35388.html">35388</a></td>
+<td class="comment-11" rowspan="1">Decrease the air remaining in the current cavern</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37047"></span>37047</td>
+<td class="bytes-0"></td>
+<td class="instruction">JP Z,<a href="34436.html#34449">34449</a></td>
+<td class="comment-11" rowspan="1">Move to the next cavern if the air supply is now gone</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37050"></span>37050</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,33838</td>
+<td class="comment-11" rowspan="2">Add 1 to the score</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37053"></span>37053</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="37098.html#37118">37118</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37056"></span>37056</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD IX,33833</td>
+<td class="comment-11" rowspan="4">Print the new score at (19,26)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37060"></span>37060</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,6</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37062"></span>37062</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,20602</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37065"></span>37065</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="37562.html">37562</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37068"></span>37068</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,4</td>
+<td class="comment-11" rowspan="1">This value determines the duration of the sound effect</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37070"></span>37070</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(32956)</td>
+<td class="comment-11" rowspan="1">Pick up the remaining air supply (S) from <a href="32956.html">32956</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37073"></span>37073</td>
+<td class="bytes-0"></td>
+<td class="instruction">CPL</td>
+<td class="comment-11" rowspan="4"><span class="register">D</span>=2*(63-S); this value determines the pitch of the sound effect (which decreases with the amount of air remaining)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37074"></span>37074</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 63</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37076"></span>37076</td>
+<td class="bytes-0"></td>
+<td class="instruction">RLC A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37078"></span>37078</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD D,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="37079"></span>37079</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,0</td>
+<td class="comment-11" rowspan="10">Produce a short note</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37081"></span>37081</td>
+<td class="bytes-0"></td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37083"></span>37083</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD B,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="37084"></span>37084</td>
+<td class="bytes-0"></td>
+<td class="instruction">DJNZ <a href="36904.html#37084">37084</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37086"></span>37086</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,24</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37088"></span>37088</td>
+<td class="bytes-0"></td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37090"></span>37090</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD B,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="37091"></span>37091</td>
+<td class="bytes-0"></td>
+<td class="instruction">DJNZ <a href="36904.html#37091">37091</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37093"></span>37093</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37094"></span>37094</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="36904.html#37079">37079</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="37096"></span>37096</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR <a href="36904.html#37044">37044</a></td>
+<td class="comment-11" rowspan="1">Jump back to decrease the air supply again</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="36852.html">36852</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#36904">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="37098.html">37098</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../asm/9028.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

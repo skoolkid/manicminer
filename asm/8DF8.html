@@ -23,7 +23,7 @@
 <div class="description">8DF8: Move and draw Eugene in Eugene's Lair</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="870E.html">870E</a>. First we move Eugene up or down, or change his direction.
@@ -46,125 +46,145 @@ Used by the routine at <a href="870E.html">870E</a>. First we move Eugene up or 
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8df8"></span>8DF8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8074)</td>
 <td class="comment-11" rowspan="1">Pick up the attribute of the last item drawn from <a href="8074.html">8074</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8dfb"></span>8DFB</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Have all the items been collected?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8dfc"></span>8DFC</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8DF8.html#8e0f">$8E0F</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8dfe"></span>8DFE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DB)</td>
 <td class="comment-11" rowspan="1">Pick up Eugene's direction from <a href="80DB.html">80DB</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e01"></span>8E01</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Is Eugene moving downwards?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e02"></span>8E02</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8DF8.html#8e0f">$8E0F</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e04"></span>8E04</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DC)</td>
 <td class="comment-11" rowspan="1">Pick up Eugene's pixel y-coordinate from <a href="80DC.html">80DC</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e07"></span>8E07</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC A</td>
 <td class="comment-11" rowspan="1">Decrement it (moving Eugene up)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e08"></span>8E08</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8DF8.html#8e1c">$8E1C</a></td>
 <td class="comment-11" rowspan="1">Jump if Eugene has reached the top of the cavern</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e0a"></span>8E0A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($80DC),A</td>
 <td class="comment-11" rowspan="1">Update Eugene's pixel y-coordinate at <a href="80DC.html">80DC</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e0d"></span>8E0D</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="8DF8.html#8e24">$8E24</a></td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8e0f"></span>8E0F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DC)</td>
 <td class="comment-11" rowspan="1">Pick up Eugene's pixel y-coordinate from <a href="80DC.html">80DC</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e12"></span>8E12</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC A</td>
 <td class="comment-11" rowspan="1">Increment it (moving Eugene down)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e13"></span>8E13</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $58</td>
 <td class="comment-11" rowspan="1">Has Eugene reached the portal yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e15"></span>8E15</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8DF8.html#8e1c">$8E1C</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e17"></span>8E17</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($80DC),A</td>
 <td class="comment-11" rowspan="1">Update Eugene's pixel y-coordinate at <a href="80DC.html">80DC</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e1a"></span>8E1A</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="8DF8.html#8e24">$8E24</a></td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8e1c"></span>8E1C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DB)</td>
 <td class="comment-11" rowspan="3">Toggle Eugene's direction at <a href="80DB.html">80DB</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e1f"></span>8E1F</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR $01</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e21"></span>8E21</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($80DB),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8e24"></span>
 <div class="comments">
 <div class="paragraph">
@@ -176,203 +196,236 @@ Now that Eugene's movement has been dealt with, it's time to draw him.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8e24"></span>8E24</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DC)</td>
 <td class="comment-11" rowspan="1">Pick up Eugene's pixel y-coordinate from <a href="80DC.html">80DC</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e27"></span>8E27</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $7F</td>
 <td class="comment-11" rowspan="4">Point <span class="register">DE</span> at the entry in the screen buffer address lookup table at <a href="8300.html">8300</a> that corresponds to Eugene's y-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e29"></span>8E29</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e2a"></span>8E2A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e2b"></span>8E2B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$83</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e2d"></span>8E2D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(DE)</td>
 <td class="comment-11" rowspan="6">Point <span class="register">HL</span> at the address of Eugene's location in the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e2e"></span>8E2E</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR $0F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e30"></span>8E30</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e31"></span>8E31</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC DE</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e32"></span>8E32</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(DE)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e33"></span>8E33</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e34"></span>8E34</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$80E0</td>
 <td class="comment-11" rowspan="3">Draw Eugene to the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e37"></span>8E37</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$01</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e39"></span>8E39</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="8FF4.html">$8FF4</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e3c"></span>8E3C</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="8D05.html#8d06">$8D06</a></td>
 <td class="comment-11" rowspan="1">Kill Willy if Eugene collided with him</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e3f"></span>8E3F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DC)</td>
 <td class="comment-11" rowspan="1">Pick up Eugene's pixel y-coordinate from <a href="80DC.html">80DC</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e42"></span>8E42</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $78</td>
 <td class="comment-11" rowspan="9">Point <span class="register">HL</span> at the address of Eugene's location in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e44"></span>8E44</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e45"></span>8E45</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR $07</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e47"></span>8E47</td>
+<td class="bytes-0"></td>
 <td class="instruction">SCF</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e48"></span>8E48</td>
+<td class="bytes-0"></td>
 <td class="instruction">RL A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e4a"></span>8E4A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e4b"></span>8E4B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$00</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e4d"></span>8E4D</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADC A,$5C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e4f"></span>8E4F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e50"></span>8E50</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8074)</td>
 <td class="comment-11" rowspan="1">Pick up the attribute of the last item drawn from <a href="8074.html">8074</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e53"></span>8E53</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Set the zero flag if all the items have been collected</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e54"></span>8E54</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$07</td>
 <td class="comment-11" rowspan="1">Assume we will draw Eugene with white INK</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e56"></span>8E56</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8DF8.html#8e5f">$8E5F</a></td>
 <td class="comment-11" rowspan="1">Jump if there are items remaining to be collected</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e58"></span>8E58</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80BD)</td>
 <td class="comment-11" rowspan="1">Pick up the value of the game clock at <a href="80BD.html">80BD</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e5b"></span>8E5B</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-11" rowspan="3">Move bits 2-4 into bits 0-2 and clear the other bits; this value (which decreases by one on each pass through the main loop) will be Eugene's INK colour</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e5c"></span>8E5C</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e5d"></span>8E5D</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $07</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8e5f"></span>
 <div class="comments">
 <div class="paragraph">
@@ -384,102 +437,119 @@ This entry point is used by the routines at <a href="8E75.html">8E75</a> (to set
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8e5f"></span>8E5F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-11" rowspan="1">Save the INK colour in the attribute buffer temporarily</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e60"></span>8E60</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8020)</td>
 <td class="comment-11" rowspan="1">Pick up the attribute byte of the background tile for the current cavern from <a href="8020.html">8020</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e63"></span>8E63</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $F8</td>
 <td class="comment-11" rowspan="2">Combine its PAPER colour with the chosen INK colour</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e65"></span>8E65</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR (HL)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e66"></span>8E66</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-11" rowspan="1">Set the attribute byte for the top-left cell of the sprite in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e67"></span>8E67</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$001F</td>
 <td class="comment-11" rowspan="1">Prepare <span class="register">DE</span> for addition</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e6a"></span>8E6A</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-11" rowspan="2">Set the attribute byte for the top-right cell of the sprite in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e6b"></span>8E6B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e6c"></span>8E6C</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
 <td class="comment-11" rowspan="2">Set the attribute byte for the middle-left cell of the sprite in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e6d"></span>8E6D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e6e"></span>8E6E</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-11" rowspan="2">Set the attribute byte for the middle-right cell of the sprite in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e6f"></span>8E6F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e70"></span>8E70</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
 <td class="comment-11" rowspan="2">Set the attribute byte for the bottom-left cell of the sprite in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e71"></span>8E71</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e72"></span>8E72</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-11" rowspan="2">Set the attribute byte for the bottom-right cell of the sprite in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e73"></span>8E73</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e74"></span>8E74</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
@@ -492,10 +562,10 @@ This entry point is used by the routines at <a href="8E75.html">8E75</a> (to set
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20181015</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/manic_miner/asm/36344.html">Switch to decimal</a>.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/36344.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

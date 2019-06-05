@@ -23,7 +23,7 @@
 <div class="description">92CB: Print a single character</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="92BA.html">92BA</a>.
@@ -53,47 +53,54 @@ Used by the routine at <a href="92BA.html">92BA</a>.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="92cb"></span>92CB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,$07</td>
 <td class="comment-11" rowspan="6">Point <span class="register">HL</span> at the bitmap for the character (in the ROM)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92cd"></span>92CD</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ce"></span>92CE</td>
+<td class="bytes-0"></td>
 <td class="instruction">SET 7,L</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d0"></span>92D0</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d1"></span>92D1</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d2"></span>92D2</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d3"></span>92D3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD B,$08</td>
 <td class="comment-11" rowspan="1">There are eight pixel rows in a character bitmap</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="92d5"></span>
 <div class="comments">
 <div class="paragraph">
@@ -105,36 +112,42 @@ This entry point is used by the routine at <a href="8F63.html">8F63</a> to draw 
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="92d5"></span>92D5</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="5">Copy the character bitmap to the screen (or item graphic to the screen buffer)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d6"></span>92D6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (DE),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d7"></span>92D7</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d8"></span>92D8</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC D</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d9"></span>92D9</td>
+<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="92CB.html#92d5">$92D5</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92db"></span>92DB</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
@@ -147,10 +160,10 @@ This entry point is used by the routine at <a href="8F63.html">8F63</a> to draw 
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20181015</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/manic_miner/asm/37579.html">Switch to decimal</a>.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/37579.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

@@ -23,7 +23,7 @@
 <div class="description">923A: Check and set the attribute bytes for Willy's sprite in the buffer at 5C00</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="870E.html">870E</a>.
@@ -46,102 +46,119 @@ Used by the routine at <a href="870E.html">870E</a>.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="923a"></span>923A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,($806C)</td>
 <td class="comment-11" rowspan="1">Pick up the address of Willy's location in the attribute buffer at <a href="5C00.html">5C00</a> from <a href="806C.html">806C</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="923d"></span>923D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$001F</td>
 <td class="comment-11" rowspan="1">Prepare <span class="register">DE</span> for addition</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9240"></span>9240</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$0F</td>
 <td class="comment-11" rowspan="1">Set <span class="register">C</span>=0x0F for the top two rows of cells (to make the routine at <a href="925F.html">925F</a> force white INK)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9242"></span>9242</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="925F.html">$925F</a></td>
 <td class="comment-11" rowspan="1">Check and set the attribute byte for the top-left cell</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9245"></span>9245</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-11" rowspan="1">Move <span class="register">HL</span> to the next cell to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9246"></span>9246</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="925F.html">$925F</a></td>
 <td class="comment-11" rowspan="1">Check and set the attribute byte for the top-right cell</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9249"></span>9249</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
 <td class="comment-11" rowspan="1">Move <span class="register">HL</span> down a row and back one cell to the left</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="924a"></span>924A</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="925F.html">$925F</a></td>
 <td class="comment-11" rowspan="1">Check and set the attribute byte for the mid-left cell</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="924d"></span>924D</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-11" rowspan="1">Move <span class="register">HL</span> to the next cell to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="924e"></span>924E</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="925F.html">$925F</a></td>
 <td class="comment-11" rowspan="1">Check and set the attribute byte for the mid-right cell</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9251"></span>9251</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8068)</td>
 <td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="8068.html">8068</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9254"></span>9254</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
 <td class="comment-11" rowspan="1">Copy it to <span class="register">C</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9255"></span>9255</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
 <td class="comment-11" rowspan="1">Move <span class="register">HL</span> down a row and back one cell to the left</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9256"></span>9256</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="925F.html">$925F</a></td>
 <td class="comment-11" rowspan="1">Check and set the attribute byte for the bottom-left cell</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9259"></span>9259</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-11" rowspan="1">Move <span class="register">HL</span> to the next cell to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="925a"></span>925A</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="925F.html">$925F</a></td>
 <td class="comment-11" rowspan="1">Check and set the attribute byte for the bottom-right cell</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="925d"></span>925D</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="927F.html">$927F</a></td>
 <td class="comment-11" rowspan="1">Draw Willy to the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
@@ -154,10 +171,10 @@ Used by the routine at <a href="870E.html">870E</a>.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20181015</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/manic_miner/asm/37434.html">Switch to decimal</a>.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/37434.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

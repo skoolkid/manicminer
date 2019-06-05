@@ -23,7 +23,7 @@
 <div class="description">92BA: Print a message</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routines at <a href="85CC.html">85CC</a>, <a href="8684.html">8684</a>, <a href="870E.html">870E</a>, <a href="8944.html">8944</a> and <a href="9028.html">9028</a>.
@@ -57,60 +57,70 @@ Used by the routines at <a href="85CC.html">85CC</a>, <a href="8684.html">8684</
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="92ba"></span>92BA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="1">Collect a character from the message</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92bd"></span>92BD</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="92CB.html">$92CB</a></td>
 <td class="comment-11" rowspan="1">Print it</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c0"></span>92C0</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IX</td>
 <td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the next character in the message</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c2"></span>92C2</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC E</td>
 <td class="comment-11" rowspan="4">Point <span class="register">DE</span> at the next character cell (subtracting 8 from <span class="register">D</span> compensates for the operations performed by the routine at <a href="92CB.html">92CB</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c3"></span>92C3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,D</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c4"></span>92C4</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $08</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c6"></span>92C6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c7"></span>92C7</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC C</td>
 <td class="comment-11" rowspan="1">Have we printed the entire message yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c8"></span>92C8</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="92BA.html#92ba">$92BA</a></td>
 <td class="comment-11" rowspan="1">If not, jump back to print the next character</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ca"></span>92CA</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
@@ -123,10 +133,10 @@ Used by the routines at <a href="85CC.html">85CC</a>, <a href="8684.html">8684</
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20181015</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/manic_miner/asm/37562.html">Switch to decimal</a>.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/37562.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

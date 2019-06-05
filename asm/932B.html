@@ -23,7 +23,7 @@
 <div class="description">932B: Calculate the attribute file address for a piano key</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="92DC.html">92DC</a>. Returns with the attribute file address in <span class="register">HL</span>.
@@ -49,54 +49,63 @@ Used by the routine at <a href="92DC.html">92DC</a>. Returns with the attribute 
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="932b"></span>932B</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $08</td>
 <td class="comment-11" rowspan="5">Compute the piano key index (K) based on the frequency parameter (F), and store it in bits 0-4 of <span class="register">A</span>: K=31-INT((F-8)/8)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="932d"></span>932D</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="932e"></span>932E</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="932f"></span>932F</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9330"></span>9330</td>
+<td class="bytes-0"></td>
 <td class="instruction">CPL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9331"></span>9331</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR $E0</td>
 <td class="comment-11" rowspan="1"><span class="register">A</span>=0xE0+K; this is the LSB</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9333"></span>9333</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-11" rowspan="2">Set <span class="register">HL</span> to the attribute file address for the piano key</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9334"></span>9334</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,$59</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9336"></span>9336</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
@@ -109,10 +118,10 @@ Used by the routine at <a href="92DC.html">92DC</a>. Returns with the attribute 
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20181015</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/manic_miner/asm/37675.html">Switch to decimal</a>.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/37675.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

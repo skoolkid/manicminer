@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Routine at 36805</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="36707.html">36707</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#36805">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="36852.html">36852</a></span></td>
+</tr>
+</table>
+<div class="description">36805: Draw the portal, or move to the next cavern if Willy has entered it</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="34574.html">34574</a>. First check whether Willy has entered the portal.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="36805"></span>36805</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,(32944)</td>
+<td class="comment-11" rowspan="1">Pick up the address of the portal's location in the attribute buffer at <a href="23552.html">23552</a> from <a href="32911.html#32944">32944</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36808"></span>36808</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(32876)</td>
+<td class="comment-11" rowspan="1">Pick up the LSB of the address of Willy's location in the attribute buffer at <a href="23552.html">23552</a> from <a href="32876.html">32876</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36811"></span>36811</td>
+<td class="bytes-0"></td>
+<td class="instruction">CP L</td>
+<td class="comment-11" rowspan="1">Does it match that of the portal?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36812"></span>36812</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="36805.html#36831">36831</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36814"></span>36814</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(32877)</td>
+<td class="comment-11" rowspan="1">Pick up the MSB of the address of Willy's location in the attribute buffer at <a href="23552.html">23552</a> from <a href="32876.html">32877</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36817"></span>36817</td>
+<td class="bytes-0"></td>
+<td class="instruction">CP H</td>
+<td class="comment-11" rowspan="1">Does it match that of the portal?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36818"></span>36818</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="36805.html#36831">36831</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36820"></span>36820</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(32911)</td>
+<td class="comment-11" rowspan="1">Pick up the portal's attribute byte from <a href="32911.html">32911</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36823"></span>36823</td>
+<td class="bytes-0"></td>
+<td class="instruction">BIT 7,A</td>
+<td class="comment-11" rowspan="1">Is the portal flashing?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36825"></span>36825</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR Z,<a href="36805.html#36831">36831</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36827"></span>36827</td>
+<td class="bytes-0"></td>
+<td class="instruction">POP HL</td>
+<td class="comment-11" rowspan="1">Drop the return address from the stack</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36828"></span>36828</td>
+<td class="bytes-0"></td>
+<td class="instruction">JP <a href="36904.html">36904</a></td>
+<td class="comment-11" rowspan="1">Move Willy to the next cavern</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="36831"></span>
+<div class="comments">
+<div class="paragraph">
+Willy has not entered the portal, or it's not flashing, so just draw it.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="36831"></span>36831</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(32911)</td>
+<td class="comment-11" rowspan="1">Pick up the portal's attribute byte from <a href="32911.html">32911</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36834"></span>36834</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-11" rowspan="8">Set the attribute bytes for the portal in the buffer at <a href="23552.html">23552</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36835"></span>36835</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36836"></span>36836</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36837"></span>36837</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,31</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36840"></span>36840</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36841"></span>36841</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36842"></span>36842</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC HL</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36843"></span>36843</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36844"></span>36844</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,32912</td>
+<td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the graphic data for the portal at <a href="32911.html#32912">32912</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36847"></span>36847</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,(32946)</td>
+<td class="comment-11" rowspan="1">Pick up the address of the portal's location in the screen buffer at <a href="24576.html">24576</a> from <a href="32911.html#32946">32946</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36850"></span>36850</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,0</td>
+<td class="comment-11" rowspan="1"><span class="register">C</span>=0: overwrite mode</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+
+<div class="comments">
+<div class="paragraph">
+This routine continues into the one at <a href="36852.html">36852</a>.
+</div>
+</div>
+</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="36707.html">36707</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#36805">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="36852.html">36852</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../asm/8FC5.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

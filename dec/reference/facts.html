@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Trivia</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Facts">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../../images/logo.png" /></a></td>
+<td class="page-header">Trivia</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a href="#tunes">Tunes</a></li>
+<li><a href="#takingABreak">Taking a BREAK</a></li>
+<li><a href="#6031769">6031769</a></li>
+<li><a href="#stuckOn16">Stuck on 16</a></li>
+<li><a href="#noSwordfishForCheats">No swordfish for cheats</a></li>
+<li><a href="#unusedCrumblingFloor">Unused crumbling floor</a></li>
+<li><a href="#unusedConveyors">Unused conveyors</a></li>
+<li><a href="#thePersistentItem">The persistent item</a></li>
+<li><a href="#lightLogic">Light logic</a></li>
+<li><a href="#topHalfTwice">Top half twice</a></li>
+<li><a href="#bottomHalfTwice">Bottom half twice</a></li>
+<li><a href="#itemGraphics">Item graphics</a></li>
+<li><a href="#itemCounts">Item counts</a></li>
+<li><a href="#extraItems">Extra items</a></li>
+<li><a href="#fastestGuardians">The fastest guardians</a></li>
+<li><a href="#guardianColours">Guardian colours</a></li>
+<li><a href="#guardianCounts">Guardian counts</a></li>
+<li><a href="#guardiansNeedAClearPath">Guardians need a clear path</a></li>
+<li><a href="#wrongFoot">Off on the wrong foot</a></li>
+<li><a href="#variableAirSupply">Variable air supply</a></li>
+<li><a href="#repeatingCaverns">Repeating caverns</a></li>
+<li><a href="#noWayOut">No way out of The Warehouse</a></li>
+<li><a href="#theUnreachableMillion">The unreachable million</a></li>
+<li><a href="#horizontalSkylabs">Horizontal Skylabs?</a></li>
+<li><a href="#outOfBounds">Out of bounds</a></li>
+<li><a href="#sourceCodeRemnants">Source code remnants</a></li>
+</ul>
+<div><span id="tunes"></span></div>
+<div class="box box-1">
+<div class="box-title">Tunes</div>
+<div class="paragraph">
+The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss
+II. The tune played during gameplay is <i>In the Hall of the Mountain King</i>
+by Edvard Grieg.
+</div>
+</div>
+<div><span id="takingABreak"></span></div>
+<div class="box box-2">
+<div class="box-title">Taking a BREAK</div>
+<div class="paragraph">
+The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see
+<a href="../asm/34574.html#34801">34801</a>).
+</div>
+</div>
+<div><span id="6031769"></span></div>
+<div class="box box-1">
+<div class="box-title">6031769</div>
+<div class="paragraph">
+If you type the digits 6031769 at any point during the game, a cheat mode is
+activated that enables Willy to teleport to any cavern; a boot appears next to
+Willy's remaining lives to show that the cheat mode has been activated.
+</div>
+<div class="paragraph">
+For example, to teleport to <a href="../asm/51200.html">The Vat</a>, hold down keys '2' and '3', and
+then press '6' to activate the teleporter. For a list of all the caverns and
+their teleport codes, see the <a href="../tables/caverns.html">Caverns page</a>.
+</div>
+<div class="paragraph">
+The number 6031769 comes from Matthew Smith's driving licence, "with an error
+in it and twisted round a bit" (as he put it in an interview for issue 48 of
+<i>Retro Gamer</i> magazine).
+</div>
+</div>
+<div><span id="stuckOn16"></span></div>
+<div class="box box-2">
+<div class="box-title">Stuck on 16</div>
+<div class="paragraph">
+In <a href="../asm/60416.html">The Sixteenth Cavern</a>, Willy can get stuck if he enters the area
+below the portal before collecting all the items outside that area:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="stuck_on_16" src="../../images/scr/stuck_on_16.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+If that happens, he will have to wait until the air runs out before getting a
+second chance to escape from the cavern.
+</div>
+<div class="paragraph">
+See also <a href="facts.html#noWayOut">No way out of The Warehouse</a>.
+</div>
+</div>
+<div><span id="noSwordfishForCheats"></span></div>
+<div class="box box-1">
+<div class="box-title">No swordfish for cheats</div>
+<div class="paragraph">
+The game ending - with Willy above ground and the portal in <a href="../asm/64512.html">The Final
+Barrier</a> changed to the <a href="../asm/45056.html#45792">swordfish</a> graphic - is not shown if
+<a href="facts.html#6031769">cheat mode</a> is activated (see <a href="../asm/36904.html#36919">36919</a>).
+</div>
+</div>
+<div><span id="unusedCrumblingFloor"></span></div>
+<div class="box box-2">
+<div class="box-title">Unused crumbling floor</div>
+<div class="paragraph">
+The crumbling floor tile in <a href="../asm/58368.html">Skylab Landing Bay</a> is unique to that
+cavern, and also not used.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="crumbling_floor_13" src="../../images/udgs/crumbling_floor_13.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+To place a couple of these tiles in the cavern in order to see them crumble:
+</div>
+<div class="paragraph">
+POKE 58811,10: POKE 58812,10: POKE 58930,10
+</div>
+</div>
+<div><span id="unusedConveyors"></span></div>
+<div class="box box-1">
+<div class="box-title">Unused conveyors</div>
+<div class="paragraph">
+Every cavern definition contains a conveyor definition, and every conveyor has
+non-zero length and is animated by the routine at <a href="../asm/37125.html">37125</a>. But there are two
+caverns in which the conveyor is hidden or otherwise unusable.
+</div>
+<div class="paragraph">
+The first unused conveyor is of length 1, defined at (0,19) in <a href="../asm/54272.html">The
+Endorian Forest</a> (see <a href="../asm/54272.html#54895">54895</a>). Instead of a conveyor, the space is occupied by
+a background tile.
+</div>
+<div class="paragraph">
+To show the conveyor:
+</div>
+<div class="paragraph">
+POKE 54291,67
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="uc1_before" src="../../images/scr/uc1_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="uc1_after" src="../../images/scr/uc1_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">Before</td>
+<td class="" colspan="1" rowspan="1">After</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The other unused conveyor is of length 3, defined at (9,7) in
+<a href="../asm/62464.html">Amoebatrons' Revenge</a> (see <a href="../asm/62464.html#63087">63087</a>). Instead of a conveyor, the space
+is occupied by a platform, whose third row of pixels is animated as if it were
+a conveyor (which is a <a href="bugs.html#animatedPlatform">bug</a>).
+</div>
+<div class="paragraph">
+To replace the platform with conveyor tiles:
+</div>
+<div class="paragraph">
+POKE 62759,4: POKE 62760,4: POKE 62761,4
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="uc2_before" src="../../images/scr/uc2_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="uc2_after" src="../../images/scr/uc2_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">Before</td>
+<td class="" colspan="1" rowspan="1">After</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Note that this conveyor moves left to right, and so if it were activated it
+would make the cavern unfinishable. To make the conveyor move right to left:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/62464.html#63087">63087</a>,0
+</div>
+</div>
+<div><span id="thePersistentItem"></span></div>
+<div class="box box-2">
+<div class="box-title">The persistent item</div>
+<div class="paragraph">
+The item below the portal in <a href="../asm/60416.html">The Sixteenth Cavern</a> does not disappear
+if Willy leaves it till last and collects it by falling on it from above. The
+reason for this is that the portal is opened as soon as Willy collects the
+item, and the screen is not refreshed before he moves on to the next cavern.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="persistent_item" src="../../images/scr/persistent_item.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="lightLogic"></span></div>
+<div class="box box-1">
+<div class="box-title">Light logic</div>
+<div class="paragraph">
+At times it might seem as if the light beam in <a href="../asm/63488.html">Solar Power Generator</a>
+moves around at random, but in fact its movements are predictable and always
+follow these simple rules (see <a href="../asm/36211.html">36211</a>):
+</div>
+<div class="paragraph">
+<ul class="">
+<li>start travelling vertically downwards from the top of the cavern</li>
+<li>stop if a floor or wall is in the way</li>
+<li>change direction between vertically downwards and horizontally to the left if a guardian is in the way</li>
+</ul>
+</div>
+<div class="paragraph">
+In addition, for every frame that the light beam is in contact with Willy, the
+air supply is reduced by an extra eight or twelve units - four for each of the
+two or three cells of Willy's sprite that the beam touches - making nine or
+thirteen units in total. For every eight units of air consumed, one vertical
+line of pixels is removed from the right end of the air bar (see <a href="../asm/35388.html">35388</a>).
+</div>
+</div>
+<div><span id="topHalfTwice"></span></div>
+<div class="box box-2">
+<div class="box-title">Top half twice</div>
+<div class="paragraph">
+When <a href="../asm/64512.html">The Final Barrier</a> is drawn to the screen buffer at <a href="../asm/28672.html">28672</a>, the
+graphic data for the top half of the cavern (at <a href="../asm/40960.html">40960</a>) is copied twice: once
+after the first (pointless) run through the loop at <a href="../asm/35445.html#35468">35468</a>, and again after
+the second run through the loop has drawn the bottom half of the cavern.
+</div>
+</div>
+<div><span id="bottomHalfTwice"></span></div>
+<div class="box box-1">
+<div class="box-title">Bottom half twice</div>
+<div class="paragraph">
+After Willy has jumped through the portal in <a href="../asm/64512.html">The Final Barrier</a> to the
+ground above, and the celebratory sound effect and colour-cycling effect have
+finished, the bottom half of Willy's sprite can be been dangling below the
+swordfish graphic (where the portal was) while the remaining air supply
+decreases to zero.
+</div>
+<div class="paragraph">
+<img alt="bottom_half_twice" src="../../images/scr/bottom_half_twice.png" />
+</div>
+<div class="paragraph">
+This happens because the section of code at <a href="../asm/36904.html#36926">36926</a> draws Willy above ground,
+but does not remove him from the portal entrance. And although his residual
+bottom half is hidden briefly by setting the appropriate attribute values to 0
+(INK 0: PAPER 0), it is left on display with an attribute value of 1 (INK 1:
+PAPER 0) after the colour-cycling effect has finished.
+</div>
+</div>
+<div><span id="itemGraphics"></span></div>
+<div class="box box-2">
+<div class="box-title">Item graphics</div>
+<div class="paragraph">
+The commonest item graphic is the key, which appears in <a href="../asm/45056.html">Central
+Cavern</a>, <a href="../asm/47104.html">The Menagerie</a>, <a href="../asm/48128.html">Abandoned Uranium Workings</a>,
+<a href="../asm/50176.html">Processing Plant</a>, <a href="../asm/51200.html">The Vat</a>, <a href="../asm/53248.html">Wacky Amoebatrons</a>,
+<a href="../asm/61440.html">The Warehouse</a>, <a href="../asm/62464.html">Amoebatrons' Revenge</a>, <a href="../asm/63488.html">Solar Power
+Generator</a> and <a href="../asm/64512.html">The Final Barrier</a>.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="item00" src="../../images/udgs/item00.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Next is the banana, which appears in <a href="../asm/52224.html">Miner Willy meets the Kong Beast</a>
+and <a href="../asm/56320.html">Return of the Alien Kong Beast</a>:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="item07" src="../../images/udgs/item07.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The other eight caverns have their own unique item graphics:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/46080.html">The Cold Room</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="item01" src="../../images/udgs/item01.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/49152.html">Eugene's Lair</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="item04" src="../../images/udgs/item04.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/54272.html">The Endorian Forest</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="item09" src="../../images/udgs/item09.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/55296.html">Attack of the Mutant Telephones</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="item10" src="../../images/udgs/item10.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/57344.html">Ore Refinery</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="item12" src="../../images/udgs/item12.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/58368.html">Skylab Landing Bay</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="item13" src="../../images/udgs/item13.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/59392.html">The Bank</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="item14" src="../../images/udgs/item14.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/60416.html">The Sixteenth Cavern</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="item15" src="../../images/udgs/item15.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="itemCounts"></span></div>
+<div class="box box-1">
+<div class="box-title">Item counts</div>
+<div class="paragraph">
+Fourteen of the twenty caverns have a full set of five items.
+</div>
+<div class="paragraph">
+<a href="../asm/52224.html">Miner Willy meets the Kong Beast</a> and <a href="../asm/60416.html">The Sixteenth Cavern</a>
+both have four items.
+</div>
+<div class="paragraph">
+<a href="../asm/59392.html">The Bank</a> and <a href="../asm/63488.html">Solar Power Generator</a> both have three items.
+</div>
+<div class="paragraph">
+There are no caverns that have exactly two items.
+</div>
+<div class="paragraph">
+<a href="../asm/53248.html">Wacky Amoebatrons</a> and <a href="../asm/62464.html">Amoebatrons' Revenge</a> both have only one
+item.
+</div>
+</div>
+<div><span id="extraItems"></span></div>
+<div class="box box-2">
+<div class="box-title">Extra items</div>
+<div class="paragraph">
+<a href="../asm/59392.html">The Bank</a> has five items defined, but only three of them are used;
+<a href="../asm/60416.html">The Sixteenth Cavern</a> also has five items defined, but only four of
+them are used.
+</div>
+<div class="paragraph">
+The two extra items in <a href="../asm/59392.html">The Bank</a> are at (6,19) and (13,30), shown here
+in bright white:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="the_bank_extra_items" src="../../images/scr/the_bank_extra_items.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The extra item in <a href="../asm/60416.html">The Sixteenth Cavern</a> is at (5,26) - in the path of
+the cyan guardian - shown here in bright white:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="the_sixteenth_cavern_extra_items" src="../../images/scr/the_sixteenth_cavern_extra_items.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="fastestGuardians"></span></div>
+<div class="box box-1">
+<div class="box-title">The fastest guardians</div>
+<div class="paragraph">
+There are three guardians that move four pixels up or down every frame - faster
+than any other guardians in the game: the white Skylab in <a href="../asm/58368.html">Skylab
+Landing Bay</a>, the magenta guardian in <a href="../asm/61440.html">The Warehouse</a>, and the cyan
+guardian in <a href="../asm/62464.html">Amoebatrons' Revenge</a>.
+</div>
+</div>
+<div><span id="guardianColours"></span></div>
+<div class="box box-2">
+<div class="box-title">Guardian colours</div>
+<div class="paragraph">
+The most common guardian colour is yellow (21 instances), and the least common
+colour is black (only one instance, in <a href="../asm/49152.html">Eugene's Lair</a>).
+</div>
+<div class="paragraph">
+As for the other colours, there are 3 blue guardians, 10 red guardians, 12
+magenta guardians, 13 green guardians, 14 cyan guardians, and 5 white
+guardians.
+</div>
+</div>
+<div><span id="guardianCounts"></span></div>
+<div class="box box-1">
+<div class="box-title">Guardian counts</div>
+<div class="paragraph">
+The cavern with the most guardians is <a href="../asm/62464.html">Amoebatrons' Revenge</a>, which has
+eight (the maximum).
+</div>
+<div class="paragraph">
+The cavern with the least guardians is <a href="../asm/45056.html">Central Cavern</a>, which has only
+one.
+</div>
+</div>
+<div><span id="guardiansNeedAClearPath"></span></div>
+<div class="box box-2">
+<div class="box-title">Guardians need a clear path</div>
+<div class="paragraph">
+The guardian-drawing code kills Willy if a guardian collides with anything
+that's already been drawn in the cavern. This means, for example, that Willy is
+killed if a guardian hits a nasty, a wall or the floor.
+</div>
+<div class="paragraph">
+See this happen by placing a wall block in the path of the guardian in
+<a href="../asm/45056.html">Central Cavern</a>:
+</div>
+<div class="paragraph">
+POKE 45327,22
+</div>
+</div>
+<div><span id="wrongFoot"></span></div>
+<div class="box box-1">
+<div class="box-title">Off on the wrong foot</div>
+<div class="paragraph">
+In some caverns, Willy starts off facing the wall, and so has to turn round
+before navigating his way out:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot1" src="../../images/scr/wrong_foot1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot2" src="../../images/scr/wrong_foot2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot3" src="../../images/scr/wrong_foot3.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/57344.html">Ore Refinery</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/58368.html">Skylab Landing Bay</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/61440.html">The Warehouse</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+To make Willy start off facing the other way:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot4" src="../../images/scr/wrong_foot4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot5" src="../../images/scr/wrong_foot5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="wrong_foot6" src="../../images/scr/wrong_foot6.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">POKE <a href="../asm/57344.html#57960">57962</a>,1</td>
+<td class="" colspan="1" rowspan="1">POKE <a href="../asm/58368.html#58984">58986</a>,1</td>
+<td class="" colspan="1" rowspan="1">POKE <a href="../asm/61440.html#62056">62058</a>,0</td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="variableAirSupply"></span></div>
+<div class="box box-2">
+<div class="box-title">Variable air supply</div>
+<div class="paragraph">
+The initial air supply varies from cavern to cavern by small amounts, because
+of differences in the initial value of the game clock at <a href="../asm/32957.html">32957</a> - 128,
+240, 248 or 252 - which is copied from byte 701 of the cavern
+definition.
+</div>
+<div class="paragraph">
+The caverns with the greatest initial air supply are <a href="../asm/45056.html">Central Cavern</a>,
+<a href="../asm/46080.html">The Cold Room</a>, <a href="../asm/57344.html">Ore Refinery</a>, <a href="../asm/59392.html">The Bank</a> and
+<a href="../asm/64512.html">The Final Barrier</a>, which initialise the game clock to 252.
+</div>
+<div class="paragraph">
+Next are <a href="../asm/54272.html">The Endorian Forest</a>, <a href="../asm/58368.html">Skylab Landing Bay</a> and
+<a href="../asm/60416.html">The Sixteenth Cavern</a>, which initialise the game clock to 248.
+</div>
+<div class="paragraph">
+Then it's <a href="../asm/63488.html">Solar Power Generator</a>, which initialises the game clock to
+240.
+</div>
+<div class="paragraph">
+The other 11 caverns initialise the game clock to 128, which means the cell
+at the right end of the air bar in those caverns starts off with only three
+white pixel columns instead of seven.
+</div>
+</div>
+<div><span id="repeatingCaverns"></span></div>
+<div class="box box-1">
+<div class="box-title">Repeating caverns</div>
+<div class="paragraph">
+There are six caverns in which the guardians all return to their original
+locations at the same time at least once before the air runs out:
+</div>
+<div class="paragraph">
+<ul>
+<li><a href="../asm/45056.html">Central Cavern</a> - 28 times (every 64 frames)</li>
+<li><a href="../asm/46080.html">The Cold Room</a> - 12 times (every 144 frames)</li>
+<li><a href="../asm/48128.html">Abandoned Uranium Workings</a> - 22 times (every 80 frames)</li>
+<li><a href="../asm/52224.html">Miner Willy meets the Kong Beast</a> - once (after 1440 frames)</li>
+<li><a href="../asm/56320.html">Return of the Alien Kong Beast</a> - once (after 1440 frames)</li>
+<li><a href="../asm/59392.html">The Bank</a> - 3 times (every 528 frames)</li>
+</ul>
+</div>
+<div class="paragraph">
+Note that normal speed horizontal guardians are not drawn to the screen at
+their initial locations when Willy enters a cavern, because they are moved once
+before the cavern is first drawn; the same is true for each vertical guardian,
+unless its initial position is at the top of its path and it is initially
+moving up, or its initial position is at the bottom of its path and it is
+initially moving down - in these cases it remains stationary for one frame
+before changing direction.
+</div>
+</div>
+<div><span id="noWayOut"></span></div>
+<div class="box box-2">
+<div class="box-title">No way out of The Warehouse</div>
+<div class="paragraph">
+If too many of the crumbling floors have disappeared in <a href="../asm/61440.html">The Warehouse</a>,
+Willy won't be able to reach the portal. For example:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="no_way_out" src="../../images/scr/no_way_out.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+If that happens, he will have to wait until the air runs out before getting a
+second chance to escape from the cavern.
+</div>
+<div class="paragraph">
+See also <a href="facts.html#stuckOn16">Stuck on 16</a>.
+</div>
+</div>
+<div><span id="theUnreachableMillion"></span></div>
+<div class="box box-1">
+<div class="box-title">The unreachable million</div>
+<div class="paragraph">
+The score (at least, the part of it that is printed - see <a href="../asm/33829.html">33829</a>) rolls around
+to zero when it hits a million.
+</div>
+</div>
+<div><span id="horizontalSkylabs"></span></div>
+<div class="box box-2">
+<div class="box-title">Horizontal Skylabs?</div>
+<div class="paragraph">
+There are three horizontal guardians defined in <a href="../asm/58368.html">Skylab Landing Bay</a>,
+but they're not used. We can only wonder what they might have looked like
+before being replaced by the Skylabs.
+</div>
+</div>
+<div><span id="outOfBounds"></span></div>
+<div class="box box-1">
+<div class="box-title">Out of bounds</div>
+<div class="paragraph">
+There are two vertical guardians that start off in a location that they never
+return to.
+</div>
+<div class="paragraph">
+The first one is the bright magenta guardian in <a href="../asm/61440.html">The Warehouse</a>. It
+starts off at pixel y-coordinate 0 - the very top of the cavern - but does not
+go above y=4 again after it has started moving (see <a href="../asm/61440.html#62194">62194</a>).
+</div>
+<div class="paragraph">
+The second one is the blue vertical guardian in <a href="../asm/63488.html">Solar Power Generator</a>.
+It starts off at pixel y-coordinate 80 - touching the platform that Willy is
+standing on initially - but does not go below y=79 again after it has started
+moving (see <a href="../asm/63488.html#64235">64235</a>).
+</div>
+</div>
+<div><span id="sourceCodeRemnants"></span></div>
+<div class="box box-2">
+<div class="box-title">Source code remnants</div>
+<div class="paragraph">
+Before the game starts for the first time, the 512-byte cavern buffer at
+<a href="../buffers/gbuffer.html#32768">32768</a> contains source code remnants (shown below). The DB directives
+define part of the title screen tune data at <a href="../asm/33902.html">33902</a>. There are more source
+code remnants at <a href="../asm/37708.html">37708</a>.
+</div>
+<div class="paragraph">
+<table class="asm">
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32768</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM "50,171,192,50,48,68"</td>
+<td class="comment-11" colspan="1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32787</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 790</td>
+<td class="comment-11" colspan="1" rowspan="3">790 DB "50,48,68,50,171,192,50,136,137"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32789</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32790</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,48,68,50,171,192,50,136,137"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32824</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 800</td>
+<td class="comment-11" colspan="1" rowspan="3">800 DB "50,136,137,50,114,115,50,76,77"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32826</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32827</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,136,137,50,114,115,50,76,77"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32861</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 810</td>
+<td class="comment-11" colspan="1" rowspan="5">810 DB "50,7?????????????92,50,38,48"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32863</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32864</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,7"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32872</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32885</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM "92,50,38,48"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32896</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 820</td>
+<td class="comment-11" colspan="1" rowspan="5">820 DB "50,38,4??50,171,192,50,48,68"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32898</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32899</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,38,4"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32910</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 255,0</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32912</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM "50,171,192,50,48,68"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32931</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 830</td>
+<td class="comment-11" colspan="1" rowspan="7">830 DB "50,48,????0,171,19??50,136,137"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32933</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32934</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,48,"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32944</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 0,0,0,0</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32948</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM "0,171,19"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32956</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 0,0</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32958</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM "50,136,137"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32968</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 840</td>
+<td class="comment-11" colspan="1" rowspan="5">840 DB "50,136,137,???114,115,50,76,77"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32970</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32971</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,136,137,"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32986</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 255,0,0</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">32989</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM "114,115,50,76,77"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33005</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 850</td>
+<td class="comment-11" colspan="1" rowspan="3">850 ?B "50,76,77,50,171,203,50,38,51"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33007</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33008</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,255,"B",9,"50,76,77,50,171,203,50,38,51"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33040</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 860</td>
+<td class="comment-11" colspan="1" rowspan="4">860 DB "50,38,51,50,171,203,50,51,64"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33042</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33043</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33047</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM "50,38,51,50,171,203,50,51,64"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33075</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 870</td>
+<td class="comment-11" colspan="1" rowspan="3">870 DB "50,51,64,50,171,203,50,128,129"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33077</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33078</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,51,64,50,171,203,50,128,129"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33112</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 880</td>
+<td class="comment-11" colspan="1" rowspan="3">880 DB "50,128,129,50,102,103,50,86,87"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33114</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33115</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,128,129,50,102,103,50,86,87"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33149</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 890</td>
+<td class="comment-11" colspan="1" rowspan="3">890 DB "50,64,65,50,128,171,50,32,43"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33151</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33152</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,64,65,50,128,171,50,32,43"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33184</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 900</td>
+<td class="comment-11" colspan="1" rowspan="3">900 DB "50,32,43,50,128,171,50,43,51"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33186</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 32</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33187</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,32,43,50,128,171,50,43,51"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33219</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 910</td>
+<td class="comment-11" colspan="1" rowspan="3">910 DB "50,43,51,50,128,171,50,128,129"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33221</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33222</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,43,51,50,128,171,50,128,129"</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33256</td>
+<td class="instruction" colspan="1" rowspan="1">DEFW 920</td>
+<td class="comment-11" colspan="1" rowspan="3">920 DB "50,128,129,50,102............."</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33258</td>
+<td class="instruction" colspan="1" rowspan="1">DEFB 34</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">33259</td>
+<td class="instruction" colspan="1" rowspan="1">DEFM 9,"DB",9,"50,128,129,50,102"</td>
+</tr>
+</table>
+</div>
+</div>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../reference/facts.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

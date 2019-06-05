@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Pokes</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Pokes">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../../images/logo.png" /></a></td>
+<td class="page-header">Pokes</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a href="#gentleGuardians">Gentle guardians</a></li>
+<li><a href="#niceNasties">Nice nasties</a></li>
+<li><a href="#harmlessHeights">Harmless heights</a></li>
+<li><a href="#infiniteTime">Infinite time</a></li>
+<li><a href="#noConveyors">No conveyors</a></li>
+<li><a href="#cheatModeCheat">Cheat mode cheat</a></li>
+<li><a href="#morePointsPerItem">More points per item</a></li>
+<li><a href="#alwaysOpen">Always open</a></li>
+<li><a href="#noSkylabs">No Skylabs</a></li>
+<li><a href="#likeableLightBeam">Likeable light beam</a></li>
+<li><a href="#moreLives">More lives</a></li>
+<li><a href="#infiniteLives">Infinite lives</a></li>
+</ul>
+<div><span id="gentleGuardians"></span></div>
+<div class="box box-1">
+<div class="box-title">Gentle guardians</div>
+<div class="paragraph">
+To enable Willy to walk through guardians with impunity:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/36852.html#36860">36860</a>,0: POKE <a href="../asm/36852.html#36872">36872</a>,0
+</div>
+</div>
+<div><span id="niceNasties"></span></div>
+<div class="box box-2">
+<div class="box-title">Nice nasties</div>
+<div class="paragraph">
+To enable Willy to survive contact with nasties:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/37471.html#37488">37488</a>,201
+</div>
+</div>
+<div><span id="harmlessHeights"></span></div>
+<div class="box box-1">
+<div class="box-title">Harmless heights</div>
+<div class="paragraph">
+To enable Willy to survive a fall from any height:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/35805.html#35808">35809</a>,255
+</div>
+</div>
+<div><span id="infiniteTime"></span></div>
+<div class="box box-2">
+<div class="box-title">Infinite time</div>
+<div class="paragraph">
+To make the game continue without loss of life after all the air has run out of
+the cavern:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/34574.html#34798">34798</a>,1
+</div>
+</div>
+<div><span id="noConveyors"></span></div>
+<div class="box box-1">
+<div class="box-title">No conveyors</div>
+<div class="paragraph">
+To enable Willy to walk freely in any direction on conveyors:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/35805.html#35834">35834</a>,0
+</div>
+</div>
+<div><span id="cheatModeCheat"></span></div>
+<div class="box box-2">
+<div class="box-title">Cheat mode cheat</div>
+<div class="paragraph">
+To activate the <a href="facts.html#6031769">6031769 cheat mode</a> immediately (without having
+to type 6031769):
+</div>
+<div class="paragraph">
+POKE <a href="../asm/33885.html">33885</a>,7
+</div>
+<div class="paragraph">
+For a list of all the caverns and their teleport codes, see the
+<a href="../tables/caverns.html">Caverns page</a>.
+</div>
+</div>
+<div><span id="morePointsPerItem"></span></div>
+<div class="box box-1">
+<div class="box-title">More points per item</div>
+<div class="paragraph">
+To give Willy more than 100 points for collecting an item:
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/36707.html#36738">36739</a>,43 - 1,000 points</div>
+<div>POKE 36739,42 - 10,000 points</div>
+<div>POKE 36739,41 - 100,000 points</div>
+</div>
+<div class="paragraph">
+Note that giving Willy 10,000 points or more per item means he won't be able to
+gain extra lives (normally granted every 10,000 points) by collecting items:
+Willy gains an extra life only when the <em>thousands</em> digit rolls over
+from 9 to 0 (see <a href="../asm/37098.html">37098</a>).
+</div>
+</div>
+<div><span id="alwaysOpen"></span></div>
+<div class="box box-2">
+<div class="box-title">Always open</div>
+<div class="paragraph">
+To enable Willy to walk through the portal to the next cavern without
+collecting all the items first:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/36805.html#36825">36826</a>,0
+</div>
+</div>
+<div><span id="noSkylabs"></span></div>
+<div class="box box-1">
+<div class="box-title">No Skylabs</div>
+<div class="paragraph">
+To remove the Skylabs from <a href="../asm/58368.html">Skylab Landing Bay</a>:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/36469.html#36478">36478</a>,195
+</div>
+</div>
+<div><span id="likeableLightBeam"></span></div>
+<div class="box box-2">
+<div class="box-title">Likeable light beam</div>
+<div class="paragraph">
+To prevent the light beam in <a href="../asm/63488.html">Solar Power Generator</a> from decreasing the
+air supply:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/36211.html#36230">36230</a>,24
+</div>
+</div>
+<div><span id="moreLives"></span></div>
+<div class="box box-1">
+<div class="box-title">More lives</div>
+<div class="paragraph">
+To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=2):
+</div>
+<div class="paragraph">
+POKE <a href="../asm/34252.html#34268">34269</a>,N
+</div>
+<div class="paragraph">
+Note that the routine at <a href="../asm/34574.html">34574</a> tries to draw all remaining lives at the
+bottom of the screen, which means that for large N, there is screen corruption
+and the game slows down considerably; to avoid this, disable the drawing of
+more than one remaining life:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/34574.html#34606">34607</a>,0
+</div>
+</div>
+<div><span id="infiniteLives"></span></div>
+<div class="box box-2">
+<div class="box-title">Infinite lives</div>
+<div class="paragraph">
+To give Willy infinite lives:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/34574.html#35136">35136</a>,0
+</div>
+</div>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../reference/pokes.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

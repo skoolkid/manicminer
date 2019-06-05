@@ -23,7 +23,7 @@
 <div class="description">8F63: Draw the items in the current cavern and collect any that Willy is touching</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="870E.html">870E</a>.
@@ -46,23 +46,26 @@ Used by the routine at <a href="870E.html">870E</a>.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8f63"></span>8F63</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
 <td class="comment-11" rowspan="2">Initialise the attribute of the last item drawn at <a href="8074.html">8074</a> to 0x00 (in case there are no items left to draw)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f64"></span>8F64</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($8074),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f67"></span>8F67</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IY,$8075</td>
 <td class="comment-11" rowspan="1">Point <span class="register">IY</span> at the first byte of the first item definition at <a href="8075.html">8075</a></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8f6b"></span>
 <div class="comments">
 <div class="paragraph">
@@ -74,71 +77,82 @@ The item-drawing loop begins here.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8f6b"></span>8F6B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IY+$00)</td>
 <td class="comment-11" rowspan="1">Pick up the first byte of the item definition</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f6e"></span>8F6E</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $FF</td>
 <td class="comment-11" rowspan="1">Have we dealt with all the items yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f70"></span>8F70</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8F63.html#8fba">$8FBA</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f72"></span>8F72</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Has this item already been collected?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f73"></span>8F73</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8F63.html#8fae">$8FAE</a></td>
 <td class="comment-11" rowspan="1">If so, skip it and consider the next one</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f75"></span>8F75</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,(IY+$01)</td>
 <td class="comment-11" rowspan="2">Point <span class="register">DE</span> at the address of the item's location in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f78"></span>8F78</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,(IY+$02)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f7b"></span>8F7B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(DE)</td>
 <td class="comment-11" rowspan="1">Pick up the current attribute byte at the item's location</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f7c"></span>8F7C</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $07</td>
 <td class="comment-11" rowspan="2">Is the INK white (which happens if Willy is touching the item)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f7e"></span>8F7E</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $07</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f80"></span>8F80</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8F63.html#8f8e">$8F8E</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8f82"></span>
 <div class="comments">
 <div class="paragraph">
@@ -150,29 +164,33 @@ Willy is touching this item, so add it to his collection.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f82"></span>8F82</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$842C</td>
 <td class="comment-11" rowspan="2">Add 100 to the score</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f85"></span>8F85</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="90EA.html#90fe">$90FE</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f88"></span>8F88</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IY+$00),$00</td>
 <td class="comment-11" rowspan="1">Set the item's attribute byte to 0x00 so that it will be skipped the next time</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f8c"></span>8F8C</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="8F63.html#8fae">$8FAE</a></td>
 <td class="comment-11" rowspan="1">Jump forward to consider the next item</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8f8e"></span>
 <div class="comments">
 <div class="paragraph">
@@ -184,89 +202,103 @@ This item has not been collected yet.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8f8e"></span>8F8E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IY+$00)</td>
 <td class="comment-11" rowspan="1">Pick up the item's current attribute byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f91"></span>8F91</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $F8</td>
 <td class="comment-11" rowspan="2">Keep the BRIGHT and PAPER bits, and set the INK to 3 (magenta)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f93"></span>8F93</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR $03</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f95"></span>8F95</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
 <td class="comment-11" rowspan="1">Store this value in <span class="register">B</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f96"></span>8F96</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IY+$00)</td>
 <td class="comment-11" rowspan="1">Pick up the item's current attribute byte again</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f99"></span>8F99</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $03</td>
 <td class="comment-11" rowspan="2">Keep only bits 0 and 1 and add the value in <span class="register">B</span>; this maintains the BRIGHT and PAPER bits, and cycles the INK colour through 3, 4, 5 and 6</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f9b"></span>8F9B</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,B</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f9c"></span>8F9C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IY+$00),A</td>
 <td class="comment-11" rowspan="1">Store the new attribute byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8f9f"></span>8F9F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (DE),A</td>
 <td class="comment-11" rowspan="1">Update the attribute byte at the item's location in the buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fa0"></span>8FA0</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($8074),A</td>
 <td class="comment-11" rowspan="1">Store the new attribute byte at <a href="8074.html">8074</a> as well</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fa3"></span>8FA3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,(IY+$03)</td>
 <td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the address of the item's location in the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fa6"></span>8FA6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$80B4</td>
 <td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the item graphic for the current cavern (at <a href="80B4.html">80B4</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fa9"></span>8FA9</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD B,$08</td>
 <td class="comment-11" rowspan="1">There are eight pixel rows to copy</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fab"></span>8FAB</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="92CB.html#92d5">$92D5</a></td>
 <td class="comment-11" rowspan="1">Draw the item to the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8fae"></span>
 <div class="comments">
 <div class="paragraph">
@@ -278,41 +310,47 @@ The current item definition has been dealt with. Time for the next one.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8fae"></span>8FAE</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IY</td>
 <td class="comment-11" rowspan="5">Point <span class="register">IY</span> at the first byte of the next item definition</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fb0"></span>8FB0</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IY</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fb2"></span>8FB2</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IY</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fb4"></span>8FB4</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IY</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fb6"></span>8FB6</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IY</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fb8"></span>8FB8</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="8F63.html#8f6b">$8F6B</a></td>
 <td class="comment-11" rowspan="1">Jump back to deal with the next item</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8fba"></span>
 <div class="comments">
 <div class="paragraph">
@@ -324,36 +362,42 @@ All the items have been dealt with. Check whether there were any left.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8fba"></span>8FBA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8074)</td>
 <td class="comment-11" rowspan="1">Pick up the attribute of the last item drawn at <a href="8074.html">8074</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fbd"></span>8FBD</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Were any items drawn?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fbe"></span>8FBE</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET NZ</td>
 <td class="comment-11" rowspan="1">Return if so (some remain to be collected)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fbf"></span>8FBF</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$808F</td>
 <td class="comment-11" rowspan="2">Ensure that the portal is flashing by setting bit 7 of its attribute byte at <a href="808F.html">808F</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fc2"></span>8FC2</td>
+<td class="bytes-0"></td>
 <td class="instruction">SET 7,(HL)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fc4"></span>8FC4</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
@@ -366,10 +410,10 @@ All the items have been dealt with. Check whether there were any left.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20181015</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/manic_miner/asm/36707.html">Switch to decimal</a>.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/36707.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

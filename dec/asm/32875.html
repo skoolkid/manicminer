@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Game status buffer entry at 32875</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-g">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../../images/logo.png" /></a></td>
+<td class="page-header">Game status buffer</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="32874.html">32874</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#32875">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="32876.html">32876</a></span></td>
+</tr>
+</table>
+<div class="description">32875: Airborne status indicator</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Initialised by the routine at <a href="34436.html">34436</a>, and used by the routines at <a href="34574.html">34574</a>, <a href="35515.html">35515</a>, <a href="35805.html">35805</a> and <a href="36101.html">36101</a>. Possible values are:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Value</th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Willy is neither falling nor jumping</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">Willy is jumping</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2-11</td>
+<td class="" colspan="1" rowspan="1">Willy is falling, and can land safely</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">12+</td>
+<td class="" colspan="1" rowspan="1">Willy is falling, and has fallen too far to land safely (see <a href="35805.html#35805">35805</a>)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">255</td>
+<td class="" colspan="1" rowspan="1">Willy has collided with a nasty or a guardian (see <a href="36101.html">36101</a>)</td>
+</tr>
+</table>
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="32875"></span>32875</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="32874.html">32874</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#32875">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="32876.html">32876</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../asm/806B.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Bugs</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Bugs">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../../images/logo.png" /></a></td>
+<td class="page-header">Bugs</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a href="#animatedPlatform">The animated platform</a></li>
+<li><a href="#nineLivesInTheLight">Nine lives in the light</a></li>
+<li><a href="#throughTheWall">Through the wall</a></li>
+<li><a href="#throughTheWallAgain">Through the wall again</a></li>
+<li><a href="#attributeCrash">Attribute crash</a></li>
+<li><a href="#blueShadow">Blue shadow</a></li>
+</ul>
+<div><span id="animatedPlatform"></span></div>
+<div class="box box-1">
+<div class="box-title">The animated platform</div>
+<div class="paragraph">
+There is a platform at (9,7) in <a href="../asm/62464.html">Amoebatrons' Revenge</a> whose third row
+of pixels is animated as if it were a conveyor. This is because there is a
+conveyor defined at that location (see <a href="../asm/62464.html#63087">63087</a>), but the cavern layout places
+regular platform tiles there instead of conveyor tiles.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="animated_platform" src="../../images/scr/animated_platform.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+To disable the animation (by moving the conveyor up a row to (8,7), which is
+occupied by background tiles):
+</div>
+<div class="paragraph">
+POKE <a href="../asm/62464.html#63087">63088</a>,7
+</div>
+<div class="paragraph">
+See <a href="facts.html#unusedConveyors">Unused conveyors</a> for more information.
+</div>
+</div>
+<div><span id="nineLivesInTheLight"></span></div>
+<div class="box box-2">
+<div class="box-title">Nine lives in the light</div>
+<div class="paragraph">
+The code that decreases the air supply when Willy is in the light beam in
+<a href="../asm/63488.html">Solar Power Generator</a> doesn't check whether the air has run out, and
+so depending on the remaining air supply at <a href="../asm/32956.html">32956</a> and the game clock at
+<a href="../asm/32957.html">32957</a> when Willy enters the beam, he will not necessarily die when the air
+runs out; instead the air supply is replenished a little and then depleted,
+repeatedly up to eight times - until the game clock hits zero upon exiting the
+beam-controlling routine at <a href="../asm/36211.html">36211</a>.
+</div>
+<div class="paragraph">
+To see Willy survive eight air supply depletions, use the following POKEs:
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/33885.html">33885</a>,7 - press keys 256 to teleport to the cavern</div>
+<div>POKE <a href="../asm/36211.html#36252">36252</a>,24 - make the light beam pass through guardians</div>
+<div>POKE <a href="../asm/63488.html#64104">64104</a>,208 - Willy's initial pixel y-coordinate * 2</div>
+<div>POKE <a href="../asm/63488.html#64108">64108</a>,183: POKE 64109,93 - Willy's initial position</div>
+<div>POKE <a href="../asm/63488.html#64188">64188</a>,39 - initial air supply</div>
+<div>POKE <a href="../asm/63488.html#64211">64211</a>,255 - remove the yellow guardian at ground level</div>
+</div>
+</div>
+<div><span id="throughTheWall"></span></div>
+<div class="box box-1">
+<div class="box-title">Through the wall</div>
+<div class="paragraph">
+If Willy jumps left over the two nasties at the bottom right of
+<a href="../asm/49152.html">Eugene's Lair</a> such that he lands on the top layer of bricks with
+animation frame 3 at step 16 of the jumping animation, he will then fall
+through them to the bottom layer of bricks:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="through_the_wall1" src="../../images/scr/through_the_wall1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="through_the_wall2" src="../../images/scr/through_the_wall2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="through_the_wall3" src="../../images/scr/through_the_wall3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="through_the_wall4" src="../../images/scr/through_the_wall4.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">Step 15</td>
+<td class="" colspan="1" rowspan="1">Step 16</td>
+<td class="" colspan="1" rowspan="1">Step 17</td>
+<td class="" colspan="1" rowspan="1">Step 18</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+This happens because the section of code at <a href="../asm/35515.html#35600">35600</a> - which is executed during
+jumping animation step 16, after Willy's y-coordinate has been updated so that
+he's exactly one cell height above the place he jumped from, but before his
+x-coordinate has been updated - checks whether there are any nasty tiles in the
+cells below Willy's sprite. If there are (as is the case here), the code jumps
+forward to <a href="../asm/35515.html#35665">35665</a>, which makes Willy proceed to the next jumping animation
+step (as if the bricks were not there), instead of landing on the bricks.
+</div>
+<div class="paragraph">
+Perhaps the assumption in this code is that if there is a nasty tile below
+Willy's sprite in step 16, then he will be killed by the nasty before reaching
+step 17; however, in this particular case Willy's x-coordinate decreases by one
+during step 16 (as he transitions from animation frame 0 to frame 3), which
+moves him out of the nasty's range.
+</div>
+</div>
+<div><span id="throughTheWallAgain"></span></div>
+<div class="box box-2">
+<div class="box-title">Through the wall again</div>
+<div class="paragraph">
+It's also possible to jump and land inside a wall block even when there is no
+nasty next to it.
+</div>
+<div class="paragraph">
+If Willy's animation frame is 0 at step 16 of the animation while Willy is
+jumping left, the code at <a href="../asm/35805.html#35996">35996</a> checks whether Willy is free to move left
+across a cell boundary. However, the part of that code that checks whether
+there is a wall tile below Willy to the left is skipped when Willy's sprite is
+cell-aligned (i.e. when his pixel y-coordinate at <a href="../asm/32872.html">32872</a> is a multiple of 16),
+which is always the case at step 16. Consequently, Willy moves left across the
+cell boundary and then, in step 17, he moves down into the wall block below
+before any check is made for wall blocks beneath him, eventually landing with
+animation frame 2.
+</div>
+<div class="paragraph">
+Places where this can happen are:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="ttwa_el" src="../../images/scr/ttwa_el.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ttwa_sc1" src="../../images/scr/ttwa_sc1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ttwa_spg" src="../../images/scr/ttwa_spg.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/49152.html">Eugene's Lair</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/60416.html">The Sixteenth Cavern</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/63488.html">Solar Power Generator</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Similarly, if Willy's animation frame is 3 at step 16 of the animation while
+Willy is jumping right, the code at <a href="../asm/35805.html#36054">36054</a> checks whether Willy is free to
+move right across a cell boundary. However, the part of that code that checks
+whether there is a wall tile below Willy to the right is skipped when Willy's
+sprite is cell-aligned (i.e. when his pixel y-coordinate at <a href="../asm/32872.html">32872</a> is a
+multiple of 16), which is always the case at step 16. Consequently, Willy moves
+right across the cell boundary and then, in step 17, he moves down into the
+wall block below before any check is made for wall blocks beneath him,
+eventually landing with animation frame 1.
+</div>
+<div class="paragraph">
+Places where this can happen are:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="ttwa_cc" src="../../images/scr/ttwa_cc.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ttwa_tcr" src="../../images/scr/ttwa_tcr.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ttwa_tv" src="../../images/scr/ttwa_tv.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ttwa_sc2" src="../../images/scr/ttwa_sc2.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/45056.html">Central Cavern</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/46080.html">The Cold Room</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/51200.html">The Vat</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/60416.html">The Sixteenth Cavern</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+When Willy lands inside a wall block, he can walk straight through it unless
+another wall block is in the way.
+</div>
+</div>
+<div><span id="attributeCrash"></span></div>
+<div class="box box-1">
+<div class="box-title">Attribute crash</div>
+<div class="paragraph">
+When a Skylab in <a href="../asm/58368.html">Skylab Landing Bay</a> crashes into a section of floor or
+conveyor, the attributes of that section are temporarily changed to that of the
+Skylab; the attributes are restored after the Skylab has finished
+disintegrating.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="attribute_crash" src="../../images/scr/attribute_crash.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The reason for this is that the code at <a href="../asm/36344.html#36447">36447</a> (which is used to set the
+attributes for a Skylab) sets the attributes in not two but three rows of
+cells, to handle the case where a guardian's sprite is not cell-aligned.
+However, when a Skylab crashes, it <em>is</em> cell-aligned, and so its
+attributes needlessly bleed over to the floor or conveyor cells immediately
+below it.
+</div>
+</div>
+<div><span id="blueShadow"></span></div>
+<div class="box box-2">
+<div class="box-title">Blue shadow</div>
+<div class="paragraph">
+As Willy enters <a href="../asm/63488.html">Solar Power Generator</a>, the blue vertical guardian can
+be seen casting a 'shadow' over the floor immediately below it.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="blue_shadow" src="../../images/scr/blue_shadow.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+This happens for the same reason as a Skylab's colour bleeds over into the
+floor below when it crashes - see <a href="bugs.html#attributeCrash">Attribute crash</a>. This effect does not
+occur on subsequent occasions when the guardian approaches the floor, because
+it never actually touches the floor again - its maximum pixel y-coordinate is
+79, one less than its original y-coordinate of 80 (see <a href="facts.html#outOfBounds">Out of bounds</a>).
+</div>
+</div>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../reference/bugs.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -23,7 +23,7 @@
 <div class="description">927F: Draw Willy to the screen buffer at 6000</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="923A.html">923A</a>.
@@ -46,216 +46,252 @@ Used by the routine at <a href="923A.html">923A</a>.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="927f"></span>927F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8068)</td>
 <td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="8068.html">8068</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9282"></span>9282</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IXh,$83</td>
 <td class="comment-11" rowspan="2">Point <span class="register">IX</span> at the entry in the screen buffer address lookup table at <a href="8300.html">8300</a> that corresponds to Willy's y-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9285"></span>9285</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IXl,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9287"></span>9287</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($806A)</td>
 <td class="comment-11" rowspan="1">Pick up Willy's direction and movement flags from <a href="806A.html">806A</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928a"></span>928A</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $01</td>
 <td class="comment-11" rowspan="3">Now <span class="register">E</span>=0x00 if Willy is facing right, or 0x80 if he's facing left</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928c"></span>928C</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928d"></span>928D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928e"></span>928E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8069)</td>
 <td class="comment-11" rowspan="1">Pick up Willy's animation frame (0-3) from <a href="8069.html">8069</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9291"></span>9291</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $03</td>
 <td class="comment-11" rowspan="7">Point <span class="register">DE</span> at the sprite graphic data for Willy's current animation frame (see <a href="8200.html">8200</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9293"></span>9293</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9294"></span>9294</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9295"></span>9295</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9296"></span>9296</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR E</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9297"></span>9297</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9298"></span>9298</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$82</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="929a"></span>929A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD B,$10</td>
 <td class="comment-11" rowspan="1">There are 16 rows of pixels to copy</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="929c"></span>929C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($806C)</td>
 <td class="comment-11" rowspan="2">Pick up Willy's screen x-coordinate (0-31) from <a href="806C.html">806C</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="929f"></span>929F</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92a1"></span>92A1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
 <td class="comment-11" rowspan="1">Copy it to <span class="register">C</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="92a2"></span>92A2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="4">Set <span class="register">HL</span> to the address in the screen buffer at <a href="6000.html">6000</a> that corresponds to where we are going to draw the next pixel row of the sprite graphic</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92a5"></span>92A5</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,(IX+$01)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92a8"></span>92A8</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92a9"></span>92A9</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92aa"></span>92AA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(DE)</td>
 <td class="comment-11" rowspan="1">Pick up a sprite graphic byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ab"></span>92AB</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR (HL)</td>
 <td class="comment-11" rowspan="1">Merge it with the background</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ac"></span>92AC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-11" rowspan="1">Save the resultant byte to the screen buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ad"></span>92AD</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-11" rowspan="1">Move <span class="register">HL</span> along to the next cell to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ae"></span>92AE</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC DE</td>
 <td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the next sprite graphic byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92af"></span>92AF</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(DE)</td>
 <td class="comment-11" rowspan="1">Pick it up in <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b0"></span>92B0</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR (HL)</td>
 <td class="comment-11" rowspan="1">Merge it with the background</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b1"></span>92B1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-11" rowspan="1">Save the resultant byte to the screen buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b2"></span>92B2</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IX</td>
 <td class="comment-11" rowspan="2">Point <span class="register">IX</span> at the next entry in the screen buffer address lookup table at <a href="8300.html">8300</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b4"></span>92B4</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IX</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b6"></span>92B6</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC DE</td>
 <td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the next sprite graphic byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b7"></span>92B7</td>
+<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="927F.html#92a2">$92A2</a></td>
 <td class="comment-11" rowspan="1">Jump back until all 16 rows of pixels have been drawn</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b9"></span>92B9</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
@@ -268,10 +304,10 @@ Used by the routine at <a href="923A.html">923A</a>.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20181015</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/manic_miner/asm/37503.html">Switch to decimal</a>.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/37503.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>
