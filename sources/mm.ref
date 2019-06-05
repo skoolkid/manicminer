@@ -9,8 +9,8 @@ GameDir=manic_miner
 Game=Manic Miner
 Logo=#SCR2,0,1,19,2,43008,40448{10,,292}({ImagePath}/logo|Manic Miner)
 StyleSheet=skoolkit.css;mm.css
-Copyright=&#169; 1983 Bug-Byte Ltd. &#169; 2018 Richard Dymond.
-Release=The complete Manic Miner RAM disassembly 20181015
+Copyright=&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.
+Release=The complete Manic Miner RAM disassembly 20190605
 LinkInternalOperands=1
 AddressAnchor={address#IF({base}==16)(:04x)}
 
