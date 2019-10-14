@@ -343,7 +343,7 @@ Before the game starts for the first time, the 512-byte cavern buffer at
 define part of the title screen tune data at #R33902. There are more source
 code remnants at #R37708.
 
-#TABLE(asm,address-1,instruction,comment-11)
+#TABLE(asm,address-1,instruction,comment-1)
 { #N32768 | #S/DEFM/ "50,171,192,50,48,68" | }
 { #N32787 | #S/DEFW/ #n790 | =r3 790 DB "50,48,68,50,171,192,50,136,137" }
 { #N32789 | #S/DEFB/ #n34 }
