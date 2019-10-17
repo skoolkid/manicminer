@@ -83,16 +83,15 @@ def run(imgfname, options):
         x, y = [int(n) for n in xy.split('+')]
         udg_array = [row[x:x + width] for row in udg_array[y:y + height]]
     frame = Frame(udg_array, options.scale)
-    image_format = 'gif' if imgfname.lower()[-4:] == '.gif' else 'png'
     image_writer = ImageWriter()
     with open(imgfname, "wb") as f:
-        image_writer.write_image([frame], f, image_format)
+        image_writer.write_image([frame], f)
 
 ###############################################################################
 # Begin
 ###############################################################################
 parser = argparse.ArgumentParser(
-    usage='mmimage.py [options] FILE.{png,gif}',
+    usage='mmimage.py [options] FILE.png',
     description="Create an image of a cavern in Manic Miner.",
     formatter_class=argparse.RawTextHelpFormatter,
     add_help=False
