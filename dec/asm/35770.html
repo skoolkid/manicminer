@@ -4,7 +4,6 @@
 <title>Manic Miner: Routine at 35770</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
@@ -15,9 +14,13 @@
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="35515.html">35515</a></span></td>
+<td class="prev">
+Prev: <a href="35515.html">35515</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#35770">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="35805.html">35805</a></span></td>
+<td class="next">
+Next: <a href="35805.html">35805</a>
+</td>
 </tr>
 </table>
 <div class="description">35770: Animate a crumbling floor tile in the current cavern</div>
@@ -29,7 +32,7 @@
 Used by the routine at <a href="35515.html">35515</a>.
 </div>
 </div>
-<table class="input-1">
+<table class="input">
 <tr class="asm-input-header">
 <th colspan="2">Input</th>
 </tr>
@@ -38,160 +41,102 @@ Used by the routine at <a href="35515.html">35515</a>.
 <td class="register-desc">Address of the crumbling floor tile's location in the attribute buffer at <a href="23552.html">23552</a></td>
 </tr>
 </table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="35770"></span>35770</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,L</td>
-<td class="comment-11" rowspan="5">Point <span class="register">BC</span> at the bottom row of pixels of the crumbling floor tile in the screen buffer at <a href="28672.html">28672</a></td>
+<td class="comment-1" rowspan="5">Point <span class="register">BC</span> at the bottom row of pixels of the crumbling floor tile in the screen buffer at <a href="28672.html">28672</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35771"></span>35771</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,H</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35772"></span>35772</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD A,27</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35774"></span>35774</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR 7</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35776"></span>35776</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="35777"></span>35777</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC B</td>
-<td class="comment-11" rowspan="2">Collect the pixels from the row above in <span class="register">A</span></td>
+<td class="comment-1" rowspan="2">Collect the pixels from the row above in <span class="register">A</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35778"></span>35778</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(BC)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35779"></span>35779</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC B</td>
-<td class="comment-11" rowspan="2">Copy these pixels into the row below it</td>
+<td class="comment-1" rowspan="2">Copy these pixels into the row below it</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35780"></span>35780</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (BC),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35781"></span>35781</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC B</td>
-<td class="comment-11" rowspan="1">Point <span class="register">BC</span> at the next row of pixels up</td>
+<td class="comment-1" rowspan="1">Point <span class="register">BC</span> at the next row of pixels up</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35782"></span>35782</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,B</td>
-<td class="comment-11" rowspan="2">Have we dealt with the bottom seven pixel rows of the crumbling floor tile yet?</td>
+<td class="comment-1" rowspan="2">Have we dealt with the bottom seven pixel rows of the crumbling floor tile yet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35783"></span>35783</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND 7</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35785"></span>35785</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35770.html#35777">35777</a></td>
-<td class="comment-11" rowspan="1">If not, jump back to deal with the next one up</td>
+<td class="comment-1" rowspan="1">If not, jump back to deal with the next one up</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35787"></span>35787</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
-<td class="comment-11" rowspan="2">Clear the top row of pixels in the crumbling floor tile</td>
+<td class="comment-1" rowspan="2">Clear the top row of pixels in the crumbling floor tile</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35788"></span>35788</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (BC),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35789"></span>35789</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,B</td>
-<td class="comment-11" rowspan="3">Point <span class="register">BC</span> at the bottom row of pixels in the crumbling floor tile</td>
+<td class="comment-1" rowspan="3">Point <span class="register">BC</span> at the bottom row of pixels in the crumbling floor tile</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35790"></span>35790</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD A,7</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35792"></span>35792</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35793"></span>35793</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(BC)</td>
-<td class="comment-11" rowspan="1">Pick up the bottom row of pixels in <span class="register">A</span></td>
+<td class="comment-1" rowspan="1">Pick up the bottom row of pixels in <span class="register">A</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35794"></span>35794</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Is the bottom row clear?</td>
+<td class="comment-1" rowspan="1">Is the bottom row clear?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35795"></span>35795</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET NZ</td>
-<td class="comment-11" rowspan="1">Return if not</td>
+<td class="comment-1" rowspan="1">Return if not</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -204,66 +149,54 @@ The bottom row of pixels in the crumbling floor tile is clear. Time to put a bac
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35796"></span>35796</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(32800)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the background tile for the current cavern from <a href="32800.html">32800</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the background tile for the current cavern from <a href="32800.html">32800</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35799"></span>35799</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC H</td>
-<td class="comment-11" rowspan="2">Set <span class="register">HL</span> to the address of the crumbling floor tile's location in the attribute buffer at <a href="24064.html">24064</a></td>
+<td class="comment-1" rowspan="2">Set <span class="register">HL</span> to the address of the crumbling floor tile's location in the attribute buffer at <a href="24064.html">24064</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35800"></span>35800</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC H</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35801"></span>35801</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-11" rowspan="1">Set the attribute at this location to that of the background tile</td>
+<td class="comment-1" rowspan="1">Set the attribute at this location to that of the background tile</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35802"></span>35802</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC H</td>
-<td class="comment-11" rowspan="2">Set <span class="register">HL</span> back to the address of the crumbling floor tile's location in the attribute buffer at <a href="23552.html">23552</a></td>
+<td class="comment-1" rowspan="2">Set <span class="register">HL</span> back to the address of the crumbling floor tile's location in the attribute buffer at <a href="23552.html">23552</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35803"></span>35803</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC H</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35804"></span>35804</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="35515.html">35515</a></span></td>
+<td class="prev">
+Prev: <a href="35515.html">35515</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#35770">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="35805.html">35805</a></span></td>
+<td class="next">
+Next: <a href="35805.html">35805</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="release">The complete Manic Miner RAM disassembly 20191112</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0.</div>
 <div><a href="../../asm/8BBA.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>

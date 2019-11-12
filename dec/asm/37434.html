@@ -4,7 +4,6 @@
 <title>Manic Miner: Routine at 37434</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
@@ -15,9 +14,13 @@
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="37403.html">37403</a></span></td>
+<td class="prev">
+Prev: <a href="37403.html">37403</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#37434">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="37471.html">37471</a></span></td>
+<td class="next">
+Next: <a href="37471.html">37471</a>
+</td>
 </tr>
 </table>
 <div class="description">37434: Check and set the attribute bytes for Willy's sprite in the buffer at 23552</div>
@@ -29,151 +32,109 @@
 Used by the routine at <a href="34574.html">34574</a>.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="37434"></span>37434</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,(32876)</td>
-<td class="comment-11" rowspan="1">Pick up the address of Willy's location in the attribute buffer at <a href="23552.html">23552</a> from <a href="32876.html">32876</a></td>
+<td class="comment-1" rowspan="1">Pick up the address of Willy's location in the attribute buffer at <a href="23552.html">23552</a> from <a href="32876.html">32876</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37437"></span>37437</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,31</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">DE</span> for addition</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">DE</span> for addition</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37440"></span>37440</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,15</td>
-<td class="comment-11" rowspan="1">Set <span class="register">C</span>=15 for the top two rows of cells (to make the routine at <a href="37471.html">37471</a> force white INK)</td>
+<td class="comment-1" rowspan="1">Set <span class="register">C</span>=15 for the top two rows of cells (to make the routine at <a href="37471.html">37471</a> force white INK)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37442"></span>37442</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="37471.html">37471</a></td>
-<td class="comment-11" rowspan="1">Check and set the attribute byte for the top-left cell</td>
+<td class="comment-1" rowspan="1">Check and set the attribute byte for the top-left cell</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37445"></span>37445</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-11" rowspan="1">Move <span class="register">HL</span> to the next cell to the right</td>
+<td class="comment-1" rowspan="1">Move <span class="register">HL</span> to the next cell to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37446"></span>37446</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="37471.html">37471</a></td>
-<td class="comment-11" rowspan="1">Check and set the attribute byte for the top-right cell</td>
+<td class="comment-1" rowspan="1">Check and set the attribute byte for the top-right cell</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37449"></span>37449</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="1">Move <span class="register">HL</span> down a row and back one cell to the left</td>
+<td class="comment-1" rowspan="1">Move <span class="register">HL</span> down a row and back one cell to the left</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37450"></span>37450</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="37471.html">37471</a></td>
-<td class="comment-11" rowspan="1">Check and set the attribute byte for the mid-left cell</td>
+<td class="comment-1" rowspan="1">Check and set the attribute byte for the mid-left cell</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37453"></span>37453</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-11" rowspan="1">Move <span class="register">HL</span> to the next cell to the right</td>
+<td class="comment-1" rowspan="1">Move <span class="register">HL</span> to the next cell to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37454"></span>37454</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="37471.html">37471</a></td>
-<td class="comment-11" rowspan="1">Check and set the attribute byte for the mid-right cell</td>
+<td class="comment-1" rowspan="1">Check and set the attribute byte for the mid-right cell</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37457"></span>37457</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(32872)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="32872.html">32872</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="32872.html">32872</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37460"></span>37460</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
-<td class="comment-11" rowspan="1">Copy it to <span class="register">C</span></td>
+<td class="comment-1" rowspan="1">Copy it to <span class="register">C</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37461"></span>37461</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="1">Move <span class="register">HL</span> down a row and back one cell to the left</td>
+<td class="comment-1" rowspan="1">Move <span class="register">HL</span> down a row and back one cell to the left</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37462"></span>37462</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="37471.html">37471</a></td>
-<td class="comment-11" rowspan="1">Check and set the attribute byte for the bottom-left cell</td>
+<td class="comment-1" rowspan="1">Check and set the attribute byte for the bottom-left cell</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37465"></span>37465</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-11" rowspan="1">Move <span class="register">HL</span> to the next cell to the right</td>
+<td class="comment-1" rowspan="1">Move <span class="register">HL</span> to the next cell to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37466"></span>37466</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="37471.html">37471</a></td>
-<td class="comment-11" rowspan="1">Check and set the attribute byte for the bottom-right cell</td>
+<td class="comment-1" rowspan="1">Check and set the attribute byte for the bottom-right cell</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37469"></span>37469</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR <a href="37503.html">37503</a></td>
-<td class="comment-11" rowspan="1">Draw Willy to the screen buffer at <a href="24576.html">24576</a></td>
+<td class="comment-1" rowspan="1">Draw Willy to the screen buffer at <a href="24576.html">24576</a></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="37403.html">37403</a></span></td>
+<td class="prev">
+Prev: <a href="37403.html">37403</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#37434">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="37471.html">37471</a></span></td>
+<td class="next">
+Next: <a href="37471.html">37471</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="release">The complete Manic Miner RAM disassembly 20191112</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0.</div>
 <div><a href="../../asm/923A.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>

@@ -4,7 +4,6 @@
 <title>Manic Miner: Routine at 90EA</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
@@ -15,9 +14,13 @@
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="9028.html">9028</a></span></td>
+<td class="prev">
+Prev: <a href="9028.html">9028</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#90ea">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="9105.html">9105</a></span></td>
+<td class="next">
+Next: <a href="9105.html">9105</a>
+</td>
 </tr>
 </table>
 <div class="description">90EA: Add to the score</div>
@@ -29,54 +32,31 @@
 The entry point to this routine is at <a href="90EA.html#90fe">90FE</a>.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="90ea"></span>90EA</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$30</td>
-<td class="comment-11" rowspan="1">Roll the digit over from '9' to '0'</td>
+<td class="comment-1" rowspan="1">Roll the digit over from '9' to '0'</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90ec"></span>90EC</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC HL</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the next digit to the left</td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at the next digit to the left</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90ed"></span>90ED</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,L</td>
-<td class="comment-11" rowspan="2">Is this the 10000s digit?</td>
+<td class="comment-1" rowspan="2">Is this the 10000s digit?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90ee"></span>90EE</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $2A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90f0"></span>90F0</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="90EA.html#90fe">$90FE</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -89,39 +69,26 @@ Willy has scored another 10000 points. Give him an extra life.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90f2"></span>90F2</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,$08</td>
-<td class="comment-11" rowspan="2">Set the screen flash counter at <a href="8458.html">8458</a> to 8</td>
+<td class="comment-1" rowspan="2">Set the screen flash counter at <a href="8458.html">8458</a> to 8</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90f4"></span>90F4</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($8458),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90f7"></span>90F7</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($8457)</td>
-<td class="comment-11" rowspan="3">Increment the number of lives remaining at <a href="8457.html">8457</a></td>
+<td class="comment-1" rowspan="3">Increment the number of lives remaining at <a href="8457.html">8457</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90fa"></span>90FA</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90fb"></span>90FB</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($8457),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -134,52 +101,46 @@ The entry point to this routine is here and is used by the routines at <a href="
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="90fe"></span>90FE</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-11" rowspan="1">Pick up a digit of the score</td>
+<td class="comment-1" rowspan="1">Pick up a digit of the score</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90ff"></span>90FF</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $39</td>
-<td class="comment-11" rowspan="1">Is it '9'?</td>
+<td class="comment-1" rowspan="1">Is it '9'?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9101"></span>9101</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="90EA.html#90ea">$90EA</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9103"></span>9103</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC (HL)</td>
-<td class="comment-11" rowspan="1">Increment the digit</td>
+<td class="comment-1" rowspan="1">Increment the digit</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9104"></span>9104</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="9028.html">9028</a></span></td>
+<td class="prev">
+Prev: <a href="9028.html">9028</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#90ea">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="9105.html">9105</a></span></td>
+<td class="next">
+Next: <a href="9105.html">9105</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20190605</div>
+<div class="release">The complete Manic Miner RAM disassembly 20191112</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0.</div>
 <div><a href="../dec/asm/37098.html">Switch to decimal</a>.</div>
 </footer>
 </body>
