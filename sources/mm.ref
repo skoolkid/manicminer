@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2019 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2020 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
 HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
@@ -7,7 +7,7 @@ GameDir=manic_miner
 
 [Game]
 Game=Manic Miner
-Logo=#SCR2,0,1,19,2,43008,40448{10,,292}({ImagePath}/logo|Manic Miner)
+Logo=#LOGO0,0(logo)
 StyleSheet=skoolkit.css;mm.css
 Copyright=&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.
 Release=The complete Manic Miner RAM disassembly 20191112
