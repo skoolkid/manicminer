@@ -14,9 +14,6 @@ Release=The complete Manic Miner RAM disassembly 20191112
 LinkInternalOperands=1
 AddressAnchor={address#IF({base}==16)(:04x)}
 
-[ImageWriter]
-DefaultAnimationFormat=png
-
 [Font]
 32=0000000000000000
 39=0008100000000000
