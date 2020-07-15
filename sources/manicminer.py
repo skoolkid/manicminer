@@ -1,4 +1,4 @@
-# Copyright 2012, 2014-2019 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014-2020 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -29,9 +29,7 @@ def parse_s(text, index, case):
 
 class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
-        self.font = {}
-        for b, h in self.get_dictionary('Font').items():
-            self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
+        self.font = {c: self.snapshot[15360 + 8 * c:15368 + 8 * c] for c in range(32, 122)}
         self.cavern_names = self._get_cavern_names()
 
     def init_page(self, skoolkit, game):
