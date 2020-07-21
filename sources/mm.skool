@@ -72,16 +72,15 @@ b28672 DEFS 4096
 
 @start
 @expand=#DEFINE2,1@@LOGO@#UDGARRAY(19,#IF({0}||{1}==0)(23,16),2,256,tindex=3,alpha=#IF({1})(0,255));43040-43058;43072-43090{{10,,292}}({{ImagePath}}/{2}|Manic Miner)@@
-@replace=/#tiles\i/#FOR(45600+\1*1024,45663+\1*1024,9);;$n;#UDG($n+1,#PEEK$n)(<tmap>_\1); | ;;
-@replace=/<tmap>/#MAP($n%1024)(,544:background,553:floor,562:crumbling_floor,571:wall,580:conveyor,589:nasty1,598:nasty2,607:extra)
-@replace=/#item\i/#UDG(45748+1024*\1,#PEEK(45685+1024*\1))(item#EVAL\1,,2)
-@replace=/#portal\i/#UDGARRAY(2,#PEEK(45711+1024*\1),4,2);(45712+1024*\1)-(45729+1024*\1)-1-16(portal#EVAL\1,,2)
-@replace=/#sprite\i,\i/#UDGARRAY(2,#IF(\2<256)(\2,127&#PEEK\2),4,2);\1-(\1+17)-1-16
+@expand=#DEFINE1(TILES,#FOR(45600+{0}*1024,45663+{0}*1024,9);;$n;#UDG($n+1,#PEEK$n)(#MAP($n%1024)(,544:background,553:floor,562:crumbling_floor,571:wall,580:conveyor,589:nasty1,598:nasty2,607:extra)_{0}); | ;;)
+@expand=#DEFINE1(ITEM,#UDG(45748+1024*{0},#PEEK(45685+1024*{0}))(item#EVAL{0},,2))
+@expand=#DEFINE1(PORTAL,#UDGARRAY(2,#PEEK(45711+1024*{0}),4,2);(45712+1024*{0})-(45729+1024*{0})-1-16(portal#EVAL{0},,2))
+@expand=#DEFINE2(SPRITE,#UDGARRAY(2,#IF({1}<256)({1},127&#PEEK{1}),4,2);{0}-({0}+17)-1-16)
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#b\i/#N\1,,,1(0x)
-@replace=/#BUG(?![A-Z])/#LINK:Bugs
-@replace=/#FACT(?![A-Z])/#LINK:Facts
-@replace=/#POKE(?![A-Z])/#LINK:Pokes
+@expand=#DEFINE0(BUG,#LINK:Bugs)
+@expand=#DEFINE0(FACT,#LINK:Facts)
+@expand=#DEFINE0(POKE,#LINK:Pokes)
 @writer=:manicminer.ManicMinerAsmWriter
 ; Manic Miner disassembly
 ; https://skoolkit.ca
@@ -4138,7 +4137,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles0 }
+; { #TILES0 }
 ; TABLE#
  45600 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  45609 DEFB 66,255,255,219,110,197,64,0,0      ; Floor
@@ -4200,7 +4199,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal0 }
+; { #PORTAL0 }
 ; TABLE#
  45711 DEFB 14                                 ; Attribute
  45712 DEFB 255,255,146,73,182,219,255,255     ; {Graphic data
@@ -4214,7 +4213,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item0 }
+; { #ITEM0 }
 ; TABLE#
  45748 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -4254,14 +4253,14 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite45824,45758(central_cavern_guardian0) |
-; #sprite45856,45758(central_cavern_guardian1) |
-; #sprite45888,45758(central_cavern_guardian2) |
-; #sprite45920,45758(central_cavern_guardian3) |
-; #sprite45952,45758(central_cavern_guardian4) |
-; #sprite45984,45758(central_cavern_guardian5) |
-; #sprite46016,45758(central_cavern_guardian6) |
-; #sprite46048,45758(central_cavern_guardian7) }
+; { #SPRITE45824,45758(central_cavern_guardian0) |
+; #SPRITE45856,45758(central_cavern_guardian1) |
+; #SPRITE45888,45758(central_cavern_guardian2) |
+; #SPRITE45920,45758(central_cavern_guardian3) |
+; #SPRITE45952,45758(central_cavern_guardian4) |
+; #SPRITE45984,45758(central_cavern_guardian5) |
+; #SPRITE46016,45758(central_cavern_guardian6) |
+; #SPRITE46048,45758(central_cavern_guardian7) }
 ; TABLE#
  45824 DEFB 31,32,57,224,25,224,15,32          ; {Guardian graphic data
  45832 DEFB 159,0,95,128,255,192,94,0          ;
@@ -4376,7 +4375,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles1 }
+; { #TILES1 }
 ; TABLE#
  46624 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  46633 DEFB 75,255,255,219,110,197,64,0,0      ; Floor
@@ -4438,7 +4437,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal1 }
+; { #PORTAL1 }
 ; TABLE#
  46735 DEFB 83                                 ; Attribute
  46736 DEFB 255,255,146,73,146,73,146,73       ; {Graphic data
@@ -4452,7 +4451,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item1 }
+; { #ITEM1 }
 ; TABLE#
  46772 DEFB 80,168,84,168,84,44,2,1            ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -4487,7 +4486,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; screen.
 ; .
 ; #UDGTABLE
-; { #sprite46816,71(plinth) }
+; { #SPRITE46816,71(plinth) }
 ; TABLE#
 @label=PLINTH
  46816 DEFB 255,255,114,78,138,81,170,85       ; {Plinth graphic data
@@ -4497,14 +4496,14 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite46848,46782(the_cold_room_guardian0) |
-; #sprite46880,46782(the_cold_room_guardian1) |
-; #sprite46912,46782(the_cold_room_guardian2) |
-; #sprite46944,46782(the_cold_room_guardian3) |
-; #sprite46976,46782(the_cold_room_guardian4) |
-; #sprite47008,46782(the_cold_room_guardian5) |
-; #sprite47040,46782(the_cold_room_guardian6) |
-; #sprite47072,46782(the_cold_room_guardian7) }
+; { #SPRITE46848,46782(the_cold_room_guardian0) |
+; #SPRITE46880,46782(the_cold_room_guardian1) |
+; #SPRITE46912,46782(the_cold_room_guardian2) |
+; #SPRITE46944,46782(the_cold_room_guardian3) |
+; #SPRITE46976,46782(the_cold_room_guardian4) |
+; #SPRITE47008,46782(the_cold_room_guardian5) |
+; #SPRITE47040,46782(the_cold_room_guardian6) |
+; #SPRITE47072,46782(the_cold_room_guardian7) }
 ; TABLE#
  46848 DEFB 12,0,30,0,27,0,30,192              ; {Guardian graphic data
  46856 DEFB 57,0,50,0,58,0,61,0                ;
@@ -4619,7 +4618,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles2 }
+; { #TILES2 }
 ; TABLE#
  47648 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  47657 DEFB 69,255,255,102,153,102,153,255,0   ; Floor
@@ -4681,7 +4680,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal2 }
+; { #PORTAL2 }
 ; TABLE#
  47759 DEFB 14                                 ; Attribute
  47760 DEFB 255,255,68,68,153,153,34,34        ; {Graphic data
@@ -4695,7 +4694,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item2 }
+; { #ITEM2 }
 ; TABLE#
  47796 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -4736,7 +4735,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; remaining lives when #FACT#6031769(cheat mode) is activated (see #R34608).
 ; .
 ; #UDGTABLE
-; { #sprite47840,71(boot) }
+; { #SPRITE47840,71(boot) }
 ; TABLE#
 @label=BOOT
  47840 DEFB 42,192,53,64,63,192,9,0            ; {Boot graphic data
@@ -4746,14 +4745,14 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite47872,47806(the_menagerie_guardian0) |
-; #sprite47904,47806(the_menagerie_guardian1) |
-; #sprite47936,47806(the_menagerie_guardian2) |
-; #sprite47968,47806(the_menagerie_guardian3) |
-; #sprite48000,47806(the_menagerie_guardian4) |
-; #sprite48032,47806(the_menagerie_guardian5) |
-; #sprite48064,47806(the_menagerie_guardian6) |
-; #sprite48096,47806(the_menagerie_guardian7) }
+; { #SPRITE47872,47806(the_menagerie_guardian0) |
+; #SPRITE47904,47806(the_menagerie_guardian1) |
+; #SPRITE47936,47806(the_menagerie_guardian2) |
+; #SPRITE47968,47806(the_menagerie_guardian3) |
+; #SPRITE48000,47806(the_menagerie_guardian4) |
+; #SPRITE48032,47806(the_menagerie_guardian5) |
+; #SPRITE48064,47806(the_menagerie_guardian6) |
+; #SPRITE48096,47806(the_menagerie_guardian7) }
 ; TABLE#
  47872 DEFB 3,0,6,128,7,192,3,0                ; {Guardian graphic data
  47880 DEFB 1,128,0,192,190,192,227,128        ;
@@ -4868,7 +4867,7 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles3 }
+; { #TILES3 }
 ; TABLE#
  48672 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  48681 DEFB 70,255,255,219,110,197,64,0,0      ; Floor
@@ -4930,7 +4929,7 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal3 }
+; { #PORTAL3 }
 ; TABLE#
  48783 DEFB 14                                 ; Attribute
  48784 DEFB 34,34,17,17,136,136,68,68          ; {Graphic data
@@ -4944,7 +4943,7 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item3 }
+; { #ITEM3 }
 ; TABLE#
  48820 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -4980,14 +4979,14 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite48896,48830(abandoned_uranium_workings_guardian0) |
-; #sprite48928,48830(abandoned_uranium_workings_guardian1) |
-; #sprite48960,48830(abandoned_uranium_workings_guardian2) |
-; #sprite48992,48830(abandoned_uranium_workings_guardian3) |
-; #sprite49024,48830(abandoned_uranium_workings_guardian4) |
-; #sprite49056,48830(abandoned_uranium_workings_guardian5) |
-; #sprite49088,48830(abandoned_uranium_workings_guardian6) |
-; #sprite49120,48830(abandoned_uranium_workings_guardian7) }
+; { #SPRITE48896,48830(abandoned_uranium_workings_guardian0) |
+; #SPRITE48928,48830(abandoned_uranium_workings_guardian1) |
+; #SPRITE48960,48830(abandoned_uranium_workings_guardian2) |
+; #SPRITE48992,48830(abandoned_uranium_workings_guardian3) |
+; #SPRITE49024,48830(abandoned_uranium_workings_guardian4) |
+; #SPRITE49056,48830(abandoned_uranium_workings_guardian5) |
+; #SPRITE49088,48830(abandoned_uranium_workings_guardian6) |
+; #SPRITE49120,48830(abandoned_uranium_workings_guardian7) }
 ; TABLE#
  48896 DEFB 7,0,11,128,19,192,19,192           ; {Guardian graphic data
  48904 DEFB 19,192,11,128,7,0,1,0              ;
@@ -5102,7 +5101,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles4 }
+; { #TILES4 }
 ; TABLE#
  49696 DEFB 16,0,0,0,0,0,0,0,0                 ; Background
  49705 DEFB 21,255,255,219,110,197,64,0,0      ; Floor
@@ -5164,7 +5163,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal4 }
+; { #PORTAL4 }
 ; TABLE#
  49807 DEFB 87                                 ; Attribute
  49808 DEFB 255,255,170,170,170,170,170,170    ; {Graphic data
@@ -5178,7 +5177,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item4 }
+; { #ITEM4 }
 ; TABLE#
  49844 DEFB 31,35,71,255,143,142,140,248       ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -5211,7 +5210,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; The next 32 bytes define the Eugene graphic.
 ; .
 ; #UDGTABLE
-; { #sprite49888,23(eugene) }
+; { #SPRITE49888,23(eugene) }
 ; TABLE#
 @label=EUGENEG
  49888 DEFB 3,192,15,240,31,248,31,248         ; {Eugene graphic data
@@ -5221,14 +5220,14 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite49920,49854(eugene's_lair_guardian0) |
-; #sprite49952,49854(eugene's_lair_guardian1) |
-; #sprite49984,49854(eugene's_lair_guardian2) |
-; #sprite50016,49854(eugene's_lair_guardian3) |
-; #sprite50048,49854(eugene's_lair_guardian4) |
-; #sprite50080,49854(eugene's_lair_guardian5) |
-; #sprite50112,49854(eugene's_lair_guardian6) |
-; #sprite50144,49854(eugene's_lair_guardian7) }
+; { #SPRITE49920,49854(eugene's_lair_guardian0) |
+; #SPRITE49952,49854(eugene's_lair_guardian1) |
+; #SPRITE49984,49854(eugene's_lair_guardian2) |
+; #SPRITE50016,49854(eugene's_lair_guardian3) |
+; #SPRITE50048,49854(eugene's_lair_guardian4) |
+; #SPRITE50080,49854(eugene's_lair_guardian5) |
+; #SPRITE50112,49854(eugene's_lair_guardian6) |
+; #SPRITE50144,49854(eugene's_lair_guardian7) }
 ; TABLE#
  49920 DEFB 192,0,192,0,192,0,192,0            ; {Guardian graphic data
  49928 DEFB 192,0,192,0,192,0,223,192          ;
@@ -5343,7 +5342,7 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles5 }
+; { #TILES5 }
 ; TABLE#
  50720 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  50729 DEFB 68,255,255,153,153,255,153,102,0   ; Floor
@@ -5405,7 +5404,7 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal5 }
+; { #PORTAL5 }
 ; TABLE#
  50831 DEFB 14                                 ; Attribute
  50832 DEFB 255,255,129,129,191,253,191,253    ; {Graphic data
@@ -5419,7 +5418,7 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item5 }
+; { #ITEM5 }
 ; TABLE#
  50868 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -5465,14 +5464,14 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite50944,50878(processing_plant_guardian0) |
-; #sprite50976,50878(processing_plant_guardian1) |
-; #sprite51008,50878(processing_plant_guardian2) |
-; #sprite51040,50878(processing_plant_guardian3) |
-; #sprite51072,50878(processing_plant_guardian4) |
-; #sprite51104,50878(processing_plant_guardian5) |
-; #sprite51136,50878(processing_plant_guardian6) |
-; #sprite51168,50878(processing_plant_guardian7) }
+; { #SPRITE50944,50878(processing_plant_guardian0) |
+; #SPRITE50976,50878(processing_plant_guardian1) |
+; #SPRITE51008,50878(processing_plant_guardian2) |
+; #SPRITE51040,50878(processing_plant_guardian3) |
+; #SPRITE51072,50878(processing_plant_guardian4) |
+; #SPRITE51104,50878(processing_plant_guardian5) |
+; #SPRITE51136,50878(processing_plant_guardian6) |
+; #SPRITE51168,50878(processing_plant_guardian7) }
 ; TABLE#
  50944 DEFB 31,0,127,192,115,224,243,128       ; {Guardian graphic data
  50952 DEFB 254,0,248,0,254,0,255,128          ;
@@ -5587,7 +5586,7 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles6 }
+; { #TILES6 }
 ; TABLE#
  51744 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  51753 DEFB 70,255,255,219,110,197,64,0,0      ; Floor
@@ -5649,7 +5648,7 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal6 }
+; { #PORTAL6 }
 ; TABLE#
  51855 DEFB 11                                 ; Attribute
  51856 DEFB 255,255,129,129,129,129,129,129    ; {Graphic data
@@ -5663,7 +5662,7 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item6 }
+; { #ITEM6 }
 ; TABLE#
  51892 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -5704,12 +5703,12 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite51968,51902(the_vat_guardian0) |
-; #sprite52000,51902(the_vat_guardian1) | #sprite52032,51902(the_vat_guardian2)
-; | #sprite52064,51902(the_vat_guardian3) |
-; #sprite52096,51902(the_vat_guardian4) | #sprite52128,51902(the_vat_guardian5)
-; | #sprite52160,51902(the_vat_guardian6) |
-; #sprite52192,51902(the_vat_guardian7) }
+; { #SPRITE51968,51902(the_vat_guardian0) |
+; #SPRITE52000,51902(the_vat_guardian1) | #SPRITE52032,51902(the_vat_guardian2)
+; | #SPRITE52064,51902(the_vat_guardian3) |
+; #SPRITE52096,51902(the_vat_guardian4) | #SPRITE52128,51902(the_vat_guardian5)
+; | #SPRITE52160,51902(the_vat_guardian6) |
+; #SPRITE52192,51902(the_vat_guardian7) }
 ; TABLE#
  51968 DEFB 24,0,28,0,10,128,15,128            ; {Guardian graphic data
  51976 DEFB 12,0,28,0,30,0,29,0                ;
@@ -5824,7 +5823,7 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles7 }
+; { #TILES7 }
 ; TABLE#
  52768 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  52777 DEFB 66,255,255,219,110,197,64,0,0      ; Floor
@@ -5883,7 +5882,7 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal7 }
+; { #PORTAL7 }
 ; TABLE#
  52879 DEFB 14                                 ; Attribute
  52880 DEFB 255,255,128,1,192,3,160,5          ; {Graphic data
@@ -5897,7 +5896,7 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item7 }
+; { #ITEM7 }
 ; TABLE#
  52916 DEFB 128,192,236,114,40,84,138,135      ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -5940,14 +5939,14 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite52992,37389(miner_willy_meets_the_kong_beast_guardian0) |
-; #sprite53024,37389(miner_willy_meets_the_kong_beast_guardian1) |
-; #sprite53056,37389(miner_willy_meets_the_kong_beast_guardian2) |
-; #sprite53088,37389(miner_willy_meets_the_kong_beast_guardian3) |
-; #sprite53120,52926(miner_willy_meets_the_kong_beast_guardian4) |
-; #sprite53152,52926(miner_willy_meets_the_kong_beast_guardian5) |
-; #sprite53184,52926(miner_willy_meets_the_kong_beast_guardian6) |
-; #sprite53216,52926(miner_willy_meets_the_kong_beast_guardian7) }
+; { #SPRITE52992,37389(miner_willy_meets_the_kong_beast_guardian0) |
+; #SPRITE53024,37389(miner_willy_meets_the_kong_beast_guardian1) |
+; #SPRITE53056,37389(miner_willy_meets_the_kong_beast_guardian2) |
+; #SPRITE53088,37389(miner_willy_meets_the_kong_beast_guardian3) |
+; #SPRITE53120,52926(miner_willy_meets_the_kong_beast_guardian4) |
+; #SPRITE53152,52926(miner_willy_meets_the_kong_beast_guardian5) |
+; #SPRITE53184,52926(miner_willy_meets_the_kong_beast_guardian6) |
+; #SPRITE53216,52926(miner_willy_meets_the_kong_beast_guardian7) }
 ; TABLE#
  52992 DEFB 19,200,29,184,15,240,6,96          ; {Guardian graphic data
  53000 DEFB 5,160,2,64,7,224,15,240            ;
@@ -6062,7 +6061,7 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles8 }
+; { #TILES8 }
 ; TABLE#
  53792 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  53801 DEFB 6,255,255,219,110,197,64,0,0       ; Floor
@@ -6112,7 +6111,7 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal8 }
+; { #PORTAL8 }
 ; TABLE#
  53903 DEFB 14                                 ; Attribute
  53904 DEFB 255,255,128,1,129,129,130,65       ; {Graphic data
@@ -6126,7 +6125,7 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item8 }
+; { #ITEM8 }
 ; TABLE#
  53940 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -6187,14 +6186,14 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite54016,53981(wacky_amoebatrons_guardian0) |
-; #sprite54048,53981(wacky_amoebatrons_guardian1) |
-; #sprite54080,53981(wacky_amoebatrons_guardian2) |
-; #sprite54112,53981(wacky_amoebatrons_guardian3) |
-; #sprite54144,53950(wacky_amoebatrons_guardian4) |
-; #sprite54176,53950(wacky_amoebatrons_guardian5) |
-; #sprite54208,53950(wacky_amoebatrons_guardian6) |
-; #sprite54240,53950(wacky_amoebatrons_guardian7) }
+; { #SPRITE54016,53981(wacky_amoebatrons_guardian0) |
+; #SPRITE54048,53981(wacky_amoebatrons_guardian1) |
+; #SPRITE54080,53981(wacky_amoebatrons_guardian2) |
+; #SPRITE54112,53981(wacky_amoebatrons_guardian3) |
+; #SPRITE54144,53950(wacky_amoebatrons_guardian4) |
+; #SPRITE54176,53950(wacky_amoebatrons_guardian5) |
+; #SPRITE54208,53950(wacky_amoebatrons_guardian6) |
+; #SPRITE54240,53950(wacky_amoebatrons_guardian7) }
 ; TABLE#
  54016 DEFB 10,32,22,104,1,80,57,98            ; {Guardian graphic data
  54024 DEFB 101,206,3,208,255,238,135,241      ;
@@ -6309,7 +6308,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles9 }
+; { #TILES9 }
 ; TABLE#
  54816 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  54825 DEFB 68,124,255,239,30,12,8,8,8         ; Floor
@@ -6371,7 +6370,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal9 }
+; { #PORTAL9 }
 ; TABLE#
  54927 DEFB 30                                 ; Attribute
  54928 DEFB 255,255,248,143,136,145,170,145    ; {Graphic data
@@ -6385,7 +6384,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item9 }
+; { #ITEM9 }
 ; TABLE#
  54964 DEFB 8,8,62,95,95,71,97,62              ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -6431,14 +6430,14 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite55040,54974(the_endorian_forest_guardian0) |
-; #sprite55072,54974(the_endorian_forest_guardian1) |
-; #sprite55104,54974(the_endorian_forest_guardian2) |
-; #sprite55136,54974(the_endorian_forest_guardian3) |
-; #sprite55168,54974(the_endorian_forest_guardian4) |
-; #sprite55200,54974(the_endorian_forest_guardian5) |
-; #sprite55232,54974(the_endorian_forest_guardian6) |
-; #sprite55264,54974(the_endorian_forest_guardian7) }
+; { #SPRITE55040,54974(the_endorian_forest_guardian0) |
+; #SPRITE55072,54974(the_endorian_forest_guardian1) |
+; #SPRITE55104,54974(the_endorian_forest_guardian2) |
+; #SPRITE55136,54974(the_endorian_forest_guardian3) |
+; #SPRITE55168,54974(the_endorian_forest_guardian4) |
+; #SPRITE55200,54974(the_endorian_forest_guardian5) |
+; #SPRITE55232,54974(the_endorian_forest_guardian6) |
+; #SPRITE55264,54974(the_endorian_forest_guardian7) }
 ; TABLE#
  55040 DEFB 112,0,80,0,124,0,52,0              ; {Guardian graphic data
  55048 DEFB 62,0,62,0,24,0,60,0                ;
@@ -6553,7 +6552,7 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles10 }
+; { #TILES10 }
 ; TABLE#
  55840 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  55849 DEFB 65,255,255,219,110,197,64,0,0      ; Floor
@@ -6615,7 +6614,7 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal10 }
+; { #PORTAL10 }
 ; TABLE#
  55951 DEFB 86                                 ; Attribute
  55952 DEFB 255,255,218,171,234,107,255,255    ; {Graphic data
@@ -6629,7 +6628,7 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item10 }
+; { #ITEM10 }
 ; TABLE#
  55988 DEFB 60,90,149,213,213,213,90,60        ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -6695,14 +6694,14 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite56064,56029(attack_of_the_mutant_telephones_guardian0) |
-; #sprite56096,56029(attack_of_the_mutant_telephones_guardian1) |
-; #sprite56128,56029(attack_of_the_mutant_telephones_guardian2) |
-; #sprite56160,56029(attack_of_the_mutant_telephones_guardian3) |
-; #sprite56192,55998(attack_of_the_mutant_telephones_guardian4) |
-; #sprite56224,55998(attack_of_the_mutant_telephones_guardian5) |
-; #sprite56256,55998(attack_of_the_mutant_telephones_guardian6) |
-; #sprite56288,55998(attack_of_the_mutant_telephones_guardian7) }
+; { #SPRITE56064,56029(attack_of_the_mutant_telephones_guardian0) |
+; #SPRITE56096,56029(attack_of_the_mutant_telephones_guardian1) |
+; #SPRITE56128,56029(attack_of_the_mutant_telephones_guardian2) |
+; #SPRITE56160,56029(attack_of_the_mutant_telephones_guardian3) |
+; #SPRITE56192,55998(attack_of_the_mutant_telephones_guardian4) |
+; #SPRITE56224,55998(attack_of_the_mutant_telephones_guardian5) |
+; #SPRITE56256,55998(attack_of_the_mutant_telephones_guardian6) |
+; #SPRITE56288,55998(attack_of_the_mutant_telephones_guardian7) }
 ; TABLE#
  56064 DEFB 0,0,0,0,63,252,99,198              ; {Guardian graphic data
  56072 DEFB 235,215,232,23,15,240,7,224        ;
@@ -6817,7 +6816,7 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles11 }
+; { #TILES11 }
 ; TABLE#
  56864 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  56873 DEFB 67,255,255,219,110,197,64,0,0      ; Floor
@@ -6879,7 +6878,7 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal11 }
+; { #PORTAL11 }
 ; TABLE#
  56975 DEFB 94                                 ; Attribute
  56976 DEFB 255,255,128,1,143,241,143,241      ; {Graphic data
@@ -6893,7 +6892,7 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item11 }
+; { #ITEM11 }
 ; TABLE#
  57012 DEFB 128,192,236,114,40,84,138,135      ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -6936,14 +6935,14 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite57088,37389(return_of_the_alien_kong_beast_guardian0) |
-; #sprite57120,37389(return_of_the_alien_kong_beast_guardian1) |
-; #sprite57152,37389(return_of_the_alien_kong_beast_guardian2) |
-; #sprite57184,37389(return_of_the_alien_kong_beast_guardian3) |
-; #sprite57216,57022(return_of_the_alien_kong_beast_guardian4) |
-; #sprite57248,57022(return_of_the_alien_kong_beast_guardian5) |
-; #sprite57280,57022(return_of_the_alien_kong_beast_guardian6) |
-; #sprite57312,57022(return_of_the_alien_kong_beast_guardian7) }
+; { #SPRITE57088,37389(return_of_the_alien_kong_beast_guardian0) |
+; #SPRITE57120,37389(return_of_the_alien_kong_beast_guardian1) |
+; #SPRITE57152,37389(return_of_the_alien_kong_beast_guardian2) |
+; #SPRITE57184,37389(return_of_the_alien_kong_beast_guardian3) |
+; #SPRITE57216,57022(return_of_the_alien_kong_beast_guardian4) |
+; #SPRITE57248,57022(return_of_the_alien_kong_beast_guardian5) |
+; #SPRITE57280,57022(return_of_the_alien_kong_beast_guardian6) |
+; #SPRITE57312,57022(return_of_the_alien_kong_beast_guardian7) }
 ; TABLE#
  57088 DEFB 19,200,29,184,15,240,6,96          ; {Guardian graphic data
  57096 DEFB 5,160,2,64,7,224,15,240            ;
@@ -7058,7 +7057,7 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles12 }
+; { #TILES12 }
 ; TABLE#
  57888 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  57897 DEFB 5,255,255,17,34,68,136,255,255     ; Floor
@@ -7120,7 +7119,7 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal12 }
+; { #PORTAL12 }
 ; TABLE#
  57999 DEFB 79                                 ; Attribute
  58000 DEFB 3,192,7,224,15,240,9,144           ; {Graphic data
@@ -7134,7 +7133,7 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item12 }
+; { #ITEM12 }
 ; TABLE#
  58036 DEFB 24,110,66,219,201,98,126,24        ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -7186,14 +7185,14 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite58112,58077(ore_refinery_guardian0) |
-; #sprite58144,58077(ore_refinery_guardian1) |
-; #sprite58176,58077(ore_refinery_guardian2) |
-; #sprite58208,58077(ore_refinery_guardian3) |
-; #sprite58240,58046(ore_refinery_guardian4) |
-; #sprite58272,58046(ore_refinery_guardian5) |
-; #sprite58304,58046(ore_refinery_guardian6) |
-; #sprite58336,58046(ore_refinery_guardian7) }
+; { #SPRITE58112,58077(ore_refinery_guardian0) |
+; #SPRITE58144,58077(ore_refinery_guardian1) |
+; #SPRITE58176,58077(ore_refinery_guardian2) |
+; #SPRITE58208,58077(ore_refinery_guardian3) |
+; #SPRITE58240,58046(ore_refinery_guardian4) |
+; #SPRITE58272,58046(ore_refinery_guardian5) |
+; #SPRITE58304,58046(ore_refinery_guardian6) |
+; #SPRITE58336,58046(ore_refinery_guardian7) }
 ; TABLE#
  58112 DEFB 0,0,0,0,0,0,3,192                  ; {Guardian graphic data
  58120 DEFB 12,48,16,8,32,4,64,2               ;
@@ -7308,7 +7307,7 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles13 }
+; { #TILES13 }
 ; TABLE#
 ; .
 ; #HTML(The patterns of the two unused nasty tiles are hidden in these images
@@ -7375,7 +7374,7 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal13 }
+; { #PORTAL13 }
 ; TABLE#
  59023 DEFB 30                                 ; Attribute
  59024 DEFB 255,255,255,255,252,63,248,31      ; {Graphic data
@@ -7389,7 +7388,7 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item13 }
+; { #ITEM13 }
 ; TABLE#
  59060 DEFB 170,170,254,254,254,254,170,170    ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -7448,14 +7447,14 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite59136,59101(skylab_landing_bay_guardian0) |
-; #sprite59168,59101(skylab_landing_bay_guardian1) |
-; #sprite59200,59101(skylab_landing_bay_guardian2) |
-; #sprite59232,59101(skylab_landing_bay_guardian3) |
-; #sprite59264,59101(skylab_landing_bay_guardian4) |
-; #sprite59296,59101(skylab_landing_bay_guardian5) |
-; #sprite59328,59101(skylab_landing_bay_guardian6) |
-; #sprite59360,59101(skylab_landing_bay_guardian7) }
+; { #SPRITE59136,59101(skylab_landing_bay_guardian0) |
+; #SPRITE59168,59101(skylab_landing_bay_guardian1) |
+; #SPRITE59200,59101(skylab_landing_bay_guardian2) |
+; #SPRITE59232,59101(skylab_landing_bay_guardian3) |
+; #SPRITE59264,59101(skylab_landing_bay_guardian4) |
+; #SPRITE59296,59101(skylab_landing_bay_guardian5) |
+; #SPRITE59328,59101(skylab_landing_bay_guardian6) |
+; #SPRITE59360,59101(skylab_landing_bay_guardian7) }
 ; TABLE#
  59136 DEFB 3,192,255,255,171,213,255,255      ; {Guardian graphic data
  59144 DEFB 19,200,41,148,21,168,11,208        ;
@@ -7570,7 +7569,7 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles14 }
+; { #TILES14 }
 ; TABLE#
  59936 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  59945 DEFB 65,255,255,221,119,170,85,34,0     ; Floor
@@ -7632,7 +7631,7 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal14 }
+; { #PORTAL14 }
 ; TABLE#
  60047 DEFB 86                                 ; Attribute
  60048 DEFB 255,255,128,1,128,1,128,1          ; {Graphic data
@@ -7646,7 +7645,7 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item14 }
+; { #ITEM14 }
 ; TABLE#
  60084 DEFB 124,56,100,222,142,222,130,124     ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -7696,14 +7695,14 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite60160,60125(the_bank_guardian0) |
-; #sprite60192,60125(the_bank_guardian1) |
-; #sprite60224,60125(the_bank_guardian2) |
-; #sprite60256,60125(the_bank_guardian3) |
-; #sprite60288,60094(the_bank_guardian4) |
-; #sprite60320,60094(the_bank_guardian5) |
-; #sprite60352,60094(the_bank_guardian6) |
-; #sprite60384,60094(the_bank_guardian7) }
+; { #SPRITE60160,60125(the_bank_guardian0) |
+; #SPRITE60192,60125(the_bank_guardian1) |
+; #SPRITE60224,60125(the_bank_guardian2) |
+; #SPRITE60256,60125(the_bank_guardian3) |
+; #SPRITE60288,60094(the_bank_guardian4) |
+; #SPRITE60320,60094(the_bank_guardian5) |
+; #SPRITE60352,60094(the_bank_guardian6) |
+; #SPRITE60384,60094(the_bank_guardian7) }
 ; TABLE#
  60160 DEFB 97,134,159,249,159,249,97,134      ; {Guardian graphic data
  60168 DEFB 3,192,255,255,128,1,170,169        ;
@@ -7818,7 +7817,7 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles15 }
+; { #TILES15 }
 ; TABLE#
  60960 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  60969 DEFB 66,255,255,219,110,197,64,0,0      ; Floor
@@ -7880,7 +7879,7 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal15 }
+; { #PORTAL15 }
 ; TABLE#
  61071 DEFB 94                                 ; Attribute
  61072 DEFB 255,255,129,129,129,129,255,255    ; {Graphic data
@@ -7894,7 +7893,7 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item15 }
+; { #ITEM15 }
 ; TABLE#
  61108 DEFB 15,9,61,39,244,156,144,240         ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -7940,14 +7939,14 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite61184,61118(the_sixteenth_cavern_guardian0) |
-; #sprite61216,61118(the_sixteenth_cavern_guardian1) |
-; #sprite61248,61118(the_sixteenth_cavern_guardian2) |
-; #sprite61280,61118(the_sixteenth_cavern_guardian3) |
-; #sprite61312,61118(the_sixteenth_cavern_guardian4) |
-; #sprite61344,61118(the_sixteenth_cavern_guardian5) |
-; #sprite61376,61118(the_sixteenth_cavern_guardian6) |
-; #sprite61408,61118(the_sixteenth_cavern_guardian7) }
+; { #SPRITE61184,61118(the_sixteenth_cavern_guardian0) |
+; #SPRITE61216,61118(the_sixteenth_cavern_guardian1) |
+; #SPRITE61248,61118(the_sixteenth_cavern_guardian2) |
+; #SPRITE61280,61118(the_sixteenth_cavern_guardian3) |
+; #SPRITE61312,61118(the_sixteenth_cavern_guardian4) |
+; #SPRITE61344,61118(the_sixteenth_cavern_guardian5) |
+; #SPRITE61376,61118(the_sixteenth_cavern_guardian6) |
+; #SPRITE61408,61118(the_sixteenth_cavern_guardian7) }
 ; TABLE#
  61184 DEFB 0,0,8,0,20,0,42,0                  ; {Guardian graphic data
  61192 DEFB 85,0,74,0,132,0,128,192            ;
@@ -8062,7 +8061,7 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles16 }
+; { #TILES16 }
 ; TABLE#
  61984 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  61993 DEFB 4,255,255,219,110,197,64,0,0       ; Floor
@@ -8124,7 +8123,7 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal16 }
+; { #PORTAL16 }
 ; TABLE#
  62095 DEFB 76                                 ; Attribute
  62096 DEFB 255,255,128,1,191,253,160,5        ; {Graphic data
@@ -8138,7 +8137,7 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item16 }
+; { #ITEM16 }
 ; TABLE#
  62132 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -8199,14 +8198,14 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite62208,62173(the_warehouse_guardian0) |
-; #sprite62240,62173(the_warehouse_guardian1) |
-; #sprite62272,62173(the_warehouse_guardian2) |
-; #sprite62304,62173(the_warehouse_guardian3) |
-; #sprite62336,62142(the_warehouse_guardian4) |
-; #sprite62368,62142(the_warehouse_guardian5) |
-; #sprite62400,62142(the_warehouse_guardian6) |
-; #sprite62432,62142(the_warehouse_guardian7) }
+; { #SPRITE62208,62173(the_warehouse_guardian0) |
+; #SPRITE62240,62173(the_warehouse_guardian1) |
+; #SPRITE62272,62173(the_warehouse_guardian2) |
+; #SPRITE62304,62173(the_warehouse_guardian3) |
+; #SPRITE62336,62142(the_warehouse_guardian4) |
+; #SPRITE62368,62142(the_warehouse_guardian5) |
+; #SPRITE62400,62142(the_warehouse_guardian6) |
+; #SPRITE62432,62142(the_warehouse_guardian7) }
 ; TABLE#
  62208 DEFB 85,85,255,255,255,255,8,16         ; {Guardian graphic data
  62216 DEFB 8,16,8,16,248,31,85,85             ;
@@ -8321,7 +8320,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles17 }
+; { #TILES17 }
 ; TABLE#
  63008 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63017 DEFB 66,255,255,219,110,197,64,0,0      ; Floor
@@ -8371,7 +8370,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal17 }
+; { #PORTAL17 }
 ; TABLE#
  63119 DEFB 14                                 ; Attribute
  63120 DEFB 255,255,128,1,176,13,160,5         ; {Graphic data
@@ -8385,7 +8384,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item17 }
+; { #ITEM17 }
 ; TABLE#
  63156 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -8456,14 +8455,14 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite63232,63197(amoebatrons'_revenge_guardian0) |
-; #sprite63264,63197(amoebatrons'_revenge_guardian1) |
-; #sprite63296,63197(amoebatrons'_revenge_guardian2) |
-; #sprite63328,63197(amoebatrons'_revenge_guardian3) |
-; #sprite63360,63166(amoebatrons'_revenge_guardian4) |
-; #sprite63392,63166(amoebatrons'_revenge_guardian5) |
-; #sprite63424,63166(amoebatrons'_revenge_guardian6) |
-; #sprite63456,63166(amoebatrons'_revenge_guardian7) }
+; { #SPRITE63232,63197(amoebatrons'_revenge_guardian0) |
+; #SPRITE63264,63197(amoebatrons'_revenge_guardian1) |
+; #SPRITE63296,63197(amoebatrons'_revenge_guardian2) |
+; #SPRITE63328,63197(amoebatrons'_revenge_guardian3) |
+; #SPRITE63360,63166(amoebatrons'_revenge_guardian4) |
+; #SPRITE63392,63166(amoebatrons'_revenge_guardian5) |
+; #SPRITE63424,63166(amoebatrons'_revenge_guardian6) |
+; #SPRITE63456,63166(amoebatrons'_revenge_guardian7) }
 ; TABLE#
  63232 DEFB 3,192,14,112,19,200,49,140         ; {Guardian graphic data
  63240 DEFB 57,156,95,250,141,178,132,164      ;
@@ -8578,7 +8577,7 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles18 }
+; { #TILES18 }
 ; TABLE#
  64032 DEFB 36,0,0,0,0,0,0,0,0                 ; Background
  64041 DEFB 32,255,255,219,110,197,64,0,0      ; Floor
@@ -8634,7 +8633,7 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal18 }
+; { #PORTAL18 }
 ; TABLE#
  64143 DEFB 78                                 ; Attribute
  64144 DEFB 255,255,128,1,191,253,160,5        ; {Graphic data
@@ -8648,7 +8647,7 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item18 }
+; { #ITEM18 }
 ; TABLE#
  64180 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -8712,14 +8711,14 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite64256,64221(solar_power_generator_guardian0) |
-; #sprite64288,64221(solar_power_generator_guardian1) |
-; #sprite64320,64221(solar_power_generator_guardian2) |
-; #sprite64352,64221(solar_power_generator_guardian3) |
-; #sprite64384,64190(solar_power_generator_guardian4) |
-; #sprite64416,64190(solar_power_generator_guardian5) |
-; #sprite64448,64190(solar_power_generator_guardian6) |
-; #sprite64480,64190(solar_power_generator_guardian7) }
+; { #SPRITE64256,64221(solar_power_generator_guardian0) |
+; #SPRITE64288,64221(solar_power_generator_guardian1) |
+; #SPRITE64320,64221(solar_power_generator_guardian2) |
+; #SPRITE64352,64221(solar_power_generator_guardian3) |
+; #SPRITE64384,64190(solar_power_generator_guardian4) |
+; #SPRITE64416,64190(solar_power_generator_guardian5) |
+; #SPRITE64448,64190(solar_power_generator_guardian6) |
+; #SPRITE64480,64190(solar_power_generator_guardian7) }
 ; TABLE#
  64256 DEFB 3,64,15,112,63,60,63,76            ; {Guardian graphic data
  64264 DEFB 95,102,95,118,159,127,0,127        ;
@@ -8836,7 +8835,7 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
 ; graphic data for the tiles used to build the cavern.
 ; .
 ; #UDGTABLE
-; { #tiles19 }
+; { #TILES19 }
 ; TABLE#
  65056 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  65065 DEFB 66,255,255,219,110,197,64,0,0      ; Floor
@@ -8898,7 +8897,7 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
 ; location.
 ; .
 ; #UDGTABLE
-; { #portal19 }
+; { #PORTAL19 }
 ; TABLE#
  65167 DEFB 30                                 ; Attribute
  65168 DEFB 0,0,7,224,24,24,35,196             ; {Graphic data
@@ -8912,7 +8911,7 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
 ; The next eight bytes are copied to #R32948 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item19 }
+; { #ITEM19 }
 ; TABLE#
  65204 DEFB 48,72,136,144,104,4,10,4           ; Item graphic data
 ; The next byte is copied to #R32956 and specifies the initial air supply in
@@ -8949,14 +8948,14 @@ b64512 DEFB 44,34,34,34,34,34,44,40            ; {Attributes
 ; The next 256 bytes are copied to #R33024 and define the guardian graphics.
 ; .
 ; #UDGTABLE
-; { #sprite65280,65245(the_final_barrier_guardian0) |
-; #sprite65312,65245(the_final_barrier_guardian1) |
-; #sprite65344,65245(the_final_barrier_guardian2) |
-; #sprite65376,65245(the_final_barrier_guardian3) |
-; #sprite65408,65214(the_final_barrier_guardian4) |
-; #sprite65440,65214(the_final_barrier_guardian5) |
-; #sprite65472,65214(the_final_barrier_guardian6) |
-; #sprite65504,65214(the_final_barrier_guardian7) }
+; { #SPRITE65280,65245(the_final_barrier_guardian0) |
+; #SPRITE65312,65245(the_final_barrier_guardian1) |
+; #SPRITE65344,65245(the_final_barrier_guardian2) |
+; #SPRITE65376,65245(the_final_barrier_guardian3) |
+; #SPRITE65408,65214(the_final_barrier_guardian4) |
+; #SPRITE65440,65214(the_final_barrier_guardian5) |
+; #SPRITE65472,65214(the_final_barrier_guardian6) |
+; #SPRITE65504,65214(the_final_barrier_guardian7) }
 ; TABLE#
  65280 DEFB 0,0,0,0,0,0,3,192                  ; {Guardian graphic data
  65288 DEFB 12,48,16,8,32,4,64,2               ;
