@@ -43,12 +43,12 @@
 @defb=$3FC0:$00,$00,$44,$28,$10,$28,$44,$00 ; x
 @defb=$3FC8:$00,$00,$44,$44,$44,$3C,$04,$38 ; y
 @defs=23552:512
-; Attribute buffer (cavern + Willy + guardians + items)
+; Attribute buffer (cavern + Willy + guardians + items + portal)
 ;
 ; The routine at #R34574 initialises this buffer with the contents of the
 ; attribute buffer at #R24064 (empty cavern), writes the attributes for Willy,
-; the guardians and the items into it, and then copies the result to the
-; attribute file.
+; the guardians, the items and the portal into it, and then copies the result
+; to the attribute file.
 b23552 DEFS 512
 
 ; Attribute buffer (empty cavern)
@@ -57,11 +57,12 @@ b23552 DEFS 512
 ; the routines at #R35770 and #R37173.
 b24064 DEFS 512
 
-; Screen buffer (cavern + Willy + guardians + items)
+; Screen buffer (cavern + Willy + guardians + items + portal)
 ;
 ; The routine at #R34574 initialises this buffer with the contents of the
-; screen buffer at #R28672 (empty cavern), draws Willy, the guardians and the
-; items over this background, and then copies the result to the display file.
+; screen buffer at #R28672 (empty cavern), draws Willy, the guardians, the
+; items and the portal over this background, and then copies the result to the
+; display file.
 b24576 DEFS 4096
 
 ; Screen buffer (empty cavern)
