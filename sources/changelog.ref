@@ -1,7 +1,12 @@
-; Copyright 2014-2019 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2020 Richard Dymond (rjdymond@gmail.com)
 
 [Page:Changelog]
 SectionType=BulletPoints
+
+[Changelog:YYYYMMDD]
+-
+
+- Added a POKE: #POKE#oneItemOnly()
 
 [Changelog:20191112]
 -

@@ -1,4 +1,4 @@
-; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2016, 2020 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:gentleGuardians:Gentle guardians]
 To enable Willy to walk through guardians with impunity:
@@ -46,6 +46,12 @@ Note that giving Willy 10,000 points or more per item means he won't be able to
 gain extra lives (normally granted every 10,000 points) by collecting items:
 Willy gains an extra life only when the <em>thousands</em> digit rolls over
 from 9 to 0 (see #R37098).
+
+[Poke:oneItemOnly:One item only]
+To enable Willy to open the portal by collecting only one item (regardless of
+how many are in the cavern):
+
+POKE #R36748(36749),49
 
 [Poke:alwaysOpen:Always open]
 To enable Willy to walk through the portal to the next cavern without
