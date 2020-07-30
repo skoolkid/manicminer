@@ -134,14 +134,14 @@ g32800 DEFS 9        ; Background tile (also used by the routines at #R35515,
 @label=EXTRA
  32863 DEFS 9        ; Extra tile (also used by the routine at #R37403)
 
-; Willy's pixel y-coordinate (x2)
+; Willy's y-coordinate
 ;
 ; Initialised by the routine at #R34436, and used by the routines at #R35515,
 ; #R35805, #R37434 and #R37503. Holds the LSB of the address of the entry in
 ; the screen buffer address lookup table at #R33536 that corresponds to Willy's
-; pixel y-coordinate; in practice, this is twice Willy's actual pixel
+; pixel y-coordinate; in practice, this LSB is twice Willy's actual pixel
 ; y-coordinate.
-@label=PIXEL_Y
+@label=WILLY_Y
 g32872 DEFB 0
 
 ; Willy's animation frame
@@ -1578,11 +1578,11 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
                      ; #R32878
  35525 RES 0,A       ; {Now -8<=#REGa<=8 (and #REGa is even)
  35527 SUB 8         ; }
- 35529 LD HL,32872   ; {Adjust Willy's pixel y-coordinate at #R32872 depending
- 35532 ADD A,(HL)    ; on where Willy is in the jump
+ 35529 LD HL,32872   ; {Adjust Willy's y-coordinate at #R32872 depending on
+ 35532 ADD A,(HL)    ; where Willy is in the jump
  35533 LD (HL),A     ; }
  35534 CALL 35714    ; Adjust Willy's attribute buffer location at #R32876
-                     ; depending on his pixel y-coordinate
+                     ; depending on his y-coordinate
  35537 LD A,(32827)  ; Pick up the attribute byte of the wall tile for the
                      ; current cavern from #R32827
  35540 CP (HL)       ; Is the top-left cell of Willy's sprite overlapping a
@@ -1628,7 +1628,7 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
 ; is exactly two cell-heights above where he started the jump) or 16 (at which
 ; point Willy is on his way down and is exactly one cell-height above where he
 ; started the jump).
-*35600 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
+*35600 LD A,(32872)  ; Pick up Willy's y-coordinate from #R32872
  35603 AND 15        ; Does Willy's sprite occupy six cells at the moment?
  35605 JR NZ,35665   ; Jump if so
  35607 LD HL,(32876) ; Pick up Willy's attribute buffer coordinates from
@@ -1701,8 +1701,8 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
 *35701 DJNZ 35701    ;
  35703 DEC C         ;
  35704 JR NZ,35696   ; }
- 35706 LD A,(32872)  ; {Add 8 to Willy's pixel y-coordinate at #R32872; this
- 35709 ADD A,8       ; moves Willy downwards by 4 pixels
+ 35706 LD A,(32872)  ; {Add 8 to Willy's y-coordinate at #R32872; this moves
+ 35709 ADD A,8       ; Willy downwards by 4 pixels
  35711 LD (32872),A  ; }
 *35714 AND 240       ; {#REGl=16*Y, where Y is Willy's screen y-coordinate
  35716 LD L,A        ; (0-14)}
@@ -1728,12 +1728,12 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35742 LD (32875),A  ; }
  35745 RET           ;
 ; The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
-*35746 LD A,(32872)  ; {Adjust Willy's pixel y-coordinate at #R32872 so that
- 35749 ADD A,16      ; the top row of cells of his sprite is just below the
- 35751 AND 240       ; wall tile
+*35746 LD A,(32872)  ; {Adjust Willy's y-coordinate at #R32872 so that the top
+ 35749 ADD A,16      ; row of cells of his sprite is just below the wall tile
+ 35751 AND 240       ;
  35753 LD (32872),A  ; }
  35756 CALL 35714    ; Adjust Willy's attribute buffer location at #R32876 to
-                     ; account for this new pixel y-coordinate
+                     ; account for this new y-coordinate
  35759 LD A,2        ; {Set the airborne status indicator at #R32875 to #b2:
  35761 LD (32875),A  ; Willy has started falling}
  35764 LD HL,32874   ; {Reset bit 1 at #R32874: Willy is not moving left or
@@ -1921,7 +1921,7 @@ c35805 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
                      ; current cavern from #R32827
  36007 CP (HL)       ; Is there a wall tile in the cell pointed to by #REGhl?
  36008 RET Z         ; Return if so without moving Willy (his path is blocked)
- 36009 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
+ 36009 LD A,(32872)  ; Pick up Willy's y-coordinate from #R32872
  36012 AND 15        ; Does Willy's sprite currently occupy only two rows of
                      ; cells?
  36014 JR Z,36025    ; Jump if so
@@ -1964,7 +1964,7 @@ c35805 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  36065 ADD HL,DE     ; Point #REGhl at the cell at (x+2,y+1)
  36066 CP (HL)       ; Is there a wall tile in the cell pointed to by #REGhl?
  36067 RET Z         ; Return if so without moving Willy (his path is blocked)
- 36068 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
+ 36068 LD A,(32872)  ; Pick up Willy's y-coordinate from #R32872
  36071 AND 15        ; Does Willy's sprite currently occupy only two rows of
                      ; cells?
  36073 JR Z,36084    ; Jump if so
@@ -2931,7 +2931,7 @@ c37434 LD HL,(32876) ; Pick up the address of Willy's location in the attribute
  37450 CALL 37471    ; Check and set the attribute byte for the mid-left cell
  37453 INC HL        ; Move #REGhl to the next cell to the right
  37454 CALL 37471    ; Check and set the attribute byte for the mid-right cell
- 37457 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
+ 37457 LD A,(32872)  ; Pick up Willy's y-coordinate from #R32872
  37460 LD C,A        ; Copy it to #REGc
  37461 ADD HL,DE     ; Move #REGhl down a row and back one cell to the left
  37462 CALL 37471    ; Check and set the attribute byte for the bottom-left
@@ -2945,7 +2945,7 @@ c37434 LD HL,(32876) ; Pick up the address of Willy's location in the attribute
 ;
 ; Used by the routine at #R37434.
 ;
-; C #b15 or Willy's pixel y-coordinate
+; C #b15 or Willy's y-coordinate
 ; HL Address of the cell in the attribute buffer at #R23552
 @label=WILLYATTR
 c37471 LD A,(32800)  ; Pick up the attribute byte of the background tile for
@@ -2977,7 +2977,7 @@ c37471 LD A,(32800)  ; Pick up the attribute byte of the background tile for
 ;
 ; Used by the routine at #R37434.
 @label=DRAWWILLY
-c37503 LD A,(32872)  ; Pick up Willy's pixel y-coordinate from #R32872
+c37503 LD A,(32872)  ; Pick up Willy's y-coordinate from #R32872
 @ssub=LD IXh,33536/256
  37506 LD IXh,131    ; {Point #REGix at the entry in the screen buffer address
  37509 LD IXl,A      ; lookup table at #R33536 that corresponds to Willy's

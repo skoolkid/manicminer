@@ -1,4 +1,4 @@
-; Copyright 2014-2019 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2020 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:animatedPlatform:The animated platform]
 There is a platform at (9,7) in #R62464(Amoebatrons' Revenge) whose third row
@@ -69,10 +69,10 @@ If Willy's animation frame is 0 at step 16 of the animation while Willy is
 jumping left, the code at #R35996 checks whether Willy is free to move left
 across a cell boundary. However, the part of that code that checks whether
 there is a wall tile below Willy to the left is skipped when Willy's sprite is
-cell-aligned (i.e. when his pixel y-coordinate at #R32872 is a multiple of 16),
-which is always the case at step 16. Consequently, Willy moves left across the
-cell boundary and then, in step 17, he moves down into the wall block below
-before any check is made for wall blocks beneath him, eventually landing with
+cell-aligned (i.e. when his y-coordinate at #R32872 is a multiple of 16), which
+is always the case at step 16. Consequently, Willy moves left across the cell
+boundary and then, in step 17, he moves down into the wall block below before
+any check is made for wall blocks beneath him, eventually landing with
 animation frame 2.
 
 Places where this can happen are:
@@ -90,11 +90,11 @@ Similarly, if Willy's animation frame is 3 at step 16 of the animation while
 Willy is jumping right, the code at #R36054 checks whether Willy is free to
 move right across a cell boundary. However, the part of that code that checks
 whether there is a wall tile below Willy to the right is skipped when Willy's
-sprite is cell-aligned (i.e. when his pixel y-coordinate at #R32872 is a
-multiple of 16), which is always the case at step 16. Consequently, Willy moves
-right across the cell boundary and then, in step 17, he moves down into the
-wall block below before any check is made for wall blocks beneath him,
-eventually landing with animation frame 1.
+sprite is cell-aligned (i.e. when his y-coordinate at #R32872 is a multiple of
+16), which is always the case at step 16. Consequently, Willy moves right
+across the cell boundary and then, in step 17, he moves down into the wall
+block below before any check is made for wall blocks beneath him, eventually
+landing with animation frame 1.
 
 Places where this can happen are:
 
