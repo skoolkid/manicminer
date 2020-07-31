@@ -3,7 +3,7 @@
 [Page:Changelog]
 SectionType=BulletPoints
 
-[Changelog:YYYYMMDD]
+[Changelog:20200731]
 -
 
 - Added a POKE: #POKE#oneItemOnly()
