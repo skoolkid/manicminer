@@ -131,7 +131,7 @@ def get_caverns(snapshot):
         for b in snapshot[a:a + 512]:
             if b in attrs:
                 tile_usage[attrs.index(b)] = ''
-        udg_table = '#UDGTABLE {{ #tiles{} }} TABLE#'.format(cavern_num)
+        udg_table = '#UDGTABLE {{ #TILES{} }} TABLE#'.format(cavern_num)
         lines.append('N {} The next 72 bytes are copied to #R32800 and contain the attributes and graphic data for the tiles used to build the cavern.'.format(a + 544))
         lines.append('N {} {}'.format(a + 544, udg_table))
         if cavern_num == 13:
@@ -207,7 +207,7 @@ def get_caverns(snapshot):
 
         # Portal
         lines.append('N {} The next 37 bytes are copied to #R32911 and define the portal graphic and its location.'.format(a + 655))
-        lines.append('N {} #UDGTABLE {{ #portal{} }} TABLE#'.format(a + 655, cavern_num))
+        lines.append('N {} #UDGTABLE {{ #PORTAL{} }} TABLE#'.format(a + 655, cavern_num))
         lines.append('B {},1 Attribute'.format(a + 655))
         lines.append('B {},32,8 Graphic data'.format(a + 656))
         ab_addr = snapshot[a + 688] + 256 * snapshot[a + 689]
@@ -221,7 +221,7 @@ def get_caverns(snapshot):
 
         # Item
         lines.append('N {} The next eight bytes are copied to #R32948 and define the item graphic.'.format(a + 692))
-        lines.append('N {} #UDGTABLE {{ #item{} }} TABLE#'.format(a + 692, cavern_num))
+        lines.append('N {} #UDGTABLE {{ #ITEM{} }} TABLE#'.format(a + 692, cavern_num))
         lines.append('B {},8 Item graphic data'.format(a + 692))
 
         # Air
@@ -267,17 +267,17 @@ def get_caverns(snapshot):
             elif cavern_num == 1:
                 lines.append('@ 46816 label=PLINTH')
                 desc = 'plinth graphic that appears on the Game Over screen'
-                udgarray_macro = '#sprite46816,71(plinth)'
+                udgarray_macro = '#SPRITE46816,71(plinth)'
                 comment = 'Plinth graphic data'
             elif cavern_num == 2:
                 lines.append('@ 47840 label=BOOT')
                 desc = 'boot graphic that appears on the Game Over screen (see #R35210). It also appears at the bottom of the screen next to the remaining lives when #FACT#6031769(cheat mode) is activated (see #R34608)'
-                udgarray_macro = '#sprite47840,71(boot)'
+                udgarray_macro = '#SPRITE47840,71(boot)'
                 comment = 'Boot graphic data'
             else:
                 lines.append('@ 49888 label=EUGENEG')
                 desc = 'Eugene graphic'
-                udgarray_macro = '#sprite49888,23(eugene)'
+                udgarray_macro = '#SPRITE49888,23(eugene)'
                 comment = 'Eugene graphic data'
             lines.append('N {} The next 32 bytes define the {}.'.format(a + 736, desc))
             lines.append('N {} #UDGTABLE {{ {} }} TABLE#'.format(a + 736, udgarray_macro))
@@ -307,7 +307,7 @@ def get_caverns(snapshot):
                 attr_addr = a + 733 # Vertical guardian
             else:
                 attr_addr = a + 702 # Horizontal guardian
-            macros.append('#sprite{},{}({})'.format(addr, attr_addr, img_fname))
+            macros.append('#SPRITE{},{}({})'.format(addr, attr_addr, img_fname))
         gg_table += ' | '.join(macros) + ' } TABLE#'
         lines.append('N {} The next 256 bytes are copied to #R33024 and define the guardian graphics.'.format(gg_addr))
         lines.append('N {} {}'.format(gg_addr, gg_table))
