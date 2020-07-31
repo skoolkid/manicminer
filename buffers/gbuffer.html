@@ -8,7 +8,7 @@
 <body class="GameStatusBuffer">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Game status buffer</td>
 </tr>
 </table>
@@ -50,10 +50,10 @@ The extra tile at <a href="../asm/8020.html#805f">805F</a> behaves like a floor 
 <td class="map-g"><span id="8068"></span><a href="../asm/8068.html">8068</a></td>
 <td class="map-length">1</td>
 <td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/8068.html">Willy's pixel y-coordinate (x2)</a></div>
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/8068.html">Willy's y-coordinate</a></div>
 <div class="map-entry-desc">
 <div class="paragraph">
-Initialised by the routine at <a href="../asm/8684.html">8684</a>, and used by the routines at <a href="../asm/8ABB.html">8ABB</a>, <a href="../asm/8BDD.html">8BDD</a>, <a href="../asm/923A.html">923A</a> and <a href="../asm/927F.html">927F</a>. Holds the LSB of the address of the entry in the screen buffer address lookup table at <a href="../asm/8300.html">8300</a> that corresponds to Willy's pixel y-coordinate; in practice, this is twice Willy's actual pixel y-coordinate.
+Initialised by the routine at <a href="../asm/8684.html">8684</a>, and used by the routines at <a href="../asm/8ABB.html">8ABB</a>, <a href="../asm/8BDD.html">8BDD</a>, <a href="../asm/923A.html">923A</a> and <a href="../asm/927F.html">927F</a>. Holds the LSB of the address of the entry in the screen buffer address lookup table at <a href="../asm/8300.html">8300</a> that corresponds to Willy's pixel y-coordinate; in practice, this LSB is twice Willy's actual pixel y-coordinate.
 </div>
 </div>
 </td>
@@ -572,9 +572,9 @@ Used by the routines at <a href="../asm/870E.html">870E</a> and <a href="../asm/
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20191112</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20200731</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/buffers/gbuffer.html">Switch to decimal</a>.</div>
 </footer>
 </body>

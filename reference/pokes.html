@@ -8,7 +8,7 @@
 <body class="Pokes">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Pokes</td>
 </tr>
 </table>
@@ -20,6 +20,7 @@
 <li><a href="#noConveyors">No conveyors</a></li>
 <li><a href="#cheatModeCheat">Cheat mode cheat</a></li>
 <li><a href="#morePointsPerItem">More points per item</a></li>
+<li><a href="#oneItemOnly">One item only</a></li>
 <li><a href="#alwaysOpen">Always open</a></li>
 <li><a href="#noSkylabs">No Skylabs</a></li>
 <li><a href="#likeableLightBeam">Likeable light beam</a></li>
@@ -110,8 +111,19 @@ Willy gains an extra life only when the <em>thousands</em> digit rolls over
 from 9 to 0 (see <a href="../asm/90EA.html">90EA</a>).
 </div>
 </div>
-<div><span id="alwaysOpen"></span></div>
+<div><span id="oneItemOnly"></span></div>
 <div class="box box-2">
+<div class="box-title">One item only</div>
+<div class="paragraph">
+To enable Willy to open the portal by collecting only one item (regardless of
+how many are in the cavern):
+</div>
+<div class="paragraph">
+POKE <a href="../asm/8F63.html#8f8c">36749</a>,49
+</div>
+</div>
+<div><span id="alwaysOpen"></span></div>
+<div class="box box-1">
 <div class="box-title">Always open</div>
 <div class="paragraph">
 To enable Willy to walk through the portal to the next cavern without
@@ -122,7 +134,7 @@ POKE <a href="../asm/8FC5.html#8fd9">36826</a>,0
 </div>
 </div>
 <div><span id="noSkylabs"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">No Skylabs</div>
 <div class="paragraph">
 To remove the Skylabs from <a href="../asm/E400.html">Skylab Landing Bay</a>:
@@ -132,7 +144,7 @@ POKE <a href="../asm/8E75.html#8e7e">36478</a>,195
 </div>
 </div>
 <div><span id="likeableLightBeam"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Likeable light beam</div>
 <div class="paragraph">
 To prevent the light beam in <a href="../asm/F800.html">Solar Power Generator</a> from decreasing the
@@ -143,7 +155,7 @@ POKE <a href="../asm/8D73.html#8d86">36230</a>,24
 </div>
 </div>
 <div><span id="moreLives"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">More lives</div>
 <div class="paragraph">
 To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=2):
@@ -162,7 +174,7 @@ POKE <a href="../asm/870E.html#872e">34607</a>,0
 </div>
 </div>
 <div><span id="infiniteLives"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Infinite lives</div>
 <div class="paragraph">
 To give Willy infinite lives:
@@ -172,9 +184,9 @@ POKE <a href="../asm/870E.html#8940">35136</a>,0
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20191112</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20200731</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/reference/pokes.html">Switch to decimal</a>.</div>
 </footer>
 </body>

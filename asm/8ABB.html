@@ -8,7 +8,7 @@
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
@@ -76,7 +76,7 @@ Willy is currently jumping.
 <tr>
 <td class="address-1"><span id="8ac9"></span>8AC9</td>
 <td class="instruction">LD HL,$8068</td>
-<td class="comment-1" rowspan="3">Adjust Willy's pixel y-coordinate at <a href="8068.html">8068</a> depending on where Willy is in the jump</td>
+<td class="comment-1" rowspan="3">Adjust Willy's y-coordinate at <a href="8068.html">8068</a> depending on where Willy is in the jump</td>
 </tr>
 <tr>
 <td class="address-1"><span id="8acc"></span>8ACC</td>
@@ -89,7 +89,7 @@ Willy is currently jumping.
 <tr>
 <td class="address-1"><span id="8ace"></span>8ACE</td>
 <td class="instruction">CALL <a href="8ABB.html#8b82">$8B82</a></td>
-<td class="comment-1" rowspan="1">Adjust Willy's attribute buffer location at <a href="806C.html">806C</a> depending on his pixel y-coordinate</td>
+<td class="comment-1" rowspan="1">Adjust Willy's attribute buffer location at <a href="806C.html">806C</a> depending on his y-coordinate</td>
 </tr>
 <tr>
 <td class="address-1"><span id="8ad1"></span>8AD1</td>
@@ -254,7 +254,7 @@ If we get here, then Willy is standing on the floor, or he's falling, or his jum
 <tr>
 <td class="address-2"><span id="8b10"></span>8B10</td>
 <td class="instruction">LD A,($8068)</td>
-<td class="comment-1" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="8068.html">8068</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's y-coordinate from <a href="8068.html">8068</a></td>
 </tr>
 <tr>
 <td class="address-1"><span id="8b13"></span>8B13</td>
@@ -517,7 +517,7 @@ If we get here, then Willy is either in the process of falling or just about to 
 <tr>
 <td class="address-1"><span id="8b7a"></span>8B7A</td>
 <td class="instruction">LD A,($8068)</td>
-<td class="comment-1" rowspan="3">Add 8 to Willy's pixel y-coordinate at <a href="8068.html">8068</a>; this moves Willy downwards by 4 pixels</td>
+<td class="comment-1" rowspan="3">Add 8 to Willy's y-coordinate at <a href="8068.html">8068</a>; this moves Willy downwards by 4 pixels</td>
 </tr>
 <tr>
 <td class="address-1"><span id="8b7d"></span>8B7D</td>
@@ -644,7 +644,7 @@ The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
 <tr>
 <td class="address-2"><span id="8ba2"></span>8BA2</td>
 <td class="instruction">LD A,($8068)</td>
-<td class="comment-1" rowspan="4">Adjust Willy's pixel y-coordinate at <a href="8068.html">8068</a> so that the top row of cells of his sprite is just below the wall tile</td>
+<td class="comment-1" rowspan="4">Adjust Willy's y-coordinate at <a href="8068.html">8068</a> so that the top row of cells of his sprite is just below the wall tile</td>
 </tr>
 <tr>
 <td class="address-1"><span id="8ba5"></span>8BA5</td>
@@ -661,7 +661,7 @@ The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
 <tr>
 <td class="address-1"><span id="8bac"></span>8BAC</td>
 <td class="instruction">CALL <a href="8ABB.html#8b82">$8B82</a></td>
-<td class="comment-1" rowspan="1">Adjust Willy's attribute buffer location at <a href="806C.html">806C</a> to account for this new pixel y-coordinate</td>
+<td class="comment-1" rowspan="1">Adjust Willy's attribute buffer location at <a href="806C.html">806C</a> to account for this new y-coordinate</td>
 </tr>
 <tr>
 <td class="address-1"><span id="8baf"></span>8BAF</td>
@@ -699,9 +699,9 @@ Next: <a href="8BBA.html">8BBA</a>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20191112</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20200731</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/35515.html">Switch to decimal</a>.</div>
 </footer>
 </body>
