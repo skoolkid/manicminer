@@ -1,4 +1,4 @@
-# Copyright 2012, 2014-2020 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014-2021 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -16,16 +16,11 @@
 from skoolkit.graphics import Frame, Udg
 from skoolkit.skoolasm import AsmWriter
 from skoolkit.skoolhtml import HtmlWriter
-from skoolkit.skoolmacro import parse_ints, parse_brackets, parse_image_macro
+from skoolkit.skoolmacro import parse_ints, parse_image_macro
 
 def parse_gbuf(text, index):
     # #GBUFfrom[,to]
     return parse_ints(text, index, 2, (None,))
-
-def parse_s(text, index, case):
-    sep = text[index]
-    end, s = parse_brackets(text, index, '', sep, sep)
-    return end, s.lower() if case == 1 else s
 
 class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
@@ -65,10 +60,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
         if addr_to is not None:
             link_text += '-' + '#N{}'.format(addr_to)
         return end, '#LINK:GameStatusBuffer#{}({})'.format(addr_from, link_text)
-
-    def expand_s(self, text, index, cwd):
-        # #S/text/
-        return parse_s(text, index, self.case)
 
     def expand_willy(self, text, index, cwd):
         # #WILLYcavern,x,y,sprite[,left,top,width,height,scale](fname)
@@ -324,7 +315,3 @@ class ManicMinerAsmWriter(AsmWriter):
         if addr_to is not None:
             output += '-#N{}'.format(addr_to)
         return end, output
-
-    def expand_s(self, text, index):
-        # #S/text/
-        return parse_s(text, index, self.case)
