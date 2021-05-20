@@ -83,7 +83,7 @@ b28672 DEFS 4096
 @expand=#DEFINE0(FACT,#LINK:Facts)
 @expand=#DEFINE0(POKE,#LINK:Pokes)
 @expand=#DEFINE0(S,#FORMAT({{mode[case]}}))
-@writer=:manicminer.ManicMinerAsmWriter
+@expand=#DEFINE2,0,1(0)(GBUF,#LINK:GameStatusBuffer#{0}(#N{0}#IF({1})(-#N{1})))
 ; Manic Miner disassembly
 ; https://skoolkit.ca
 ;
