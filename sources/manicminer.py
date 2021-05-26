@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
-from skoolkit.graphics import Frame, Udg
+from skoolkit.graphics import Frame, Udg, overlay_udgs
 from skoolkit.skoolhtml import HtmlWriter
 from skoolkit.skoolmacro import parse_image_macro
 
@@ -225,7 +225,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
         # Build the cavern UDG array
         udg_array = []
         for a in range(addr, addr + 512, 32):
-            udg_array.append([block_graphics.get(attr, bg_udg) for attr in self.snapshot[a:a + 32]])
+            udg_array.append([block_graphics.get(attr, bg_udg).copy() for attr in self.snapshot[a:a + 32]])
         if addr == 64512:
             # The Final Barrier (top half)
             udg_array[:8] = self.screenshot(h=8, df_addr=40960, af_addr=64512)
@@ -266,32 +266,8 @@ class ManicMinerHtmlWriter(HtmlWriter):
         return x, y
 
     def _place_graphic(self, udg_array, graphic, x, pixel_y, bg_attr=None, bleed=False):
-        if pixel_y & 7:
-            graphic = self._shift_graphic(graphic, pixel_y & 7)
-        elif bleed:
+        if bleed:
             blank_udg = Udg(graphic[0][0].attr, [0] * 8)
             graphic.append([blank_udg] * len(graphic[0]))
-        y = pixel_y // 8
-        for i, row in enumerate(graphic):
-            for j, udg in enumerate(row):
-                old_udg = udg_array[y + i][x + j]
-                if bg_attr is None or old_udg.attr == bg_attr:
-                    new_attr = (old_udg.attr & 56) | (udg.attr & 71)
-                else:
-                    new_attr = old_udg.attr
-                new_data = [old_udg.data[k] | udg.data[k] for k in range(8)]
-                udg_array[y + i][x + j] = Udg(new_attr, new_data)
-
-    def _shift_graphic(self, graphic, y_delta):
-        attr = graphic[0][0].attr
-        blank_udg = Udg(attr, [0] * 8)
-        width = len(graphic[0])
-        prev_row = [blank_udg] * width
-        shifted_graphic = []
-        for row in graphic + [[blank_udg] * width]:
-            shifted_graphic.append([])
-            for i, udg in enumerate(row):
-                shifted_udg_data = prev_row[i].data[-y_delta:] + udg.data[:-y_delta]
-                shifted_graphic[-1].append(Udg(attr, shifted_udg_data))
-                prev_row[i] = udg
-        return shifted_graphic
+        rattr = lambda b, f: b & 56 | f & 71 if bg_attr in (None, b) else b
+        overlay_udgs(udg_array, graphic, x * 8, pixel_y, 0, rattr)
