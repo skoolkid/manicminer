@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2020 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2021 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
 HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
@@ -35,7 +35,18 @@ Credits=reference/credits.html
 CodeFiles={address#IF({base}==16)(:04#S/X/)}.html
 
 [Page:Caverns]
-PageContent=#CALL:caverns()
+PageContent=#INCLUDE(Caverns)
+
+[Caverns]
+#TABLE(default,centre,centre,,centre)
+{ =h No. | =h Address | =h Name | =h Teleport }
+#FOR(0,19)(cnum,
+  #LET(addr=45056+1024*cnum)
+  #LET(name$=#CALL:cavern_name({addr}))
+  #LET(tcode=#FOR(1,5)(key,#IF(cnum&(1<<(key-1)))(key))6)
+  { #N(cnum,,,1)(0x) | #N({addr}) | #FORMAT(#R({addr})({name$}) | {tcode}) }
+)
+TABLE#
 
 [Page:Credits]
 PageContent=#INCLUDE(Credits)

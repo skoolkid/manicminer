@@ -38,6 +38,9 @@ class ManicMinerHtmlWriter(HtmlWriter):
             frames = [Frame(img_udgs, scale)]
         return self.handle_image(frames, fname, cwd, path_id='ScreenshotImagePath')
 
+    def cavern_name(self, cwd, address):
+        return self.cavern_names[address]
+
     def expand_willy(self, text, index, cwd):
         # #WILLYcavern,x,y,sprite[,left,top,width,height,scale](fname)
         names = ('cavern', 'x', 'y', 'sprite', 'left', 'top', 'width', 'height', 'scale')
@@ -83,19 +86,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
             prev_udg = next_udg
         return frames
 
-    def caverns(self, cwd):
-        lines = [
-            '#TABLE(default,centre,centre,,centre)',
-            '{ =h No. | =h Address | =h Name | =h Teleport }'
-        ]
-        for cavern_num in range(20):
-            address = 45056 + 1024 * cavern_num
-            cavern_name = self.cavern_names[address]
-            teleport_code = self._get_teleport_code(cavern_num)
-            lines.append('{{ #N{0},,,1(0x) | #N{1} | #R{1}({2}) | {3} }}'.format(cavern_num, address, cavern_name, teleport_code))
-        lines.append('TABLE#')
-        return ''.join(lines)
-
     def attribute_crash_img(self, cwd):
         self.push_snapshot()
         self.snapshot[59102:59105] = [2, 72, 17]
@@ -123,16 +113,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
         for a in range(45056, 65536, 1024):
             caverns[a] = ''.join([chr(b) for b in self.snapshot[a + 512:a + 544]]).strip()
         return caverns
-
-    def _get_teleport_code(self, cavern_num):
-        code = ''
-        key = 1
-        while cavern_num:
-            if cavern_num & 1:
-                code += str(key)
-            cavern_num //= 2
-            key += 1
-        return code + '6'
 
     def _place_items(self, udg_array, addr):
         item_udg_data = self.snapshot[addr + 692:addr + 700]
