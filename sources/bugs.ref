@@ -1,4 +1,4 @@
-; Copyright 2014-2020 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2021 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:animatedPlatform:The animated platform]
 There is a platform at (9,7) in #R62464(Amoebatrons' Revenge) whose third row
@@ -118,7 +118,13 @@ conveyor, the attributes of that section are temporarily changed to that of the
 Skylab; the attributes are restored after the Skylab has finished
 disintegrating.
 
-#UDGTABLE { #CALL:attribute_crash_img() } TABLE#
+#UDGTABLE {
+  #CFRAME13
+  #COPY(14,8,8,5,2)(13,ac)
+  #UDGARRAY2,15,,2;59200-59217-1-16;0x2(*skylab)
+  #OVER(3,1,0,0,1)($f)(ac,skylab)
+  #UDGARRAY*ac({ScreenshotImagePath}/attribute_crash)
+} TABLE#
 
 The reason for this is that the code at #R36447 (which is used to set the
 attributes for a Skylab) sets the attributes in not two but three rows of

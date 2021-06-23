@@ -15,12 +15,27 @@
 
 from skoolkit.graphics import Frame, Udg, overlay_udgs
 from skoolkit.skoolhtml import HtmlWriter
-from skoolkit.skoolmacro import parse_image_macro
+from skoolkit.skoolmacro import parse_ints, parse_brackets, parse_image_macro
 
 class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
         self.font = {c: self.snapshot[15360 + 8 * c:15368 + 8 * c] for c in range(32, 122)}
         self.cavern_names = self._get_cavern_names()
+        self.cavern_frames = {}
+
+    def expand_cframe(self, text, index, cwd):
+        # #CFRAME(num,force=0)(frame=$num)
+        end, num, force = parse_ints(text, index, 0, (0,), ('num', 'force'), self.fields)
+        if force:
+            end, frame = parse_brackets(text, end)
+        else:
+            frame = str(num)
+        if force or num not in self.cavern_frames:
+            udgs = self._get_cavern_udgs(45056 + num * 1024, cframe=True)
+            self.handle_image(Frame(udgs, 2, name=frame))
+            if not force:
+                self.cavern_frames[num] = True
+        return end, ''
 
     def cavern(self, cwd, address, scale=2, fname=None, x=0, y=0, w=32, h=17, guardians=1, animate=0):
         if fname is None:
@@ -85,15 +100,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
             frames.append(Frame(next_udgs, scale, mask, delay=delay))
             prev_udg = next_udg
         return frames
-
-    def attribute_crash_img(self, cwd):
-        self.push_snapshot()
-        self.snapshot[59102:59105] = [2, 72, 17]
-        cavern = self._get_cavern_udgs(58368)
-        self.pop_snapshot()
-        cavern[11][17] = cavern[11][18] = Udg(15, cavern[11][15].data)
-        frame = Frame([row[14:22] for row in cavern[8:13]], 2)
-        return self.handle_image([frame], 'attribute_crash', cwd, path_id='ScreenshotImagePath')
 
     def bottom_half_twice_img(self, cwd):
         cavern = self._get_cavern_udgs(64512)
@@ -182,7 +188,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
         x, y = self._get_coords(addr + 620)
         self._place_graphic(udg_array, willy, x, y * 8)
 
-    def _get_cavern_udgs(self, addr, guardians=1, willy=1):
+    def _get_cavern_udgs(self, addr, guardians=1, willy=1, cframe=False):
         # Collect block graphics
         block_graphics = {}
         bg_udg = Udg(self.snapshot[addr + 544], self.snapshot[addr + 545:addr + 553])
@@ -202,6 +208,9 @@ class ManicMinerHtmlWriter(HtmlWriter):
         # Cavern name
         name_udgs = [Udg(48, self.font[b]) for b in self.snapshot[addr + 512:addr + 544]]
         udg_array.append(name_udgs)
+
+        if cframe:
+            return udg_array
 
         self._place_items(udg_array, addr)
         if guardians:
