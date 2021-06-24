@@ -85,3 +85,8 @@ PageByteColumns=#IF({base}==16)(0,1)
 
 [MemoryMap:UnusedMap]
 PageByteColumns=#IF({base}==16)(0,1)
+
+[Expand]
+#DEF(#SFRAME(addr,attr)(frame)
+  #UDGARRAY(2,$attr,,2);$addr-($addr+17)-1-16(*$frame)
+)
