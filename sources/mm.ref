@@ -87,6 +87,158 @@ PageByteColumns=#IF({base}==16)(0,1)
 PageByteColumns=#IF({base}==16)(0,1)
 
 [Expand]
+#DEF(#REM()(remark))
+
 #DEF(#SFRAME(addr,attr)(frame)
   #UDGARRAY(2,$attr,,2);$addr-($addr+17)-1-16(*$frame)
+)
+
+#DEF(#TILE(addr)(frame)
+  #UDG($addr+1,#PEEK$addr)(*$frame)
+)
+
+#DEF(#TILEOVER(pos,py=0)(bg,fg)
+  #OVER($pos%32,($pos&1023)/32,0,$py,1)($f)($bg,$fg)
+)
+
+#DEF(#COORDS(addr)
+  #PEEK($addr)+256*#PEEK($addr+1)-23552
+)
+
+#DEF(#ITEMS(addr,x,y)(frame)
+  #LET(done=0)
+  #FOR($addr+629,$addr+649,5)(z,
+    #LET(attr=#PEEKz)
+    #IF({attr}==255)(#LET(done=1))
+    #IF({done}==0 && {attr}!=0)(
+      #LET(ink={attr}&7)
+      #LET(paper=({attr}/8)&7)
+      #IF({ink}=={paper})(
+        #LET(ink=({ink}+1)&7)
+        #IF({ink}<3)(#LET(ink=3))
+        #LET(attr=({attr}&248)+{ink})
+      )
+      #UDG($addr+692,{attr})(*item)
+      #LET(pos=#COORDS(z+1))
+      #OVER({pos}%32-$x,{pos}/32-$y,,,3)($f)($f)($frame,item)
+    )
+  )
+)
+
+#DEF(#HGUARDIANS(addr,x,y)(frame)
+  #LET(done=0)
+  #FOR($addr+702,$addr+723,7)(z,
+    #LET(attr=#PEEKz)
+    #IF({attr}==255)(#LET(done=1))
+    #IF({done}==0 && {attr}!=0)(
+      #LET(index=#PEEK(z+4))
+      #IF($addr>=52224 && $addr!=54272 && $addr!=60416)(#LET(index={index}|4))
+      #SFRAME($addr+768+32*{index},{attr}&127)(hguardian)
+      #TILEOVER(#COORDS(z+1)-$x-32*$y)($frame,hguardian)
+    )
+  )
+)
+
+#DEF(#VGUARDIANS(addr,x,y)(frame)
+  #LET(done=0)
+  #IF($addr==49152)(
+    #LET(attr=(#PEEK($addr+544)&248)+7)
+    #SFRAME($addr+736,{attr})(eugene)
+    #TILEOVER(15)($frame,eugene)
+    #LET(done=1)
+  )
+  #IF($addr==52224 || $addr==56320)(
+    #SFRAME($addr+768,68)(kong)
+    #TILEOVER(15)($frame,kong)
+    #LET(done=1)
+  )
+  #FOR($addr+733,$addr+754,7)(z,
+    #LET(attr=#PEEKz)
+    #IF({attr}==255)(#LET(done=1))
+    #IF({done}==0)(
+      #LET(index=#PEEK(z+1))
+      #SFRAME($addr+768+32*{index},{attr})(vguardian)
+      #LET(x=#PEEK(z+3)-$x)
+      #LET(py=(#PEEK(z+2)&127)-$y*8)
+      #TILEOVER({x},{py})($frame,vguardian)
+      #UDGARRAY(2,{attr});0x2(*bleed)
+      #TILEOVER({x},{py}+16)($frame,bleed)
+    )
+  )
+)
+
+#DEF(#MINER(addr,x,y)(frame)
+  #LET(attr=(#PEEK($addr+544)&248)+7)
+  #LET(index=#PEEK($addr+617))
+  #LET(direction=#PEEK($addr+618))
+  #SFRAME(33280+128*{direction}+32*{index},{attr})(willy)
+  #TILEOVER(#COORDS($addr+620)-$x-$y*32)($frame,willy)
+)
+
+#DEF(#OPORTAL(addr,x,y)(frame)
+  #SFRAME($addr+656,#PEEK($addr+655))(portal)
+  #LET(ppos=#COORDS($addr+688))
+  #OVER({ppos}%32-$x,{ppos}/32-$y,0,0,3)($f)($f)($frame,portal)
+)
+
+#DEF(#ANIMCONV(addr,x,y)(frame)
+  #LET(dir=#PEEK($addr+623))
+  #LET(sb=#PEEK($addr+624)+256*#PEEK($addr+625))
+  #LET(x={sb}%32-$x)
+  #LET(y=8*(({sb}-28672)/2048)+({sb}%256)/32-$y)
+  #LET(length=#PEEK($addr+626))
+  #PUSHS
+  #LET(cta=$addr+580-27*($addr==62464 && #PEEK62759==66))
+  #FOR(0,2)(q,
+    #IF({dir}==1)(
+      #POKES({cta}+1,(#PEEK({cta}+1)>>2)+(#PEEK({cta}+1)&3)*64)
+      #POKES({cta}+3,((#PEEK({cta}+3)<<2)&255)+(#PEEK({cta}+3)>>6))
+    )
+    #IF({dir}==0)(
+      #POKES({cta}+1,((#PEEK({cta}+1)<<2)&255)+(#PEEK({cta}+1)>>6))
+      #POKES({cta}+3,(#PEEK({cta}+3)>>2)+(#PEEK({cta}+3)&3)*64)
+    )
+    #TILE({cta})(ctile)
+    #COPY($frame,$frame-q)
+    #FOR({x},{x}+{length}-1)(z,
+      #OVER(z,{y},,,2)($f)($frame-q,ctile)
+    )
+  )
+  #POPS
+)
+
+#DEF(#CAVERN(num,x=0,y=0,w=32,h=17,flags=1)(fname)
+  #REM(
+    num: cavern number (0-19)
+    x, y, w, h: geometry of frame
+    flags:
+      1 - show guardians
+      2 - animate conveyor
+      4 - rebuild empty cavern (in case cavern definition has been modified)
+  )
+  #IF($flags&4)||
+    #CFRAME($num,1)(temp)
+    #COPY($x,$y,$w,$h)(temp,cavern)
+  |
+    #CFRAME($num)
+    #COPY($x,$y,$w,$h)($num,cavern)
+  ||
+  #LET(addr=45056+1024*$num)
+  #ITEMS({addr},$x,$y)(cavern)
+  #IF($flags&1)(
+    #HGUARDIANS({addr},$x,$y)(cavern)
+    #VGUARDIANS({addr},$x,$y)(cavern)
+    #IF($num==18)(
+      #UDGARRAY(1,119);0x15(*beam)
+      #TILEOVER(23)(cavern,beam)
+    )
+  )
+  #MINER({addr},$x,$y)(cavern)
+  #OPORTAL({addr},$x,$y)(cavern)
+  #IF($flags&2)||
+    #ANIMCONV({addr},$x,$y)(cavern)
+    #UDGARRAY*cavern,10;cavern-0;cavern-1;cavern-2({ScreenshotImagePath}/$fname)
+  |
+    #UDGARRAY*cavern({ScreenshotImagePath}/$fname)
+  ||
 )

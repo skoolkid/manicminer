@@ -65,10 +65,10 @@ To show the conveyor:
 POKE 54291,67
 
 #UDGTABLE(gallery)
-{ #CALL:cavern(54272,2,uc1_before,11,0,16,8,0,1) |
+{ #CAVERN9,11,0,16,8,0(uc1_before) |
   #PUSHS
   #POKES54291,67
-  #CALL:cavern(54272,2,uc1_after,11,0,16,8,0,1)
+  #CAVERN9,11,0,16,8,6(uc1_after)
   #POPS }
 { Before | After }
 TABLE#
@@ -83,10 +83,10 @@ To replace the platform with conveyor tiles:
 POKE 62759,4: POKE 62760,4: POKE 62761,4
 
 #UDGTABLE(gallery)
-{ #CALL:cavern(62464,2,uc2_before,0,5,16,8,0,1) |
+{ #CAVERN17,0,5,16,8,2(uc2_before) |
   #PUSHS
   #POKES62759,4,3
-  #CALL:cavern(62464,2,uc2_after,0,5,16,8,0,1)
+  #CAVERN17,0,5,16,8,6(uc2_after)
   #POPS }
 { Before | After }
 TABLE#
@@ -102,7 +102,7 @@ if Willy leaves it till last and collects it by falling on it from above. The
 reason for this is that the portal is opened as soon as Willy collects the
 item, and the screen is not refreshed before he moves on to the next cavern.
 
-#UDGTABLE { #CALL:cavern(60416,2,persistent_item,10,4,9,6,0) } TABLE#
+#UDGTABLE { #CAVERN15,10,4,9,6,0(persistent_item) } TABLE#
 
 [Fact:lightLogic:Light logic]
 At times it might seem as if the light beam in #R63488(Solar Power Generator)
@@ -204,7 +204,7 @@ in bright white:
 
 #PUSHS
 #POKES60036,71;60041,71
-#UDGTABLE { #CALL:cavern(59392,2,the_bank_extra_items) } TABLE#
+#UDGTABLE { #CAVERN(14,flags=5)(the_bank_extra_items) } TABLE#
 #POPS
 
 The extra item in #R60416(The Sixteenth Cavern) is at (5,26) - in the path of
@@ -212,7 +212,7 @@ the cyan guardian - shown here in bright white:
 
 #PUSHS
 #POKES61065,71;61140,188
-#UDGTABLE { #CALL:cavern(60416,2,the_sixteenth_cavern_extra_items) } TABLE#
+#UDGTABLE { #CAVERN(15,flags=5)(the_sixteenth_cavern_extra_items) } TABLE#
 #POPS
 
 [Fact:fastestGuardians:The fastest guardians]
@@ -251,9 +251,9 @@ In some caverns, Willy starts off facing the wall, and so has to turn round
 before navigating his way out:
 
 #UDGTABLE(gallery)
-{ #CALL:cavern(57344,2,wrong_foot1,26,12,6,4) |
-  #CALL:cavern(58368,2,wrong_foot2,26,12,6,4) |
-  #CALL:cavern(61440,2,wrong_foot3,0,2,6,4) }
+{ #CAVERN12,26,12,6,4(wrong_foot1) |
+  #CAVERN13,26,12,6,4(wrong_foot2) |
+  #CAVERN16,0,2,6,4(wrong_foot3) }
 { #R57344(Ore Refinery) |
   #R58368(Skylab Landing Bay) |
   #R61440(The Warehouse) }
@@ -264,9 +264,9 @@ To make Willy start off facing the other way:
 #PUSHS
 #POKES57962,1;58986,1;62058,0
 #UDGTABLE(gallery)
-{ #CALL:cavern(57344,2,wrong_foot4,26,12,6,4) |
-  #CALL:cavern(58368,2,wrong_foot5,26,12,6,4) |
-  #CALL:cavern(61440,2,wrong_foot6,0,2,6,4) }
+{ #CAVERN12,26,12,6,4,5(wrong_foot4) |
+  #CAVERN13,26,12,6,4,5(wrong_foot5) |
+  #CAVERN16,0,2,6,4,5(wrong_foot6) }
 { POKE #R57960(57962),1 | POKE #R58984(58986),1 | POKE #R62056(62058),0 }
 TABLE#
 #POPS

@@ -6,7 +6,7 @@ of pixels is animated as if it were a conveyor. This is because there is a
 conveyor defined at that location (see #R63087), but the cavern layout places
 regular platform tiles there instead of conveyor tiles.
 
-#UDGTABLE { #CALL:cavern(62464,2,animated_platform,0,5,16,8,0,1) } TABLE#
+#UDGTABLE { #CAVERN17,0,5,16,8,2(animated_platform) } TABLE#
 
 To disable the animation (by moving the conveyor up a row to (8,7), which is
 occupied by background tiles):
@@ -137,7 +137,7 @@ below it.
 As Willy enters #R63488(Solar Power Generator), the blue vertical guardian can
 be seen casting a 'shadow' over the floor immediately below it.
 
-#UDGTABLE { #CALL:cavern(63488,2,blue_shadow,15,9,4,4) } TABLE#
+#UDGTABLE { #CAVERN18,15,9,4,4(blue_shadow) } TABLE#
 
 This happens for the same reason as a Skylab's colour bleeds over into the
 floor below when it crashes - see #BUG#attributeCrash(). This effect does not

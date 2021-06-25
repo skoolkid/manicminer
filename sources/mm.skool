@@ -4064,7 +4064,7 @@ b40960 DEFB 5,0,0,0,0,0,224,0,0,0,0,0,0,0,0,0
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(45056) }
+; { #CAVERN0(central_cavern) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -4302,7 +4302,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(46080) }
+; { #CAVERN1(the_cold_room) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -4545,7 +4545,7 @@ b46080 DEFB 22,8,8,8,8,8,8,8                   ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(47104) }
+; { #CAVERN2(the_menagerie) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -4794,7 +4794,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(48128) }
+; { #CAVERN3(abandoned_uranium_workings) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -5028,7 +5028,7 @@ b48128 DEFB 41,0,0,0,0,0,0,5                   ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(49152) }
+; { #CAVERN4(eugene's_lair) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -5269,7 +5269,7 @@ b49152 DEFB 46,16,16,16,16,16,16,16            ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(50176) }
+; { #CAVERN5(processing_plant) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -5513,7 +5513,7 @@ b50176 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(51200) }
+; { #CAVERN6(the_vat) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -5750,7 +5750,7 @@ b51200 DEFB 77,0,0,0,0,0,0,0                   ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(52224) }
+; { #CAVERN7(miner_willy_meets_the_kong_beast) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -5988,7 +5988,7 @@ b52224 DEFB 114,0,5,0,0,0,6,0                  ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(53248) }
+; { #CAVERN8(wacky_amoebatrons) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -6235,7 +6235,7 @@ b53248 DEFB 22,0,0,22,0,0,0,0                  ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(54272) }
+; { #CAVERN9(the_endorian_forest) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -6479,7 +6479,7 @@ b54272 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(55296) }
+; { #CAVERN10(attack_of_the_mutant_telephones) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -6743,7 +6743,7 @@ b55296 DEFB 14,14,14,14,14,14,14,0             ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(56320) }
+; { #CAVERN11(return_of_the_alien_kong_beast) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -6984,7 +6984,7 @@ b56320 DEFB 101,0,5,0,0,0,6,0                  ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(57344) }
+; { #CAVERN12(ore_refinery) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -7234,7 +7234,7 @@ b57344 DEFB 22,22,22,22,22,22,22,22            ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(58368) }
+; { #CAVERN13(skylab_landing_bay) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -7496,7 +7496,7 @@ b58368 DEFB 104,8,8,8,8,8,8,8                  ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(59392) }
+; { #CAVERN14(the_bank) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -7744,7 +7744,7 @@ b59392 DEFB 14,0,0,0,0,0,14,14                 ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(60416) }
+; { #CAVERN15(the_sixteenth_cavern) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -7988,7 +7988,7 @@ b60416 DEFB 101,0,0,0,0,0,0,0                  ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(61440) }
+; { #CAVERN16(the_warehouse) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -8247,7 +8247,7 @@ b61440 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(62464) }
+; { #CAVERN17(amoebatrons'_revenge) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -8504,7 +8504,7 @@ b62464 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(63488) }
+; { #CAVERN18(solar_power_generator) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.
@@ -8760,7 +8760,7 @@ b63488 DEFB 22,22,22,36,36,36,36,36            ; {Attributes
 ; Used by the routine at #R34436.
 ; .
 ; #UDGTABLE
-; { #CALL:cavern(64512) }
+; { #CAVERN19(the_final_barrier) }
 ; TABLE#
 ; .
 ; The first 512 bytes are the attributes that define the layout of the cavern.

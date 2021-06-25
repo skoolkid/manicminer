@@ -21,7 +21,9 @@ class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
         self.expand(self.get_section('Expand'))
         self.font = {c: self.snapshot[15360 + 8 * c:15368 + 8 * c] for c in range(32, 122)}
-        self.cavern_names = self._get_cavern_names()
+        self.cavern_names = {}
+        for a in range(45056, 65536, 1024):
+            self.cavern_names[a] = ''.join([chr(b) for b in self.snapshot[a + 512:a + 544]]).strip()
         self.cavern_frames = {}
 
     def expand_cframe(self, text, index, cwd):
@@ -38,22 +40,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
                 self.cavern_frames[num] = True
         return end, ''
 
-    def cavern(self, cwd, address, scale=2, fname=None, x=0, y=0, w=32, h=17, guardians=1, animate=0):
-        if fname is None:
-            fname = self.cavern_names[address].lower().replace(' ', '_')
-        cavern_udgs = self._get_cavern_udgs(address, guardians)
-        img_udgs = [cavern_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
-        if animate:
-            direction = self.snapshot[address + 623]
-            sb_addr = self.snapshot[address + 624] + 256 * self.snapshot[address + 625]
-            conveyor_x = sb_addr % 32 - x
-            conveyor_y = 8 * ((sb_addr - 28672) // 2048) + (sb_addr % 256) // 32 - y
-            length = self.snapshot[address + 626]
-            frames = self._animate_conveyor(img_udgs, direction, conveyor_x, conveyor_y, length, scale)
-        else:
-            frames = [Frame(img_udgs, scale)]
-        return self.handle_image(frames, fname, cwd, path_id='ScreenshotImagePath')
-
     def cavern_name(self, cwd, address):
         return self.cavern_names[address]
 
@@ -64,49 +50,13 @@ class ManicMinerHtmlWriter(HtmlWriter):
         end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
         cavern, x, pixel_y, sprite, left, top, width, height, scale = params
         cavern_addr = 45056 + 1024 * cavern
-        cavern_udgs = self._get_cavern_udgs(cavern_addr, 0)
+        cavern_udgs = self._get_cavern_udgs(cavern_addr)
         willy = self._get_graphic(33280 + 32 * sprite, 7)
         cavern_bg = self.snapshot[cavern_addr + 544]
         self._place_graphic(cavern_udgs, willy, x, pixel_y, cavern_bg)
         img_udgs = [cavern_udgs[i][left:left + width] for i in range(top, top + min(height, 17 - top))]
         frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
         return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
-
-    def _animate_conveyor(self, udgs, direction, x, y, length, scale):
-        mask = 0
-        delay = 10
-        frame1 = Frame(udgs, scale, mask, delay=delay)
-        frames = [frame1]
-
-        if y < 0 or y >= len(udgs) or x + length < 0 or x >= len(udgs[0]):
-            return frames
-        min_x = max(x, 0)
-        max_x = min(x + length, len(udgs[0]))
-        length_t = max_x - min_x
-
-        base_udg = prev_udg = udgs[y][min_x]
-        while True:
-            next_udg = prev_udg.copy()
-            data = next_udg.data
-            if direction:
-                data[0] = (data[0] >> 2) + (data[0] & 3) * 64
-                data[2] = ((data[2] << 2) & 255) + (data[2] >> 6)
-            else:
-                data[0] = ((data[0] << 2) & 255) + (data[0] >> 6)
-                data[2] = (data[2] >> 2) + (data[2] & 3) * 64
-            if next_udg.data == base_udg.data:
-                break
-            next_udgs = [row[:] for row in udgs]
-            next_udgs[y][min_x:max_x] = [next_udg] * length_t
-            frames.append(Frame(next_udgs, scale, mask, delay=delay))
-            prev_udg = next_udg
-        return frames
-
-    def _get_cavern_names(self):
-        caverns = {}
-        for a in range(45056, 65536, 1024):
-            caverns[a] = ''.join([chr(b) for b in self.snapshot[a + 512:a + 544]]).strip()
-        return caverns
 
     def _place_items(self, udg_array, addr):
         item_udg_data = self.snapshot[addr + 692:addr + 700]
@@ -123,51 +73,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
             x, y = self._get_coords(a + 1)
             udg_array[y][x] = Udg(attr, item_udg_data)
 
-    def _place_guardians(self, udg_array, addr):
-        cavern_no = (addr - 45056) // 1024
-
-        # Horizontal guardians
-        for a in range(addr + 702, addr + 730, 7):
-            attr = self.snapshot[a]
-            if attr == 255:
-                break
-            if not attr:
-                continue
-            sprite_index = self.snapshot[a + 4]
-            if cavern_no >= 7 and cavern_no not in (9, 15):
-                sprite_index |= 4
-            sprite = self._get_graphic(addr + 768 + 32 * sprite_index, attr & 127)
-            x, y = self._get_coords(a + 1)
-            self._place_graphic(udg_array, sprite, x, y * 8)
-
-        if cavern_no == 4:
-            # Eugene
-            attr = (self.snapshot[addr + 544] & 248) + 7
-            sprite = self._get_graphic(addr + 736, attr)
-            self._place_graphic(udg_array, sprite, 15, 0)
-        elif cavern_no in (7, 11):
-            # Kong Beast
-            attr = 68
-            sprite = self._get_graphic(addr + 768, attr)
-            self._place_graphic(udg_array, sprite, 15, 0)
-        else:
-            # Regular vertical guardians
-            for a in range(addr + 733, addr + 761, 7):
-                attr = self.snapshot[a]
-                if attr == 255:
-                    break
-                sprite_index = self.snapshot[a + 1]
-                sprite = self._get_graphic(addr + 768 + 32 * sprite_index, attr)
-                pixel_y = self.snapshot[a + 2] & 127
-                x = self.snapshot[a + 3]
-                self._place_graphic(udg_array, sprite, x, pixel_y, bleed=True)
-
-        # Light beam in Solar Power Generator
-        if cavern_no == 18:
-            beam_udg = Udg(119, (0,) * 8)
-            for y in range(15):
-                udg_array[y][23] = beam_udg
-
     def _place_willy(self, udg_array, addr):
         attr = (self.snapshot[addr + 544] & 248) + 7
         sprite_index = self.snapshot[addr + 617]
@@ -176,7 +81,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
         x, y = self._get_coords(addr + 620)
         self._place_graphic(udg_array, willy, x, y * 8)
 
-    def _get_cavern_udgs(self, addr, guardians=1, willy=1, cframe=False):
+    def _get_cavern_udgs(self, addr, cframe=False):
         # Collect block graphics
         block_graphics = {}
         bg_udg = Udg(self.snapshot[addr + 544], self.snapshot[addr + 545:addr + 553])
@@ -201,10 +106,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
             return udg_array
 
         self._place_items(udg_array, addr)
-        if guardians:
-            self._place_guardians(udg_array, addr)
-        if willy:
-            self._place_willy(udg_array, addr)
+        self._place_willy(udg_array, addr)
 
         # Portal
         attr = self.snapshot[addr + 655]
