@@ -13,9 +13,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
-from skoolkit.graphics import Frame, Udg, overlay_udgs
+from skoolkit.graphics import Frame, Udg
 from skoolkit.skoolhtml import HtmlWriter
-from skoolkit.skoolmacro import parse_ints, parse_brackets, parse_image_macro
+from skoolkit.skoolmacro import parse_ints, parse_brackets
 
 class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
@@ -34,7 +34,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
         else:
             frame = str(num)
         if force or num not in self.cavern_frames:
-            udgs = self._get_cavern_udgs(45056 + num * 1024, cframe=True)
+            udgs = self._get_cavern_udgs(45056 + num * 1024)
             self.handle_image(Frame(udgs, 2, name=frame))
             if not force:
                 self.cavern_frames[num] = True
@@ -43,45 +43,7 @@ class ManicMinerHtmlWriter(HtmlWriter):
     def cavern_name(self, cwd, address):
         return self.cavern_names[address]
 
-    def expand_willy(self, text, index, cwd):
-        # #WILLYcavern,x,y,sprite[,left,top,width,height,scale](fname)
-        names = ('cavern', 'x', 'y', 'sprite', 'left', 'top', 'width', 'height', 'scale')
-        defaults = (0, 0, 32, 17, 2)
-        end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
-        cavern, x, pixel_y, sprite, left, top, width, height, scale = params
-        cavern_addr = 45056 + 1024 * cavern
-        cavern_udgs = self._get_cavern_udgs(cavern_addr)
-        willy = self._get_graphic(33280 + 32 * sprite, 7)
-        cavern_bg = self.snapshot[cavern_addr + 544]
-        self._place_graphic(cavern_udgs, willy, x, pixel_y, cavern_bg)
-        img_udgs = [cavern_udgs[i][left:left + width] for i in range(top, top + min(height, 17 - top))]
-        frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
-        return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
-
-    def _place_items(self, udg_array, addr):
-        item_udg_data = self.snapshot[addr + 692:addr + 700]
-        for a in range(addr + 629, addr + 653, 5):
-            attr = self.snapshot[a]
-            if attr == 255:
-                break
-            if attr == 0:
-                continue
-            ink, paper = attr & 7, (attr // 8) & 7
-            if ink == paper:
-                ink = max(3, (ink + 1) & 7)
-                attr = (attr & 248) + ink
-            x, y = self._get_coords(a + 1)
-            udg_array[y][x] = Udg(attr, item_udg_data)
-
-    def _place_willy(self, udg_array, addr):
-        attr = (self.snapshot[addr + 544] & 248) + 7
-        sprite_index = self.snapshot[addr + 617]
-        direction = self.snapshot[addr + 618]
-        willy = self._get_graphic(33280 + 128 * direction + 32 * sprite_index, attr)
-        x, y = self._get_coords(addr + 620)
-        self._place_graphic(udg_array, willy, x, y * 8)
-
-    def _get_cavern_udgs(self, addr, cframe=False):
+    def _get_cavern_udgs(self, addr):
         # Collect block graphics
         block_graphics = {}
         bg_udg = Udg(self.snapshot[addr + 544], self.snapshot[addr + 545:addr + 553])
@@ -102,40 +64,4 @@ class ManicMinerHtmlWriter(HtmlWriter):
         name_udgs = [Udg(48, self.font[b]) for b in self.snapshot[addr + 512:addr + 544]]
         udg_array.append(name_udgs)
 
-        if cframe:
-            return udg_array
-
-        self._place_items(udg_array, addr)
-        self._place_willy(udg_array, addr)
-
-        # Portal
-        attr = self.snapshot[addr + 655]
-        portal_udgs = self._get_graphic(addr + 656, attr)
-        x, y = self._get_coords(addr + 688)
-        udg_array[y][x:x + 2] = portal_udgs[0]
-        udg_array[y + 1][x:x + 2] = portal_udgs[1]
-
         return udg_array
-
-    def _get_graphic(self, addr, attr):
-        # Build a 16x16 graphic
-        udgs = []
-        for offsets in ((0, 1), (16, 17)):
-            o1, o2 = offsets
-            udgs.append([])
-            for a in (addr + o1, addr + o2):
-                udgs[-1].append(Udg(attr, self.snapshot[a:a + 16:2]))
-        return udgs
-
-    def _get_coords(self, addr):
-        p1, p2 = self.snapshot[addr:addr + 2]
-        x = p1 & 31
-        y = 8 * (p2 & 1) + (p1 & 224) // 32
-        return x, y
-
-    def _place_graphic(self, udg_array, graphic, x, pixel_y, bg_attr=None, bleed=False):
-        if bleed:
-            blank_udg = Udg(graphic[0][0].attr, [0] * 8)
-            graphic.append([blank_udg] * len(graphic[0]))
-        rattr = lambda b, f: b & 56 | f & 71 if bg_attr in (None, b) else b
-        overlay_udgs(udg_array, graphic, x * 8, pixel_y, 0, rattr)

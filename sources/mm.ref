@@ -242,3 +242,27 @@ PageByteColumns=#IF({base}==16)(0,1)
     #UDGARRAY*cavern({ScreenshotImagePath}/$fname)
   ||
 )
+
+#DEF(#WILLY(cnum,x,y,sprite,left=0,top=0,width=32,height=17,force=0)(fname)
+  #REM(
+    cnum: cavern number (0-19)
+    x, y: Willy's location in cavern
+    sprite: Willy's sprite index (0-7)
+    left, top, width, height: geometry of frame
+    force: rebuild empty cavern (in case cavern definition has been modified)
+  )
+  #IF($force)||
+    #CFRAME($cnum,1)(temp)
+    #COPY($left,$top,$width,$height)(temp,cavern)
+  |
+    #CFRAME($cnum)
+    #COPY($left,$top,$width,$height)($cnum,cavern)
+  ||
+  #LET(addr=45056+1024*$cnum)
+  #ITEMS({addr},$left,$top)(cavern)
+  #SFRAME(33280+32*$sprite,7)(willy)
+  #LET(bg=#PEEK(45600+1024*$cnum))
+  #OVER($x-$left,0,0,$y-8*$top,1)(#IF($b=={bg})($b&56|$f&71,$b))(cavern,willy)
+  #OPORTAL({addr},$left,$top)(cavern)
+  #UDGARRAY*cavern({ScreenshotImagePath}/$fname)
+)

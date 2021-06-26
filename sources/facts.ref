@@ -318,7 +318,7 @@ Willy won't be able to reach the portal. For example:
 
 #PUSHS
 #POKES61814,0,9;61846,0,9;62089,255
-#UDGTABLE { #WILLY16,29,96,5,22,0,10,16(no_way_out) } TABLE#
+#UDGTABLE { #WILLY16,29,96,5,22,0,10,16,1(no_way_out) } TABLE#
 #POPS
 
 If that happens, he will have to wait until the air runs out before getting a
