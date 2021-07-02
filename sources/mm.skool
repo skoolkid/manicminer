@@ -72,17 +72,17 @@ b24576 DEFS 4096
 b28672 DEFS 4096
 
 @start
-@expand=#DEFINE2,1@@LOGO@#UDGARRAY(19,#IF({0}||{1}==0)(23,16),2,256,tindex=3,alpha=#IF({1})(0,255));43040-43058;43072-43090{{10,,292}}({{ImagePath}}/{2}|Manic Miner)@@
-@expand=#DEFINE1(TILES,#FOR(45600+{0}*1024,45663+{0}*1024,9);;$n;#UDG($n+1,#PEEK$n)(#MAP($n%1024)(,544:background,553:floor,562:crumbling_floor,571:wall,580:conveyor,589:nasty1,598:nasty2,607:extra)_{0}); | ;;)
-@expand=#DEFINE1(ITEM,#UDG(45748+1024*{0},#PEEK(45685+1024*{0}))(item#EVAL{0},,2))
-@expand=#DEFINE1(PORTAL,#UDGARRAY(2,#PEEK(45711+1024*{0}),4,2);(45712+1024*{0})-(45729+1024*{0})-1-16(portal#EVAL{0},,2))
-@expand=#DEFINE2(SPRITE,#UDGARRAY(2,#IF({1}<256)({1},127&#PEEK{1}),4,2);{0}-({0}+17)-1-16)
+@expand=#DEF(#LOGO(dark,trans)(fname) #UDGARRAY(19,#IF($dark||$trans==0)(23,16),2,256,tindex=3,alpha=(1-$trans)*255);43040-43058;43072-43090{10,,292}({ImagePath}/$fname|Manic Miner))
+@expand=#DEF(#TILES(cnum) #FOR(45600+$cnum*1024,45663+$cnum*1024,9);;$n;#UDG($n+1,#PEEK$n)(#MAP($n%1024)(,544:background,553:floor,562:crumbling_floor,571:wall,580:conveyor,589:nasty1,598:nasty2,607:extra)_$cnum); | ;;)
+@expand=#DEF(#ITEM(cnum) #UDG(45748+1024*$cnum,#PEEK(45685+1024*$cnum))(item#EVAL$cnum,,2))
+@expand=#DEF(#PORTAL(cnum) #UDGARRAY(2,#PEEK(45711+1024*$cnum),4,2);(45712+1024*$cnum)-(45729+1024*$cnum)-1-16(portal#EVAL$cnum,,2))
+@expand=#DEF(#SPRITE(addr,attr) #UDGARRAY(2,#IF($attr<256)($attr,127&#PEEK$attr),4,2);$addr-($addr+17)-1-16)
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#b\i/#N\1,,,1(0x)
-@expand=#DEFINE0(BUG,#LINK:Bugs)
-@expand=#DEFINE0(FACT,#LINK:Facts)
-@expand=#DEFINE0(POKE,#LINK:Pokes)
-@expand=#DEFINE0(S,#FORMAT({{mode[case]}}))
+@expand=#DEF(#BUG #LINK:Bugs)
+@expand=#DEF(#FACT #LINK:Facts)
+@expand=#DEF(#POKE #LINK:Pokes)
+@expand=#DEF(#S #FORMAT({mode[case]}))
 @expand=#DEF(#GBUF(a,b=0) #LINK:GameStatusBuffer#$a(#N$a#IF($b)(-#N$b)))
 ; Manic Miner disassembly
 ; https://skoolkit.ca
