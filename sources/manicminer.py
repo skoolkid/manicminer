@@ -21,9 +21,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
         self.expand(self.get_section('Expand'))
         self.font = {c: self.snapshot[15360 + 8 * c:15368 + 8 * c] for c in range(32, 122)}
-        self.cavern_names = {}
-        for a in range(45056, 65536, 1024):
-            self.cavern_names[a] = ''.join([chr(b) for b in self.snapshot[a + 512:a + 544]]).strip()
         self.cavern_frames = {}
 
     def expand_cframe(self, text, index, cwd):
@@ -39,9 +36,6 @@ class ManicMinerHtmlWriter(HtmlWriter):
             if not force:
                 self.cavern_frames[num] = True
         return end, ''
-
-    def cavern_name(self, cwd, address):
-        return self.cavern_names[address]
 
     def _get_cavern_udgs(self, addr):
         # Collect block graphics

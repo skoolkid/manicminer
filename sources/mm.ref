@@ -42,7 +42,7 @@ PageContent=#INCLUDE(Caverns)
 { =h No. | =h Address | =h Name | =h Teleport }
 #FOR(0,19)(cnum,
   #LET(addr=45056+1024*cnum)
-  #LET(name$=#CALL:cavern_name({addr}))
+  #LET(name$=#STR({addr}+512,3,32))
   #LET(tcode=#FOR(1,5)(key,#IF(cnum&(1<<(key-1)))(key))6)
   { #N(cnum,,,1)(0x) | #N({addr}) | #FORMAT(#R({addr})({name$}) | {tcode}) }
 )
