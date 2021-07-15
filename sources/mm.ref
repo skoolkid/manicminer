@@ -1,6 +1,7 @@
 ; Copyright 2012, 2014-2021 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
+Expand=#INCLUDE(Expand)
 HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
 RefFiles=bugs.ref;changelog.ref;facts.ref;pokes.ref
 GameDir=manic_miner

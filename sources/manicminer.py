@@ -19,7 +19,6 @@ from skoolkit.skoolmacro import parse_ints, parse_brackets
 
 class ManicMinerHtmlWriter(HtmlWriter):
     def init(self):
-        self.expand(self.get_section('Expand'))
         self.font = {c: self.snapshot[15360 + 8 * c:15368 + 8 * c] for c in range(32, 122)}
         self.cavern_frames = {}
 
