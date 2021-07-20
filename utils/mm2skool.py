@@ -110,10 +110,11 @@ def get_caverns(snapshot):
         cavern_num = a // 1024 - 44
         cavern = snapshot[a:a + 1024]
         cavern_name = ''.join([chr(b) for b in cavern[512:544]]).strip()
+        cavern_img_fname = cavern_name.lower().replace(' ', '_')
         lines.append('b {} {} (teleport: {})'.format(a, cavern_name, _get_teleport_code(cavern_num)))
         lines.append('@ {} label=CAVERN{}'.format(a, cavern_num))
         lines.append('D {} Used by the routine at #R34436.'.format(a))
-        lines.append('D {0} #UDGTABLE {{ #CALL:cavern({0}) }} TABLE#'.format(a))
+        lines.append('D {} #UDGTABLE {{ #CAVERN{}({}) }} TABLE#'.format(a, cavern_num, cavern_img_fname))
         desc = ['The first 512 bytes are the attributes that define the layout of the cavern.']
         if cavern_num == 19:
             # The Final Barrier
