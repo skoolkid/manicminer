@@ -1,3 +1,3 @@
 GAME=mm
-SRCFILES=$(echo mm.skool {mm,bugs,changelog,facts,pokes}.ref {mm,dark,green,plum}.css manicminer.py COPYING)
+SRCFILES=$(echo mm.skool {mm,bugs,changelog,facts,pokes}.ref {mm,dark,green,plum}.css COPYING)
 SKOOL2BINOPTS="-i -S 32765"

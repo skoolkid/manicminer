@@ -2,7 +2,6 @@
 
 [Config]
 Expand=#INCLUDE(Expand)
-HtmlWriterClass=:manicminer.ManicMinerHtmlWriter
 RefFiles=bugs.ref;changelog.ref;facts.ref;pokes.ref
 GameDir=manic_miner
 
@@ -206,6 +205,49 @@ PageByteColumns=#IF({base}==16)(0,1)
     )
   )
   #POPS
+)
+
+#DEF(#CTILES(addr)(frame)
+  #TILE($addr+544)(bg)
+  #TILE($addr+553)(floor)
+  #TILE($addr+562)(crumbly)
+  #TILE($addr+571)(wall)
+  #TILE($addr+580)(conveyor)
+  #TILE($addr+589)(nasty1)
+  #TILE($addr+598)(nasty2)
+  #TILE($addr+607)(extra)
+  #LET(td[]=(bg,
+    #PEEK($addr+544):bg,
+    #PEEK($addr+553):floor,
+    #PEEK($addr+562):crumbly,
+    #PEEK($addr+571):wall,
+    #PEEK($addr+580):conveyor,
+    #PEEK($addr+589):nasty1,
+    #PEEK($addr+598):nasty2,
+    #PEEK($addr+607):extra)
+  )
+  #UDGS32,16,2(*$frame)({td[#PEEK($addr+$y*32+$x)]})
+)
+
+#FOR(0,19)(N,#LET(forceN=0))
+
+#DEF(#CFRAME(num,force=0)(frame=$num)
+  #IF({force$num}==0 || $force)(
+    #LET(addr=45056+1024*$num)
+    #UDGARRAY32;0x544(*$frame)
+    #CTILES({addr})(ctiles)
+    #OVER(0,0,,,1)($f)($frame,ctiles)
+    #IF($num==19)(
+      #SCR(h=8,df=40960,af=64512)(*fbtophalf)
+      #OVER(0,0,,,3)($f)($f)($frame,fbtophalf)
+    )
+    #UDGS(32,1)(*name)(
+      #UDG(15360+8*#PEEK({addr}+512+$x),48)(*namechar)
+      namechar
+    )
+    #OVER(0,16,,,1)($f)($frame,name)
+    #IF($force==0)(#LET(force$num=1))
+  )
 )
 
 #DEF(#CAVERN(num,x=0,y=0,w=32,h=17,flags=1)(fname)
