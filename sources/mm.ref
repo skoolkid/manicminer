@@ -216,7 +216,7 @@ PageByteColumns=#IF({base}==16)(0,1)
   #TILE($addr+589)(nasty1)
   #TILE($addr+598)(nasty2)
   #TILE($addr+607)(extra)
-  #LET(td[]=(bg,
+  #LET(td$[]=(bg,
     #PEEK($addr+544):bg,
     #PEEK($addr+553):floor,
     #PEEK($addr+562):crumbly,
@@ -226,7 +226,7 @@ PageByteColumns=#IF({base}==16)(0,1)
     #PEEK($addr+598):nasty2,
     #PEEK($addr+607):extra)
   )
-  #UDGS32,16,2(*$frame)({td[#PEEK($addr+$y*32+$x)]})
+  #UDGS32,16,2(*$frame)({td$[#PEEK($addr+$y*32+$x)]})
 )
 
 #FOR(0,19)(N,#LET(forceN=0))
