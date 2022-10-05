@@ -1,3 +1,4 @@
 GAME=mm
 SRCFILES=$(echo mm.skool {mm,bugs,changelog,facts,pokes}.ref {mm,dark,green,plum}.css COPYING)
 SKOOL2BINOPTS="-i -S 32765"
+WAVCONVERT="game-over.wav"

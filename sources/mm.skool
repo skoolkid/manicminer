@@ -1,4 +1,4 @@
-; Copyright 2010, 2012-2021 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2010, 2012-2022 Richard Dymond (rjdymond@gmail.com)
 
 @defb=$3D00:$00,$00,$00,$00,$00,$00,$00,$00 ; SPACE
 @defb=$3D38:$00,$08,$10,$00,$00,$00,$00,$00 ; '
@@ -88,7 +88,7 @@ b28672 DEFS 4096
 ; https://skoolkit.ca
 ;
 ; Copyright 1983 Bug-Byte Ltd (Manic Miner)
-; Copyright 2010, 2012-2021 Richard Dymond (this disassembly)
+; Copyright 2010, 2012-2022 Richard Dymond (this disassembly)
 
 @isub+begin
 @org
@@ -1367,7 +1367,11 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
  35205 LD C,0        ;
  35207 CALL 36852    ; }
 ; The following loop draws the boot's descent onto the plinth that supports
-; Willy.
+; Willy while producing a sound effect.
+; .
+; #HTML(#AUDIO(game-over.wav)(
+;   #FOR(255,63,-4,7)(e,[13*e+33]*63,13*e+13161+10*(#EVAL(135<=e<=163)))
+; ))
 @label=LOOPFT
 *35210 LD A,(32988)  ; Pick up the distance variable from #R32988
  35213 LD C,A        ; {Point #REGbc at the corresponding entry in the screen
