@@ -1164,6 +1164,8 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
 *34870 BIT 1,(HL)    ; Has the in-game music been switched off?
  34872 JR NZ,34911   ; Jump if so
 ; The next section of code plays a note of the in-game music.
+; .
+; #HTML(#AUDIO(in-game-tune.wav)(#INCLUDE(InGameTune)))
  34874 LD A,(33883)  ; {Increment the in-game music note index at #R33883
  34877 INC A         ;
  34878 LD (33883),A  ; }
