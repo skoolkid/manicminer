@@ -880,8 +880,12 @@ c34252 XOR A         ; #REGa=0
  34346 LD A,1        ; {Set the Kempston joystick indicator at #R33881 to 1
  34348 LD (33881),A  ; }
 ; And finally, play the theme tune and check for keypresses.
+; .
+; #HTML(#AUDIO4(tune.wav)(34351,34358))
+@assemble=2
 *34351 LD IY,33902   ; Point #REGiy at the theme tune data at #R33902
  34355 CALL 37596    ; Play the theme tune
+@assemble=1
  34358 JP NZ,34436   ; Start the game if ENTER or the fire button was pressed
  34361 XOR A         ; {Initialise the game status buffer variable at #R32988;
  34362 LD (32988),A  ; this will be used as an index for the message scrolled
@@ -3074,6 +3078,7 @@ c37579 LD H,7        ; {Point #REGhl at the bitmap for the character (in the
 ;
 ; IY #R33902 (tune data)
 @label=PLAYTUNE
+@assemble=2
 c37596 LD A,(IY+0)   ; Pick up the next byte of tune data from the table at
                      ; #R33902
  37599 CP 255        ; Has the tune finished?
@@ -3163,6 +3168,7 @@ c37687 LD A,(33881)  ; Pick up the Kempston joystick indicator from #R33881
 ;
 ; The source code here corresponds to the code at #R34900.
 @label=SOURCE
+@assemble=1
 u37708 DEFM 9,"DEC",9,"E"                  ; DEC E
  37714 DEFW 3960                           ; {3960 JR NZ,NOFLP6
  37716 DEFB 13                             ;
