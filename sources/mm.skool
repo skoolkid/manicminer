@@ -881,7 +881,7 @@ c34252 XOR A         ; #REGa=0
  34348 LD (33881),A  ; }
 ; And finally, play the theme tune and check for keypresses.
 ; .
-; #HTML(#AUDIO4(tune.wav)(34351,34358))
+; #AUDIO4(tune.wav)(34351,34358)
 @assemble=2
 *34351 LD IY,33902   ; Point #REGiy at the theme tune data at #R33902
  34355 CALL 37596    ; Play the theme tune
@@ -1169,7 +1169,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  34872 JR NZ,34911   ; Jump if so
 ; The next section of code plays a note of the in-game music.
 ; .
-; #HTML(#AUDIO(in-game-tune.wav)(#INCLUDE(InGameTune)))
+; #AUDIO(in-game-tune.wav)(#INCLUDE(InGameTune))
  34874 LD A,(33883)  ; {Increment the in-game music note index at #R33883
  34877 INC A         ;
  34878 LD (33883),A  ; }
@@ -1289,6 +1289,8 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
 ; The following loop fills the top two thirds of the attribute file with a
 ; single value (#b71, #b70, #b69, #b68, #b67, #b66, #b65 or #b64) and makes a
 ; sound effect.
+; .
+; #AUDIO(die.wav)(#FOR(7,63,8,7)(d,[13*d+33]*(259-4*d),13*d+10895))
 @label=LPDEAD1
 *35080 LD HL,22528   ; {Fill the top two thirds of the attribute file with the
  35083 LD DE,22529   ; value in #REGa
@@ -1375,9 +1377,7 @@ c35140 LD HL,33823   ; Point #REGhl at the high score at #R33823
 ; The following loop draws the boot's descent onto the plinth that supports
 ; Willy while producing a sound effect.
 ; .
-; #HTML(#AUDIO(game-over.wav)(
-;   #FOR(255,63,-4,7)(e,[13*e+33]*63,13*e+13161+10*(#EVAL(135<=e<=163)))
-; ))
+; #AUDIO(game-over.wav)(#GAMEOVER)
 @label=LOOPFT
 *35210 LD A,(32988)  ; Pick up the distance variable from #R32988
  35213 LD C,A        ; {Point #REGbc at the corresponding entry in the screen
