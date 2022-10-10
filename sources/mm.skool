@@ -885,7 +885,6 @@ c34252 XOR A         ; #REGa=0
 @assemble=2
 *34351 LD IY,33902   ; Point #REGiy at the theme tune data at #R33902
  34355 CALL 37596    ; Play the theme tune
-@assemble=1
  34358 JP NZ,34436   ; Start the game if ENTER or the fire button was pressed
  34361 XOR A         ; {Initialise the game status buffer variable at #R32988;
  34362 LD (32988),A  ; this will be used as an index for the message scrolled
@@ -2653,7 +2652,9 @@ c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
  37040 OR A          ; Are we in demo mode?
  37041 JP NZ,34449   ; If so, demo the next cavern
 ; The following loop increases the score and decreases the air supply until it
-; runs out.
+; runs out, while playing a sound effect.
+; .
+; #PUSHS #POKES32956,63 #AUDIO4(air.wav)(37044,34449) #POPS
 *37044 CALL 35388    ; Decrease the air remaining in the current cavern
  37047 JP Z,34449    ; Move to the next cavern if the air supply is now gone
 @ssub=LD HL,33829+9
@@ -2879,9 +2880,7 @@ c37173 LD HL,23558   ; {Flip the left-hand switch at (0,6) if Willy is touching
  37380 LD C,1        ; #R24576
  37382 CALL 36852    ; }
  37385 JP NZ,36102   ; Kill Willy if he collided with the Kong Beast
-@assemble=2
  37388 LD A,68       ; #REGa=#b68 (INK 4: PAPER 0: BRIGHT 1)
-@assemble=1
  37390 LD (23599),A  ; {Set the attribute bytes for the Kong Beast in the
  37393 LD (23600),A  ; buffer at #R23552
  37396 LD (23567),A  ;
@@ -3078,7 +3077,6 @@ c37579 LD H,7        ; {Point #REGhl at the bitmap for the character (in the
 ;
 ; IY #R33902 (tune data)
 @label=PLAYTUNE
-@assemble=2
 c37596 LD A,(IY+0)   ; Pick up the next byte of tune data from the table at
                      ; #R33902
  37599 CP 255        ; Has the tune finished?
