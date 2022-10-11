@@ -2613,6 +2613,9 @@ c36904 LD A,(33799)  ; Pick up the number of the current cavern from #R33799
  36978 LD (HL),0     ; Willy's feet just below where the portal was)
  36980 INC HL        ;
  36981 LD (HL),0     ; }
+; Now play a celebratory sound effect.
+; .
+; #AUDIO4(escape.wav)(36983,37008)
  36983 LD BC,0       ; {Prepare #REGc and #REGd for the celebratory sound
  36986 LD D,50       ; effect}
  36988 XOR A         ; #REGa=0 (black border)
