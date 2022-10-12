@@ -1690,14 +1690,16 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35670 JP Z,35971    ; Jump if so
 ; If we get here, then Willy is either in the process of falling or just about
 ; to start falling.
+; .
+; #AUDIO(falling.wav)(#FOR(3,28,1,3)(a,[(208*a+33)%3315]*31,280000))
  35673 LD HL,32874   ; {Reset bit 1 at #R32874: Willy is not moving left or
  35676 RES 1,(HL)    ; right}
  35678 OR A          ; Is Willy already falling?
  35679 JP Z,35740    ; Jump if not
  35682 INC A         ; {Increment the airborne status indicator at #R32875
  35683 LD (32875),A  ; }
- 35686 RLCA          ; {#REGd=16*#REGa; this value determines the pitch of the
- 35687 RLCA          ; falling sound effect
+ 35686 RLCA          ; {The value of #REGd determines the pitch of the falling
+ 35687 RLCA          ; sound effect
  35688 RLCA          ;
  35689 RLCA          ;
  35690 LD D,A        ; }
