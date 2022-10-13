@@ -1584,6 +1584,8 @@ c35515 LD A,(32875)  ; Pick up the airborne status indicator from #R32875
  35518 CP 1          ; Is Willy jumping?
  35520 JR NZ,35600   ; Jump if not
 ; Willy is currently jumping.
+; .
+; #AUDIO(jumping.wav)(#FOR1,18,,3(j,[104*(#IF(j>8)(j-8,8-j))+137]*31,280000))
  35522 LD A,(32878)  ; Pick up the jumping animation counter (0-17) from
                      ; #R32878
  35525 RES 0,A       ; {Now -8<=#REGa<=8 (and #REGa is even)
