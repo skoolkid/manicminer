@@ -1,4 +1,4 @@
-; Copyright 2014-2019, 2021 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2019, 2021, 2022 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:tunes:Tunes]
 The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss
@@ -143,7 +143,7 @@ decreases to zero.
   #OVER(1,5,,,2)($f)(bht,willy)
   #SFRAME(45792,1)(swordfish)
   #OVER(1,4,,,2)($f)(bht,swordfish)
-  #UDGARRAY4,1;0x32(*blue)
+  #UDGARRAY(4,1)(15616x32)(*blue)
   #OVER(0,0,,,1)($f)(bht,blue)
   #UDGARRAY*bht({ScreenshotImagePath}/bottom_half_twice)
 } TABLE#

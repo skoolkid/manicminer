@@ -1,4 +1,4 @@
-; Copyright 2014-2021 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2022 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:animatedPlatform:The animated platform]
 There is a platform at (9,7) in #R62464(Amoebatrons' Revenge) whose third row
@@ -121,7 +121,7 @@ disintegrating.
 #UDGTABLE {
   #CFRAME13
   #COPY(14,8,8,5,2)(13,ac)
-  #UDGARRAY2,15,,2;59200-59217-1-16;0x2(*skylab)
+  #UDGARRAY(2,15,,2)(59200-59217-1-16;15616x2,,1)(*skylab)
   #OVER(3,1,0,0,1)($f)(ac,skylab)
   #UDGARRAY*ac({ScreenshotImagePath}/attribute_crash)
 } TABLE#
