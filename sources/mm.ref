@@ -89,6 +89,35 @@ PageByteColumns=#IF({base}==16)(0,1)
 [Expand]
 #DEF(#REM()(remark))
 
+#DEF(#LOGO(dark,trans)(fname)
+  #UDGARRAY(19,#IF($dark||$trans==0)(23,16),2,256,tindex=3,alpha=(1-$trans)*255);43040-43058;43072-43090{10,,292}({ImagePath}/$fname|Manic Miner)
+)
+
+#DEF(#TILES(cnum)
+  #LET(a=45600+$cnum*1024)
+  #UDG({a}+1,#PEEK({a}))(background_$cnum) |
+  #UDG({a}+10,#PEEK({a}+9))(floor_$cnum) |
+  #UDG({a}+19,#PEEK({a}+18))(crumbling_floor_$cnum) |
+  #UDG({a}+28,#PEEK({a}+27))(wall_$cnum) |
+  #UDG({a}+37,#PEEK({a}+36))(conveyor_$cnum) |
+  #UDG({a}+46,#PEEK({a}+45))(nasty1_$cnum) |
+  #UDG({a}+55,#PEEK({a}+54))(nasty2_$cnum) |
+  #UDG({a}+64,#PEEK({a}+63))(extra_$cnum)
+)
+
+#DEF(#ITEM(cnum)
+  #UDG(45748+1024*$cnum,#PEEK(45685+1024*$cnum))(item#EVAL$cnum,,2)
+)
+
+#DEF(#PORTAL(cnum)
+  #LET(a=45711+1024*$cnum)
+  #UDGARRAY(2,#PEEK({a}),4,2);({a}+1)-({a}+18)-1-16(portal#EVAL$cnum,,2)
+)
+
+#DEF(#SPRITE(addr,attr)
+  #UDGARRAY(2,#IF($attr<256)($attr,127&#PEEK$attr),4,2);$addr-($addr+17)-1-16
+)
+
 #DEF(#SFRAME(addr,attr)(frame)
   #UDGARRAY(2,$attr,,2);$addr-($addr+17)-1-16(*$frame)
 )
