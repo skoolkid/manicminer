@@ -1,4 +1,4 @@
-; Copyright 2014-2021 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2022 Richard Dymond (rjdymond@gmail.com)
 
 [Page:Changelog]
 SectionType=BulletPoints
@@ -6,6 +6,8 @@ SectionType=BulletPoints
 [Changelog:YYYYMMDD]
 -
 
+- Added the 'Graphics and sound' section to the #LINK:GameIndex(home page)
+- Added the #LINK:Sound() page
 - In #FACT#itemCounts(), added #R58368(Skylab Landing Bay) to the list of
   caverns that have four items (thanks IRF)
 

@@ -16,7 +16,7 @@ SKOOL = 'mm.skool'
 
 SNAPSHOT = 'build/manic_miner.z80'
 
-OUTPUT = """Using ref files: mm.ref, bugs.ref, changelog.ref, facts.ref, pokes.ref
+OUTPUT = """Using ref files: mm.ref, bugs.ref, changelog.ref, facts.ref, pokes.ref, sound.ref
 Parsing {skoolfile}
 Output directory: {odir}/manic_miner
 Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to skoolkit.css
@@ -35,6 +35,7 @@ Writing reference/glossary.html
 Writing reference/pokes.html
 Writing tables/caverns.html
 Writing reference/credits.html
+Writing sound/sound.html
 Writing index.html"""
 
 write_tests(SKOOL, SNAPSHOT, OUTPUT)

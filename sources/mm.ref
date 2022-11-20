@@ -2,7 +2,7 @@
 
 [Config]
 Expand=#INCLUDE(Expand)
-RefFiles=bugs.ref;changelog.ref;facts.ref;pokes.ref
+RefFiles=bugs.ref;changelog.ref;facts.ref;pokes.ref;sound.ref
 GameDir=manic_miner
 
 [Game]
@@ -17,9 +17,12 @@ AddressAnchor={address#IF({base}==16)(:04x)}
 [PageHeaders]
 Asm-t=Messages
 
+[Index:Graphics:Graphics and sound]
+Caverns
+Sound
+
 [Index:DataTables:Data tables and buffers]
 GameStatusBuffer
-Caverns
 
 [Index:Reference:Reference]
 Changelog
@@ -33,6 +36,7 @@ Credits
 Caverns=tables/caverns.html
 Credits=reference/credits.html
 CodeFiles={address#IF({base}==16)(:04#S/X/)}.html
+Sound=sound/sound.html
 
 [Page:Caverns]
 PageContent=#INCLUDE(Caverns)
