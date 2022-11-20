@@ -3123,11 +3123,11 @@ c37687 LD A,(33881)  ; Pick up the Kempston joystick indicator from #R33881
  37705 CP 1          ; Reset the zero flag if ENTER is being pressed
  37707 RET           ;
 
+@assemble=1
 ; Source code remnants
 ;
 ; The source code here corresponds to the code at #R34900.
 @label=SOURCE
-@assemble=1
 u37708 DEFM 9,"DEC",9,"E"                  ; DEC E
  37714 DEFW 3960                           ; {3960 JR NZ,NOFLP6
  37716 DEFB 13                             ;
