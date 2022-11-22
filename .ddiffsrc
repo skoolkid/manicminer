@@ -1,6 +1,6 @@
 # rc file for check-asms. check-bins, disassembly-diff, skooldiff, write-files
 
-OLD_VERSION=20200731
-SK_OLD_VERSION=8.2
+OLD_VERSION=20221122
+SK_OLD_VERSION=8.8
 SKOOL2BIN_START=32765
 SNAPSHOT=$MANICMINER_HOME/build/manic_miner.z80

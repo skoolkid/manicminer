@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 D_VERSIONS=(
+  20221122
   20200731
   20191112
   20190605
@@ -85,7 +86,8 @@ if (($D_VERSION >= 20141004)); then
   tar xf $DISASSEMBLY_ARCHIVE/$D_DIR.tar.xz
   [[ -d $D_DIR/src ]] && SOURCES_DIR=src || SOURCES_DIR=sources
   cd $SK_BUILD_DIR
-  cp -p ../$D_DIR/$SOURCES_DIR/*.{skool,ref,css,py} .
+  cp -p ../$D_DIR/$SOURCES_DIR/*.{skool,ref,css} .
+  find ../$D_DIR/$SOURCES_DIR -name manicminer.py -exec cp -p {} . \;
 else
   D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
   if [[ -z $D_SK_VERSION ]]; then
