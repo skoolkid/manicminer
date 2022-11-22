@@ -226,6 +226,21 @@ Willy has made it through <a href="FC00.html">The Final Barrier</a> without chea
 <td class="instruction">LD (HL),$00</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="9077"></span>
+<div class="comments">
+<div class="paragraph">
+Now play a celebratory sound effect.
+</div>
+<div class="paragraph">
+<audio controls="" src="../audio/escape.ogg">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../audio/escape.ogg">link to the audio</a> instead.</p>
+</audio>
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="address-1"><span id="9077"></span>9077</td>
 <td class="instruction">LD BC,$0000</td>
 <td class="comment-1" rowspan="2">Prepare <span class="register">C</span> and <span class="register">D</span> for the celebratory sound effect</td>
@@ -389,7 +404,12 @@ The next section of code cycles the INK and PAPER colours of the current cavern.
 <span id="90b4"></span>
 <div class="comments">
 <div class="paragraph">
-The following loop increases the score and decreases the air supply until it runs out.
+The following loop increases the score and decreases the air supply until it runs out, while playing a sound effect.
+</div>
+<div class="paragraph">
+<audio controls="" src="../audio/air.ogg">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../audio/air.ogg">link to the audio</a> instead.</p>
+</audio>
 </div>
 </div>
 </td>
@@ -516,9 +536,9 @@ Next: <a href="90EA.html">90EA</a>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20200731</div>
-<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2020 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
+<div class="release">The complete Manic Miner RAM disassembly 20221122</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2022 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.8.</div>
 <div><a href="../dec/asm/36904.html">Switch to decimal</a>.</div>
 </footer>
 </body>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manic Miner: Sound</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+</head>
+<body class="Sound">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Manic Miner" src="../../images/logo-dec.png" /></a></td>
+<td class="page-header">Sound</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a href="#themetune">Theme tune</a></li>
+<li><a href="#ingametune">In-game tune</a></li>
+<li><a href="#air">Air supply</a></li>
+<li><a href="#escape">Escape</a></li>
+<li><a href="#life">Lose a life</a></li>
+<li><a href="#gameover">Game over</a></li>
+<li><a href="#jumping">Jumping</a></li>
+<li><a href="#falling">Falling</a></li>
+</ul>
+<div><span id="themetune"></span></div>
+<div class="box box-1">
+<div class="box-title">Theme tune</div>
+<div class="paragraph">
+This tune is played after the title screen has been prepared (see <a href="../asm/34252.html#34351">34351</a>).
+</div>
+<div class="paragraph">
+<audio controls="" src="../../audio/tune.ogg">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../../audio/tune.ogg">link to the audio</a> instead.</p>
+</audio>
+</div>
+</div>
+<div><span id="ingametune"></span></div>
+<div class="box box-2">
+<div class="box-title">In-game tune</div>
+<div class="paragraph">
+This tune is played by the main loop while a game is in progress (see <a href="../asm/34574.html#34874">34874</a>).
+</div>
+<div class="paragraph">
+<audio controls="" src="../../audio/in-game-tune.ogg">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../../audio/in-game-tune.ogg">link to the audio</a> instead.</p>
+</audio>
+</div>
+</div>
+<div><span id="air"></span></div>
+<div class="box box-1">
+<div class="box-title">Air supply</div>
+<div class="paragraph">
+This sound effect is produced while the air supply in the current cavern is
+being drained before moving to the next cavern (see <a href="../asm/36904.html#37044">37044</a>).
+</div>
+<div class="paragraph">
+<audio controls="" src="../../audio/air.ogg">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../../audio/air.ogg">link to the audio</a> instead.</p>
+</audio>
+</div>
+</div>
+<div><span id="escape"></span></div>
+<div class="box box-2">
+<div class="box-title">Escape</div>
+<div class="paragraph">
+This sound effect is produced when Willy escapes from the mine (see <a href="../asm/36904.html#36983">36983</a>).
+</div>
+<div class="paragraph">
+<audio controls="" src="../../audio/escape.ogg">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../../audio/escape.ogg">link to the audio</a> instead.</p>
+</audio>
+</div>
+</div>
+<div><span id="life"></span></div>
+<div class="box box-1">
+<div class="box-title">Lose a life</div>
+<div class="paragraph">
+This sound effect is produced when Willy loses a life (see <a href="../asm/34574.html#35080">35080</a>).
+</div>
+<div class="paragraph">
+<audio controls="" src="../../audio/die.wav">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../../audio/die.wav">link to the audio</a> instead.</p>
+</audio>
+</div>
+</div>
+<div><span id="gameover"></span></div>
+<div class="box box-2">
+<div class="box-title">Game over</div>
+<div class="paragraph">
+This sound effect is produced by the routine at <a href="../asm/35140.html">35140</a> during the game over
+sequence.
+</div>
+<div class="paragraph">
+<audio controls="" src="../../audio/game-over.ogg">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../../audio/game-over.ogg">link to the audio</a> instead.</p>
+</audio>
+</div>
+</div>
+<div><span id="jumping"></span></div>
+<div class="box box-1">
+<div class="box-title">Jumping</div>
+<div class="paragraph">
+These sound effects are produced by the routine at <a href="../asm/35515.html">35515</a> when Willy is
+jumping.
+</div>
+<div class="paragraph">
+<audio controls="" src="../../audio/jumping.ogg">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../../audio/jumping.ogg">link to the audio</a> instead.</p>
+</audio>
+</div>
+</div>
+<div><span id="falling"></span></div>
+<div class="box box-2">
+<div class="box-title">Falling</div>
+<div class="paragraph">
+These sound effects are produced when Willy is falling (see <a href="../asm/35515.html#35673">35673</a>).
+</div>
+<div class="paragraph">
+<audio controls="" src="../../audio/falling.ogg">
+<p>Your browser doesn't support HTML5 audio. Here is a <a href="../../audio/falling.ogg">link to the audio</a> instead.</p>
+</audio>
+</div>
+</div>
+<footer>
+<div class="release">The complete Manic Miner RAM disassembly 20221122</div>
+<div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2022 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.8.</div>
+<div><a href="../../sound/sound.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>
