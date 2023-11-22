@@ -4,7 +4,4 @@
 ;
 ; to create a Z80 snapshot.
 
-https://www.worldofspectrum.org/pub/sinclair/games/m/ManicMiner.tap.zip
-manic_miner.z80
---ram poke=32768-33279,0 # Clear the cavern buffer
---reg pc=33792
+https://worldofspectrum.org/pub/sinclair/games/m/ManicMiner.tap.zip
