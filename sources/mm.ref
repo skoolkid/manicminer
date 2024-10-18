@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2022 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2022, 2024 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
 Expand=#INCLUDE(Expand)
@@ -262,10 +262,10 @@ PageByteColumns=#IF({base}==16)(0,1)
   #UDGS32,16,2(*$frame)({td$[#PEEK($addr+$y*32+$x)]})
 )
 
-#FOR(0,19)(N,#LET(forceN=0))
+#LET(force[]=(0))
 
 #DEF(#CFRAME(num,force=0)(frame=$num)
-  #IF({force$num}==0 || $force)(
+  #IF({force[$num]}==0 || $force)(
     #LET(addr=45056+1024*$num)
     #UDGARRAY32(15616x544)(*$frame)
     #CTILES({addr})(ctiles)
@@ -279,7 +279,7 @@ PageByteColumns=#IF({base}==16)(0,1)
       namechar
     )
     #OVER(0,16,,,1)($f)($frame,name)
-    #IF($force==0)(#LET(force$num=1))
+    #IF($force==0)(#LET(force[$num]=1))
   )
 )
 
