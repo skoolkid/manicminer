@@ -8,8 +8,8 @@ using [SkoolKit](https://skoolkit.ca).
 Decide which number base you prefer and then click the corresponding link below
 to browse the latest release:
 
-* [Manic Miner disassembly](https://skoolkid.github.io/manicminer/) (hexadecimal; mirror [here](https://skoolkid.gitlab.io/manicminer/))
-* [Manic Miner disassembly](https://skoolkid.github.io/manicminer/dec/) (decimal; mirror [here](https://skoolkid.gitlab.io/manicminer/dec/))
+* [Manic Miner disassembly](https://skoolkid.github.io/manicminer/) (hexadecimal)
+* [Manic Miner disassembly](https://skoolkid.github.io/manicminer/dec/) (decimal)
 
 To build the current development version of the disassembly, first obtain the
 development version of [SkoolKit](https://github.com/skoolkid/skoolkit). Then:
