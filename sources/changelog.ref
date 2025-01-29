@@ -1,4 +1,4 @@
-; Copyright 2014-2022 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2022, 2025 Richard Dymond (rjdymond@gmail.com)
 
 [Page:Changelog]
 SectionType=BulletPoints
@@ -6,15 +6,15 @@ SectionType=BulletPoints
 [Changelog:20221122]
 -
 
-- Added the 'Graphics and sound' section to the #LINK:GameIndex(home page)
-- Added the #LINK:Sound() page
-- In #FACT#itemCounts(), added #R58368(Skylab Landing Bay) to the list of
+- Added the 'Graphics and sound' section to the #LINK(GameIndex)(home page)
+- Added the #LINK(Sound)() page
+- In #FACT(itemCounts)(), added #R58368(Skylab Landing Bay) to the list of
   caverns that have four items (thanks IRF)
 
 [Changelog:20200731]
 -
 
-- Added a POKE: #POKE#oneItemOnly()
+- Added a POKE: #POKE(oneItemOnly)()
 
 [Changelog:20191112]
 -
@@ -34,43 +34,43 @@ SectionType=BulletPoints
 
 - Ported the disassembly to SkoolKit 7
 - Added trivia entries:
-  - #FACT#topHalfTwice() (thanks IRF)
-  - #FACT#bottomHalfTwice() (thanks IRF)
-- In #BUG#throughTheWallAgain(), added #R45056(Central Cavern) and #R51200(The
+  - #FACT(topHalfTwice)() (thanks IRF)
+  - #FACT(bottomHalfTwice)() (thanks IRF)
+- In #BUG(throughTheWallAgain)(), added #R45056(Central Cavern) and #R51200(The
   Vat) to the list of places where Willy can jump into a wall (thanks IRF)
 
 [Changelog:20171018]
 -
 
 - Added trivia entries:
-  - #FACT#stuckOn16()
-  - #FACT#fastestGuardians()
-  - #FACT#wrongFoot() (thanks Spider)
-  - #FACT#repeatingCaverns()
-  - #FACT#noWayOut()
-  - #FACT#outOfBounds()
-- Documented a bug: #BUG#blueShadow() (thanks IRF)
-- In #FACT#unusedConveyors(), added a POKE to make the conveyor in
+  - #FACT(stuckOn16)()
+  - #FACT(fastestGuardians)()
+  - #FACT(wrongFoot)() (thanks Spider)
+  - #FACT(repeatingCaverns)()
+  - #FACT(noWayOut)()
+  - #FACT(outOfBounds)()
+- Documented a bug: #BUG(blueShadow)() (thanks IRF)
+- In #FACT(unusedConveyors)(), added a POKE to make the conveyor in
   #R62464(Amoebatrons' Revenge) move right to left
 
 [Changelog:20170517]
 -
 
 - Ported the disassembly to SkoolKit 6
-- In #FACT#lightLogic(), updated the description of how the light beam reduces
+- In #FACT(lightLogic)(), updated the description of how the light beam reduces
   the air supply
-- In #BUG#throughTheWallAgain(), updated the description of how Willy falls
+- In #BUG(throughTheWallAgain)(), updated the description of how Willy falls
   into a wall block
-- In #FACT#unusedConveyors(), added a note about the conveyor in
+- In #FACT(unusedConveyors)(), added a note about the conveyor in
   #R62464(Amoebatrons' Revenge) moving in the wrong direction
 - Made more improvements to the hexadecimal version of the disassembly
 
 [Changelog:20161104]
 -
 
-- Documented a bug: #BUG#nineLivesInTheLight() (thanks Tezz)
-- Added a POKE: #POKE#morePointsPerItem()
-- In #FACT#lightLogic(), fixed the description of how the light beam reduces
+- Documented a bug: #BUG(nineLivesInTheLight)() (thanks Tezz)
+- Added a POKE: #POKE(morePointsPerItem)()
+- In #FACT(lightLogic)(), fixed the description of how the light beam reduces
   the air supply
 - The images of the Kong Beast caverns now show the cyan horizontal guardians
   (see #R52224 and #R56320)
@@ -78,68 +78,68 @@ SectionType=BulletPoints
 [Changelog:20160511]
 -
 
-- Added a trivia entry: #FACT#lightLogic()
+- Added a trivia entry: #FACT(lightLogic)()
 - Revealed the patterns of the #R58912(unused nasty tiles in Skylab Landing
   Bay)
-- In #BUG#throughTheWall(), fixed the images and description to reflect where
+- In #BUG(throughTheWall)(), fixed the images and description to reflect where
   Willy is actually drawn (thanks IRF)
 - Made various improvements to the hexadecimal version of the disassembly
 
 [Changelog:20160116]
 -
 
-- Documented a bug: #BUG#throughTheWallAgain()
+- Documented a bug: #BUG(throughTheWallAgain)()
 
 [Changelog:20150328]
 -
 
-- Documented a bug: #BUG#animatedPlatform()
-- Added a trivia entry: #FACT#unusedConveyors()
-- Added a POKE: #POKE#infiniteTime()
+- Documented a bug: #BUG(animatedPlatform)()
+- Added a trivia entry: #FACT(unusedConveyors)()
+- Added a POKE: #POKE(infiniteTime)()
 
 [Changelog:20141114]
 -
 
 - Added trivia entries:
-  - #FACT#tunes()
-  - #FACT#thePersistentItem() (thanks Zaph0dd)
+  - #FACT(tunes)()
+  - #FACT(thePersistentItem)() (thanks Zaph0dd)
 
 [Changelog:20141004]
 The disassembly is now 'complete'.
 
-- Annotated all the #LINK:RoutinesMap(routines)
-- Added a description to each #LINK:GameStatusBuffer(game status buffer entry),
-  #LINK:MessagesMap(message entry) and #LINK:DataMap(data block)
-- Added the #LINK:Caverns(Caverns page)
+- Annotated all the #LINK(RoutinesMap)(routines)
+- Added a description to each #LINK(GameStatusBuffer)(game status buffer
+  entry), #LINK(MessagesMap)(message entry) and #LINK(DataMap)(data block)
+- Added the #LINK(Caverns)(Caverns page)
 - Added trivia entries:
-  - #FACT#takingABreak()
-  - #FACT#6031769()
-  - #FACT#noSwordfishForCheats()
-  - #FACT#unusedCrumblingFloor()
-  - #FACT#itemGraphics()
-  - #FACT#itemCounts()
-  - #FACT#extraItems()
-  - #FACT#guardianColours()
-  - #FACT#guardianCounts()
-  - #FACT#guardiansNeedAClearPath()
-  - #FACT#variableAirSupply()
-  - #FACT#theUnreachableMillion()
-  - #FACT#horizontalSkylabs()
-  - #FACT#sourceCodeRemnants()
+  - #FACT(takingABreak)()
+  - #FACT(6031769)()
+  - #FACT(noSwordfishForCheats)()
+  - #FACT(unusedCrumblingFloor)()
+  - #FACT(itemGraphics)()
+  - #FACT(itemCounts)()
+  - #FACT(extraItems)()
+  - #FACT(guardianColours)()
+  - #FACT(guardianCounts)()
+  - #FACT(guardiansNeedAClearPath)()
+  - #FACT(variableAirSupply)()
+  - #FACT(theUnreachableMillion)()
+  - #FACT(horizontalSkylabs)()
+  - #FACT(sourceCodeRemnants)()
 - Documented bugs:
-  - #BUG#throughTheWall()
-  - #BUG#attributeCrash()
+  - #BUG(throughTheWall)()
+  - #BUG(attributeCrash)()
 - Added POKEs:
-  - #POKE#gentleGuardians()
-  - #POKE#niceNasties()
-  - #POKE#harmlessHeights()
-  - #POKE#noConveyors()
-  - #POKE#cheatModeCheat()
-  - #POKE#alwaysOpen()
-  - #POKE#noSkylabs()
-  - #POKE#likeableLightBeam()
-  - #POKE#moreLives()
-  - #POKE#infiniteLives()
+  - #POKE(gentleGuardians)()
+  - #POKE(niceNasties)()
+  - #POKE(harmlessHeights)()
+  - #POKE(noConveyors)()
+  - #POKE(cheatModeCheat)()
+  - #POKE(alwaysOpen)()
+  - #POKE(noSkylabs)()
+  - #POKE(likeableLightBeam)()
+  - #POKE(moreLives)()
+  - #POKE(infiniteLives)()
 
 [Changelog:20140308]
 Included in SkoolKit 3.7.
@@ -161,7 +161,7 @@ Included in SkoolKit 3.3.2.
 [Changelog:20121101]
 Included in SkoolKit 3.2.
 
-- Annotated the source code remnants at #FACT#sourceCodeRemnants(#N32768) and
+- Annotated the source code remnants at #FACT(sourceCodeRemnants)(#N32768) and
   #R37708
 
 [Changelog:20120501]

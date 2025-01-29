@@ -1,4 +1,4 @@
-; Copyright 2014-2022 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2022, 2025 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:animatedPlatform:The animated platform]
 There is a platform at (9,7) in #R62464(Amoebatrons' Revenge) whose third row
@@ -13,7 +13,7 @@ occupied by background tiles):
 
 POKE #R63087(63088),7
 
-See #FACT#unusedConveyors() for more information.
+See #FACT(unusedConveyors)() for more information.
 
 [Bug:nineLivesInTheLight:Nine lives in the light]
 The code that decreases the air supply when Willy is in the light beam in
@@ -123,7 +123,7 @@ disintegrating.
   #COPY(14,8,8,5,2)(13,ac)
   #UDGARRAY(2,15,,2)(59200-59217-1-16;15616x2,,1)(*skylab)
   #OVER(3,1,0,0,1)($f)(ac,skylab)
-  #UDGARRAY*ac({ScreenshotImagePath}/attribute_crash)
+  #FRAMES(ac)({ScreenshotImagePath}/attribute_crash)
 } TABLE#
 
 The reason for this is that the code at #R36447 (which is used to set the
@@ -140,7 +140,7 @@ be seen casting a 'shadow' over the floor immediately below it.
 #UDGTABLE { #CAVERN18,15,9,4,4(blue_shadow) } TABLE#
 
 This happens for the same reason as a Skylab's colour bleeds over into the
-floor below when it crashes - see #BUG#attributeCrash(). This effect does not
+floor below when it crashes - see #BUG(attributeCrash)(). This effect does not
 occur on subsequent occasions when the guardian approaches the floor, because
 it never actually touches the floor again - its maximum pixel y-coordinate is
-79, one less than its original y-coordinate of 80 (see #FACT#outOfBounds()).
+79, one less than its original y-coordinate of 80 (see #FACT(outOfBounds)()).

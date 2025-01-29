@@ -1,4 +1,4 @@
-; Copyright 2014-2016, 2020 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2016, 2020, 2025 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:gentleGuardians:Gentle guardians]
 To enable Willy to walk through guardians with impunity:
@@ -27,13 +27,13 @@ To enable Willy to walk freely in any direction on conveyors:
 POKE #R35834(35834),0
 
 [Poke:cheatModeCheat:Cheat mode cheat]
-To activate the #FACT#6031769(6031769 cheat mode) immediately (without having
+To activate the #FACT(6031769)(6031769 cheat mode) immediately (without having
 to type 6031769):
 
 POKE #R33885(33885),7
 
 For a list of all the caverns and their teleport codes, see the
-#LINK:Caverns(Caverns page).
+#LINK(Caverns)(Caverns page).
 
 [Poke:morePointsPerItem:More points per item]
 To give Willy more than 100 points for collecting an item:

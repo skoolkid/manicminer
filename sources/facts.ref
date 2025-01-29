@@ -1,4 +1,4 @@
-; Copyright 2014-2019, 2021, 2022 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2019, 2021, 2022, 2025 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:tunes:Tunes]
 The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss
@@ -16,7 +16,7 @@ Willy's remaining lives to show that the cheat mode has been activated.
 
 For example, to teleport to #R51200(The Vat), hold down keys '2' and '3', and
 then press '6' to activate the teleporter. For a list of all the caverns and
-their teleport codes, see the #LINK:Caverns(Caverns page).
+their teleport codes, see the #LINK(Caverns)(Caverns page).
 
 The number 6031769 comes from Matthew Smith's driving licence, "with an error
 in it and twisted round a bit" (as he put it in an interview for issue 48 of
@@ -34,12 +34,12 @@ below the portal before collecting all the items outside that area:
 If that happens, he will have to wait until the air runs out before getting a
 second chance to escape from the cavern.
 
-See also #FACT#noWayOut().
+See also #FACT(noWayOut)().
 
 [Fact:noSwordfishForCheats:No swordfish for cheats]
 The game ending - with Willy above ground and the portal in #R64512(The Final
 Barrier) changed to the #R45792(swordfish) graphic - is not shown if
-#LINK:Facts#6031769(cheat mode) is activated (see #R36919).
+#FACT(6031769)(cheat mode) is activated (see #R36919).
 
 [Fact:unusedCrumblingFloor:Unused crumbling floor]
 The crumbling floor tile in #R58368(Skylab Landing Bay) is unique to that
@@ -76,7 +76,7 @@ TABLE#
 The other unused conveyor is of length 3, defined at (9,7) in
 #R62464(Amoebatrons' Revenge) (see #R63087). Instead of a conveyor, the space
 is occupied by a platform, whose third row of pixels is animated as if it were
-a conveyor (which is a #BUG#animatedPlatform(bug)).
+a conveyor (which is a #BUG(animatedPlatform)(bug)).
 
 To replace the platform with conveyor tiles:
 
@@ -145,7 +145,7 @@ decreases to zero.
   #OVER(1,4,,,2)($f)(bht,swordfish)
   #UDGARRAY(4,1)(15616x32)(*blue)
   #OVER(0,0,,,1)($f)(bht,blue)
-  #UDGARRAY*bht({ScreenshotImagePath}/bottom_half_twice)
+  #FRAMES(bht)({ScreenshotImagePath}/bottom_half_twice)
 } TABLE#
 
 This happens because the section of code at #R36926 draws Willy above ground,
@@ -324,7 +324,7 @@ Willy won't be able to reach the portal. For example:
 If that happens, he will have to wait until the air runs out before getting a
 second chance to escape from the cavern.
 
-See also #FACT#stuckOn16().
+See also #FACT(stuckOn16)().
 
 [Fact:theUnreachableMillion:The unreachable million]
 The score (at least, the part of it that is printed - see #R33829) rolls around

@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2022, 2024 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2022, 2024, 2025 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
 Expand=#INCLUDE(Expand)
@@ -94,7 +94,7 @@ PageByteColumns=#IF({base}==16)(0,1)
 #DEF(#REM()(remark))
 
 #DEF(#LOGO(dark,trans)(fname)
-  #UDGARRAY(19,#IF($dark||$trans==0)(23,16),2,256,tindex=3,alpha=(1-$trans)*255);43040-43058;43072-43090{10,,292}({ImagePath}/$fname|Manic Miner)
+  #UDGARRAY(19,#IF($dark||$trans==0)(23,16),2,256,tindex=3,alpha=(1-$trans)*255)(43040-43058;43072-43090){10,,292}({ImagePath}/$fname|Manic Miner)
 )
 
 #DEF(#TILES(cnum)
@@ -115,15 +115,15 @@ PageByteColumns=#IF({base}==16)(0,1)
 
 #DEF(#PORTAL(cnum)
   #LET(a=45711+1024*$cnum)
-  #UDGARRAY(2,#PEEK({a}),4,2);({a}+1)-({a}+18)-1-16(portal#EVAL$cnum,,2)
+  #UDGARRAY(2,#PEEK({a}),4,2)(({a}+1)-({a}+18)-1-16)(portal#EVAL$cnum,,2)
 )
 
 #DEF(#SPRITE(addr,attr)
-  #UDGARRAY(2,#IF($attr<256)($attr,127&#PEEK$attr),4,2);$addr-($addr+17)-1-16
+  #UDGARRAY(2,#IF($attr<256)($attr,127&#PEEK$attr),4,2)($addr-($addr+17)-1-16)
 )
 
 #DEF(#SFRAME(addr,attr)(frame)
-  #UDGARRAY(2,$attr,,2);$addr-($addr+17)-1-16(*$frame)
+  #UDGARRAY(2,$attr,,2)($addr-($addr+17)-1-16)(*$frame)
 )
 
 #DEF(#TILE(addr)(frame)
@@ -313,9 +313,9 @@ PageByteColumns=#IF({base}==16)(0,1)
   #OPORTAL({addr},$x,$y)(cavern)
   #IF($flags&2)||
     #ANIMCONV({addr},$x,$y)(cavern)
-    #UDGARRAY*cavern,10;cavern-0;cavern-1;cavern-2({ScreenshotImagePath}/$fname)
+    #FRAMES(cavern,10;cavern-0;cavern-1;cavern-2)({ScreenshotImagePath}/$fname)
   |
-    #UDGARRAY*cavern({ScreenshotImagePath}/$fname)
+    #FRAMES(cavern)({ScreenshotImagePath}/$fname)
   ||
 )
 
@@ -340,7 +340,7 @@ PageByteColumns=#IF({base}==16)(0,1)
   #LET(bg=#PEEK(45600+1024*$cnum))
   #OVER($x-$left,0,0,$y-8*$top,1)(#IF($b=={bg})($b&56|$f&71,$b))(cavern,willy)
   #OPORTAL({addr},$left,$top)(cavern)
-  #UDGARRAY*cavern({ScreenshotImagePath}/$fname)
+  #FRAMES(cavern)({ScreenshotImagePath}/$fname)
 )
 
 #DEF(#GAMEOVER

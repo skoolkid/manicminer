@@ -263,7 +263,7 @@ def get_caverns(snapshot):
             if cavern_num == 0:
                 lines.append('@ 45792 label=SWORDFISH')
                 desc = 'swordfish graphic that appears in #R64512(The Final Barrier) when the game is completed'
-                udgarray_macro = '#UDGARRAY2,69,4,2;45792;45793;45808,70;45809,71(swordfish)'
+                udgarray_macro = '#UDGARRAY2,69,4,2(45792;45793;45808,70;45809,71)(swordfish)'
                 comment = 'Swordfish graphic data'
             elif cavern_num == 1:
                 lines.append('@ 46816 label=PLINTH')
@@ -272,7 +272,7 @@ def get_caverns(snapshot):
                 comment = 'Plinth graphic data'
             elif cavern_num == 2:
                 lines.append('@ 47840 label=BOOT')
-                desc = 'boot graphic that appears on the Game Over screen (see #R35210). It also appears at the bottom of the screen next to the remaining lives when #FACT#6031769(cheat mode) is activated (see #R34608)'
+                desc = 'boot graphic that appears on the Game Over screen (see #R35210). It also appears at the bottom of the screen next to the remaining lives when #FACT(6031769)(cheat mode) is activated (see #R34608)'
                 udgarray_macro = '#SPRITE47840,71(boot)'
                 comment = 'Boot graphic data'
             else:

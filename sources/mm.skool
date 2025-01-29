@@ -1,4 +1,4 @@
-; Copyright 2010, 2012-2023 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2010, 2012-2023, 2025 Richard Dymond (rjdymond@gmail.com)
 
 @rom
 @defs=23552:9728 ; Clear all buffers
@@ -33,16 +33,16 @@ b28672 DEFS 4096
 @start
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#b\i/#N\1,,,1(0x)
-@expand=#DEF(#BUG #LINK:Bugs)
-@expand=#DEF(#FACT #LINK:Facts)
-@expand=#DEF(#POKE #LINK:Pokes)
+@expand=#DEF(#BUG()(a) #LINK(Bugs#$a))
+@expand=#DEF(#FACT()(a) #LINK(Facts#$a))
+@expand=#DEF(#POKE()(a) #LINK(Pokes#$a))
 @expand=#DEF(#S #FORMAT({mode[case]}))
-@expand=#DEF(#GBUF(a,b=0) #LINK:GameStatusBuffer#$a(#N$a#IF($b)(-#N$b)))
+@expand=#DEF(#GBUF(a,b=0) #LINK(GameStatusBuffer#$a)(#N$a#IF($b)(-#N$b)))
 ; Manic Miner disassembly
 ; https://skoolkit.ca
 ;
 ; Copyright 1983 Bug-Byte Ltd (Manic Miner)
-; Copyright 2010, 2012-2023 Richard Dymond (this disassembly)
+; Copyright 2010, 2012-2023, 2025 Richard Dymond (this disassembly)
 
 @isub+begin
 @org
@@ -337,10 +337,10 @@ g33024 DEFS 256
 ; Used by the routines at #R34252, #R34574 and #R37503.
 ; .
 ; #UDGTABLE
-; { #FOR(0,3)//n/#UDGARRAY2,7,2,2;(33280+32*n)-(33297+32*n)-1-16(willyn*)/ | //
-; | #UDGARRAY*willy0;willy1;willy2;willy3(willy_r) }
-; { #FOR(4,7)//n/#UDGARRAY2,7,2,2;(33280+32*n)-(33297+32*n)-1-16(willyn*)/ | //
-; | #UDGARRAY*willy7;willy6;willy5;willy4(willy_l) }
+; { #FOR(0,3)//n/#UDGARRAY2,7,2,2((33280+32*n)-(33297+32*n)-1-16)(willyn*)/ | //
+; | #FRAMES(willy0;willy1;willy2;willy3)(willy_r) }
+; { #FOR(4,7)//n/#UDGARRAY2,7,2,2((33280+32*n)-(33297+32*n)-1-16)(willyn*)/ | //
+; | #FRAMES(willy7;willy6;willy5;willy4)(willy_l) }
 ; TABLE#
 @label=MANDAT
 b33280 DEFB 6,0,62,0,124,0,52,0,62,0,60,0,24,0,60,0
@@ -4216,7 +4216,7 @@ b45056 DEFB 22,0,0,0,0,0,0,0                   ; {Attributes
 ; Final Barrier) when the game is completed.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,69,4,2;45792;45793;45808,70;45809,71(swordfish) }
+; { #UDGARRAY2,69,4,2(45792;45793;45808,70;45809,71)(swordfish) }
 ; TABLE#
 @label=SWORDFISH
  45792 DEFB 2,160,5,67,31,228,115,255          ; {Swordfish graphic data
@@ -4705,7 +4705,7 @@ b47104 DEFB 13,0,0,0,0,0,0,0                   ; {Attributes
  47838 DEFB 0,0                                ; Unused
 ; The next 32 bytes define the boot graphic that appears on the Game Over
 ; screen (see #R35210). It also appears at the bottom of the screen next to the
-; remaining lives when #FACT#6031769(cheat mode) is activated (see #R34608).
+; remaining lives when #FACT(6031769)(cheat mode) is activated (see #R34608).
 ; .
 ; #UDGTABLE
 ; { #SPRITE47840,71(boot) }
