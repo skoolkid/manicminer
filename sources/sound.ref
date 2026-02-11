@@ -1,4 +1,4 @@
-; Copyright 2022 Richard Dymond (rjdymond@gmail.com)
+; © 2022, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Page:Sound]
 SectionPrefix=Audio
@@ -6,42 +6,42 @@ SectionPrefix=Audio
 [Audio:themetune:Theme tune]
 This tune is played after the title screen has been prepared (see #R34351).
 
-#AUDIO4(tune.wav)(34351,34358)
+#AUDIO1,34351,34358(tune.wav)
 
 [Audio:ingametune:In-game tune]
 This tune is played by the main loop while a game is in progress (see #R34874).
 
-#AUDIO(in-game-tune.wav)(#INCLUDE(InGameTune))
+#AUDIO0(in-game-tune.wav)(#INCLUDE(InGameTune))
 
 [Audio:air:Air supply]
 This sound effect is produced while the air supply in the current cavern is
 being drained before moving to the next cavern (see #R37044).
 
-#PUSHS #POKES32956,63 #AUDIO4(air.wav)(37044,34449) #POPS
+#PUSHS #POKES32956,63 #AUDIO1,37044,34449(air.wav) #POPS
 
 [Audio:escape:Escape]
 This sound effect is produced when Willy escapes from the mine (see #R36983).
 
-#AUDIO4(escape.wav)(36983,37008)
+#AUDIO1,36983,37008(escape.wav)
 
 [Audio:life:Lose a life]
 This sound effect is produced when Willy loses a life (see #R35080).
 
-#AUDIO(die.wav)(#FOR(7,63,8,7)(d,[13*d+33]*(259-4*d),13*d+10895))
+#AUDIO0(die.wav)(#FOR(7,63,8,7)(d,[13*d+33]*(259-4*d),13*d+10895))
 
 [Audio:gameover:Game over]
 This sound effect is produced by the routine at #R35140 during the game over
 sequence.
 
-#AUDIO(game-over.wav)(#GAMEOVER)
+#AUDIO0(game-over.wav)(#GAMEOVER)
 
 [Audio:jumping:Jumping]
 These sound effects are produced by the routine at #R35515 when Willy is
 jumping.
 
-#AUDIO(jumping.wav)(#FOR1,18,,3(j,[104*(#IF(j>8)(j-8,8-j))+137]*31,280000))
+#AUDIO0(jumping.wav)(#FOR1,18,,3(j,[104*(#IF(j>8)(j-8,8-j))+137]*31,280000))
 
 [Audio:falling:Falling]
 These sound effects are produced when Willy is falling (see #R35673).
 
-#AUDIO(falling.wav)(#FOR(3,28,1,3)(a,[(208*a+33)%3315]*31,280000))
+#AUDIO0(falling.wav)(#FOR(3,28,1,3)(a,[(208*a+33)%3315]*31,280000))
