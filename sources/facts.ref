@@ -1,4 +1,4 @@
-; Copyright 2014-2019, 2021, 2022, 2025 Richard Dymond (rjdymond@gmail.com)
+; © 2014-2019, 2021, 2022, 2025, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:tunes:Tunes]
 The tune played on the title screen is <i>The Blue Danube</i> by Johann Strauss
@@ -131,7 +131,7 @@ the second run through the loop has drawn the bottom half of the cavern.
 [Fact:bottomHalfTwice:Bottom half twice]
 After Willy has jumped through the portal in #R64512(The Final Barrier) to the
 ground above, and the celebratory sound effect and colour-cycling effect have
-finished, the bottom half of Willy's sprite can be been dangling below the
+finished, the bottom half of Willy's sprite can be seen dangling below the
 swordfish graphic (where the portal was) while the remaining air supply
 decreases to zero.
 
