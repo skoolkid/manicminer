@@ -3046,7 +3046,7 @@ c37596 LD A,(IY+0)   ; Pick up the next byte of tune data from the table at
                      ; determines the duration) to #REGc
  37603 LD B,0        ; Initialise #REGb, which will be used as a delay counter
                      ; in the note-producing loop
- 37605 XOR A         ; Set #REGa=0 (for no apparent reasaon)
+ 37605 XOR A         ; Set #REGa=0 (for no apparent reason)
  37606 LD D,(IY+1)   ; Pick up the second byte of data for this note
  37609 LD A,D        ; Copy it to #REGa
  37610 CALL 37675    ; Calculate the attribute file address for the
