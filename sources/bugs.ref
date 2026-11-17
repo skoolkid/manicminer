@@ -1,4 +1,4 @@
-; Copyright 2014-2022, 2025 Richard Dymond (rjdymond@gmail.com)
+; © 2014-2022, 2025, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:animatedPlatform:The animated platform]
 There is a platform at (9,7) in #R62464(Amoebatrons' Revenge) whose third row
@@ -107,6 +107,15 @@ Places where this can happen are:
   #R46080(The Cold Room) |
   #R51200(The Vat) |
   #R60416(The Sixteenth Cavern) }
+TABLE#
+
+For the same reasons as described above, Willy can also land inside a wall
+block that is above the ground, if at step 13 his animation frame is 0 while
+jumping left or 3 while jumping right. Places where this can happen are:
+
+#UDGTABLE(gallery)
+{ #WILLY4,13,96,2,9,10,10,6(ttwa_el2) | #WILLY15,16,48,5,12,4,10,6(ttwa_sc3) }
+{ #R49152(Eugene's Lair) | #R60416(The Sixteenth Cavern) }
 TABLE#
 
 When Willy lands inside a wall block, he can walk straight through it unless

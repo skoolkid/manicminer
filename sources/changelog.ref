@@ -3,6 +3,12 @@
 [Page:Changelog]
 SectionType=BulletPoints
 
+[Changelog:YYYYMMDD]
+-
+
+- In #BUG(throughTheWallAgain)(), added places where Willy can jump into a wall
+  block that's above the ground (thanks IRF)
+
 [Changelog:20260428]
 -
 
