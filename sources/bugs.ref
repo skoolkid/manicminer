@@ -153,3 +153,41 @@ floor below when it crashes - see #BUG(attributeCrash)(). This effect does not
 occur on subsequent occasions when the guardian approaches the floor, because
 it never actually touches the floor again - its maximum pixel y-coordinate is
 79, one less than its original y-coordinate of 80 (see #FACT(outOfBounds)()).
+
+[Bug:minerDetails:Miner details]
+Should you be lucky enough to obtain 14 extra lives (on top of the original
+two), they will nicely fill up the bottom of the screen something like this:
+
+#UDGTABLE {
+  #UDGARRAY32,69(15616x128)(*lives1)
+  #UDGARRAY(2,69,2,2)(33376-33393-1-16)(*life1)
+  #FOR(0,30,2)(x,#OVER(x,1)(lives1,life1))
+  #FRAMES(lives1)({ScreenshotImagePath}/16lives)
+} TABLE#
+
+However, the loop that draws the remaining lives (at #R34584) doesn't cope well
+when there are more than 16. Lives 17-32, for example, are simply drawn
+underneath the first 16, but with the legs removed (because the attribute bytes
+in the bottom row of the screen are all zero):
+
+#UDGTABLE {
+  #UDGARRAY32,69(15616x128)(*lives2)
+  #UDGARRAY(2,69,2,2)(33376;33377;33376;33377)(*life2)
+  #FOR(0,30,2)(x,#OVER(x,1)(lives2,life2))
+  #FRAMES(lives2)({ScreenshotImagePath}/32lives)
+} TABLE#
+
+Even worse, in the unlikely event that there are more than 32 remaining lives,
+the loop at #R34584 will try to draw lives 33 onwards below the bottom of
+screen, which corrupts the empty cavern attribute buffer at #R24064, and leads
+to the cavern being drawn with incorrect attribute values. For example, when
+there are 40 remaining lives, the Central Cavern can end up looking like this:
+
+#PUSHSlives
+#POKES23040,48,32;33799,0;33879,40;33883,8
+#SIM(start=34449,stop=34505)
+#SIM(start=34574,stop=34608)
+#FOR(16384,20479)(a,#POKES(a,#PEEK(a+12288)))
+#FOR(22528,23039)(a,#POKES(a,#PEEK(a+1536)))
+#UDGTABLE { #SCR(2,h=17)(40lives) } TABLE#
+#POPS

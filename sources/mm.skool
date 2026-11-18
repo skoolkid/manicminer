@@ -836,7 +836,6 @@ c34252 XOR A         ; #REGa=0
 ; And finally, play the theme tune and check for keypresses.
 ; .
 ; #AUDIO1,34351,34358(tune.wav)
-@assemble=2
 *34351 LD IY,33902   ; Point #REGiy at the theme tune data at #R33902
  34355 CALL 37596    ; Play the theme tune
  34358 JP NZ,34436   ; Start the game if ENTER or the fire button was pressed
@@ -3123,7 +3122,6 @@ c37687 LD A,(33881)  ; Pick up the Kempston joystick indicator from #R33881
  37705 CP 1          ; Reset the zero flag if ENTER is being pressed
  37707 RET           ;
 
-@assemble=1
 ; Source code remnants
 ;
 ; The source code here corresponds to the code at #R34900.
