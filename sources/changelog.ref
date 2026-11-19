@@ -6,7 +6,9 @@ SectionType=BulletPoints
 [Changelog:YYYYMMDD]
 -
 
-- Added a trivia entry: #FACT(noRest)()
+- Added trivia entries:
+  - #FACT(noRest)()
+  - #FACT(playingWithoutFire)()
 - Documented a bug: #BUG(minerDetails)()
 - In #BUG(throughTheWallAgain)(), added places where Willy can jump into a wall
   block that's above the ground (thanks IRF)

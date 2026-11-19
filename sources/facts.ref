@@ -361,6 +361,13 @@ leftmost piano key:
 #UDGTABLE { #SCR2,0,6,32,2,43008,40448(norest) } TABLE#
 #POPS
 
+[Fact:playingWithoutFire:Playing without fire]
+While the title screen tune is playing, the user can press either the ENTER key
+or the joystick fire button to start the game (the routine at #R37687 is called
+after each note). But after the tune has finished and the message at #R40192 is
+being scrolled across the screen, the joystick fire button is ignored and only
+the ENTER key can start the game.
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at
 #GBUF32768 contains source code remnants (shown below). The DB directives
