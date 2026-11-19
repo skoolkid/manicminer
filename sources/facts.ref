@@ -348,6 +348,19 @@ It starts off at pixel y-coordinate 80 - touching the platform that Willy is
 standing on initially - but does not go below y=79 again after it has started
 moving (see #R64235).
 
+[Fact:noRest:No rest for the piano]
+The title screen tune note at #R34112 is a rest. (It produces no sound because
+the frequency parameters are both zero, which makes the counters in the
+note-producing loop at #R37624 reach zero together, and so the two
+speaker-flipping XORs cancel out.) But the routine at #R37675 computes the
+attribute file address for this silent note as #N(23008), which lights up the
+leftmost piano key:
+
+#PUSHS
+#POKES40672,40
+#UDGTABLE { #SCR2,0,6,32,2,43008,40448(norest) } TABLE#
+#POPS
+
 [Fact:sourceCodeRemnants:Source code remnants]
 Before the game starts for the first time, the 512-byte cavern buffer at
 #GBUF32768 contains source code remnants (shown below). The DB directives
