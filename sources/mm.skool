@@ -1238,13 +1238,13 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  35074 OR A          ; Is it demo mode?
  35075 JP NZ,36904   ; If so, move to the next cavern
  35078 LD A,71       ; #REGa=#b71 (INK 7: PAPER 0: BRIGHT 1)
-; The following loop fills the top two thirds of the attribute file with a
+; The following loop fills the top two-thirds of the attribute file with a
 ; single value (#b71, #b70, #b69, #b68, #b67, #b66, #b65 or #b64) and makes a
 ; sound effect.
 ; .
 ; #AUDIO0(die.wav)(#FOR(7,63,8,7)(d,[13*d+33]*(259-4*d),13*d+10895))
 @label=LPDEAD1
-*35080 LD HL,22528   ; {Fill the top two thirds of the attribute file with the
+*35080 LD HL,22528   ; {Fill the top two-thirds of the attribute file with the
  35083 LD DE,22529   ; value in #REGa
  35086 LD BC,511     ;
  35089 LD (HL),A     ;
@@ -1276,7 +1276,7 @@ c34574 LD A,(33879)  ; Pick up the number of lives remaining from #R33879
  35123 DEC A         ; Decrement it (effectively decrementing the INK colour)
  35124 CP 63         ; Have we used attribute value #b64 (INK 0) yet?
  35126 JR NZ,35080   ; If not, jump back to update the INK colour in the top
-                     ; two thirds of the screen and make another sound effect
+                     ; two-thirds of the screen and make another sound effect
 ; Finally, check whether any lives remain.
  35128 LD HL,33879   ; {Pick up the number of lives remaining from #R33879
  35131 LD A,(HL)     ; }
@@ -1484,8 +1484,8 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
  35451 LD (35484),A  ; #R35483 (below) to #n112}
  35454 CALL 35466    ; Draw the tiles for the top half of the cavern to the
                      ; screen buffer at #R28672
- 35457 LD IX,24320   ; Point #REGix at the 256th byte of the attribute buffer
-                     ; at #R24064 in preparation for drawing the bottom half of
+ 35457 LD IX,24320   ; Point #REGix at byte 256 of the attribute buffer at
+                     ; #R24064 in preparation for drawing the bottom half of
                      ; the cavern; this instruction is redundant, since #REGix
                      ; already holds #N24320
  35461 LD A,120      ; {Set the operand of the '#S/LD D/,n' instruction at
@@ -1499,9 +1499,9 @@ c35445 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; this identifies the type of tile to draw
  35472 LD HL,32800   ; {Move #REGhl through the attribute bytes and graphic
  35475 LD BC,72      ; data of the background, floor, crumbling floor, wall,
- 35478 CPIR          ; conveyor and nasty tiles starting at #R32800 until we
-                     ; find a byte that matches the attribute byte of the tile
-                     ; to be drawn}
+ 35478 CPIR          ; conveyor, nasty and extra tiles starting at #R32800
+                     ; until we find a byte that matches the attribute byte of
+                     ; the tile to be drawn}
  35480 LD C,E        ; Restore the value of the tile counter in #REGc
  35481 LD B,8        ; There are eight bytes in the tile
 @label=SBMSB
@@ -2064,8 +2064,8 @@ c36211 LD HL,23575   ; Point #REGhl at the cell at (0,23) in the attribute
  36230 JR NZ,36248   ; Jump if not (the light beam is not touching Willy)
  36232 EXX           ; Switch to the shadow registers briefly (to preserve
                      ; #REGde and #REGhl)
- 36233 CALL 35388    ; {Decrease the air supply by four units
- 36236 CALL 35388    ;
+ 36233 CALL 35388    ; {Decrease the air supply by the same amount as four
+ 36236 CALL 35388    ; passes through the main loop would
  36239 CALL 35388    ;
  36242 CALL 35388    ; }
  36245 EXX           ; Switch back to the normal registers (restoring #REGde
@@ -2206,11 +2206,13 @@ c36344 LD A,(32884)  ; Pick up the attribute of the last item drawn from
 ; This entry point is used by the routines at #R36469 (to set the attributes
 ; for a Skylab), #R36593 (to set the attributes for a vertical guardian) and
 ; #R37173 (to set the attributes for the Kong Beast).
-*36447 LD (HL),A     ; Save the INK colour in the attribute buffer temporarily
+*36447 LD (HL),A     ; Save the INK colour (for Eugene or the Kong Beast) or
+                     ; attribute byte (for a Skylab or other vertical guardian)
+                     ; in the attribute buffer temporarily
  36448 LD A,(32800)  ; Pick up the attribute byte of the background tile for
                      ; the current cavern from #R32800
- 36451 AND 248       ; {Combine its PAPER colour with the chosen INK colour
- 36453 OR (HL)       ; }
+ 36451 AND 248       ; {Combine its PAPER colour with the chosen INK colour or
+ 36453 OR (HL)       ; attribute byte}
  36454 LD (HL),A     ; Set the attribute byte for the top-left cell of the
                      ; sprite in the attribute buffer at #R23552
  36455 LD DE,31      ; Prepare #REGde for addition
@@ -2476,8 +2478,8 @@ c36805 LD HL,(32944) ; Pick up the address of the portal's location in the
 ; #R64512(The Final Barrier)) and #R37173 (to draw the Kong Beast in
 ; #R52224(Miner Willy meets the Kong Beast) and #R56320(Return of the Alien
 ; Kong Beast)). If #REGc=1 on entry, this routine returns with the zero flag
-; reset if any of the set bits in the sprite being drawn collides with a set
-; bit in the background.
+; reset if any of the set bits in the sprite being drawn collide with a set bit
+; in the background.
 ;
 ; C Drawing mode: 0 (overwrite) or 1 (blend)
 ; DE Address of sprite graphic data
@@ -2967,7 +2969,7 @@ c37503 LD A,(32872)  ; Pick up Willy's y-coordinate from #R32872
 @ssub=LD D,33280/256
  37528 LD D,130      ; }
  37530 LD B,16       ; There are 16 rows of pixels to copy
- 37532 LD A,(32876)  ; {Pick up Willy's screen x-coordinate (0-31) from #R32876
+ 37532 LD A,(32876)  ; {Pick up Willy's screen x-coordinate (1-29) from #R32876
  37535 AND 31        ; }
  37537 LD C,A        ; Copy it to #REGc
 *37538 LD A,(IX+0)   ; {Set #REGhl to the address in the screen buffer at
