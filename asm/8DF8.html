@@ -3,6 +3,7 @@
 <head>
 <title>Manic Miner: Routine at 8DF8</title>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
 </head>
 <body class="Asm-c">
@@ -300,7 +301,7 @@ This entry point is used by the routines at <a href="8E75.html">8E75</a> (to set
 <tr>
 <td class="address-2"><span id="8e5f"></span>8E5F</td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-1" rowspan="1">Save the INK colour in the attribute buffer temporarily</td>
+<td class="comment-1" rowspan="1">Save the INK colour (for Eugene or the Kong Beast) or attribute byte (for a Skylab or other vertical guardian) in the attribute buffer temporarily</td>
 </tr>
 <tr>
 <td class="address-1"><span id="8e60"></span>8E60</td>
@@ -310,7 +311,7 @@ This entry point is used by the routines at <a href="8E75.html">8E75</a> (to set
 <tr>
 <td class="address-1"><span id="8e63"></span>8E63</td>
 <td class="instruction">AND $F8</td>
-<td class="comment-1" rowspan="2">Combine its PAPER colour with the chosen INK colour</td>
+<td class="comment-1" rowspan="2">Combine its PAPER colour with the chosen INK colour or attribute byte</td>
 </tr>
 <tr>
 <td class="address-1"><span id="8e65"></span>8E65</td>
@@ -389,9 +390,9 @@ Next: <a href="8E75.html">8E75</a>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20260428</div>
+<div class="release">The complete Manic Miner RAM disassembly 20261121</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2026 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.0.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.2.</div>
 <div><a href="../dec/asm/36344.html">Switch to decimal</a>.</div>
 </footer>
 </body>

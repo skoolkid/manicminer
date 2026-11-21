@@ -3,6 +3,7 @@
 <head>
 <title>Manic Miner: Trivia</title>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
 </head>
 <body class="Facts">
@@ -38,6 +39,8 @@
 <li><a href="#theUnreachableMillion">The unreachable million</a></li>
 <li><a href="#horizontalSkylabs">Horizontal Skylabs?</a></li>
 <li><a href="#outOfBounds">Out of bounds</a></li>
+<li><a href="#noRest">No rest for the piano</a></li>
+<li><a href="#playingWithoutFire">Playing without fire</a></li>
 <li><a href="#sourceCodeRemnants">Source code remnants</a></li>
 </ul>
 <div><span id="tunes"></span></div>
@@ -589,6 +592,36 @@ standing on initially - but does not go below y=79 again after it has started
 moving (see <a href="../asm/63488.html#64235">64235</a>).
 </div>
 </div>
+<div><span id="noRest"></span></div>
+<div class="box box-2">
+<div class="box-title">No rest for the piano</div>
+<div class="paragraph">
+The title screen tune note at <a href="../asm/33902.html#34112">34112</a> is a rest. (It produces no sound because
+the frequency parameters are both zero, which makes the counters in the
+note-producing loop at <a href="../asm/37596.html#37624">37624</a> reach zero together, and so the two
+speaker-flipping XORs cancel out.) But the routine at <a href="../asm/37675.html">37675</a> computes the
+attribute file address for this silent note as 23008, which lights up the
+leftmost piano key:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="norest" src="../../images/scr/norest.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="playingWithoutFire"></span></div>
+<div class="box box-1">
+<div class="box-title">Playing without fire</div>
+<div class="paragraph">
+While the title screen tune is playing, the user can press either the ENTER key
+or the joystick fire button to start the game (the routine at <a href="../asm/37687.html">37687</a> is called
+after each note). But after the tune has finished and the message at <a href="../asm/40192.html">40192</a> is
+being scrolled across the screen, the joystick fire button is ignored and only
+the ENTER key can start the game.
+</div>
+</div>
 <div><span id="sourceCodeRemnants"></span></div>
 <div class="box box-2">
 <div class="box-title">Source code remnants</div>
@@ -835,9 +868,9 @@ code remnants at <a href="../asm/37708.html">37708</a>.
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20260428</div>
+<div class="release">The complete Manic Miner RAM disassembly 20261121</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2026 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.0.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.2.</div>
 <div><a href="../../reference/facts.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>

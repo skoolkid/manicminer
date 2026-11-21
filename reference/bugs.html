@@ -3,6 +3,7 @@
 <head>
 <title>Manic Miner: Bugs</title>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
 </head>
 <body class="Bugs">
@@ -19,6 +20,7 @@
 <li><a href="#throughTheWallAgain">Through the wall again</a></li>
 <li><a href="#attributeCrash">Attribute crash</a></li>
 <li><a href="#blueShadow">Blue shadow</a></li>
+<li><a href="#minerDetails">Miner details</a></li>
 </ul>
 <div><span id="animatedPlatform"></span></div>
 <div class="box box-1">
@@ -179,6 +181,23 @@ Places where this can happen are:
 </table>
 </div>
 <div class="paragraph">
+For the same reasons as described above, Willy can also land inside a wall
+block that is above the ground, if at step 13 his animation frame is 0 while
+jumping left or 3 while jumping right. Places where this can happen are:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="ttwa_el2" src="../images/scr/ttwa_el2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ttwa_sc3" src="../images/scr/ttwa_sc3.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/C000.html">Eugene's Lair</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/EC00.html">The Sixteenth Cavern</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
 When Willy lands inside a wall block, he can walk straight through it unless
 another wall block is in the way.
 </div>
@@ -230,10 +249,52 @@ it never actually touches the floor again - its maximum pixel y-coordinate is
 79, one less than its original y-coordinate of 80 (see <a href="facts.html#outOfBounds">Out of bounds</a>).
 </div>
 </div>
+<div><span id="minerDetails"></span></div>
+<div class="box box-1">
+<div class="box-title">Miner details</div>
+<div class="paragraph">
+Should you be lucky enough to obtain 14 extra lives (on top of the original
+two), they will nicely fill up the bottom of the screen something like this:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="16lives" src="../images/scr/16lives.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+However, the loop that draws the remaining lives (at <a href="../asm/870E.html#8718">8718</a>) doesn't cope well
+when there are more than 16. Lives 17-32, for example, are simply drawn
+underneath the first 16, but with the legs removed (because the attribute bytes
+in the bottom row of the screen are all zero):
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="32lives" src="../images/scr/32lives.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Even worse, in the unlikely event that there are more than 32 remaining lives,
+the loop at <a href="../asm/870E.html#8718">8718</a> will try to draw lives 33 onwards below the bottom of
+screen, which corrupts the empty cavern attribute buffer at <a href="../asm/5E00.html">5E00</a>, and leads
+to the cavern being drawn with incorrect attribute values. For example, when
+there are 40 remaining lives, the Central Cavern can end up looking like this:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="40lives" src="../images/scr/40lives.png" /></td>
+</tr>
+</table>
+</div>
+</div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20260428</div>
+<div class="release">The complete Manic Miner RAM disassembly 20261121</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2026 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.0.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.2.</div>
 <div><a href="../dec/reference/bugs.html">Switch to decimal</a>.</div>
 </footer>
 </body>

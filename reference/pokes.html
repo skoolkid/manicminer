@@ -3,6 +3,7 @@
 <head>
 <title>Manic Miner: Pokes</title>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
 </head>
 <body class="Pokes">
@@ -165,9 +166,9 @@ POKE <a href="../asm/85CC.html#85dc">34269</a>,N
 </div>
 <div class="paragraph">
 Note that the routine at <a href="../asm/870E.html">870E</a> tries to draw all remaining lives at the
-bottom of the screen, which means that for large N, there is screen corruption
-and the game slows down considerably; to avoid this, disable the drawing of
-more than one remaining life:
+bottom of the screen, which means that for large N, there is
+<a href="bugs.html#minerDetails">screen corruption</a> and the game slows down considerably; to
+avoid this, disable the drawing of more than one remaining life:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/870E.html#872e">34607</a>,0
@@ -184,9 +185,9 @@ POKE <a href="../asm/870E.html#8940">35136</a>,0
 </div>
 </div>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20260428</div>
+<div class="release">The complete Manic Miner RAM disassembly 20261121</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2026 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.0.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.2.</div>
 <div><a href="../dec/reference/pokes.html">Switch to decimal</a>.</div>
 </footer>
 </body>

@@ -3,6 +3,7 @@
 <head>
 <title>Manic Miner: Routine at 8A75</title>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
 </head>
 <body class="Asm-c">
@@ -56,7 +57,7 @@ Used by the routine at <a href="8684.html">8684</a>.
 <tr>
 <td class="address-1"><span id="8a81"></span>8A81</td>
 <td class="instruction">LD IX,$5F00</td>
-<td class="comment-1" rowspan="1">Point <span class="register">IX</span> at the 256th byte of the attribute buffer at <a href="5E00.html">5E00</a> in preparation for drawing the bottom half of the cavern; this instruction is redundant, since <span class="register">IX</span> already holds 5F00</td>
+<td class="comment-1" rowspan="1">Point <span class="register">IX</span> at byte 256 of the attribute buffer at <a href="5E00.html">5E00</a> in preparation for drawing the bottom half of the cavern; this instruction is redundant, since <span class="register">IX</span> already holds 5F00</td>
 </tr>
 <tr>
 <td class="address-1"><span id="8a85"></span>8A85</td>
@@ -95,7 +96,7 @@ The following loop draws 256 tiles (for either the top half or the bottom half o
 <tr>
 <td class="address-1"><span id="8a90"></span>8A90</td>
 <td class="instruction">LD HL,$8020</td>
-<td class="comment-1" rowspan="3">Move <span class="register">HL</span> through the attribute bytes and graphic data of the background, floor, crumbling floor, wall, conveyor and nasty tiles starting at <a href="8020.html">8020</a> until we find a byte that matches the attribute byte of the tile to be drawn</td>
+<td class="comment-1" rowspan="3">Move <span class="register">HL</span> through the attribute bytes and graphic data of the background, floor, crumbling floor, wall, conveyor, nasty and extra tiles starting at <a href="8020.html">8020</a> until we find a byte that matches the attribute byte of the tile to be drawn</td>
 </tr>
 <tr>
 <td class="address-1"><span id="8a93"></span>8A93</td>
@@ -216,9 +217,9 @@ Next: <a href="8ABB.html">8ABB</a>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Manic Miner RAM disassembly 20260428</div>
+<div class="release">The complete Manic Miner RAM disassembly 20261121</div>
 <div class="copyright">&#169; 1983 Bug-Byte Ltd. &#169; 2026 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.0.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 10.2.</div>
 <div><a href="../dec/asm/35445.html">Switch to decimal</a>.</div>
 </footer>
 </body>
