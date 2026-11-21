@@ -1,7 +1,7 @@
 # rc file for check-asms. check-bins, disassembly-diff, skooldiff, write-files
 
-OLD_VERSION=20260428
+OLD_VERSION=20261121
 RZX=$SPECTRUM_RZX/m/manic/manic.rzx
-SK_OLD_VERSION=10.0
+SK_OLD_VERSION=10.2
 SKOOL2BIN_START=32765
 SNAPSHOT=$MANICMINER_HOME/build/manic_miner.z80
